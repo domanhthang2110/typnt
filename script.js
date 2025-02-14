@@ -143,22 +143,28 @@ function createFontCard(fontData) {
     "duration-300",
     "ease-in-out",
     "shadow-lg",
-    "mb-6"
+    "mb-6",
+    "relative"
   );
 
   const name = document.createElement("h3");
   name.innerText = fontData.family;
   name.classList.add("text-sm", "text-white");
 
+  const sampleContainer = document.createElement("div");
+  sampleContainer.classList.add("card-sample-container");
+
   const sample = document.createElement("p");
   sample.innerText = fontData.family;
   sample.style.fontFamily = `'${fontData.family}', sans-serif`;
-  sample.classList.add("text-2xl", "mt-4", "mb-4", "outline-none");
+  sample.classList.add("card-sample", "text-2xl", "mt-4", "mb-4", "outline-none");
   sample.contentEditable = true;
+
+  sampleContainer.appendChild(sample);
 
   const stylesCount = document.createElement("p");
   stylesCount.innerText = `${fontData.variants.length} styles`;
-  stylesCount.classList.add("text-sm", "text-gray-400");
+  stylesCount.classList.add("text-sm", "text-gray-400", "absolute", "top-2", "right-2");
 
   const sourceType = document.createElement("p");
   sourceType.innerText = Math.random() > 0.5 ? "Open source" : "Closed source";
@@ -166,7 +172,7 @@ function createFontCard(fontData) {
 
   const designer = document.createElement("p");
   designer.innerText = `Designed by ${fontData.designer}`;
-  designer.classList.add("text-sm", "text-gray-400");
+  designer.classList.add("text-sm", "text-gray-400", "absolute", "bottom-2", "left-2");
 
   // Create the slider
   const weightSlider = document.createElement("input");
@@ -174,7 +180,7 @@ function createFontCard(fontData) {
   weightSlider.min = 12;
   weightSlider.max = 100;
   weightSlider.value = 24;
-  weightSlider.classList.add("mt-4", "slider");
+  weightSlider.classList.add("slider");
 
   const variantDropdown = createVariantDropdown(fontData.variants, card);
   variantDropdown.querySelector("div").addEventListener("change", (e) => {
@@ -225,13 +231,21 @@ function createFontCard(fontData) {
     }
   });
 
+  const topContainer = document.createElement("div");
+  topContainer.classList.add("flex", "justify-between", "items-center", "w-full");
+
+  const middleTopContainer = document.createElement("div");
+  middleTopContainer.classList.add("flex", "justify-center", "items-center", "w-full", "absolute", "top-2", "left-1/2", "transform", "-translate-x-1/2");
+
+  middleTopContainer.appendChild(weightSlider);
+  middleTopContainer.appendChild(variantDropdown);
+
   card.appendChild(name);
-  card.appendChild(sample);
+  card.appendChild(sampleContainer);
   card.appendChild(stylesCount);
   card.appendChild(sourceType);
   card.appendChild(designer);
-  card.appendChild(weightSlider);
-  card.appendChild(variantDropdown);
+  card.appendChild(middleTopContainer);
 
   return card;
 }
@@ -243,7 +257,7 @@ function createVariantDropdown(variants, card) {
   const button = document.createElement("button");
   button.type = "button";
   button.className =
-    "relative mt-4 z-40 bg-[#040A10] text-white py-2 px-4 transition-all duration-200 flex items-center gap-2 dropdown-button opacity-0";
+    "relative z-40 bg-[#040A10] text-white py-2 px-4 transition-all duration-200 flex items-center gap-2 dropdown-button opacity-0";
   button.innerHTML = `<span>${translateWeightToName(
     "regular"
   )}</span><span class="ml-1 text-xl dd-triangle">▾</span>`;
@@ -387,12 +401,27 @@ function setupEventListeners() {
     });
   });
 
+  const masterSlider = document.querySelector(".master-slider");
+  const sliderValue = document.getElementById("sliderValue");
+
+  // Set initial value of --split-percent
+  const initialValue = parseInt(masterSlider.value);
+  const initialPercent = ((initialValue - 12) / (100 - 12)) * 100;
+  masterSlider.style.setProperty("--split-percent", `${initialPercent}%`);
+
   masterSlider.addEventListener("input", (e) => {
     const rawValue = parseInt(e.target.value);
-    const percent = (rawValue / 100) * 100 - 2;
+    const percent = ((rawValue - 12) / (100 - 12)) * 100; // Adjust the range to 12-100
     masterSlider.style.setProperty("--split-percent", `${percent}%`);
-    sample.style.fontSize = `${rawValue}px`;
-    sample.style.lineHeight = `${rawValue * 1.4}px`;
+    sliderValue.textContent = rawValue + " px";
+    // Select all elements with the class 'card-sample'
+    const samples = document.querySelectorAll(".card-sample");
+
+    // Loop through each element and adjust the font size and line height
+    samples.forEach((sample) => {
+      sample.style.fontSize = `${rawValue}px`;
+      sample.style.lineHeight = `${rawValue * 1.4}px`;
+    });
   });
 
   categoriesButton.addEventListener("click", () => {
@@ -443,21 +472,58 @@ function setupEventListeners() {
   listViewBtn.addEventListener("click", () => {
     fontContainer.classList.remove("grid", "grid-cols-4", "gap-y-0");
     fontContainer.classList.add("flex", "flex-col", "space-y-6");
+    listViewBtn.classList.remove("text-[#9c9c9c]");
+    listViewBtn.classList.add("text-white");
+    gridViewBtn.classList.remove("text-white");
+    gridViewBtn.classList.add("text-[#9c9c9c]");
   });
 
   gridViewBtn.addEventListener("click", () => {
     fontContainer.classList.remove("flex", "flex-col", "space-y-6");
     fontContainer.classList.add("grid", "grid-cols-4", "gap-y-0");
+    listViewBtn.classList.add("text-[#9c9c9c]");
+    listViewBtn.classList.remove("text-white");
+    gridViewBtn.classList.add("text-white");
+    gridViewBtn.classList.remove("text-[#9c9c9c]");
     document.querySelectorAll("#font-container > .card").forEach((card) => {
       card.classList.remove("mb-6", "space-y-6");
       card.classList.add("m-0");
     });
   });
 
+  // Alignment buttons event listeners
+  const alignLeftBtn = document.getElementById("alignLeftBtn");
+  const alignCenterBtn = document.getElementById("alignCenterBtn");
+  const alignRightBtn = document.getElementById("alignRightBtn");
+
+  alignLeftBtn.addEventListener("click", () => {
+    document.querySelectorAll(".card-sample-container").forEach((container) => {
+      const sample = container.querySelector(".card-sample");
+      sample.classList.remove("center", "right");
+      sample.classList.add("left");
+    });
+  });
+
+  alignCenterBtn.addEventListener("click", () => {
+    document.querySelectorAll(".card-sample-container").forEach((container) => {
+      const sample = container.querySelector(".card-sample");
+      sample.classList.remove("left", "right");
+      sample.classList.add("center");
+    });
+  });
+
+  alignRightBtn.addEventListener("click", () => {
+    document.querySelectorAll(".card-sample-container").forEach((container) => {
+      const sample = container.querySelector(".card-sample");
+      sample.classList.remove("left", "center");
+      sample.classList.add("right");
+    });
+  });
+
   // Event listener for key presses
-  document.addEventListener('keydown', (event) => {
+  document.addEventListener("keydown", (event) => {
     // Check if the 'O' key is pressed (you can change this to any key you prefer)
-    if (event.key === 'o' || event.key === 'O') {
+    if (event.key === "o" || event.key === "O") {
       toggleOutline();
     }
   });
