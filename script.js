@@ -150,29 +150,15 @@ function createFontCard(fontData) {
   const name = document.createElement("h3");
   name.innerText = fontData.family;
   name.classList.add("text-sm", "text-white");
-
-  const sampleContainer = document.createElement("div");
-  sampleContainer.classList.add("card-sample-container");
-
-  const sample = document.createElement("p");
-  sample.innerText = fontData.family;
-  sample.style.fontFamily = `'${fontData.family}', sans-serif`;
-  sample.classList.add("card-sample", "text-2xl", "mt-4", "mb-4", "outline-none");
-  sample.contentEditable = true;
-
-  sampleContainer.appendChild(sample);
+  
+  // Create an anchor element
+  const link = document.createElement("a");
+  link.href = `glyph.html?font=${encodeURIComponent(fontData.family)}`;
+  link.appendChild(name);
 
   const stylesCount = document.createElement("p");
   stylesCount.innerText = `${fontData.variants.length} styles`;
-  stylesCount.classList.add("text-sm", "text-gray-400", "absolute", "top-2", "right-2");
-
-  const sourceType = document.createElement("p");
-  sourceType.innerText = Math.random() > 0.5 ? "Open source" : "Closed source";
-  sourceType.classList.add("text-sm", "text-gray-400");
-
-  const designer = document.createElement("p");
-  designer.innerText = `Designed by ${fontData.designer}`;
-  designer.classList.add("text-sm", "text-gray-400", "absolute", "bottom-2", "left-2");
+  stylesCount.classList.add("text-sm", "text-gray-400");
 
   // Create the slider
   const weightSlider = document.createElement("input");
@@ -231,21 +217,40 @@ function createFontCard(fontData) {
     }
   });
 
+  const sampleContainer = document.createElement("div");
+  sampleContainer.classList.add("card-sample-container");
+
+  const sample = document.createElement("p");
+  sample.innerText = fontData.family;
+  sample.style.fontFamily = `'${fontData.family}', sans-serif`;
+  sample.classList.add("card-sample", "text-8xl", "mt-4", "mb-4", "outline-none");
+  sample.contentEditable = true;
+
+  sampleContainer.appendChild(sample);
+
+  const sourceType = document.createElement("p");
+  sourceType.innerText = Math.random() > 0.5 ? "Open source" : "Closed source";
+  sourceType.classList.add("text-sm", "text-gray-400");
+
+  const designer = document.createElement("p");
+  designer.innerText = `Designed by ${fontData.designer}`;
+  designer.classList.add("text-sm", "text-gray-400");
+
   const topContainer = document.createElement("div");
   topContainer.classList.add("flex", "justify-between", "items-center", "w-full");
+  topContainer.appendChild(link);
+  topContainer.appendChild(weightSlider);
+  topContainer.appendChild(variantDropdown);
+  topContainer.appendChild(stylesCount);
 
-  const middleTopContainer = document.createElement("div");
-  middleTopContainer.classList.add("flex", "justify-center", "items-center", "w-full", "absolute", "top-2", "left-1/2", "transform", "-translate-x-1/2");
+  const bottomContainer = document.createElement("div");
+  bottomContainer.classList.add("justify-between", "items-center", "w-full", "absolute", "bottom-2", "left-2");
+  bottomContainer.appendChild(sourceType);
+  bottomContainer.appendChild(designer);
 
-  middleTopContainer.appendChild(weightSlider);
-  middleTopContainer.appendChild(variantDropdown);
-
-  card.appendChild(name);
+  card.appendChild(topContainer);
   card.appendChild(sampleContainer);
-  card.appendChild(stylesCount);
-  card.appendChild(sourceType);
-  card.appendChild(designer);
-  card.appendChild(middleTopContainer);
+  card.appendChild(bottomContainer);
 
   return card;
 }
@@ -497,26 +502,23 @@ function setupEventListeners() {
   const alignRightBtn = document.getElementById("alignRightBtn");
 
   alignLeftBtn.addEventListener("click", () => {
-    document.querySelectorAll(".card-sample-container").forEach((container) => {
-      const sample = container.querySelector(".card-sample");
-      sample.classList.remove("center", "right");
-      sample.classList.add("left");
+    document.querySelectorAll(".card-sample").forEach((sample) => {
+      sample.classList.remove("align-center", "align-right");
+      sample.classList.add("align-left");
     });
   });
 
   alignCenterBtn.addEventListener("click", () => {
-    document.querySelectorAll(".card-sample-container").forEach((container) => {
-      const sample = container.querySelector(".card-sample");
-      sample.classList.remove("left", "right");
-      sample.classList.add("center");
+    document.querySelectorAll(".card-sample").forEach((sample) => {
+      sample.classList.remove("align-left", "align-right");
+      sample.classList.add("align-center");
     });
   });
 
   alignRightBtn.addEventListener("click", () => {
-    document.querySelectorAll(".card-sample-container").forEach((container) => {
-      const sample = container.querySelector(".card-sample");
-      sample.classList.remove("left", "center");
-      sample.classList.add("right");
+    document.querySelectorAll(".card-sample").forEach((sample) => {
+      sample.classList.remove("align-left", "align-center");
+      sample.classList.add("align-right");
     });
   });
 

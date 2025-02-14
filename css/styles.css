@@ -75,7 +75,7 @@ nav {
 .top-bar-button, .top-bar-button-end {
   background: #040A10;
   color: white;
-  border-left: 2px solid #252525;
+  border-left: 1px solid #252525;
   height: 100%;
   min-width: 200px;
   padding: 10px 20px;
@@ -87,7 +87,7 @@ nav {
 }
 
 .top-bar-button-end {
-  border-right: 2px solid #252525;
+  border-right: 1px solid #252525;
 }
 
 .login-button {
@@ -136,35 +136,36 @@ nav {
 
 .card-sample-container {
   position: relative;
-  /* Remove overflow and max-height to allow the container to grow */
+  display: flex;
+  width: 100%;
+  min-height: 200px;
+  height:100%;
+  outline: 1px solid red;
 }
 
 .card-sample {
-  position: relative; /* Change to relative to allow the container to grow */
   line-height: 40px;
-  top: 0;
-  transition: transform 0.5s ease;
-  max-width: 100%; /* Ensure the text does not exceed the container width */
+  max-width: 100%;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 4;
-  /* Limit the text to 4 lines */
   overflow: hidden;
+  width: 100%;
 }
 
-.card-sample.left {
+.card-sample.align-left {
   left: 0;
   transform: translateX(0);
   text-align: left;
 }
 
-.card-sample.center {
+.card-sample.align-center {
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
 }
 
-.card-sample.right {
+.card-sample.align-right {
   left: 100%;
   transform: translateX(-100%);
   text-align: right;
