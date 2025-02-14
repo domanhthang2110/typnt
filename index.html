@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Explore, read, and practice typography with Typ.nt's vast collection of fonts and resources."
+    />
+    <title>Typ.nt - Typography Exploration</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts Link Placeholder -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+  </head>
+
+  <body class="bg-[#040A10] text-white">
+    <!-- Navigation Bar -->
+    <header
+      class="flex justify-between items-center  bg-[#040A10] border-b border-[#333] pl-12 z-10"
+    >
+      <div class="text-4xl font-semibold logo">
+        Typ.nt
+      </div>
+      <nav class="flex items-center">
+        <a href="#archive" class="top-bar-button text-white hover:underline">home.nt</a>
+        <a href="#reads" class="top-bar-button text-white  hover:underline">reads</a>
+        <a href="#video" class="top-bar-button text-white  hover:underline">videos</a>
+        <a href="#practice" class="top-bar-button text-white  hover:underline">practice</a>
+        <a href="#typ-lab" class="top-bar-button text-white hover:underline">typ.lab</a>
+        <a href="#archive" class="top-bar-button-end text-white hover:underline">archive</a>
+      </nav>
+      <a href="#login" class="text-white hover:underline login-button">login</a>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Search Bar -->
+      <div class="flex justify-between items-center bg-[#040A10] p-2 h-24">
+        <div class="flex items-center bg-[#040A10] search-bar pl-10 pt-8">
+          <div
+            class="text-3xl -mt-3 pb-5 text-[#9C9C9C] border-b-2 border-[#4F4F4F]"
+          >
+            ⌕
+          </div>
+          <input
+            type="text"
+            class="flex-1 text-base pl-2 pb-5 bg-[#040A10] placeholder-[#9C9C9C] border-b-2 border-[#4F4F4F] outline-none focus:ring-0 search"
+            placeholder="Search"
+          />
+        </div>
+        <div class="second-bar flex-1 flex items-center pl-1 border-b-2 border-[#4F4F4F] h-full gap-2">
+        <div class="flex items-center space-x-4">
+          <div class="relative" id="categoriesDropdown">
+            <button
+              type="button"
+              class="second-bar-button relative z-40 bg-[#040A10] text-[#4F4F4F] py-2 pt-4 px-4 hover:text-white transition-all duration-200 flex items-center gap-2"
+              id="categoriesButton"
+            >
+              <span>Categories</span
+              ><span class="ml-1 text-xl dd-triangle" id="triangle">▾</span>
+            </button>
+            <div
+              class="py-1 pt-20 pb-5 -top-4 absolute -left-1 pl-2 pr-2 transition-all duration-200 ease-in-out opacity-0 -translate-y-1 invisible bg-[#040A10] min-w-max z-20"
+              id="dropdownContent"
+            >
+              <label class="block px-4 py-2 text-sm">
+                <input type="radio" name="category" value="all" checked /> All
+              </label>
+              <label class="block px-4 py-2 text-sm">
+                <input type="radio" name="category" value="sans-serif" />
+                Sans-Serif
+              </label>
+              <label class="block px-4 py-2 text-sm">
+                <input type="radio" name="category" value="serif" /> Serif
+              </label>
+              <label class="block px-4 py-2 text-sm">
+                <input type="radio" name="category" value="display" /> Display
+              </label>
+              <label class="block px-4 py-2 text-sm">
+                <input type="radio" name="category" value="handwriting" />
+                Handwriting
+              </label>
+              <label class="block px-4 py-2 text-sm">
+                <input type="radio" name="category" value="monospace" />
+                Monospace
+              </label>
+            </div>
+          </div>
+          <!-- Button -->
+        </div>
+        <button
+          type="button"
+          class="second-bar-button bg-[#040A10] text-[#4F4F4F] py-2 px-4 pt-4 text-left hover:text-white transition-all duration-200 ease-in-out z-30 relative flex items-center gap-2"
+          id="propertiesButton"
+        >
+          <span>Properties</span
+          ><span class="ml-1 text-xl transition-transform duration-200">▾</span>
+        </button>
+        
+        <button
+          type="button"
+          class="second-bar-button bg-[#040A10] text-[#4F4F4F] py-2 px-4 pt-4 text-left hover:text-white transition-all duration-200 ease-in-out z-30 relative flex items-center gap-2"
+          id="personalityButton"
+        >
+          <span>Personality</span
+          ><span class="ml-1 text-xl transition-transform duration-200">▾</span>
+        </button>
+      </div>
+        <input type="range" min="12" max="100" value="24" class="mt-4 master-slider">
+
+      </div>
+
+      <!-- Header Options -->
+      <div
+        class="flex justify-between items-center p-4 border-b border-[#4F4F4F]"
+      >
+        <div class="text-lg">100 Total</div>
+        <div class="flex space-x-4">
+          <button
+            class="text-white bg-transparent border-none py-2 px-4 hover:bg-[#4F4F4F]"
+            id="listViewBtn"
+          >
+            List view
+          </button>
+          <button
+            class="text-white bg-transparent border-none py-2 px-4 hover:bg-[#4F4F4F]"
+            id="gridViewBtn"
+          >
+            Grid view
+          </button>
+        </div>
+        <div class="flex items-center space-x-4">
+          <span>Sort by:</span>
+          <button
+            class="text-white bg-transparent border-none py-2 px-4 hover:bg-[#4F4F4F]"
+          >
+            Latest
+          </button>
+          <button
+            class="text-white bg-transparent border-none py-2 px-4 hover:bg-[#4F4F4F]"
+          >
+            Popular
+          </button>
+          <button
+            class="text-white bg-transparent border-none py-2 px-4 hover:bg-[#4F4F4F]"
+          >
+            Alphabetical
+          </button>
+        </div>
+      </div>
+
+      <!-- Font Display -->
+      <div id="font-container" class="p-6"></div>
+
+      <div id="load-more-trigger"></div>
+    </main>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+    <script src="check-regular-button.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+  </body>
+</html>
