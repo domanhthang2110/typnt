@@ -1,0 +1,110 @@
+.card:hover .slider {
+  opacity: 1;
+  /* Reveal the slider on hover */
+}
+
+.card:hover .dropdown-button {
+  opacity: 1;
+}
+
+input[type="radio"] {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #4F4F4F;
+  border-radius: 50%;
+  margin-right: 8px;
+  transition: all 0.2s ease;
+  vertical-align: middle;
+}
+
+input[type="radio"]:hover {
+  border-color: white;
+}
+
+input[type="radio"]:checked {
+  background: white;
+  border-color: white;
+}
+
+.dd-triangle {
+  display: inline-block;
+  transform: rotate(90deg);
+  transition: transform 0.2s ease;
+}
+
+.rotate-triangle {
+  transform: rotate(0deg) !important;
+}
+
+.dropdown-content {
+  padding-top: 20px;
+  max-height: 200px;
+}
+
+/* Custom Scrollbar Styles */
+.custom-scrollbar {
+  /* Scrollbar track */
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: #4F4F4F #040A10;
+   /* Thumb and track color */
+}
+
+
+/* Keep padding for scrollbar space */
+.dropdown-content-wrapper {
+  min-width: 150px;
+  /* Adjust the padding to the width of the scrollbar */
+}
+
+body {
+  font-family: "Roboto Mono", serif;
+}
+
+nav {
+  height: 100px;
+  align-items: stretch;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.top-bar-button, .top-bar-button-end {
+  background: #040A10;
+  color: white;
+  border-left: 2px solid #252525;
+  height: 100%;
+  min-width: 200px;
+  padding: 10px 20px;
+  cursor: pointer;
+  display: flex; /* Ensure the button content is centered */
+  align-items: center; /* Center the content vertically */
+  justify-content: center; /* Center the content horizontally */
+  text-decoration: none;
+}
+
+.top-bar-button-end {
+  border-right: 2px solid #252525;
+}
+
+.login-button {
+  margin-right: 120px;
+}
+
+.search-bar {
+  width: 300px;
+  margin-right: 56px;
+  color: #9C9C9C
+}
+
+#dropdownContent {
+  width:201px;
+}
+
+.second-bar-button {
+  width:198px;
+  left: -3px;
+}
