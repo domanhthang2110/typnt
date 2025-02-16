@@ -150,7 +150,7 @@ function createFontCard(fontData) {
   const name = document.createElement("h3");
   name.innerText = fontData.family;
   name.classList.add("text-sm", "text-white");
-  
+
   // Create an anchor element
   const link = document.createElement("a");
   link.href = `glyph.html?font=${encodeURIComponent(fontData.family)}`;
@@ -164,9 +164,9 @@ function createFontCard(fontData) {
   const weightSlider = document.createElement("input");
   weightSlider.type = "range";
   weightSlider.min = 12;
-  weightSlider.max = 100;
-  weightSlider.value = 24;
-  weightSlider.classList.add("slider");
+  weightSlider.max = 210;
+  weightSlider.value = 96;
+  weightSlider.classList.add("slider", "self-start");
 
   const variantDropdown = createVariantDropdown(fontData.variants, card);
   variantDropdown.querySelector("div").addEventListener("change", (e) => {
@@ -189,7 +189,7 @@ function createFontCard(fontData) {
 
   weightSlider.addEventListener("input", (e) => {
     const rawValue = parseInt(e.target.value);
-    const percent = (rawValue / 100) * 100 - 2;
+    const percent = (rawValue / 210) * 100 - 2;
     weightSlider.style.setProperty("--split-percent", `${percent}%`);
     sample.style.fontSize = `${rawValue}px`;
     sample.style.lineHeight = `${rawValue * 1.4}px`;
@@ -236,11 +236,16 @@ function createFontCard(fontData) {
   designer.innerText = `Designed by ${fontData.designer}`;
   designer.classList.add("text-sm", "text-gray-400");
 
+  // Create a nested flex container for the link, slider, and variant dropdown
+  const linkContainer = document.createElement("div");
+  linkContainer.classList.add("flex", "items-center", "space-x-4");
+  linkContainer.appendChild(link);
+  linkContainer.appendChild(weightSlider);
+  linkContainer.appendChild(variantDropdown);
+
   const topContainer = document.createElement("div");
   topContainer.classList.add("flex", "justify-between", "items-center", "w-full");
-  topContainer.appendChild(link);
-  topContainer.appendChild(weightSlider);
-  topContainer.appendChild(variantDropdown);
+  topContainer.appendChild(linkContainer);
   topContainer.appendChild(stylesCount);
 
   const bottomContainer = document.createElement("div");
@@ -409,25 +414,37 @@ function setupEventListeners() {
   const masterSlider = document.querySelector(".master-slider");
   const sliderValue = document.getElementById("sliderValue");
 
-  // Set initial value of --split-percent
-  const initialValue = parseInt(masterSlider.value);
-  const initialPercent = ((initialValue - 12) / (100 - 12)) * 100;
-  masterSlider.style.setProperty("--split-percent", `${initialPercent}%`);
+  let isDragging = false;
+  let animationFrameId = null;
 
   masterSlider.addEventListener("input", (e) => {
     const rawValue = parseInt(e.target.value);
-    const percent = ((rawValue - 12) / (100 - 12)) * 100; // Adjust the range to 12-100
+    const percent = ((rawValue - 12) / (210 - 12)) * 100; // Adjust the range to 12-100
     masterSlider.style.setProperty("--split-percent", `${percent}%`);
     sliderValue.textContent = rawValue + " px";
-    // Select all elements with the class 'card-sample'
-    const samples = document.querySelectorAll(".card-sample");
 
-    // Loop through each element and adjust the font size and line height
-    samples.forEach((sample) => {
-      sample.style.fontSize = `${rawValue}px`;
-      sample.style.lineHeight = `${rawValue * 1.4}px`;
-    });
+    if (!isDragging) {
+      isDragging = true;
+      updateSamples(rawValue);
+    }
   });
+
+  function updateSamples(rawValue) {
+    if (animationFrameId) {
+      cancelAnimationFrame(animationFrameId);
+    }
+
+    animationFrameId = requestAnimationFrame(() => {
+      const samples = document.querySelectorAll(".card-sample");
+
+      samples.forEach((sample) => {
+        sample.style.fontSize = `${rawValue}px`;
+        sample.style.lineHeight = `${rawValue * 1.4}px`;
+      });
+
+      isDragging = false;
+    });
+  }
 
   categoriesButton.addEventListener("click", () => {
     triangle.classList.toggle("rotate-triangle");

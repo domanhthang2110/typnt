@@ -24,8 +24,8 @@
     /* Visual track height */
     background: linear-gradient(to right,
             white 0%,
-            white calc(var(--split-percent, 22%)),
-            rgba(128, 128, 128, var(--grey-opacity, 0)) calc(var(--split-percent, 22%)),
+            white calc(var(--split-percent, 42%)),
+            rgba(128, 128, 128, var(--grey-opacity, 0)) calc(var(--split-percent, 42%)),
             rgba(128, 128, 128, var(--grey-opacity, 0)) 100%);
     border-radius: 5px;
     /* Rounded track edges */
@@ -120,8 +120,8 @@
     height: 2px;
     background: linear-gradient(to right,
             white 0%,
-            white calc(var(--split-percent, 22%)),
-            rgba(128, 128, 128, 255) calc(var(--split-percent, 22%)),
+            white calc(var(--split-percent, 42%)),
+            rgba(128, 128, 128, 255) calc(var(--split-percent, 42%)),
             rgba(128, 128, 128, 255) 100%);
     border-radius: 5px;
 }

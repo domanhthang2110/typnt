@@ -52,5 +52,114 @@
       </nav>
       <a href="#login" class="text-white hover:underline login-button">login</a>
     </header>
+    <header
+      class="flex justify-between items-center bg-[#040A10] border-b border-[#333] h-20 z-10"
+    >
+      <a
+        href="index.html"
+        class="text-white hover:underline ml-12 h-full flex items-center border-r border-[#333] justify-center min-w-[250px]"
+        >← back to archive</a
+      >
+      <nav class="flex items-center h-full">
+        <a href="#reads" class="text-white second-bar-button hover:underline"
+          >specimen</a
+        >
+        <a href="#video" class="second-bar-button text-white hover:underline"
+          >glyphs</a
+        >
+        <a href="#practice" class="second-bar-button text-white hover:underline"
+          >layouts</a
+        >
+        <a href="#typ-lab" class="second-bar-button text-white hover:underline"
+          >details</a
+        >
+      </nav>
+      <a
+        href="#archive"
+        class="text-white hover:underline mr-12 h-full flex items-center justify-center min-w-[250px] border-l border-[#333]"
+        >♡ save</a
+      >
+    </header>
+    <main>
+      <div class="font-title text-4xl text-center mt-12">
+        <div class="font-name"></div>
+        <div class="designer-name"></div>
+        <div class="font-title-name"></div>
+        <div class="styles-count"></div>
+      </div>
+      <div class="text-lg ml-12">All styles</div>
+      <div
+        class="styles-control flex justify-between items-center p-4 pl-10 pr-10 border-b border-[#4F4F4F]"
+      >
+        <div class="text-1xl pl-2 -mt-1 text-[#9C9C9C]">✎</div>
+        <input
+        id= "demoText" 
+          type="text"
+          class="flex-1 text-base pl-2 bg-[#040A10] placeholder-[#9C9C9C] outline-none focus:ring-0 search"
+          placeholder="demo text"
+        />
+        <div class="flex space-x-4 mr-auto">
+          <button
+            class="text-white bg-transparent border-none py-2 px-4 hover:text-white"
+            id="defaultDemoBtn"
+          >
+            default
+          </button>
+          <button
+            class="text-[#9C9C9C] bg-transparent border-none py-2 px-4 hover:text-white"
+            id="citiesDemoBtn"
+          >
+            cities
+          </button>
+          <!-- Alignment Buttons -->
+          <button
+            class="text-white bg-transparent border-none py-2 px-4 hover:bg-[#4F4F4F]"
+            id="alignLeftBtn"
+          >
+            Align Left
+          </button>
+          <button
+            class="text-white bg-transparent border-none py-2 px-4 hover:bg-[#4F4F4F]"
+            id="alignCenterBtn"
+          >
+            Align Center
+          </button>
+          <button
+            class="text-white bg-transparent border-none py-2 px-4 hover:bg-[#4F4F4F]"
+            id="alignRightBtn"
+          >
+            Align Right
+          </button>
+        </div>
+      </div>
+      <div class="styles-list"></div>
+      <div class="glyph-display flex flex-col">
+        <!-- Control Section: full-width and sticky -->
+        <div class="glyph-control sticky top-0 bg-[#040A10] z-30 p-4">
+          <!-- Your control content here -->
+          Control Section
+        </div>
+        
+        <!-- Content Row: Letter sidebar and Grid container -->
+        <div class="flex flex-1">
+          <!-- Letter Section: half width wrapped in a relative container -->
+          <div class="w-1/2 relative">
+            <div class="glyph-letter sticky top-[80px] bg-[#040A10] z-20 p-4">
+              <!-- This shows the currently selected letter -->
+              Letter Section
+            </div>
+          </div>
+          
+          <!-- Grid Section: half width -->
+          <div class="glyph-grid w-1/2 p-4">
+            <!-- Your grid goes here -->
+          </div>
+        </div>
+      </div>
+      <div class="font-layout">layout</div>
+      <div class="font-info">details</div>
+    </main>
+    <script src="glyph.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
   </body>
 </html>
