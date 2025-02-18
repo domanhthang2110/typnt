@@ -403,12 +403,35 @@ function translateWeightToName(weight) {
 function setupEventListeners() {
   searchInput.addEventListener("input", (e) => {
     const searchTerm = e.target.value.toLowerCase();
-    const fontCards = document.querySelectorAll("#font-container > div");
+    const filteredFonts = fontsData.items.filter((font) =>
+      font.family.toLowerCase().startsWith(searchTerm)
+    );
 
-    fontCards.forEach((card) => {
-      const fontName = card.querySelector("h3").innerText.toLowerCase();
-      card.style.display = fontName.includes(searchTerm) ? "block" : "none";
-    });
+    // Reset currentFontIndex for new search results
+    currentFontIndex = 0;
+
+    // Clear existing font cards
+    fontContainer.innerHTML = "";
+
+    // Display the first 20 filtered results
+    displayFonts(filteredFonts.slice(0, fontsPerPage));
+    currentFontIndex += fontsPerPage;
+
+    // Update the Intersection Observer to load more filtered results
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          loadMoreFilteredFonts(filteredFonts);
+        }
+      },
+      {
+        root: null,
+        rootMargin: "0px",
+        threshold: 1.0,
+      }
+    );
+
+    observer.observe(document.querySelector("#load-more-trigger"));
   });
 
   const masterSlider = document.querySelector(".master-slider");
@@ -565,4 +588,14 @@ function toggleOutline() {
     document.head.appendChild(style);
   }
   outlineEnabled = !outlineEnabled;
+}
+
+function loadMoreFilteredFonts(filteredFonts) {
+  const nextFonts = filteredFonts.slice(
+    currentFontIndex,
+    currentFontIndex + fontsPerPage
+  );
+  loadFonts(nextFonts);
+  displayFonts(nextFonts);
+  currentFontIndex += fontsPerPage;
 }

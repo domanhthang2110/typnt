@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Explore, read, and practice typography with Typ.nt's vast collection of fonts and resources."
+    />
+    <title>Typ.nt - Typography Exploration</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts Link Placeholder -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Sixtyfour+Convergence:BLED,SCAN,XELA,YELA@0..100,-53..100,-100..100,-100..100&display=swap" rel="stylesheet">
+    <style>
+      .sixtyfour-convergence {
+        font-family: "Sixtyfour Convergence", serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+        font-variation-settings: "BLED" 0, "SCAN" 0, "XELA" 0, "YELA" 0;
+      }
+    </style>
+  </head>
+
+  <body class="bg-[#040A10] text-white">
+    <!-- Navigation Bar -->
+    <header
+      class="flex justify-between items-center bg-[#040A10] border-b border-[#333] pl-12 z-10"
+    >
+      <div class="text-4xl font-semibold logo">Typ.nt</div>
+      <nav class="flex items-center">
+        <a href="#archive" class="top-bar-button text-white hover:underline"
+          >home.nt</a
+        >
+        <a href="#reads" class="top-bar-button text-white hover:underline"
+          >reads</a
+        >
+        <a href="#video" class="top-bar-button text-white hover:underline"
+          >videos</a
+        >
+        <a href="#practice" class="top-bar-button text-white hover:underline"
+          >practice</a
+        >
+        <a href="#typ-lab" class="top-bar-button text-white hover:underline"
+          >typ.lab</a
+        >
+        <a href="#archive" class="top-bar-button-end text-white hover:underline"
+          >archive</a
+        >
+      </nav>
+      <a href="#login" class="text-white hover:underline login-button">login</a>
+    </header>
+    <main>
+      <div class="home flex flex-col items-center justify-center">
+        <div class="home-font-name">Roboto Mono</div>
+        <div class="home-font-designer">designed by Christian Robertson</div>
+        <div class="home-font-title text-8xl text-center flex-col items-center sixtyfour-convergence">
+          Welcome to <div class="home-font-title text-8xl text-center sixtyfour-convergence">Typ.nt</div>
+        </div>
+        <div class="home-font-control">
+          <label for="bledSlider">BLED: </label>
+          <input type="range" id="bledSlider" min="0" max="100" value="0">
+          <label for="scanSlider">SCAN: </label>
+          <input type="range" id="scanSlider" min="0" max="100" value="0">
+          <label for="xelaSlider">XELA: </label>
+          <input type="range" id="xelaSlider" min="0" max="100" value="0">
+          <label for="yelaSlider">YELA: </label>
+          <input type="range" id="yelaSlider" min="0" max="100" value="0">
+        </div>
+      </div>
+    </main>
+    <script>
+      const updateFontVariationSettings = () => {
+        const bled = document.getElementById("bledSlider").value;
+        const scan = document.getElementById("scanSlider").value;
+        const xela = document.getElementById("xelaSlider").value;
+        const yela = document.getElementById("yelaSlider").value;
+
+        const elements = document.querySelectorAll(".home-font-title");
+        elements.forEach((element) => {
+          element.style.fontVariationSettings = `"BLED" ${bled}, "SCAN" ${scan}, "XELA" ${xela}, "YELA" ${yela}`;
+        });
+      };
+
+      document.getElementById("bledSlider").addEventListener("input", updateFontVariationSettings);
+      document.getElementById("scanSlider").addEventListener("input", updateFontVariationSettings);
+      document.getElementById("xelaSlider").addEventListener("input", updateFontVariationSettings);
+      document.getElementById("yelaSlider").addEventListener("input", updateFontVariationSettings);
+
+      document.addEventListener("mousemove", (event) => {
+        const screenWidth = window.innerWidth;
+        const mouseX = event.clientX;
+        const fontWeight = Math.min(Math.max((mouseX / screenWidth) * 900, 100), 900);
+        const elements = document.querySelectorAll(".home-font-title");
+        elements.forEach((element) => {
+          //element.style.fontWeight = fontWeight;
+        });
+      });
+
+      document.addEventListener("mousemove", (event) => {
+        const screenHeight = window.innerHeight;
+        const mouseY = event.clientY;
+
+        // Determine if the text should be italic based on vertical mouse position
+        const isItalic = mouseY > screenHeight / 2;
+
+        const elements = document.querySelectorAll(".home-font-title");
+        elements.forEach((element) => {
+          //element.style.fontStyle = isItalic ? "italic" : "normal";
+        });
+      });
+    </script>
+  </body>
+</html>

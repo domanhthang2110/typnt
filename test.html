@@ -1,115 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Font Glyph Preview</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-</head>
-<body class="bg-gray-900 text-white p-6">
-
-    <div class="max-w-5xl mx-auto">
-        <!-- Title -->
-        <h1 class="text-3xl font-bold">glyphs</h1>
-
-        <!-- Character Metadata -->
-        <div class="mt-4 flex justify-between items-center">
-            <div>
-                <p class="text-gray-400">small letter <span id="char-name">A</span></p>
-                <p class="text-gray-600 text-sm">U+<span id="unicode">0041</span></p>
-            </div>
-            <div class="flex gap-4">
-                <button id="solid-btn" class="px-4 py-2 bg-gray-700 rounded">solid</button>
-                <button id="outline-btn" class="px-4 py-2 bg-gray-700 rounded">outline</button>
-            </div>
-        </div>
-
-        <!-- Large Glyph Display -->
-        <div class="mt-6 relative">
-            <div class="absolute left-0 right-0 text-gray-600 text-sm">
-                <p>cap height</p>
-                <p class="mt-16">x height</p>
-                <p class="mt-16">baseline</p>
-            </div>
-            <div class="text-9xl font-bold text-white text-center">
-                <span id="glyph">A</span>
-            </div>
-        </div>
-
-        <!-- Character Set Toggle -->
-        <div class="mt-6 flex gap-4">
-            <button class="px-4 py-2 bg-gray-700 rounded" id="basic-set">basic set</button>
-            <button class="px-4 py-2 bg-gray-700 rounded" id="full-set">full set</button>
-        </div>
-
-        <!-- Character Grid -->
-        <div class="mt-6">
-            <h2 class="text-lg">Uppercase</h2>
-            <div class="grid grid-cols-8 gap-2 mt-2 text-lg">
-                <span class="glyph-box">A</span><span class="glyph-box">B</span><span class="glyph-box">C</span>
-                <span class="glyph-box">D</span><span class="glyph-box">E</span><span class="glyph-box">F</span>
-                <span class="glyph-box">G</span><span class="glyph-box">H</span><span class="glyph-box">I</span>
-                <span class="glyph-box">J</span><span class="glyph-box">K</span><span class="glyph-box">L</span>
-                <span class="glyph-box">M</span><span class="glyph-box">N</span><span class="glyph-box">O</span>
-                <span class="glyph-box">P</span><span class="glyph-box">Q</span><span class="glyph-box">R</span>
-                <span class="glyph-box">S</span><span class="glyph-box">T</span><span class="glyph-box">U</span>
-                <span class="glyph-box">V</span><span class="glyph-box">W</span><span class="glyph-box">X</span>
-                <span class="glyph-box">Y</span><span class="glyph-box">Z</span>
-            </div>
-        </div>
-
-        <div class="mt-6">
-            <h2 class="text-lg">Lowercase</h2>
-            <div class="grid grid-cols-8 gap-2 mt-2 text-lg">
-                <span class="glyph-box">a</span><span class="glyph-box">b</span><span class="glyph-box">c</span>
-                <span class="glyph-box">d</span><span class="glyph-box">e</span><span class="glyph-box">f</span>
-                <span class="glyph-box">g</span><span class="glyph-box">h</span><span class="glyph-box">i</span>
-                <span class="glyph-box">j</span><span class="glyph-box">k</span><span class="glyph-box">l</span>
-                <span class="glyph-box">m</span><span class="glyph-box">n</span><span class="glyph-box">o</span>
-                <span class="glyph-box">p</span><span class="glyph-box">q</span><span class="glyph-box">r</span>
-                <span class="glyph-box">s</span><span class="glyph-box">t</span><span class="glyph-box">u</span>
-                <span class="glyph-box">v</span><span class="glyph-box">w</span><span class="glyph-box">x</span>
-                <span class="glyph-box">y</span><span class="glyph-box">z</span>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Character grid interaction
-        document.querySelectorAll('.glyph-box').forEach(el => {
-            el.addEventListener('click', () => {
-                document.getElementById('glyph').innerText = el.innerText;
-                document.getElementById('char-name').innerText = el.innerText;
-                document.getElementById('unicode').innerText = el.innerText.charCodeAt(0).toString(16).toUpperCase().padStart(4, '0');
-            });
-        });
-
-        // Style switching
-        document.getElementById('solid-btn').addEventListener('click', () => {
-            document.getElementById('glyph').style.fontWeight = 'bold';
-        });
-
-        document.getElementById('outline-btn').addEventListener('click', () => {
-            document.getElementById('glyph').style.webkitTextStroke = '2px white';
-            document.getElementById('glyph').style.color = 'transparent';
-        });
-    </script>
-
+  <head>
+    <meta charset="UTF-8" />
+    <title>Font Metrics Demo</title>
     <style>
-        .glyph-box {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border: 1px solid white;
-            cursor: pointer;
-        }
-        .glyph-box:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
+      body {
+        font-family: sans-serif;
+        padding: 20px;
+      }
+      h1 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+      li {
+        margin-bottom: 10px;
+        padding: 5px;
+        border-bottom: 1px solid #ccc;
+      }
     </style>
+  </head>
+  <body>
+    <h1>Font Metric Stats for First 10 Fonts</h1>
+    <ul id="fontList">Loading...</ul>
+    
+    <!-- Include opentype.js from a CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/opentype.js/1.3.4/opentype.min.js"></script>
+    
+    <script>
+      async function loadFontMetrics() {
+        const fontListElem = document.getElementById("fontList");
+        fontListElem.textContent = "";
+        try {
+          // Load fonts.json (assumes the file is served from the same directory)
+          const response = await fetch("fonts.json");
+          const data = await response.json();
+          const fonts = data.items || [];
+          const maxItems = Math.min(10, fonts.length);
 
-</body>
+          for (let i = 0; i < maxItems; i++) {
+            const font = fonts[i];
+            let fileUrl = "";
+            // Prefer the "regular" file if it exists; otherwise, use the first available file
+            if (font.files && font.files.regular) {
+              fileUrl = font.files.regular;
+            } else if (font.files) {
+              const keys = Object.keys(font.files);
+              if (keys.length > 0) {
+                fileUrl = font.files[keys[0]];
+              }
+            }
+
+            // Create a list item for this font.
+            const li = document.createElement("li");
+
+            if (fileUrl) {
+              // Use opentype.js to load the font file and retrieve metric stats.
+              opentype.load(fileUrl, function(err, loadedFont) {
+                if (err) {
+                  li.textContent = `${font.family || "Unknown Family"} - Error loading font: ${err}`;
+                } else {
+                  // ascender and descender are available directly
+                  const ascender = loadedFont.ascender;
+                  const descender = loadedFont.descender;
+                  // x-height is sometimes stored in the OS/2 table (sxHeight)
+                  let xHeight = "N/A";
+                  if (loadedFont.tables.os2 && loadedFont.tables.os2.sxHeight) {
+                    xHeight = loadedFont.tables.os2.sxHeight;
+                  }
+                  li.textContent = `${font.family || "Unknown Family"} - URL: ${fileUrl} - Ascender: ${ascender}, Descender: ${descender}, xHeight: ${xHeight}`;
+                }
+                fontListElem.appendChild(li);
+              });
+            } else {
+              li.textContent = `${font.family || "Unknown Family"} - No file URL found`;
+              fontListElem.appendChild(li);
+            }
+          }
+        } catch (e) {
+          fontListElem.textContent = "Error loading font data.";
+          console.error("Error loading fonts.json:", e);
+        }
+      }
+
+      loadFontMetrics();
+    </script>
+  </body>
 </html>

@@ -22,6 +22,7 @@
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap"
       rel="stylesheet"
     />
+
   </head>
 
   <body class="bg-[#040A10] text-white">
@@ -53,7 +54,7 @@
       <a href="#login" class="text-white hover:underline login-button">login</a>
     </header>
     <header
-      class="flex justify-between items-center bg-[#040A10] border-b border-[#333] h-20 z-10"
+      class="flex justify-between items-center bg-[#040A10] border-b border-[#333] h-16 z-10"
     >
       <a
         href="index.html"
@@ -144,9 +145,28 @@
         <div class="flex flex-1">
           <!-- Letter Section: half width wrapped in a relative container -->
           <div class="w-1/2 relative">
-            <div class="glyph-letter sticky top-[80px] bg-[#040A10] z-20 p-4">
-              <!-- This shows the currently selected letter -->
-              Letter Section
+            <div class="glyph-letter w-full flex justify-center sticky top-[200px] bg-[#040A10] z-20 p-4">
+              <!-- This shows the currently selected letter using SVG with metric lines -->
+              <svg viewBox="0 0 500 500"  class="mx-auto block">
+                <!-- Bounding Box (yellow) -->
+                <rect id="bboxRect" x="0" y="0" width="0" height="0" fill="none" stroke="yellow" stroke-width="2" />
+                <!-- Baseline (red) -->
+                <line id="baselineLine" x1="0" y1="250" x2="500" y2="250" stroke="red" stroke-width="2" />
+                <!-- Descender line (purple) -->
+                <line id="descenderLine" x1="0" y1="350" x2="500" y2="350" stroke="purple" stroke-width="2" />
+                <!-- X-height line (green) -->
+                <line id="xHeightLine" x1="0" y1="200" x2="500" y2="200" stroke="green" stroke-width="2" />
+                <line id="capHeightLine" x1="0" y1="200" x2="500" y2="200" stroke="orange" stroke-width="2" />
+
+                <text
+                  x="50%"
+                  dominant-baseline="alphabetic"
+                  text-anchor="middle"
+                  fill="white"
+                >
+                  A
+                </text>
+              </svg>
             </div>
           </div>
           
@@ -158,8 +178,15 @@
       </div>
       <div class="font-layout">layout</div>
       <div class="font-info">details</div>
+      <div class="bottom-menu">
+        <button class="nav-button">Home</button>
+        <button class="nav-button">About</button>
+        <button class="nav-button">Services</button>
+        <button class="nav-button">Contact</button>
+      </div>
     </main>
-    <script src="glyph.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/opentype.js@latest/dist/opentype.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+    <script src="glyph.js"></script>
   </body>
 </html>
