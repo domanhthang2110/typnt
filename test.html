@@ -2,91 +2,272 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Font Metrics Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Explore, read, and practice typography with Typ.nt's vast collection of fonts and resources."
+    />
+    <title>Typ.nt - Typography Exploration</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <link
+      href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css"
+      rel="stylesheet"
+    />
     <style>
-      body {
-        font-family: sans-serif;
-        padding: 20px;
+      .home-font-title {
+        font-family: "Roboto Mono", sans-serif;
       }
-      h1 {
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
+      #lab {
+        display: flex;
+        height: 100%;
       }
-      ul {
-        list-style: none;
-        padding: 0;
+      #lab-fontlist {
+        width: 20%;
+        background-color: #111;
+        padding: 10px;
       }
-      li {
-        margin-bottom: 10px;
-        padding: 5px;
-        border-bottom: 1px solid #ccc;
+      #lab-playground {
+        width: 80%;
+        background-color: #222;
+        padding: 10px;
+        position: relative;
+        overflow: hidden; /* Prevent overflow */
+      }
+      #lab-fontsettings {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 300px;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        padding: 10px;
+        box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+      }
+      .grid {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        width: 100%;
+        height: 100%;
+        background-size: 50px 50px;
+        background-image: linear-gradient(to right, #444 1px, transparent 1px),
+          linear-gradient(to bottom, #444 1px, transparent 1px);
+      }
+      #horizontal-ruler {
+        height: 20px;
+        width: calc(100% - 20px);
+        position: absolute;
+        left: 20px;
+        top: 0;
+        background: #333;
+        z-index: 100;
+      }
+      #vertical-ruler {
+        width: 20px;
+        height: calc(100% - 20px);
+        position: absolute;
+        left: 0;
+        top: 20px;
+        background: #333;
+        z-index: 100;
+      }
+      .ruler-corner {
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: #444;
+        z-index: 101;
+      }
+      .textbox {
+        position: absolute;
+        background: white;
+        min-width: 100px;
+        min-height: 50px;
+        padding: 10px;
+        cursor: move;
+        color: black;
+        font-family: "Roboto Mono", sans-serif;
       }
     </style>
   </head>
-  <body>
-    <h1>Font Metric Stats for First 10 Fonts</h1>
-    <ul id="fontList">Loading...</ul>
-    
-    <!-- Include opentype.js from a CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/opentype.js/1.3.4/opentype.min.js"></script>
-    
+  <body class="text-white">
+    <!-- Navigation Bar -->
+    <header class="flex justify-between items-center pl-12 z-10">
+      <div class="text-4xl font-semibold logo">Typ.nt</div>
+      <nav class="flex items-center">
+        <a href="#archive" class="top-bar-button text-white hover:underline"
+          >home.nt</a
+        >
+        <a href="#reads" class="top-bar-button text-white hover:underline"
+          >reads</a
+        >
+        <a href="#video" class="top-bar-button text-white hover:underline"
+          >videos</a
+        >
+        <a href="#practice" class="top-bar-button text-white hover:underline"
+          >practice</a
+        >
+        <a href="#typ-lab" class="top-bar-button text-white hover:underline"
+          >typ.lab</a
+        >
+        <a href="#archive" class="top-bar-button-end text-white hover:underline"
+          >archive</a
+        >
+      </nav>
+      <a href="#login" class="text-white hover:underline login-button">login</a>
+    </header>
+
+    <main>
+      <div id="lab">
+        <div id="lab-fontlist">
+          <button
+            id="add-textbox"
+            class="bg-blue-500 text-white px-4 py-2 rounded"
+          >
+            Add Text Box
+          </button>
+        </div>
+
+        <div id="lab-playground">
+          <div class="ruler-corner"></div>
+          <canvas id="horizontal-ruler"></canvas>
+          <canvas id="vertical-ruler"></canvas>
+          <div class="grid" id="playground-grid"></div>
+          <div id="lab-fontsettings"></div>
+        </div>
+      </div>
+    </main>
+
     <script>
-      async function loadFontMetrics() {
-        const fontListElem = document.getElementById("fontList");
-        fontListElem.textContent = "";
-        try {
-          // Load fonts.json (assumes the file is served from the same directory)
-          const response = await fetch("fonts.json");
-          const data = await response.json();
-          const fonts = data.items || [];
-          const maxItems = Math.min(10, fonts.length);
+      function drawRulers() {
+        const playground = document.getElementById("lab-playground");
+        const playgroundRect = playground.getBoundingClientRect();
 
-          for (let i = 0; i < maxItems; i++) {
-            const font = fonts[i];
-            let fileUrl = "";
-            // Prefer the "regular" file if it exists; otherwise, use the first available file
-            if (font.files && font.files.regular) {
-              fileUrl = font.files.regular;
-            } else if (font.files) {
-              const keys = Object.keys(font.files);
-              if (keys.length > 0) {
-                fileUrl = font.files[keys[0]];
-              }
-            }
+        // Horizontal ruler
+        const hRuler = document.getElementById("horizontal-ruler");
+        const hCtx = hRuler.getContext("2d");
+        const width = playgroundRect.width - 20;
 
-            // Create a list item for this font.
-            const li = document.createElement("li");
+        hRuler.width = width * window.devicePixelRatio;
+        hRuler.height = 20 * window.devicePixelRatio;
+        hRuler.style.width = width + "px";
+        hRuler.style.height = "20px";
 
-            if (fileUrl) {
-              // Use opentype.js to load the font file and retrieve metric stats.
-              opentype.load(fileUrl, function(err, loadedFont) {
-                if (err) {
-                  li.textContent = `${font.family || "Unknown Family"} - Error loading font: ${err}`;
-                } else {
-                  // ascender and descender are available directly
-                  const ascender = loadedFont.ascender;
-                  const descender = loadedFont.descender;
-                  // x-height is sometimes stored in the OS/2 table (sxHeight)
-                  let xHeight = "N/A";
-                  if (loadedFont.tables.os2 && loadedFont.tables.os2.sxHeight) {
-                    xHeight = loadedFont.tables.os2.sxHeight;
-                  }
-                  li.textContent = `${font.family || "Unknown Family"} - URL: ${fileUrl} - Ascender: ${ascender}, Descender: ${descender}, xHeight: ${xHeight}`;
-                }
-                fontListElem.appendChild(li);
-              });
-            } else {
-              li.textContent = `${font.family || "Unknown Family"} - No file URL found`;
-              fontListElem.appendChild(li);
-            }
+        hCtx.scale(window.devicePixelRatio, window.devicePixelRatio);
+
+        hCtx.fillStyle = "#333";
+        hCtx.fillRect(0, 0, width, 20);
+
+        hCtx.fillStyle = "#fff";
+        hCtx.font = "10px Roboto Mono";
+
+        for (let i = 0; i < width; i += 10) {
+          const height = i % 50 === 0 ? 15 : 10;
+          hCtx.fillRect(i, 20 - height, 1, height);
+
+          if (i % 50 === 0) {
+            hCtx.fillText(i, i + 2, 10);
           }
-        } catch (e) {
-          fontListElem.textContent = "Error loading font data.";
-          console.error("Error loading fonts.json:", e);
+        }
+
+        // Vertical ruler
+        const vRuler = document.getElementById("vertical-ruler");
+        const vCtx = vRuler.getContext("2d");
+        const height = playgroundRect.height - 20;
+
+        vRuler.width = 20 * window.devicePixelRatio;
+        vRuler.height = height * window.devicePixelRatio;
+        vRuler.style.width = "20px";
+        vRuler.style.height = height + "px";
+
+        vCtx.scale(window.devicePixelRatio, window.devicePixelRatio);
+
+        vCtx.fillStyle = "#333";
+        vCtx.fillRect(0, 0, 20, height);
+
+        vCtx.fillStyle = "#fff";
+        vCtx.font = "10px Roboto Mono";
+
+        for (let i = 0; i < height; i += 10) {
+          const width = i % 50 === 0 ? 15 : 10;
+          vCtx.fillRect(20 - width, i, width, 1);
+
+          if (i % 50 === 0) {
+            vCtx.save();
+            vCtx.translate(10, i + 12);
+            vCtx.rotate(-Math.PI / 2);
+            vCtx.fillText(i, 0, 0);
+            vCtx.restore();
+          }
         }
       }
 
-      loadFontMetrics();
+      let outlineEnabled = false;
+
+      function toggleOutline() {
+        if (outlineEnabled) {
+          const styleElement = document.querySelector("style#outline-style");
+          if (styleElement) {
+            styleElement.remove();
+          }
+        } else {
+          const style = document.createElement("style");
+          style.id = "outline-style";
+          style.innerHTML = "* { outline: 1px solid red; }";
+          document.head.appendChild(style);
+        }
+        outlineEnabled = !outlineEnabled;
+      }
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "o" || event.key === "O") {
+          toggleOutline();
+        }
+      });
+
+      $(document).ready(function () {
+        // Draw rulers initially
+        drawRulers();
+
+        // Add text box functionality
+        $("#add-textbox").click(function () {
+          const textbox = $(
+            '<div class="textbox ui-widget-content">Text Box</div>'
+          );
+          $("#lab-playground").append(textbox);
+          textbox.css({
+            top: "50%",
+            left: "50%",
+          });
+          textbox
+            .draggable({
+              containment: "#lab-playground",
+            })
+            .resizable({
+              handles: "all",
+              containment: "#playground-grid",
+            });
+        });
+
+        // Redraw rulers on window resize with debounce
+        let resizeTimeout;
+        $(window).resize(function () {
+          clearTimeout(resizeTimeout);
+          resizeTimeout = setTimeout(drawRulers, 100);
+        });
+      });
     </script>
+    
   </body>
 </html>

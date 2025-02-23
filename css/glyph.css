@@ -1,0 +1,83 @@
+/* Styling for the Unicode info in the control section */
+.unicode-info {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Styling for the mode switch buttons */
+.mode-switch button {
+    margin-right: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.mode-switch button:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+/* Example preview styles for glyph-letter; update as needed */
+.glyph-letter.solid {
+    color: white;
+    -webkit-text-stroke: 0;
+    text-shadow: none;
+}
+
+.glyph-letter.outline {
+    /* Hide fill */
+    color: transparent;
+    /* Remove any -webkit-text-stroke if applied */
+    -webkit-text-stroke: 0;
+    /* Create an inner outline effect using multiple shadows */
+    text-shadow:
+        -1px 0 0 white,
+        1px 0 0 white,
+        0 -1px 0 white,
+        0 1px 0 white,
+        -1px -1px 0 white,
+        1px -1px 0 white,
+        1px 1px 0 white,
+        -1px 1px 0 white;
+}
+
+.bounding-box {
+    stroke: yellow;
+    stroke-width: 2;
+    fill: none;
+}
+
+.bottom-menu {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    display: flex;
+    justify-content: space-around;
+    background-color: #121212;
+    /* Same background as other elements */
+    border: 1px solid #252525;
+
+    bottom: 10px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+
+.nav-button {
+    background-color: #121212;
+    /* Same background as other elements */
+    color: white;
+    width: 100%;
+    border-radius: 15px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.nav-button:hover {
+    background-color: #555;
+}

@@ -1,0 +1,531 @@
+/* ==========================================================================
+   TABLE OF CONTENTS
+   ==========================================================================
+   1. Base Layout
+   2. Lab Components
+   3. Playground Layout
+   4. Grid Component
+   5. Ruler Components
+   6. Text Box Component
+   7. Panel Components
+   8. Font List Components
+   9. Feature Toggles
+   10. Bottom Menu Bar
+   ========================================================================== */
+
+/* ==========================================================================
+   1. Base Layout
+   ========================================================================== */
+html, body {
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+main {
+    height: calc(100vh - 64px);
+}
+
+/* ==========================================================================
+   3. Playground Layout
+   ========================================================================== */
+.playground {
+    position: relative;
+    height: 100%;
+    padding-left: 25px;
+    padding-top: 25px;
+    background-color: var(--tblack);
+    overflow: hidden;
+}
+
+.playground__fontlist {
+    width: 250px;
+    min-width: 250px;
+    background-color: var(--tblack2);
+    padding: 1rem;
+    border-right: 2px solid var(--dark-gray);
+    z-index: 10;
+}
+
+.playground__grid {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    right: 0;
+    bottom: 0;
+    background-size: 50px 50px;
+    background-image: 
+        linear-gradient(to right, var(--dark-gray) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--dark-gray) 1px, transparent 1px);
+    z-index: 1;
+}
+
+.playground__settings {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 300px;
+    height: 100%;
+    background-color: var(--tblack2);
+    border-left: 2px solid var(--dark-gray);
+    padding: 1rem;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+}
+
+.playground__settings.is-open {
+    transform: translateX(0);
+}
+
+/* ==========================================================================
+   4. Grid Component
+   ========================================================================== */
+.playground-grid {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 100%;
+    height: 100%;
+    background-size: 50px 50px;
+    background-image: 
+        linear-gradient(to right, var(--dark-gray) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--dark-gray) 1px, transparent 1px);
+}
+
+/* ==========================================================================
+   5. Ruler Components
+   ========================================================================== */
+.ruler {
+    position: absolute;
+    background: var(--tblack2);
+    z-index: 100;
+    border: 2px solid var(--dark-gray);
+    box-sizing: border-box;
+}
+
+.ruler--horizontal {
+    height: 25px;
+    width: calc(100% - 25px);
+    left: 25px;
+    top: 0;
+    border-left: none;
+}
+
+.ruler--vertical {
+    width: 25px;
+    height: calc(100% - 25px);
+    left: 0;
+    top: 25px;
+    border-top: none;
+}
+
+.ruler__corner {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: var(--tblack2);
+    border: 2px solid var(--dark-gray);
+    z-index: 101;
+    box-sizing: border-box;
+}
+
+/* ==========================================================================
+   6. Text Box Component
+   ========================================================================== */
+.textbox {
+    position: absolute;
+    background: transparent;
+    min-width: 100px;
+    min-height: 50px;
+    padding: 10px;
+    cursor: move;
+    color: var(--white);
+    font-family: "Roboto Mono", sans-serif;
+    border: 1px solid transparent;
+    z-index: 10;
+    overflow: visible !important;
+}
+
+.textbox:hover {
+    border: 1px solid var(--white);
+}
+.textbox--paragraph {
+    resize: both;
+    overflow: hidden;
+    max-width: 1000px;
+    max-height: 500px;
+}
+
+.textbox__content {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    cursor: inherit;
+}
+
+.textbox__resize-handle {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: ns-resize;
+    width: 16px;
+    height: 16px;
+    background: #444;
+    border-radius: 50%;
+    z-index: 1000;
+    display: none;
+}
+
+.textbox--selected .textbox__resize-handle {
+    display: block;
+}
+
+.textbox--selected {
+    border: 1px solid var(--white);
+}
+
+.textbox__resize-handles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+.textbox .ui-resizable-handle {
+    position: absolute;
+    width: 10px !important;  /* Increased size for better visibility */
+    height: 10px !important;
+    background: white !important;
+    border: 1px solid var(--dark-gray);
+    border-radius: 50%;      /* Make handles circular */
+    z-index: 1000;
+    display: none;  /* Hide handles by default */
+    /* Add this to ensure handles render outside parent */
+
+}
+
+/* Only show handles when textbox is selected */
+.textbox--selected .ui-resizable-handle {
+    display: block;
+    border-width: 2px;
+    background: #4a9eff !important;  /* Use accent color for selected state */
+}
+
+/* Position the handles with adjusted spacing */
+.textbox .ui-resizable-n { top: -6px !important; left: 50% !important; transform: translateX(-50%); }
+.textbox .ui-resizable-s { bottom: -6px !important; left: 50% !important; transform: translateX(-50%); }
+.textbox .ui-resizable-e { right: -6px !important; top: 50% !important; transform: translateY(-50%); }
+.textbox .ui-resizable-w { left: -6px !important; top: 50% !important; transform: translateY(-50%); }
+.textbox .ui-resizable-ne { top: -6px !important; right: -6px !important; }
+.textbox .ui-resizable-nw { top: -6px !important; left: -6px !important; }
+.textbox .ui-resizable-se { bottom: -6px !important; right: -6px !important; }
+.textbox .ui-resizable-sw { bottom: -6px !important; left: -6px !important; }
+/* Selected state - shows handles */
+.textbox--selected {
+    border: 1px solid var(--white);
+}
+
+.textbox--selected .ui-resizable-handle,
+.textbox--selected .textbox__resize-handle {
+    display: block;
+}
+
+/* Edit state */
+.textbox--editing {
+    border: 2px solid #4a9eff;
+}
+
+.textbox--editing .textbox__content {
+    cursor: text;
+}
+
+/* ==========================================================================
+   7. Panel Components
+   ========================================================================== */
+.panel {
+    position: absolute;
+    top: 40px;
+    background: var(--dark-gray);
+    border: 2px solid var(--dark-gray);
+    width: 250px;
+    z-index: 100;
+}
+
+.panel__checkbox {
+    display: none;
+}
+
+.panel__titlebar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background: var(--dark-gray);
+    cursor: move;
+}
+
+.panel__toggle {
+    cursor: pointer;
+    user-select: none;
+}
+
+.panel__content {
+    height: 600px;
+    padding: 1rem;
+    overflow: hidden;
+    transition: height 0.3s ease;
+}
+
+.panel__content-wrapper {
+    height: 100%;
+    opacity: 1;
+    transition: opacity 0.2s ease-in;
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.button--primary {
+    opacity: 1;
+    width: fit-content;
+    margin: 0.5rem 0;
+    transition: opacity 0.2s ease;
+    position: relative;
+}
+
+/* Panel collapsed states */
+.panel--collapsed .panel__content-wrapper {
+    opacity: 0;
+    transition: opacity 0.2s ease-out;
+    visibility: hidden;
+}
+
+.panel--collapsed .panel__content {
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.panel--collapsed .button--primary {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Panel positions */
+#fontlist-panel {
+    left: 25px;
+}
+
+#settings-panel {
+    right: 0;
+}
+
+/* ==========================================================================
+   8. Font List Components
+   ========================================================================== */
+.font-list {
+  height: 20%;
+  overflow-y: auto;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.font-card {
+  padding: 15px;
+  background: #2a2a2a;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.font-card:hover {
+  background: #3a3a3a;
+  transform: translateY(-2px);
+}
+
+.font-card.active {
+  background: #4a4a4a;
+  box-shadow: 0 0 0 2px #666;
+}
+
+.font-card__name {
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.font-card__preview {
+  font-size: 20px;
+  opacity: 0.8;
+}
+
+.font-info {
+  padding: 15px;
+  background: #1e1e1e;
+  border-top: 1px solid #333;
+  height: 80%;
+  overflow-y: auto;
+}
+
+.font-info__detail {
+  margin-bottom: 12px;
+  color: #e0e0e0;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.font-info__detail strong {
+  color: #fff;
+  font-weight: 500;
+}
+
+.font-info__section-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  margin: 16px 0 8px 0;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #333;
+}
+
+.font-info__section-title:first-child {
+  margin-top: 0;
+}
+
+.font-info__detail a {
+  color: #66b1ff;
+  text-decoration: none;
+}
+
+.font-info__detail a:hover {
+  text-decoration: underline;
+}
+
+.ml-4 {
+  margin-left: 1rem;
+}
+
+/* ==========================================================================
+   9. Feature Toggles
+   ========================================================================== */
+.feature-toggles {
+  padding: 15px;
+  max-height: 400px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.feature-toggle {
+  display: flex;
+  align-items: center;
+  padding: 6px 0;
+}
+
+.feature-toggle__input {
+  appearance: none;
+  width: 40px;
+  height: 20px;
+  background: #333;
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.feature-toggle__input:checked {
+  background: #4a9eff;
+}
+
+.feature-toggle__input::before {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: white;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.3s;
+}
+
+.feature-toggle__input:checked::before {
+  transform: translateX(20px);
+}
+
+.feature-toggle__label {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  cursor: pointer;
+}
+
+.feature-toggle__name {
+  color: #fff;
+  font-size: 14px;
+}
+
+.feature-toggle__tag {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 12px;
+  padding: 2px 6px;
+  background: #222;
+  border-radius: 4px;
+  color: #888;
+}
+
+.feature-toggle__text {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 14px;
+  color: #fff;
+  margin-left: 12px;
+}
+
+/* ==========================================================================
+   10. Bottom Menu Bar
+   ========================================================================== */
+.bottom-menu {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: var(--tblack2);
+    border-top: 2px solid var(--dark-gray);
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    gap: 10px;
+    z-index: 1000;
+}
+
+.bottom-menu__button {
+    padding: 8px 16px;
+    background: var(--dark-gray);
+    border: none;
+    color: var(--white);
+    cursor: pointer;
+    border-radius: 4px;
+    font-family: "Roboto Mono", sans-serif;
+}
+
+.bottom-menu__button:hover {
+    background: #444;
+}
+
+.bottom-menu__button--delete {
+    margin-left: auto;
+    background: #662222;
+}
+
+.bottom-menu__button--delete:hover {
+    background: #883333;
+}

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Explore, read, and practice typography with Typ.nt's vast collection of fonts and resources."
+    />
+    <title>Typ.nt - Typography Exploration</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/lab.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <link
+      href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/opentype.js@latest/dist/opentype.min.js"></script>
+    <style></style>
+  </head>
+  <body class="text-white">
+    <!-- Navigation Bar -->
+    <header class="flex justify-between items-center pl-12 z-10">
+      <div class="text-4xl font-semibold logo">Typ.nt</div>
+      <nav class="flex items-center">
+        <a href="#archive" class="top-bar-button text-white hover:underline"
+          >home.nt</a
+        >
+        <a href="#reads" class="top-bar-button text-white hover:underline"
+          >reads</a
+        >
+        <a href="#video" class="top-bar-button text-white hover:underline"
+          >videos</a
+        >
+        <a href="#practice" class="top-bar-button text-white hover:underline"
+          >practice</a
+        >
+        <a href="#typ-lab" class="top-bar-button text-white hover:underline"
+          >typ.lab</a
+        >
+        <a href="#archive" class="top-bar-button-end text-white hover:underline"
+          >archive</a
+        >
+      </nav>
+      <a href="#login" class="text-white hover:underline login-button">login</a>
+    </header>
+
+    <main>
+      <div class="playground">
+        <!-- Grid (covers entire playground) -->
+        <div class="playground__grid"></div>
+        
+        <!-- Rulers -->
+        <div class="ruler__corner"></div>
+        <canvas class="ruler ruler--horizontal" id="horizontal-ruler"></canvas>
+        <canvas class="ruler ruler--vertical" id="vertical-ruler"></canvas>
+
+        <!-- Draggable Panels -->
+        <div class="panel" id="fontlist-panel">
+          <input type="checkbox" id="fontlist-toggle" class="panel__checkbox" />
+          <div class="panel__titlebar">
+            <span class="panel__title">Font List</span>
+            <label for="fontlist-toggle" class="panel__toggle">−</label>
+          </div>
+          <div class="panel__content" id="fontlist-content">            
+            <div class="panel__content-wrapper" id="fontlist-content-wrapper">
+              <div id="font-list" class="font-list"></div>
+              <div id="font-info" class="font-info"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel" id="settings-panel">
+          <div class="panel__titlebar">
+            <span class="panel__title">Settings</span>
+            <button class="panel__toggle">−</button>
+          </div>
+          <div class="panel__content">
+            <div class="panel__content-wrapper">
+              <!-- Your panel content here -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Add this before the closing main tag -->
+      <div class="bottom-menu">
+        <button class="bottom-menu__button" id="add-text">Add Text</button>
+        <button class="bottom-menu__button" id="add-paragraph">Add Paragraph</button>
+        <button class="bottom-menu__button bottom-menu__button--delete" id="delete-textbox">Delete</button>
+      </div>
+    </main>
+    <script type="module" src="js/lab.js"></script>
+  </body>
+</html>

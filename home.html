@@ -20,12 +20,8 @@
     />
     <link href="https://fonts.googleapis.com/css2?family=Sixtyfour+Convergence:BLED,SCAN,XELA,YELA@0..100,-53..100,-100..100,-100..100&display=swap" rel="stylesheet">
     <style>
-      .sixtyfour-convergence {
-        font-family: "Sixtyfour Convergence", serif;
-        font-optical-sizing: auto;
-        font-weight: 400;
-        font-style: normal;
-        font-variation-settings: "BLED" 0, "SCAN" 0, "XELA" 0, "YELA" 0;
+      .home-font-title {
+        font-family: "Roboto Mono", sans-serif;
       }
     </style>
   </head>
@@ -62,60 +58,20 @@
       <div class="home flex flex-col items-center justify-center">
         <div class="home-font-name">Roboto Mono</div>
         <div class="home-font-designer">designed by Christian Robertson</div>
-        <div class="home-font-title text-8xl text-center flex-col items-center sixtyfour-convergence">
-          Welcome to <div class="home-font-title text-8xl text-center sixtyfour-convergence">Typ.nt</div>
+        <div class="home-font-title text-8xl text-center flex-col items-center">
+          Welcome to <div class="home-font-title text-8xl text-center">Typ.nt</div>
         </div>
         <div class="home-font-control">
-          <label for="bledSlider">BLED: </label>
-          <input type="range" id="bledSlider" min="0" max="100" value="0">
-          <label for="scanSlider">SCAN: </label>
-          <input type="range" id="scanSlider" min="0" max="100" value="0">
-          <label for="xelaSlider">XELA: </label>
-          <input type="range" id="xelaSlider" min="0" max="100" value="0">
-          <label for="yelaSlider">YELA: </label>
-          <input type="range" id="yelaSlider" min="0" max="100" value="0">
         </div>
       </div>
     </main>
     <script>
-      const updateFontVariationSettings = () => {
-        const bled = document.getElementById("bledSlider").value;
-        const scan = document.getElementById("scanSlider").value;
-        const xela = document.getElementById("xelaSlider").value;
-        const yela = document.getElementById("yelaSlider").value;
-
-        const elements = document.querySelectorAll(".home-font-title");
-        elements.forEach((element) => {
-          element.style.fontVariationSettings = `"BLED" ${bled}, "SCAN" ${scan}, "XELA" ${xela}, "YELA" ${yela}`;
-        });
-      };
-
-      document.getElementById("bledSlider").addEventListener("input", updateFontVariationSettings);
-      document.getElementById("scanSlider").addEventListener("input", updateFontVariationSettings);
-      document.getElementById("xelaSlider").addEventListener("input", updateFontVariationSettings);
-      document.getElementById("yelaSlider").addEventListener("input", updateFontVariationSettings);
-
-      document.addEventListener("mousemove", (event) => {
-        const screenWidth = window.innerWidth;
-        const mouseX = event.clientX;
-        const fontWeight = Math.min(Math.max((mouseX / screenWidth) * 900, 100), 900);
-        const elements = document.querySelectorAll(".home-font-title");
-        elements.forEach((element) => {
-          //element.style.fontWeight = fontWeight;
-        });
-      });
-
-      document.addEventListener("mousemove", (event) => {
-        const screenHeight = window.innerHeight;
-        const mouseY = event.clientY;
-
-        // Determine if the text should be italic based on vertical mouse position
-        const isItalic = mouseY > screenHeight / 2;
-
-        const elements = document.querySelectorAll(".home-font-title");
-        elements.forEach((element) => {
-          //element.style.fontStyle = isItalic ? "italic" : "normal";
-        });
+      document.addEventListener('mousemove', (event) => {
+        const titleElement = document.querySelector('.home-font-title');
+        const weight = Math.min(Math.max(Math.floor((event.clientX / window.innerWidth) * 900) + 100, 100), 900);
+        const italic = event.clientY / window.innerHeight > 0.5 ? 'italic' : 'normal';
+        titleElement.style.fontVariationSettings = `'wght' ${weight}`;
+        titleElement.style.fontStyle = italic;
       });
     </script>
   </body>

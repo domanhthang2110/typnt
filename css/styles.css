@@ -11,7 +11,7 @@ input[type="radio"] {
   appearance: none;
   width: 16px;
   height: 16px;
-  border: 2px solid #4F4F4F;
+  border: 2px solid var(--light-gray);
   border-radius: 50%;
   margin-right: 8px;
   transition: all 0.2s ease;
@@ -19,12 +19,12 @@ input[type="radio"] {
 }
 
 input[type="radio"]:hover {
-  border-color: white;
+  border-color: var(--white);
 }
 
 input[type="radio"]:checked {
-  background: white;
-  border-color: white;
+  background: var(--white);
+  border-color: var(--white);
 }
 
 .dd-triangle {
@@ -47,7 +47,7 @@ input[type="radio"]:checked {
 .custom-scrollbar {
   /* Scrollbar track */
   scrollbar-width: thin; /* For Firefox */
-  scrollbar-color: #4F4F4F #040A10;
+  scrollbar-color: var(--light-gray) var(--tblack);
    /* Thumb and track color */
 }
 
@@ -60,6 +60,7 @@ input[type="radio"]:checked {
 
 body {
   font-family: "Roboto Mono", serif;
+  background-color: var(--tblack);
 }
 
 nav {
@@ -74,9 +75,9 @@ nav {
 }
 
 .top-bar-button, .top-bar-button-end {
-  background: #040A10;
-  color: white;
-  border-left: 1px solid #252525;
+  background: var(--tblack);
+  color: var(--white);
+  border-left: 1px solid var(--dark-gray);
   height: 100%;
   min-width: 200px;
   padding: 10px 20px;
@@ -88,8 +89,8 @@ nav {
 }
 
 .second-bar-button {
-  background: #040A10;
-  color: white;
+  background: var(--tblack);
+  color: var(--white);
   height: 100%;
   min-width: 200px;
   width: auto;
@@ -266,9 +267,4 @@ width: 500px;
 
 .grid-cell:hover {
   border-color: white;
-}
-
-body {
-  padding-bottom: 2000px;
-  /* Adjust value as needed */
 }
