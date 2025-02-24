@@ -423,14 +423,20 @@ function createFontCard(fontInfo, parentElement) {
 
   card.appendChild(nameEl);
 
-  // Update the card click handler in createFontCard
+  // Update the card click handler
   card.addEventListener("click", (e) => {
     e.stopPropagation();
+
+    // Only proceed if there's an active textbox
+    if (!state.activeTextbox) {
+        console.log('No active textbox, ignoring font selection');
+        return;
+    }
 
     // Create initial feature states (all disabled by default)
     const featureStates = {};
     fontInfo.features.forEach((feature) => {
-      featureStates[feature] = false;
+        featureStates[feature] = false;
     });
 
     // Create initial axis values (using defaults)
@@ -495,8 +501,25 @@ function scrollToFont(fontFamily) {
   ).find(
     (card) => card.querySelector(".font-card__name").textContent === fontFamily
   );
+  
   if (fontCard) {
-    fontCard.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    // Update the selection state
+    updateFontCardSelection(fontCard);
+    
+    // Get the font list container's dimensions
+    const container = fontListElement;
+    const containerHeight = container.clientHeight;
+    
+    // Calculate the scroll position to center the card
+    const cardTop = fontCard.offsetTop;
+    const cardHeight = fontCard.offsetHeight;
+    const scrollTop = cardTop - (containerHeight / 2) + (cardHeight / 2);
+    
+    // Smooth scroll to the calculated position
+    container.scrollTo({
+      top: scrollTop,
+      behavior: 'smooth'
+    });
   }
 }
 
@@ -540,23 +563,26 @@ function updateSettingsPanel(data) {
   // Clear existing content
   settingsPanel.innerHTML = "";
 
-  // Add features section if available
+  // Update the features section HTML in updateSettingsPanel
   if (data.features && data.features.length > 0) {
     const featuresSection = document.createElement("div");
     featuresSection.className = "settings-section features-section";
     featuresSection.innerHTML = `
-            <h3>OpenType Features</h3>
-            <div class="features-grid">
-                ${data.features.map(feature => `
-                    <label class="feature-toggle">
-                        <input type="checkbox" 
-                               data-feature="${feature}"
-                               ${data.currentFeatures[feature] ? "checked" : ""}>
-                        <span class="feature-label">${feature}</span>
-                    </label>
-                `).join("")}
-            </div>
-        `;
+      <h3>OpenType Features</h3>
+      <div class="feature-toggles two-columns">
+        ${data.features.map(feature => `
+          <label class="feature-toggle">
+            <input class="feature-checkbox" 
+                   type="checkbox"
+                   data-feature="${feature}"
+                   ${data.currentFeatures[feature] ? "checked" : ""}>
+            <span class="feature-toggle__label">
+              <span class="feature-toggle__name">${feature}</span>
+            </span>
+          </label>
+        `).join("")}
+      </div>
+    `;
     settingsPanel.appendChild(featuresSection);
   }
 
@@ -565,27 +591,33 @@ function updateSettingsPanel(data) {
     const axesSection = document.createElement("div");
     axesSection.className = "settings-section axes-section";
     axesSection.innerHTML = `
-            <h3>Variable Axes</h3>
-            <div class="axes-list">
-                ${Object.entries(data.axes).map(([tag, axis]) => `
-                    <div class="axis-slider">
-                        <label>${axis.name}</label>
-                        <div class="slider-row">
-                            <input type="range" 
-                                   data-axis="${tag}"
-                                   min="${axis.min}"
-                                   max="${axis.max}"
-                                   value="${data.currentAxes[tag] || axis.default}"
-                                   step="1"
-                                   class="slider">
-                            <span class="axis-value">
-                                ${data.currentAxes[tag] || axis.default}
-                            </span>
-                        </div>
-                    </div>
-                `).join("")}
+      <h3>Variable Axes</h3>
+      <div class="axes-list">
+        ${Object.entries(data.axes).map(([tag, axis]) => {
+          const currentValue = data.currentAxes[tag] || axis.default;
+          const percentage = ((currentValue - axis.min) / (axis.max - axis.min)) * 100;
+          
+          return `
+            <div>
+              <label>${axis.name}</label>
+              <div class="slider-row">
+                <input type="range" 
+                  data-axis="${tag}"
+                  min="${axis.min}"
+                  max="${axis.max}"
+                  value="${currentValue}"
+                  step="1"
+                  class="master-slider"
+                  style="--split-percent: ${percentage}%">
+                <span class="axis-value">
+                  ${currentValue}
+                </span>
+              </div>
             </div>
-        `;
+          `;
+        }).join("")}
+      </div>
+    `;
     settingsPanel.appendChild(axesSection);
   }
 
@@ -633,16 +665,24 @@ function setupSettingsEventListeners(panel) {
   // Axis sliders
   panel.querySelectorAll("input[data-axis]").forEach((slider) => {
     slider.addEventListener("input", (e) => {
+      const min = parseFloat(e.target.min);
+      const max = parseFloat(e.target.max);
+      const value = parseFloat(e.target.value);
+      const percentage = ((value - min) / (max - min)) * 100;
+      
+      // Update the split percentage CSS variable
+      e.target.style.setProperty('--split-percent', `${percentage}%`);
+      
       const event = new CustomEvent("settings-changed", {
         detail: {
           type: "axis",
           name: e.target.dataset.axis,
-          value: parseFloat(e.target.value),
-          textbox: state.activeTextbox, // Add active textbox reference
+          value: value,
+          textbox: state.activeTextbox,
         },
       });
       document.dispatchEvent(event);
-      slider.nextElementSibling.textContent = e.target.value;
+      slider.nextElementSibling.textContent = value;
     });
   });
 

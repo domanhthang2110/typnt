@@ -264,7 +264,7 @@ main {
     top: 40px;
     background: var(--tblack2);
     border: 2px solid var(--dark-gray);
-    width: 250px;
+    width: 251px;
     z-index: 100;
 }
 
@@ -431,75 +431,65 @@ main {
    9. Feature Toggles
    ========================================================================== */
 .feature-toggles {
-  padding: 15px;
   max-height: 400px;
   overflow-y: auto;
   scrollbar-width: thin;
 }
 
+.feature-toggles.two-columns {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px 8px;
+}
+
 .feature-toggle {
-  display: flex;
-  align-items: center;
-  padding: 6px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 0;
+    min-width: 0;
 }
 
-.feature-toggle__input {
-  appearance: none;
-  width: 40px;
-  height: 20px;
-  background: #333;
-  border-radius: 10px;
-  position: relative;
-  cursor: pointer;
-  transition: background 0.3s;
+.feature-checkbox {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--light-gray);
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.2s ease, border 0.2s ease;
 }
 
-.feature-toggle__input:checked {
-  background: #4a9eff;
+.feature-checkbox:hover {
+    border: 2px solid var(--white);
 }
 
-.feature-toggle__input::before {
-  content: '';
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: white;
-  top: 2px;
-  left: 2px;
-  transition: transform 0.3s;
-}
-
-.feature-toggle__input:checked::before {
-  transform: translateX(20px);
+.feature-checkbox:checked {
+    background-color: var(--white);
+    border: 2px solid var(--white);
 }
 
 .feature-toggle__label {
-  display: flex;
-  align-items: center;
-  flex: 1;
-  cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--white);
+    font-size: 14px;
 }
 
 .feature-toggle__name {
-  color: #fff;
-  font-size: 14px;
+    min-width: 40px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.feature-toggle__tag {
-  font-family: 'Roboto Mono', monospace;
-  font-size: 12px;
-  padding: 2px 6px;
-  background: #222;
-  border-radius: 4px;
-  color: #888;
-}
-
-.feature-toggle__text {
-  font-family: 'Roboto Mono', monospace;
-  font-size: 14px;
-  color: #fff;
-  margin-left: 12px;
+/* Remove old toggle styles */
+.feature-toggle__input,
+.feature-toggle__input::before,
+.feature-toggle__input:checked::before {
+    display: none;
 }
 
 /* ==========================================================================

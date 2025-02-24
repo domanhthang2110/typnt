@@ -1,4 +1,5 @@
 import { updateSettingsPanel } from './font-manager.js';
+import { updateFontCardSelection } from './font-manager.js';
 
 const STATE = {
     DEFAULT: 'default',
@@ -43,8 +44,9 @@ function createTextbox(type) {
     
     // Position the new textbox and set dimensions
     const initialStyles = {
-        top: '20%',
-        left: '20%'
+      position: "absolute", // Add this line
+      top: "20%",
+      left: "20%",
     };
 
     // Add width for non-paragraph textboxes
@@ -241,8 +243,12 @@ function init(playgroundSelector) {
 
     state.playground
         .on('click', (e) => {
-            if ($(e.target).hasClass('playground__grid')) {
-                clearSelection();
+            if (
+              $(e.target).hasClass("playground__grid") ||
+              $(e.target).hasClass("playground")
+            ) {
+              clearSelection();
+              
             }
         })
         .on('dblclick', '.textbox', (e) => {
@@ -258,21 +264,24 @@ function init(playgroundSelector) {
 }
 
 function clearSelection() {
-    // Clear all textbox selections
-    state.textboxes.forEach((data, element) => {
-        setTextboxState($(element), STATE.DEFAULT);
-    });
-    state.activeTextbox = null;
+  // Clear all textbox selections
+  state.textboxes.forEach((data, element) => {
+    setTextboxState($(element), STATE.DEFAULT);
+  });
+  state.activeTextbox = null;
 
-    // Clear settings panel when no textbox is selected
-    updateSettingsPanel({
-        features: [],
-        axes: {},
-        instances: [],
-        currentFeatures: {},
-        currentAxes: {},
-        currentInstance: 'Regular'
-    });
+  // Clear font card selection by passing null
+  updateFontCardSelection(null);
+
+  // Clear settings panel when no textbox is selected
+  updateSettingsPanel({
+    features: [],
+    axes: {},
+    instances: [],
+    currentFeatures: {},
+    currentAxes: {},
+    currentInstance: "Regular",
+  });
 }
 
 function deleteActiveTextbox() {
