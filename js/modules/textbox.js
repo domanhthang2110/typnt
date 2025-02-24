@@ -1,159 +1,170 @@
-export default class TextBoxManager {
-    static selectedTextBox = null;
-    static editingTextBox = null;
+const STATE = {
+    DEFAULT: 'default',
+    SELECTED: 'selected',
+    EDITING: 'editing'
+};
 
-    constructor(playgroundSelector) {
-        this.playground = $(playgroundSelector);
-        this.setupEventListeners();
-    }
+// Global state
+const state = {
+    playground: null,
+    activeTextbox: null,
+    textboxes: new Map()
+};
 
-    setupEventListeners() {
-        $('#add-text').on('click', () => this.createTextBox('text'));
-        $('#add-paragraph').on('click', () => this.createTextBox('paragraph'));
-        $('#delete-textbox').on('click', () => this.deleteSelectedTextBox());
-        
-        // Document-level click handler for state management
-        $(document).on('click', (e) => {
-            const clickedTextbox = $(e.target).closest('.textbox');
-            const isControl = $(e.target).closest('#add-text, #add-paragraph, #delete-textbox').length > 0;
-            
-            if (!clickedTextbox.length && !isControl) {
-                this.setUnselectedState();
-            }
-        });
-    }
-
-    createTextBox(type) {
-        const textbox = $(`
-            <div class="textbox ${type === 'paragraph' ? 'textbox--paragraph' : ''}">
-                <div class="textbox__content" contenteditable="false">
-                    ${type === 'paragraph' ? 'Lorem ipsum dolor sit amet...' : 'Text'}
-                </div>
-                <div class="textbox__resize-handle"></div>
+// Create a new textbox
+function createTextbox(type) {
+    const content = type === 'paragraph' ? 'Double click to edit' : 'Text';
+    const element = $(`
+        <div class="textbox ${type === 'paragraph' ? 'textbox--paragraph' : ''}">
+            <div class="textbox__content" contenteditable="false" spellcheck="false">
+                ${content}
             </div>
-        `);
-        
-        this.playground.append(textbox);
-        this.setupTextBoxStates(textbox, type);
-        return textbox;
-    }
+            <div class="textbox__resize-handle"></div>
+        </div>
+    `);
 
-    setupTextBoxStates(textbox, type) {
-        textbox.css({ top: '20%', left: '20%' });
+    // Set initial styles
+    const styles = {
+        family: 'inherit',
+        size: '16px',
+        features: {}
+    };
+    
+    applyStyles(element, styles);
+    setupInteractions(element, type, styles);
+    
+    // Add to playground and store reference
+    state.playground.append(element);
+    state.textboxes.set(element[0], { element, type, styles });
+    
+    // Position the new textbox
+    element.css({ top: '20%', left: '20%' });
+    
+    setTextboxState(element, STATE.SELECTED);
+    state.activeTextbox = element[0];
+    
+    return element;
+}
 
-        // Unselected state (hover only)
-        textbox.on('mouseenter mouseleave', () => {
-            if (TextBoxManager.selectedTextBox !== textbox) {
-                textbox.toggleClass('textbox--hover');
-            }
-        });
+function applyStyles(element, styles) {
+    const content = element.find('.textbox__content');
+    content.css({
+        'font-family': `"${styles.family}"`,
+        'font-size': styles.size,
+        'font-feature-settings': Object.entries(styles.features)
+            .map(([feature, value]) => `"${feature}" ${value}`)
+            .join(', ') || 'normal'
+    });
+}
 
-        // Selected state
-        textbox.on('click', (e) => {
-            e.stopPropagation();
-            this.setSelectedState(textbox);
-        });
-
-        // Edit state
-        textbox.on('dblclick', (e) => {
-            e.stopPropagation();
-            this.setEditState(textbox);
-        });
-
-        // Setup resize and drag functionality
-        this.setupDraggable(textbox);
-        if (type === 'paragraph') {
-            this.setupResizable(textbox);
+function setupInteractions(element, type, styles) {
+    // Make draggable
+    element.draggable({
+        containment: '.playground',
+        start: () => {
+            $('.textbox').not(element).removeClass('textbox--focused');
+            element.addClass('textbox--focused');
         }
-        this.setupFontSizeHandle(textbox);
-    }
+    });
 
-    setUnselectedState() {
-        if (TextBoxManager.editingTextBox) {
-            TextBoxManager.editingTextBox.find('.textbox__content').attr('contenteditable', 'false');
-            TextBoxManager.editingTextBox = null;
-        }
-        $('.textbox').removeClass('textbox--selected textbox--editing');
-        TextBoxManager.selectedTextBox = null;
-    }
-
-    setSelectedState(textbox) {
-        this.setUnselectedState();
-        textbox.addClass('textbox--selected');
-        TextBoxManager.selectedTextBox = textbox;
-    }
-
-    setEditState(textbox) {
-        if (TextBoxManager.selectedTextBox !== textbox) {
-            this.setSelectedState(textbox);
-        }
-        textbox.addClass('textbox--editing');
-        const content = textbox.find('.textbox__content');
-        content.attr('contenteditable', 'true');
-        content.focus();
-        TextBoxManager.editingTextBox = textbox;
-    }
-
-    deleteSelectedTextBox() {
-        if (TextBoxManager.selectedTextBox) {
-            TextBoxManager.selectedTextBox.remove();
-            TextBoxManager.selectedTextBox = null;
-        }
-    }
-
-    setupDraggable(textbox) {
-        textbox.draggable({
-            containment: ".playground",
-            start: function() {
-                $(".textbox").not(this).removeClass("textbox--focused");
-                $(this).addClass("textbox--focused");
-            }
-        });
-    }
-
-    setupResizable(textbox) {
-        textbox.resizable({
+    // Make resizable if paragraph
+    if (type === 'paragraph') {
+        element.resizable({
             handles: 'n, e, s, w, ne, nw, se, sw',
             minWidth: 100,
             minHeight: 50,
             maxWidth: 1000,
             maxHeight: 500,
+            borderless: true,
             containment: '.playground',
-            start: function(event, ui) {
-                // Ensure handles stay visible during resize
-                $(this).addClass('textbox--selected');
-            },
-            stop: function(event, ui) {
-                // Prevent deselection after resize
-                event.stopPropagation();
-                $(this).addClass('textbox--selected');
-            }
+            start: () => setTextboxState(element, STATE.SELECTED),
+            stop: () => setTextboxState(element, STATE.SELECTED)
         });
     }
 
-    setupFontSizeHandle(textbox) {
-        const handle = textbox.find(".textbox__resize-handle");
-        handle.on("mousedown", (e) => {
-            e.preventDefault();
-            textbox.draggable("disable");
-            
-            const initialY = e.clientY;
-            const initialFontSize = parseInt(textbox.css("font-size"));
+    // Setup font size handle
+    const handle = element.find('.textbox__resize-handle');
+    handle.on('mousedown', (e) => {
+        e.preventDefault();
+        element.draggable('disable');
+        
+        const initialY = e.clientY;
+        const initialSize = parseInt(styles.size);
 
-            const handleMouseMove = (e) => {
-                const deltaY = e.clientY - initialY;
-                const newFontSize = Math.min(400, Math.max(12, initialFontSize + deltaY / 2));
-                textbox.css("font-size", `${newFontSize}px`);
-            };
+        function handleMouseMove(e) {
+            const deltaY = e.clientY - initialY;
+            const newSize = Math.min(400, Math.max(12, initialSize + deltaY / 2));
+            styles.size = `${newSize}px`;
+            applyStyles(element, styles);
+        }
 
-            const handleMouseUp = () => {
-                $(document).off("mousemove", handleMouseMove);
-                $(document).off("mouseup", handleMouseUp);
-                textbox.draggable("enable");
-            };
+        function handleMouseUp() {
+            $(document).off('mousemove', handleMouseMove);
+            $(document).off('mouseup', handleMouseUp);
+            element.draggable('enable');
+        }
 
-            $(document).on("mousemove", handleMouseMove);
-            $(document).on("mouseup", handleMouseUp);
-        });
+        $(document).on('mousemove', handleMouseMove);
+        $(document).on('mouseup', handleMouseUp);
+    });
+}
+
+function setTextboxState(element, newState) {
+    element
+        .removeClass('textbox--selected textbox--editing textbox--hover')
+        .addClass(`textbox--${newState}`);
+
+    const content = element.find('.textbox__content');
+    content.attr('contenteditable', newState === STATE.EDITING);
+
+    if (newState === STATE.EDITING) {
+        element.draggable('disable');
+        content.focus();
+    } else {
+        element.draggable('enable');
     }
 }
+
+// Initialize everything
+function init(playgroundSelector) {
+    state.playground = $(playgroundSelector);
+    
+    // Setup global event listeners
+    $('#add-text').on('click', () => createTextbox('text'));
+    $('#add-paragraph').on('click', () => createTextbox('paragraph'));
+    $('#delete-textbox').on('click', deleteActiveTextbox);
+
+    state.playground
+        .on('click', (e) => {
+            if (!$(e.target).closest('.textbox').length) {
+                clearSelection();
+            }
+        })
+        .on('dblclick', '.textbox', (e) => {
+            setTextboxState($(e.currentTarget), STATE.EDITING);
+            state.activeTextbox = e.currentTarget;
+        })
+        .on('mousedown', '.textbox', (e) => {
+            if (e.target.closest('.textbox__content[contenteditable="true"]')) return;
+            
+            setTextboxState($(e.currentTarget), STATE.SELECTED);
+            state.activeTextbox = e.currentTarget;
+        });
+}
+
+function clearSelection() {
+    state.textboxes.forEach((data, element) => {
+        setTextboxState($(element), STATE.DEFAULT);
+    });
+    state.activeTextbox = null;
+}
+
+function deleteActiveTextbox() {
+    if (!state.activeTextbox) return;
+    
+    $(state.activeTextbox).remove();
+    state.textboxes.delete(state.activeTextbox);
+    state.activeTextbox = null;
+}
+
+export { init, createTextbox, deleteActiveTextbox };

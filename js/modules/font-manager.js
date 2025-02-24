@@ -1,11 +1,38 @@
 import TextBoxManager from './textbox.js';
 
 export default class FontManager {
-  constructor() {
+  constructor(textBoxManager) {  // Accept textBoxManager as parameter
     this.fonts = new Map();
     this.fontListElement = document.getElementById('font-list');
     this.fontInfoElement = document.getElementById('font-info');
+    this.textBoxManager = textBoxManager;  // Store the reference
+    
+    this.setupEventListeners();
     this.init();
+  }
+
+  setupEventListeners() {
+    // Listen for textbox state/font updates
+    document.addEventListener('textbox-updated', (e) => {
+      const { font, state } = e.detail;
+      
+      // Only update UI if textbox is selected or being edited
+      if (state === 'default') return;
+
+      // Scroll to active font in font list
+      if (font.family !== 'inherit') {
+        this.scrollToFont(font.family);
+      }
+
+      // Update feature toggles with current settings
+      this.updateFeatureToggles(font.features);
+
+      // Show font info if available
+      const fontInfo = this.fonts.get(font.family);
+      if (fontInfo) {
+        this.showFontInfo(fontInfo);
+      }
+    });
   }
 
   init() {
@@ -36,49 +63,22 @@ export default class FontManager {
 
   async loadFont(fontPath) {
     try {
-      const response = await fetch(fontPath);
-      const buffer = await response.arrayBuffer();
-      const font = opentype.parse(buffer);
-
-      // Extract font info similar to FontDrop
-      const fontInfo = {
-        name: this.getFontName(font, 'fullName'),
-        style: this.getFontName(font, 'preferredSubfamily') || this.getFontName(font, 'fontSubfamily'),
-        version: this.getFontName(font, 'version'),
-        designer: this.getFontName(font, 'designer'),
-        manufacturer: this.getFontName(font, 'manufacturer'),
-        copyright: this.getFontName(font, 'copyright'),
-        license: this.getFontName(font, 'license'),
+        const response = await fetch(fontPath);
+        const arrayBuffer = await response.arrayBuffer();
+        const font = opentype.parse(arrayBuffer);
         
-        tables: {
-          os2: font.tables.os2,
-          head: font.tables.head,
-          hhea: font.tables.hhea,
-          maxp: font.tables.maxp,
-          post: font.tables.post
-        },
+        const fontInfo = {
+            name: this.getFontName(font, 'fontFamily'),
+            source: fontPath,
+            style: this.getFontName(font, 'fontSubfamily'),
+            font: font  // Store the parsed font object
+        };
+
+        this.fonts.set(fontInfo.name, fontInfo);
+        this.createFontCard(fontInfo);
         
-        features: this.getOpenTypeFeatures(font),
-        source: fontPath
-      };
-
-      // Add tables info
-      fontInfo.isMonospaced = font.tables.post.isFixedPitch === 1;
-      fontInfo.glyphCount = font.tables.maxp.numGlyphs;
-      
-      // Add metrics
-      fontInfo.metrics = {
-        ascender: font.tables.os2.sTypoAscender,
-        descender: font.tables.os2.sTypoDescender,
-        lineGap: font.tables.os2.sTypoLineGap,
-        xHeight: font.tables.os2.sxHeight,
-        capHeight: font.tables.os2.sCapHeight
-      };
-
-      return fontInfo;
     } catch (error) {
-      console.error('Error loading font:', error);
-      return null;
+        console.error('Failed to load font:', error);
     }
   }
 
@@ -93,6 +93,8 @@ export default class FontManager {
   }
 
   getOpenTypeFeatures(font) {
+    if (!font) return [];
+    
     const features = new Set();
 
     // Get GSUB features
@@ -158,19 +160,38 @@ export default class FontManager {
     card.appendChild(infoEl);
     card.appendChild(previewEl);
     
-    card.addEventListener('click', () => {
-      this.showFontInfo(fontInfo);
-      this.updateSettingsPanel(fontInfo);
-      document.querySelectorAll('.font-card').forEach(c => c.classList.remove('active'));
-      card.classList.add('active');
+    card.addEventListener('click', (e) => {
+      // Prevent event from bubbling up to playground
+      e.stopPropagation();
       
-      // Apply font to selected textbox
-      if (TextBoxManager.selectedTextBox) {
-        TextBoxManager.selectedTextBox.css('font-family', fontInfo.name);
-      }
+      if (!this.textBoxManager) return;
+
+      // Update the active textbox with new font settings
+      this.textBoxManager.updateActiveTextBoxFont({
+        name: fontInfo.name,
+        features: this.getOpenTypeFeatures(fontInfo.font)
+      });
+
+      // Update UI state without affecting textbox selection
+      this.updateFontCardSelection(card);
     });
     
     this.fontListElement.appendChild(card);
+  }
+
+  scrollToFont(fontFamily) {
+    const fontCard = Array.from(this.fontListElement.querySelectorAll('.font-card'))
+      .find(card => card.querySelector('.font-card__name').textContent === fontFamily);
+      
+    if (fontCard) {
+      fontCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+
+  updateFontCardSelection(selectedCard) {
+    document.querySelectorAll('.font-card').forEach(card => 
+      card.classList.toggle('active', card === selectedCard)
+    );
   }
 
   showFontInfo(fontInfo) {
@@ -216,8 +237,19 @@ export default class FontManager {
   }
 
   updateSettingsPanel(fontInfo) {
+    console.log('Updating settings panel with:', fontInfo); // Debug log
     const settingsContent = document.querySelector('#settings-panel .panel__content-wrapper');
-    if (!settingsContent) return;
+    if (!settingsContent) {
+        console.error('Settings panel content wrapper not found');
+        return;
+    }
+
+    settingsContent.innerHTML = ''; // Clear existing content
+    
+    if (!fontInfo || !fontInfo.features || !fontInfo.features.length) {
+        settingsContent.innerHTML = '<p>No OpenType features available</p>';
+        return;
+    }
 
     const featureSection = document.createElement('div');
     featureSection.className = 'feature-toggles';
@@ -263,30 +295,29 @@ export default class FontManager {
   }
 
   toggleFeature(tag, enabled) {
-    // Apply feature to selected textbox if it exists
-    if (TextBoxManager.selectedTextBox) {
-      const features = {};
-      features[tag] = enabled ? '1' : '0';
-      
-      // Get existing font features
-      const currentStyle = TextBoxManager.selectedTextBox.get(0).style.fontFeatureSettings;
-      const existingFeatures = {};
-      if (currentStyle && currentStyle !== 'normal') {
-        currentStyle.split(',').forEach(feat => {
-          const [t, v] = feat.trim().replace(/['"]/g, '').split(' ');
-          existingFeatures[t] = v;
-        });
+    if (!this.textBoxManager) return;
+    
+    this.textBoxManager.updateActiveTextBoxFont({
+      features: {
+        [tag]: enabled ? 1 : 0
       }
+    });
+  }
 
-      // Merge with new feature
-      Object.assign(existingFeatures, features);
+  updateUIForTextbox(settings) {
+    if (!settings) return;
+    console.log('Updating UI for textbox settings:', settings);
 
-      // Apply all features
-      const fontFeatureSettings = Object.entries(existingFeatures)
-        .map(([t, v]) => `"${t}" ${v}`)
-        .join(', ');
+    // Select the correct font card
+    document.querySelectorAll('.font-card').forEach(card => {
+      const fontName = card.querySelector('.font-card__name').textContent;
+      card.classList.toggle('active', fontName === settings.name);
+    });
 
-      TextBoxManager.selectedTextBox.css('fontFeatureSettings', fontFeatureSettings);
-    }
+    // Update feature toggles based on stored settings
+    document.querySelectorAll('.feature-toggle__input').forEach(toggle => {
+      const featureTag = toggle.id.replace('feature-', '');
+      toggle.checked = settings.features && featureTag in settings.features;
+    });
   }
 }
