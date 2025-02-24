@@ -1,5 +1,6 @@
 @import url("slider.css");
 @import url("styles.css");
+@import url("components/scrollbar.css");
 
 :root {
   --tblack: #121212;
@@ -13,7 +14,7 @@
 /* Base styles - Used in all pages (home.html, lab.html, glyph.html, index.html) */
 html,
 body {
-  font-family: "Roboto Mono", serif;
+  font-family: "Epilogue", serif;
   background-color: var(--tblack);
 }
 

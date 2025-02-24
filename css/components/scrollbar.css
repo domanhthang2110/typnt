@@ -1,0 +1,25 @@
+/* Custom Scrollbar Styles */
+.custom-scrollbar {
+    /* Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: var(--light-gray) var(--tblack);
+
+    /* Webkit (Chrome, Edge, Safari) */
+    &::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: var(--tblack);
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: var(--light-gray);
+        border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: var(--white);
+    }
+}

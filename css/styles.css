@@ -43,14 +43,6 @@ input[type="radio"]:checked {
   min-width: 150px;
 }
 
-/* Custom Scrollbar Styles */
-.custom-scrollbar {
-  /* Scrollbar track */
-  scrollbar-width: thin; /* For Firefox */
-  scrollbar-color: var(--light-gray) var(--tblack);
-   /* Thumb and track color */
-}
-
 
 /* Keep padding for scrollbar space */
 .dropdown-content-wrapper {
@@ -70,6 +62,7 @@ nav {
 
 .logo {
   display: flex;
+  font-weight: bold;
   align-items: center;
   height: 100%;
 }

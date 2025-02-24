@@ -4,7 +4,8 @@
  */
 import RulerManager from './modules/rulers.js';
 import PanelManager from './modules/panels.js';
-import { init } from './modules/textbox.js';
+import { init as initTextbox } from './modules/textbox.js';
+import { initFontManager } from './modules/font-manager.js';
 
 class LabApp {
     constructor() {
@@ -17,6 +18,8 @@ class LabApp {
         this.rulerManager = new RulerManager();
         this.setupKeyboardShortcuts();
         this.setupPanelToggles();
+        this.initFontManager();
+        this.setupGridToggle();
     }
 
     setupKeyboardShortcuts() {
@@ -42,6 +45,24 @@ class LabApp {
         });
     }
 
+    setupGridToggle() {
+        const gridButton = document.getElementById('toggle-grid');
+        const grid = document.querySelector('.playground__grid');
+        
+        gridButton.addEventListener('click', () => {
+            gridButton.classList.toggle('active');
+            grid.classList.toggle('hidden');
+            
+            // Toggle between grid_on and checkbox icons
+            const icon = gridButton.querySelector('.material-symbols-outlined');
+            if (grid.classList.contains('hidden')) {
+                icon.textContent = 'check_box_outline_blank';
+            } else {
+                icon.textContent = 'grid_on';
+            }
+        });
+    }
+
     toggleOutline() {
         if (this.outlineEnabled) {
             const styleElement = document.querySelector("style#outline-style");
@@ -62,12 +83,16 @@ class LabApp {
             this.textEditor.clearActiveTextBox();
         }
     }
+
+    async initFontManager() {
+        await initFontManager(this.textBoxManager);
+    }
 }
 
 // Initialize the app when document is ready
 $(document).ready(() => {
     const lab = new LabApp();
-    init('.playground');
+    initTextbox('.playground');
 });
 
 export default LabApp;

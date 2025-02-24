@@ -7,16 +7,13 @@
       name="description"
       content="Explore, read, and practice typography with Typ.nt's vast collection of fonts and resources."
     />
-    <title>Typ.nt - Typography Exploration</title>
+    <title>Typelab - Typography Exploration</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/main.css" />
     <link rel="stylesheet" href="css/lab.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
     <link
@@ -24,12 +21,14 @@
       rel="stylesheet"
     />
     <script src="https://cdn.jsdelivr.net/npm/opentype.js@latest/dist/opentype.min.js"></script>
+    <link rel="stylesheet" href="/css/components/settings-panel.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <style></style>
   </head>
   <body class="text-white">
     <!-- Navigation Bar -->
     <header class="flex justify-between items-center pl-12 z-10">
-      <div class="text-4xl font-semibold logo">Typ.nt</div>
+      <div class="text-4xl font-semibold logo">Typelab™</div>
       <nav class="flex items-center">
         <a href="#archive" class="top-bar-button text-white hover:underline"
           >home.nt</a
@@ -50,7 +49,7 @@
           >archive</a
         >
       </nav>
-      <a href="#login" class="text-white hover:underline login-button">login</a>
+      <a href="#login" class="text-white hover:underline login-button"></a>
     </header>
 
     <main>
@@ -89,13 +88,23 @@
             </div>
           </div>
         </div>
-      </div>
-      <!-- Add this before the closing main tag -->
+              <!-- Add this before the closing main tag -->
       <div class="bottom-menu">
-        <button class="bottom-menu__button" id="add-text">Add Text</button>
-        <button class="bottom-menu__button" id="add-paragraph">Add Paragraph</button>
-        <button class="bottom-menu__button bottom-menu__button--delete" id="delete-textbox">Delete</button>
+        <button class="bottom-menu__button" id="add-text">
+            <span class="material-symbols-outlined">text_fields</span>
+        </button>
+        <button class="bottom-menu__button" id="add-paragraph">
+            <span class="material-symbols-outlined">article</span>
+        </button>
+        <button class="bottom-menu__button" id="toggle-grid">
+            <span class="material-symbols-outlined">grid_on</span>
+        </button>
+        <button class="bottom-menu__button bottom-menu__button--delete" id="delete-textbox">
+            <span class="material-symbols-outlined">delete</span>
+        </button>
       </div>
+      </div>
+
     </main>
     <script type="module" src="js/lab.js"></script>
   </body>

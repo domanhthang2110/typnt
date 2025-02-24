@@ -262,7 +262,7 @@ main {
 .panel {
     position: absolute;
     top: 40px;
-    background: var(--dark-gray);
+    background: var(--tblack2);
     border: 2px solid var(--dark-gray);
     width: 250px;
     z-index: 100;
@@ -276,6 +276,7 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 47px;
     padding: 8px 12px;
     background: var(--dark-gray);
     cursor: move;
@@ -288,7 +289,6 @@ main {
 
 .panel__content {
     height: 600px;
-    padding: 1rem;
     overflow: hidden;
     transition: height 0.3s ease;
 }
@@ -297,7 +297,7 @@ main {
     height: 100%;
     opacity: 1;
     transition: opacity 0.2s ease-in;
-    overflow-y: hidden;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
 }
@@ -342,22 +342,22 @@ main {
    ========================================================================== */
 .font-list {
   height: 100%;
+  width: 100%;
   overflow-y: auto;
-  padding: 10px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
   gap: 10px;
 }
 
 .font-card {
   padding: 15px;
-  background: #2a2a2a;
-  border-radius: 6px;
+  background: var(--tblack2);
+  width: 100%;
   cursor: pointer;
   transition: all 0.2s ease;
   display: flex;
   flex-direction: column;
-  gap: 8px;
 }
 
 .font-card:hover {
@@ -506,38 +506,61 @@ main {
    ========================================================================== */
 .bottom-menu {
     position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 50px;
-    background: var(--tblack2);
-    border-top: 2px solid var(--dark-gray);
-    display: flex;
-    align-items: center;
-    padding: 0 20px;
-    gap: 10px;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 2px solid var(--dark-gray);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: var(--tblack1);
+    border-radius: 0px;
+    overflow: hidden;
     z-index: 1000;
 }
 
 .bottom-menu__button {
-    padding: 8px 16px;
-    background: var(--dark-gray);
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
     border: none;
     color: var(--white);
     cursor: pointer;
-    border-radius: 4px;
-    font-family: "Roboto Mono", sans-serif;
+    position: relative;
+    transition: all 0.2s ease;
 }
 
-.bottom-menu__button:hover {
-    background: #444;
+/* Bottom border hover effect for first two buttons */
+.bottom-menu__button:nth-child(-n+3)::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--white);
+    transform: scaleX(0);
+    transition: transform 0.2s ease;
 }
 
+.bottom-menu__button:nth-child(-n+3):hover::after {
+    transform: scaleX(1);
+}
+
+/* Delete button */
 .bottom-menu__button--delete {
-    margin-left: auto;
-    background: #662222;
+    background: #2a1515;
+    color: #ff4747;
 }
 
 .bottom-menu__button--delete:hover {
-    background: #883333;
+    background: #ff4747;
+    color: var(--white);
+}
+
+/* Material icons styling */
+.material-symbols-outlined {
+    font-size: 20px;
 }

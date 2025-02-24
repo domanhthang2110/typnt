@@ -1,3 +1,5 @@
+import { updateSettingsPanel } from './font-manager.js';
+
 const STATE = {
     DEFAULT: 'default',
     SELECTED: 'selected',
@@ -23,11 +25,13 @@ function createTextbox(type) {
         </div>
     `);
 
-    // Set initial styles
+    // Set minimal initial styles
     const styles = {
         family: 'inherit',
-        size: '16px',
-        features: {}
+        size: '32px',
+        features: {},  // empty by default
+        axis: {},     // empty by default
+        instance: 'Regular'
     };
     
     applyStyles(element, styles);
@@ -37,8 +41,19 @@ function createTextbox(type) {
     state.playground.append(element);
     state.textboxes.set(element[0], { element, type, styles });
     
-    // Position the new textbox
-    element.css({ top: '20%', left: '20%' });
+    // Position the new textbox and set dimensions
+    const initialStyles = {
+        top: '20%',
+        left: '20%'
+    };
+
+    // Add width for non-paragraph textboxes
+    if (type !== 'paragraph') {
+        initialStyles.width = 'fit-content';  // Make it fit the content
+        initialStyles.whiteSpace = 'nowrap';  // Prevent wrapping
+    }
+
+    element.css(initialStyles);
     
     setTextboxState(element, STATE.SELECTED);
     state.activeTextbox = element[0];
@@ -46,15 +61,30 @@ function createTextbox(type) {
     return element;
 }
 
+// Only apply what's explicitly set
 function applyStyles(element, styles) {
     const content = element.find('.textbox__content');
-    content.css({
-        'font-family': `"${styles.family}"`,
-        'font-size': styles.size,
-        'font-feature-settings': Object.entries(styles.features)
-            .map(([feature, value]) => `"${feature}" ${value}`)
-            .join(', ') || 'normal'
-    });
+    const cssStyles = {
+      "font-family": styles.family || "inherit",
+      "font-size": styles.size || "16px",
+    };
+
+    // Apply OpenType features
+    if (styles.features && Object.keys(styles.features).length > 0) {
+        cssStyles['font-feature-settings'] = Object.entries(styles.features)
+            .map(([feature, value]) => `"${feature}" ${value ? 1 : 0}`)
+            .join(', ');
+    }
+
+    // Apply variable font settings
+    if (styles.axis && Object.keys(styles.axis).length > 0) {
+        cssStyles['font-variation-settings'] = Object.entries(styles.axis)
+            .map(([axis, value]) => `"${axis}" ${value}`)
+            .join(', ');
+    }
+
+    content.css(cssStyles);
+    console.log('Applied styles:', cssStyles);
 }
 
 function setupInteractions(element, type, styles) {
@@ -70,15 +100,26 @@ function setupInteractions(element, type, styles) {
     // Make resizable if paragraph
     if (type === 'paragraph') {
         element.resizable({
-            handles: 'n, e, s, w, ne, nw, se, sw',
+            handles: "n, e, s, w, ne, nw, se, sw",
             minWidth: 100,
             minHeight: 50,
             maxWidth: 1000,
             maxHeight: 500,
             borderless: true,
-            containment: '.playground',
-            start: () => setTextboxState(element, STATE.SELECTED),
-            stop: () => setTextboxState(element, STATE.SELECTED)
+            containment: ".playground",
+            start: function (event, ui) {
+                event.stopPropagation();
+                setTextboxState($(this), STATE.SELECTED);
+            },
+            resize: function (event, ui) {
+                event.stopPropagation();
+            },
+            stop: function (event, ui) {
+                // Ensure the textbox stays selected after a short delay
+                setTimeout(() => {
+                    setTextboxState($(this), STATE.SELECTED);
+                }, 0);
+            },
         });
     }
 
@@ -88,28 +129,49 @@ function setupInteractions(element, type, styles) {
         e.preventDefault();
         element.draggable('disable');
         
+        const textboxData = state.textboxes.get(element[0]);
+        if (!textboxData) return;
+        
         const initialY = e.clientY;
-        const initialSize = parseInt(styles.size);
+        // Get current size from textbox data instead of initial styles
+        const initialSize = parseInt(textboxData.styles.size);
 
         function handleMouseMove(e) {
             const deltaY = e.clientY - initialY;
             const newSize = Math.min(400, Math.max(12, initialSize + deltaY / 2));
-            styles.size = `${newSize}px`;
-            applyStyles(element, styles);
+            
+            // Update only the size while preserving other styles
+            textboxData.styles = {
+                ...textboxData.styles,
+                size: `${newSize}px`
+            };
+            applyStyles(element, textboxData.styles);
         }
 
         function handleMouseUp() {
-            $(document).off('mousemove', handleMouseMove);
-            $(document).off('mouseup', handleMouseUp);
-            element.draggable('enable');
+            $(document).off("mousemove", handleMouseMove);
+            $(document).off("mouseup", handleMouseUp);
+            element.draggable("enable");
+            setTimeout(() => {
+                setTextboxState(element, STATE.SELECTED);
+            }, 0);
         }
-
         $(document).on('mousemove', handleMouseMove);
         $(document).on('mouseup', handleMouseUp);
     });
 }
 
 function setTextboxState(element, newState) {
+    // First, deselect all other textboxes if this one is being selected
+    if (newState === STATE.SELECTED) {
+        state.textboxes.forEach((data, el) => {
+            if (el !== element[0]) {
+                $(el).removeClass('textbox--selected textbox--editing textbox--hover');
+            }
+        });
+    }
+
+    // Then set the state for this textbox
     element
         .removeClass('textbox--selected textbox--editing textbox--hover')
         .addClass(`textbox--${newState}`);
@@ -123,12 +185,55 @@ function setTextboxState(element, newState) {
     } else {
         element.draggable('enable');
     }
+
+    if (newState === STATE.SELECTED) {
+        state.activeTextbox = element[0];
+        // Dispatch event when textbox is selected
+        const textboxData = state.textboxes.get(element[0]);
+        if (textboxData) {
+            const event = new CustomEvent('textbox-selected', {
+                detail: {
+                    textbox: element[0],
+                    styles: textboxData.styles
+                }
+            });
+            document.dispatchEvent(event);
+        }
+    }
 }
 
 // Initialize everything
 function init(playgroundSelector) {
     state.playground = $(playgroundSelector);
     
+    // Fix the font-selected event listener
+    document.addEventListener('font-selected', (e) => {
+        if (!state.activeTextbox) return;
+        
+        const { fontData, fontInfo } = e.detail;  // Get both fontData and fontInfo
+        const textboxData = state.textboxes.get(state.activeTextbox);
+        
+        if (textboxData) {
+            // Update styles
+            textboxData.styles = {
+                ...textboxData.styles,
+                ...fontData
+            };
+            applyStyles(textboxData.element, textboxData.styles);
+
+            // Update settings panel with current textbox settings
+            updateSettingsPanel({
+                features: fontInfo.availableFeatures,
+                axes: fontInfo.availableAxes,
+                instances: fontInfo.availableInstances,
+                // Current textbox settings
+                currentFeatures: textboxData.styles.features || {},
+                currentAxes: textboxData.styles.axis || {},
+                currentInstance: textboxData.styles.instance || 'Regular'
+            });
+        }
+    });
+
     // Setup global event listeners
     $('#add-text').on('click', () => createTextbox('text'));
     $('#add-paragraph').on('click', () => createTextbox('paragraph'));
@@ -136,7 +241,7 @@ function init(playgroundSelector) {
 
     state.playground
         .on('click', (e) => {
-            if (!$(e.target).closest('.textbox').length) {
+            if ($(e.target).hasClass('playground__grid')) {
                 clearSelection();
             }
         })
@@ -153,10 +258,21 @@ function init(playgroundSelector) {
 }
 
 function clearSelection() {
+    // Clear all textbox selections
     state.textboxes.forEach((data, element) => {
         setTextboxState($(element), STATE.DEFAULT);
     });
     state.activeTextbox = null;
+
+    // Clear settings panel when no textbox is selected
+    updateSettingsPanel({
+        features: [],
+        axes: {},
+        instances: [],
+        currentFeatures: {},
+        currentAxes: {},
+        currentInstance: 'Regular'
+    });
 }
 
 function deleteActiveTextbox() {
@@ -165,6 +281,16 @@ function deleteActiveTextbox() {
     $(state.activeTextbox).remove();
     state.textboxes.delete(state.activeTextbox);
     state.activeTextbox = null;
+
+    // Clear settings panel when textbox is deleted
+    updateSettingsPanel({
+        features: [],
+        axes: {},
+        instances: [],
+        currentFeatures: {},
+        currentAxes: {},
+        currentInstance: 'Regular'
+    });
 }
 
-export { init, createTextbox, deleteActiveTextbox };
+export { init, createTextbox, deleteActiveTextbox, applyStyles, state };

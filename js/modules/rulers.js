@@ -65,7 +65,7 @@ export default class RulerManager {
 
     // Draw ticks and numbers with proper font
     ctx.fillStyle = this.textColor;
-    ctx.font = '10px "Roboto Mono"'; // Fixed font size
+    ctx.font = '10px inherit'; // Fixed font size
     ctx.textBaseline = "middle";
 
     for (let i = 0; i < width; i += 50) {
@@ -111,7 +111,7 @@ export default class RulerManager {
 
     // Draw ticks and numbers with proper font
     ctx.fillStyle = this.textColor;
-    ctx.font = '10px "Roboto Mono"'; // Fixed font size
+    ctx.font = '10px inherit'; // Fixed font size
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
 

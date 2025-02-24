@@ -1,0 +1,97 @@
+.settings-section {
+    margin-bottom: 2rem;
+    padding: 0 1rem;
+}
+
+.settings-section h3 {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Instances Section */
+.instances-section .instances-list {
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    padding: 0.5rem;
+}
+
+.instance-button {
+    display: block;
+    width: 100%;
+    padding: 0.5rem;
+    margin: 0.25rem 0;
+    text-align: left;
+    border: none;
+    background: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.instance-button:hover {
+    background: #f5f5f5;
+}
+
+.instance-button.active {
+    background: #e0e0e0;
+}
+
+/* Features Section */
+.features-section .features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+}
+
+.feature-toggle {
+    display: flex;
+    align-items: center;
+    padding: 0.25rem;
+    cursor: pointer;
+}
+
+.feature-toggle input {
+    margin-right: 0.5rem;
+}
+
+.feature-label {
+    font-size: 0.875rem;
+}
+
+/* Axes Section */
+.axes-section .axes-list {
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 0.5rem;
+    border: 1px solid #eee;
+    border-radius: 4px;
+}
+
+.axis-slider {
+    margin-bottom: 1rem;
+}
+
+.axis-slider label {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-size: 0.875rem;
+}
+
+.slider-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.slider-row input[type="range"] {
+    flex: 1;
+}
+
+.axis-value {
+    min-width: 3rem;
+    text-align: right;
+    font-size: 0.875rem;
+}
