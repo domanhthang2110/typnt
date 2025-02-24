@@ -1,273 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Explore, read, and practice typography with Typ.nt's vast collection of fonts and resources."
-    />
-    <title>Typ.nt - Typography Exploration</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="css/main.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
-      rel="stylesheet"
-    />
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
-    <link
-      href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css"
-      rel="stylesheet"
-    />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Scrollbar Demo</title>
+    <link rel="stylesheet" href="css/components/scrollbar.css">
     <style>
-      .home-font-title {
-        font-family: "Roboto Mono", sans-serif;
-      }
-      #lab {
-        display: flex;
-        height: 100%;
-      }
-      #lab-fontlist {
-        width: 20%;
-        background-color: #111;
-        padding: 10px;
-      }
-      #lab-playground {
-        width: 80%;
-        background-color: #222;
-        padding: 10px;
-        position: relative;
-        overflow: hidden; /* Prevent overflow */
-      }
-      #lab-fontsettings {
-        position: absolute;
-        right: 0;
-        top: 0;
-        width: 300px;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.8);
-        padding: 10px;
-        box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
-      }
-      .grid {
-        position: absolute;
-        top: 20px;
-        left: 20px;
-        width: 100%;
-        height: 100%;
-        background-size: 50px 50px;
-        background-image: linear-gradient(to right, #444 1px, transparent 1px),
-          linear-gradient(to bottom, #444 1px, transparent 1px);
-      }
-      #horizontal-ruler {
-        height: 20px;
-        width: calc(100% - 20px);
-        position: absolute;
-        left: 20px;
-        top: 0;
-        background: #333;
-        z-index: 100;
-      }
-      #vertical-ruler {
-        width: 20px;
-        height: calc(100% - 20px);
-        position: absolute;
-        left: 0;
-        top: 20px;
-        background: #333;
-        z-index: 100;
-      }
-      .ruler-corner {
-        width: 20px;
-        height: 20px;
-        position: absolute;
-        left: 0;
-        top: 0;
-        background: #444;
-        z-index: 101;
-      }
-      .textbox {
-        position: absolute;
-        background: white;
-        min-width: 100px;
-        min-height: 50px;
-        padding: 10px;
-        cursor: move;
-        color: black;
-        font-family: "Roboto Mono", sans-serif;
-      }
+        :root {
+            --light-gray: #d3d3d3;
+            --tblack: #000000;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+        }
+        .scroll-container {
+            width: 300px;
+            height: 200px;
+            overflow-y: scroll;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+        .content {
+            height: 600px;
+            background: linear-gradient(to bottom, #ffcccc, #ccffcc, #ccccff);
+        }
+
+        /* Custom Scrollbar Styles */
+        .custom-scrollbar {
+            /* Firefox */
+
+        }
+
+        /* Webkit (Chrome, Edge, Safari) */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 2px; /* More reasonable width */
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: var(--white); /* Match Firefox's color scheme */
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: var(--light-gray); /* Match Firefox's color scheme */
+            border-radius: 4px; /* Optional: adds rounded corners */
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #a0a0a0; /* Slightly darker on hover */
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-button {
+            display: none;
+        }
     </style>
-  </head>
-  <body class="text-white">
-    <!-- Navigation Bar -->
-    <header class="flex justify-between items-center pl-12 z-10">
-      <div class="text-4xl font-semibold logo">Typ.nt</div>
-      <nav class="flex items-center">
-        <a href="#archive" class="top-bar-button text-white hover:underline"
-          >home.nt</a
-        >
-        <a href="#reads" class="top-bar-button text-white hover:underline"
-          >reads</a
-        >
-        <a href="#video" class="top-bar-button text-white hover:underline"
-          >videos</a
-        >
-        <a href="#practice" class="top-bar-button text-white hover:underline"
-          >practice</a
-        >
-        <a href="#typ-lab" class="top-bar-button text-white hover:underline"
-          >typ.lab</a
-        >
-        <a href="#archive" class="top-bar-button-end text-white hover:underline"
-          >archive</a
-        >
-      </nav>
-      <a href="#login" class="text-white hover:underline login-button">login</a>
-    </header>
-
-    <main>
-      <div id="lab">
-        <div id="lab-fontlist">
-          <button
-            id="add-textbox"
-            class="bg-blue-500 text-white px-4 py-2 rounded"
-          >
-            Add Text Box
-          </button>
+</head>
+<body>
+    <div class="scroll-container custom-scrollbar">
+        <div class="content">
+            Scroll to see the custom scrollbar in action.
         </div>
-
-        <div id="lab-playground">
-          <div class="ruler-corner"></div>
-          <canvas id="horizontal-ruler"></canvas>
-          <canvas id="vertical-ruler"></canvas>
-          <div class="grid" id="playground-grid"></div>
-          <div id="lab-fontsettings"></div>
-        </div>
-      </div>
-    </main>
-
-    <script>
-      function drawRulers() {
-        const playground = document.getElementById("lab-playground");
-        const playgroundRect = playground.getBoundingClientRect();
-
-        // Horizontal ruler
-        const hRuler = document.getElementById("horizontal-ruler");
-        const hCtx = hRuler.getContext("2d");
-        const width = playgroundRect.width - 20;
-
-        hRuler.width = width * window.devicePixelRatio;
-        hRuler.height = 20 * window.devicePixelRatio;
-        hRuler.style.width = width + "px";
-        hRuler.style.height = "20px";
-
-        hCtx.scale(window.devicePixelRatio, window.devicePixelRatio);
-
-        hCtx.fillStyle = "#333";
-        hCtx.fillRect(0, 0, width, 20);
-
-        hCtx.fillStyle = "#fff";
-        hCtx.font = "10px Roboto Mono";
-
-        for (let i = 0; i < width; i += 10) {
-          const height = i % 50 === 0 ? 15 : 10;
-          hCtx.fillRect(i, 20 - height, 1, height);
-
-          if (i % 50 === 0) {
-            hCtx.fillText(i, i + 2, 10);
-          }
-        }
-
-        // Vertical ruler
-        const vRuler = document.getElementById("vertical-ruler");
-        const vCtx = vRuler.getContext("2d");
-        const height = playgroundRect.height - 20;
-
-        vRuler.width = 20 * window.devicePixelRatio;
-        vRuler.height = height * window.devicePixelRatio;
-        vRuler.style.width = "20px";
-        vRuler.style.height = height + "px";
-
-        vCtx.scale(window.devicePixelRatio, window.devicePixelRatio);
-
-        vCtx.fillStyle = "#333";
-        vCtx.fillRect(0, 0, 20, height);
-
-        vCtx.fillStyle = "#fff";
-        vCtx.font = "10px Roboto Mono";
-
-        for (let i = 0; i < height; i += 10) {
-          const width = i % 50 === 0 ? 15 : 10;
-          vCtx.fillRect(20 - width, i, width, 1);
-
-          if (i % 50 === 0) {
-            vCtx.save();
-            vCtx.translate(10, i + 12);
-            vCtx.rotate(-Math.PI / 2);
-            vCtx.fillText(i, 0, 0);
-            vCtx.restore();
-          }
-        }
-      }
-
-      let outlineEnabled = false;
-
-      function toggleOutline() {
-        if (outlineEnabled) {
-          const styleElement = document.querySelector("style#outline-style");
-          if (styleElement) {
-            styleElement.remove();
-          }
-        } else {
-          const style = document.createElement("style");
-          style.id = "outline-style";
-          style.innerHTML = "* { outline: 1px solid red; }";
-          document.head.appendChild(style);
-        }
-        outlineEnabled = !outlineEnabled;
-      }
-
-      document.addEventListener("keydown", (event) => {
-        if (event.key === "o" || event.key === "O") {
-          toggleOutline();
-        }
-      });
-
-      $(document).ready(function () {
-        // Draw rulers initially
-        drawRulers();
-
-        // Add text box functionality
-        $("#add-textbox").click(function () {
-          const textbox = $(
-            '<div class="textbox ui-widget-content">Text Box</div>'
-          );
-          $("#lab-playground").append(textbox);
-          textbox.css({
-            top: "50%",
-            left: "50%",
-          });
-          textbox
-            .draggable({
-              containment: "#lab-playground",
-            })
-            .resizable({
-              handles: "all",
-              containment: "#playground-grid",
-            });
-        });
-
-        // Redraw rulers on window resize with debounce
-        let resizeTimeout;
-        $(window).resize(function () {
-          clearTimeout(resizeTimeout);
-          resizeTimeout = setTimeout(drawRulers, 100);
-        });
-      });
-    </script>
-    
-  </body>
+    </div>
+</body>
 </html>

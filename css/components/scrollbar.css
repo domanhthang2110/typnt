@@ -1,25 +1,28 @@
 /* Custom Scrollbar Styles */
-.custom-scrollbar {
-    /* Firefox */
-    scrollbar-width: thin;
-    scrollbar-color: var(--light-gray) var(--tblack);
 
-    /* Webkit (Chrome, Edge, Safari) */
-    &::-webkit-scrollbar {
-        width: 8px;
-        height: 8px;
-    }
 
-    &::-webkit-scrollbar-track {
-        background: var(--tblack);
-    }
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: black;
+}
 
-    &::-webkit-scrollbar-thumb {
-        background: var(--light-gray);
-        border-radius: 4px;
-    }
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--tblack); 
+  border-left: 2px solid var(--dark-gray);
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--light-gray);
+}
 
-    &::-webkit-scrollbar-thumb:hover {
-        background: var(--white);
-    }
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--light-gray); 
+}
+
+::-webkit-scrollbar-button {
+  display: none;
 }

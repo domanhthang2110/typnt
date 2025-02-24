@@ -5,6 +5,13 @@ const fontListElement = document.getElementById("font-list");
 const fontInfoElement = document.getElementById("font-info");
 let textBoxManager = null;
 
+// Add these constants at the top
+const FONTS_PER_PAGE = 20;
+let currentPage = 0;
+let googleFontsData = [];
+let isLoadingFonts = false;
+let googleSection;
+
 function setupEventListeners() {
   document.addEventListener("textbox-updated", (e) => {
     const { font, state } = e.detail;
@@ -117,7 +124,141 @@ function setupEventListeners() {
 async function init(manager) {
   textBoxManager = manager;
   setupEventListeners();
-  await loadFontsFromDirectory("/fonts/");
+  await loadFonts();
+}
+
+async function loadFonts() {
+  try {
+    // Load local fonts first
+    await loadLocalFonts();
+    
+    // Then load Google Fonts
+    await loadGoogleFonts();
+  } catch (error) {
+    console.error("Error loading fonts:", error);
+  }
+}
+
+async function loadLocalFonts() {
+  try {
+    const response = await fetch("/fonts/");
+    const dirList = await response.text();
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(dirList, "text/html");
+    const fontFiles = Array.from(doc.querySelectorAll("a"))
+      .map((a) => a.href)
+      .filter((href) => href.match(/\.(ttf|otf|woff|woff2)$/i));
+
+    // Create a section for local fonts
+    const localSection = document.createElement("div");
+    localSection.className = "font-list-section local-fonts";
+    localSection.innerHTML = '<h3 class="font-list-section__title">Local Fonts</h3>';
+    fontListElement.appendChild(localSection);
+
+    for (const fontUrl of fontFiles) {
+      const fontInfo = await loadFont(fontUrl);
+      if (fontInfo) {
+        createFontCard(fontInfo, localSection);
+      }
+    }
+  } catch (error) {
+    console.error("Error loading local fonts:", error);
+  }
+}
+
+// Update loadGoogleFonts function
+async function loadGoogleFonts() {
+  try {
+    const response = await fetch("/fonts.json");
+    const data = await response.json();
+    googleFontsData = data.items || [];
+    
+    // Create Google fonts section if not exists
+    if (!googleSection) {
+        googleSection = document.createElement("div");
+        googleSection.className = "font-list-section google-fonts";
+        googleSection.innerHTML = '<h3 class="font-list-section__title">Google Fonts</h3>';
+        fontListElement.appendChild(googleSection);
+    }
+
+    // Load initial batch
+    await loadMoreGoogleFonts();
+    
+    // Setup intersection observer for infinite scroll
+    setupInfiniteScroll();
+  } catch (error) {
+    console.error("Error loading Google fonts:", error);
+  }
+}
+
+// Add new function to load more fonts
+async function loadMoreGoogleFonts() {
+  if (isLoadingFonts || currentPage * FONTS_PER_PAGE >= googleFontsData.length) return;
+  
+  isLoadingFonts = true;
+  const start = currentPage * FONTS_PER_PAGE;
+  const end = Math.min(start + FONTS_PER_PAGE, googleFontsData.length);
+  
+  // Get loading indicator before we add new fonts
+  const loadingIndicator = googleSection.querySelector('.loading-indicator');
+  if (loadingIndicator) {
+      loadingIndicator.remove(); // Remove temporarily
+  }
+  
+  for (let i = start; i < end; i++) {
+      const fontData = googleFontsData[i];
+      if (!fontData.family) continue;
+
+      const fontInfo = {
+          name: fontData.family,
+          source: fontData.files?.regular || fontData.menu,
+          style: "Regular",
+          features: [],
+          axes: {},
+          instances: [{
+              name: { en: "Regular" },
+              coordinates: {}
+          }]
+      };
+
+      createFontCard(fontInfo, googleSection);
+      fonts.set(fontInfo.name, fontInfo);
+  }
+
+  // Add the loading indicator back at the end
+  if (loadingIndicator && currentPage * FONTS_PER_PAGE < googleFontsData.length) {
+      googleSection.appendChild(loadingIndicator);
+  }
+
+  currentPage++;
+  isLoadingFonts = false;
+}
+
+// Add infinite scroll setup
+function setupInfiniteScroll() {
+  // Create and append loading indicator
+  const loadingIndicator = document.createElement('div');
+  loadingIndicator.className = 'loading-indicator';
+  loadingIndicator.innerHTML = `
+      <div class="loading-spinner"></div>
+      <span>Loading more fonts...</span>
+  `;
+  googleSection.appendChild(loadingIndicator);
+
+  // Create intersection observer
+  const observer = new IntersectionObserver(async (entries) => {
+      const indicator = entries[0];
+      if (indicator.isIntersecting && !isLoadingFonts) {
+          await loadMoreGoogleFonts();
+      }
+  }, {
+      root: fontListElement,
+      rootMargin: '100px',
+      threshold: 0.1
+  });
+
+  // Start observing the loading indicator
+  observer.observe(loadingIndicator);
 }
 
 async function loadFontsFromDirectory(directory) {
@@ -262,7 +403,7 @@ function getOpenTypeFeatures(font) {
 }
 
 // Update the createFontCard function
-function createFontCard(fontInfo) {
+function createFontCard(fontInfo, parentElement) {
   const card = document.createElement("div");
   card.className = "font-card";
 
@@ -280,22 +421,7 @@ function createFontCard(fontInfo) {
   nameEl.textContent = fontInfo.name;
   nameEl.style.fontFamily = fontInfo.name;
 
-  const infoEl = document.createElement("div");
-  infoEl.className = "font-card__info";
-  infoEl.innerHTML = `
-        <span>${fontInfo.style}</span>
-        ${fontInfo.isMonospaced ? "<span>Monospaced</span>" : ""}
-        <span>${fontInfo.glyphCount} glyphs</span>
-    `;
-
-  const previewEl = document.createElement("div");
-  previewEl.className = "font-card__preview";
-  previewEl.textContent = "AaBbCc 123";
-  previewEl.style.fontFamily = fontInfo.name;
-
   card.appendChild(nameEl);
-  card.appendChild(infoEl);
-  card.appendChild(previewEl);
 
   // Update the card click handler in createFontCard
   card.addEventListener("click", (e) => {
@@ -359,7 +485,8 @@ function createFontCard(fontInfo) {
     document.dispatchEvent(event);
   });
 
-  fontListElement.appendChild(card);
+  // Append to specified parent instead of fontListElement
+  parentElement.appendChild(card);
 }
 
 function scrollToFont(fontFamily) {
@@ -449,7 +576,8 @@ function updateSettingsPanel(data) {
                                    min="${axis.min}"
                                    max="${axis.max}"
                                    value="${data.currentAxes[tag] || axis.default}"
-                                   step="1">
+                                   step="1"
+                                   class="slider">
                             <span class="axis-value">
                                 ${data.currentAxes[tag] || axis.default}
                             </span>
@@ -553,6 +681,55 @@ function setupSettingsEventListeners(panel) {
     });
   });
 }
+
+// Add CSS for sections
+const style = document.createElement("style");
+style.textContent = `
+  .font-list-section {
+    margin-bottom: 2rem;
+  }
+
+  .font-list-section__title {
+    padding: 1rem;
+    margin: 0;
+    font-size: 0.875rem;
+    color: var(--light-gray);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .local-fonts {
+    border-bottom: 1px solid var(--dark-gray);
+  }
+`;
+document.head.appendChild(style);
+
+// Add CSS for loading indicator
+const lazyLoadStyles = document.createElement('style');
+lazyLoadStyles.textContent = `
+    .loading-indicator {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        color: var(--light-gray);
+        gap: 0.5rem;
+    }
+
+    .loading-spinner {
+        width: 20px;
+        height: 20px;
+        border: 2px solid var(--light-gray);
+        border-top-color: transparent;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+`;
+document.head.appendChild(lazyLoadStyles);
 
 export {
   init as initFontManager,

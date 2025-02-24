@@ -196,13 +196,14 @@ main {
 
 .textbox__resize-handle {
     position: absolute;
-    bottom: -20px;
+    bottom: -30px;
     left: 50%;
     transform: translateX(-50%);
     cursor: ns-resize;
-    width: 16px;
-    height: 16px;
-    background: #444;
+    width: 10px;
+    height: 10px;
+    background: var(--white);
+    border: 1px solid var(--dark-gray); 
     z-index: 1000;
     display: none;
 }
@@ -229,8 +230,7 @@ main {
     width: 10px !important;  /* Increased size for better visibility */
     height: 10px !important;
     background: white;
-    border: 1px solid var(--dark-gray);
-    border-radius: 50%;      /* Make handles circular */
+    border: 1px solid var(--dark-gray);    /* Make handles circular */
     z-index: 1000;
     display: none !important;  /* Hide handles by default */
     /* Add this to ensure handles render outside parent */
@@ -353,6 +353,7 @@ main {
 .font-card {
   padding: 15px;
   background: var(--tblack2);
+  border-top: 1px solid var(--dark-gray);
   width: 100%;
   cursor: pointer;
   transition: all 0.2s ease;
