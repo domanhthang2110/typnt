@@ -1,6 +1,7 @@
 import { updateSettingsPanel } from './font-manager.js';
 import { updateFontCardSelection } from './font-manager.js';
 
+
 const STATE = {
     DEFAULT: 'default',
     SELECTED: 'selected',

@@ -333,9 +333,11 @@ main {
     left: 25px;
 }
 
+/* Update only the settings panel */
 #settings-panel {
     right: 0;
 }
+
 
 /* ==========================================================================
    8. Font List Components
@@ -380,53 +382,6 @@ main {
   font-size: 20px;
   opacity: 0.8;
 }
-
-.font-info {
-  padding: 15px;
-  background: #1e1e1e;
-  border-top: 1px solid #333;
-  height: 80%;
-  overflow-y: auto;
-}
-
-.font-info__detail {
-  margin-bottom: 12px;
-  color: #e0e0e0;
-  font-size: 14px;
-  line-height: 1.4;
-}
-
-.font-info__detail strong {
-  color: #fff;
-  font-weight: 500;
-}
-
-.font-info__section-title {
-  font-size: 16px;
-  font-weight: 600;
-  color: #fff;
-  margin: 16px 0 8px 0;
-  padding-bottom: 4px;
-  border-bottom: 1px solid #333;
-}
-
-.font-info__section-title:first-child {
-  margin-top: 0;
-}
-
-.font-info__detail a {
-  color: #66b1ff;
-  text-decoration: none;
-}
-
-.font-info__detail a:hover {
-  text-decoration: underline;
-}
-
-.ml-4 {
-  margin-left: 1rem;
-}
-
 /* ==========================================================================
    9. Feature Toggles
    ========================================================================== */
@@ -485,13 +440,6 @@ main {
     text-overflow: ellipsis;
 }
 
-/* Remove old toggle styles */
-.feature-toggle__input,
-.feature-toggle__input::before,
-.feature-toggle__input:checked::before {
-    display: none;
-}
-
 /* ==========================================================================
    10. Bottom Menu Bar
    ========================================================================== */
@@ -520,7 +468,7 @@ main {
     color: var(--white);
     cursor: pointer;
     position: relative;
-    transition: all 0.2s ease;
+    transition: background-color 0.2s ease;
 }
 
 /* Bottom border hover effect for first two buttons */
@@ -544,6 +492,7 @@ main {
 .bottom-menu__button--delete {
     background: #2a1515;
     color: #ff4747;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .bottom-menu__button--delete:hover {

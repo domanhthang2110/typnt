@@ -104,8 +104,18 @@ function setupEventListeners() {
                 Object.entries(instance.coordinates).forEach(([axis, value]) => {
                     const slider = document.querySelector(`input[data-axis="${axis}"]`);
                     if (slider) {
+                        const min = parseFloat(slider.min);
+                        const max = parseFloat(slider.max);
+                        const percentage = ((value - min) / (max - min)) * 100;
+                        
                         slider.value = value;
-                        slider.nextElementSibling.textContent = value;
+                        slider.style.setProperty('--split-percent', `${percentage}%`);
+                        
+                        // Update the value display
+                        const valueDisplay = slider.parentElement.querySelector('.axis-value');
+                        if (valueDisplay) {
+                            valueDisplay.textContent = value;
+                        }
                     }
                 });
             }
@@ -593,29 +603,30 @@ function updateSettingsPanel(data) {
     axesSection.innerHTML = `
       <h3>Variable Axes</h3>
       <div class="axes-list">
-        ${Object.entries(data.axes).map(([tag, axis]) => {
-          const currentValue = data.currentAxes[tag] || axis.default;
-          const percentage = ((currentValue - axis.min) / (axis.max - axis.min)) * 100;
-          
-          return `
-            <div>
-              <label>${axis.name}</label>
-              <div class="slider-row">
-                <input type="range" 
-                  data-axis="${tag}"
-                  min="${axis.min}"
-                  max="${axis.max}"
-                  value="${currentValue}"
-                  step="1"
-                  class="master-slider"
-                  style="--split-percent: ${percentage}%">
-                <span class="axis-value">
-                  ${currentValue}
-                </span>
+        ${Object.entries(data.axes)
+          .map(([tag, axis]) => {
+            const currentValue = data.currentAxes[tag] || axis.default;
+            const percentage =
+              ((currentValue - axis.min) / (axis.max - axis.min)) * 100;
+
+            return `
+            <div class="axis-control">
+              <div class="axis-header">
+                <label>${axis.name}</label>
+                <span class="axis-value">${currentValue}</span>
               </div>
+              <input type="range" 
+                data-axis="${tag}"
+                min="${axis.min}"
+                max="${axis.max}"
+                value="${currentValue}"
+                step="1"
+                class="master-slider"
+                style="--split-percent: ${percentage}%">
             </div>
           `;
-        }).join("")}
+          })
+          .join("")}
       </div>
     `;
     settingsPanel.appendChild(axesSection);
@@ -628,12 +639,18 @@ function updateSettingsPanel(data) {
     instancesSection.innerHTML = `
             <h3>Instances</h3>
             <div class="instances-list">
-                ${data.instances.map(instance => `
-                    <button class="instance-button ${data.currentInstance === instance.name.en ? 'active' : ''}"
+                ${data.instances
+                  .map(
+                    (instance) => `
+                    <button class="instance-button ${
+                      data.currentInstance === instance.name.en ? "active" : ""
+                    }"
                             data-instance="${instance.name.en}">
                         ${instance.name.en}
                     </button>
-                `).join("")}
+                `
+                  )
+                  .join("")}
             </div>
         `;
     settingsPanel.appendChild(instancesSection);
@@ -664,6 +681,8 @@ function setupSettingsEventListeners(panel) {
 
   // Axis sliders
   panel.querySelectorAll("input[data-axis]").forEach((slider) => {
+    const valueDisplay = slider.parentElement.querySelector('.axis-value');
+    
     slider.addEventListener("input", (e) => {
       const min = parseFloat(e.target.min);
       const max = parseFloat(e.target.max);
@@ -673,6 +692,9 @@ function setupSettingsEventListeners(panel) {
       // Update the split percentage CSS variable
       e.target.style.setProperty('--split-percent', `${percentage}%`);
       
+      // Update the value display
+      valueDisplay.textContent = value;
+
       const event = new CustomEvent("settings-changed", {
         detail: {
           type: "axis",
@@ -682,7 +704,6 @@ function setupSettingsEventListeners(panel) {
         },
       });
       document.dispatchEvent(event);
-      slider.nextElementSibling.textContent = value;
     });
   });
 
@@ -713,6 +734,7 @@ function setupSettingsEventListeners(panel) {
       const event = new CustomEvent("settings-changed", {
           detail: {
               type: "instance",
+              name: button.dataset.instance,
               value: button.dataset.instance,
               textbox: state.activeTextbox
           }
