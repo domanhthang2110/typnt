@@ -137,8 +137,8 @@ main {
 .textbox {
     position: absolute;
     background: transparent;
-    min-width: 100px;
-    min-height: 50px;
+    min-width: 10px;
+    min-height: 5px;
     padding: 10px;
     cursor: move;
     color: var(--white);
@@ -155,8 +155,8 @@ main {
 .textbox--paragraph {
     max-width: 1000px;
     max-height: 700px;
-    width: 300px;
-    height: 100px;
+    width: 400px;
+    height: 270px;
 }
 
 .textbox--paragraph .textbox__content {
@@ -256,6 +256,22 @@ main {
     border: 1px solid var(--white);
 }
 
+
+.textbox--selected .textbox__guide-line {
+  position: absolute;
+  left: 50%;
+  bottom: -24px;
+  width: 1px;
+  height: 24px;
+  background-color: var(--white);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+  .textbox__content {
+    transition: padding-right 0.2s ease;
+  }
+
 /* ==========================================================================
    7. Panel Components
    ========================================================================== */
@@ -349,7 +365,6 @@ main {
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
-  gap: 10px;
 }
 
 .font-card {

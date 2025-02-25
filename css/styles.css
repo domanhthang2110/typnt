@@ -79,6 +79,16 @@ nav {
   align-items: center; /* Center the content vertically */
   justify-content: center; /* Center the content horizontally */
   text-decoration: none;
+  position: relative; /* Add this */
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+/* Remove the existing ::after pseudo-element styles */
+
+/* Add hover effect */
+.top-bar-button:hover, .top-bar-button-end:hover {
+  border-bottom-color: var(--white);
 }
 
 .second-bar-button {
