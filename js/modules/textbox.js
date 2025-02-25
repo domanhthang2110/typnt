@@ -335,6 +335,13 @@ function init(playgroundSelector) {
       setTextboxState($(e.currentTarget), STATE.SELECTED);
       state.activeTextbox = e.currentTarget;
     });
+
+  // Add keyboard event listener for delete key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Delete' && state.activeTextbox) {
+      deleteActiveTextbox();
+    }
+  });
 }
 
 function clearSelection() {
@@ -371,7 +378,6 @@ function deleteActiveTextbox() {
     currentAxes: {},
     currentInstance: "Regular",
   });
-  updateFontCardSelection(null);
 }
 
 export { init, createTextbox, deleteActiveTextbox, applyStyles, state };

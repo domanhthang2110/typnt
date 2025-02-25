@@ -91,6 +91,11 @@ nav {
   border-bottom-color: var(--white);
 }
 
+.top-bar-button.active {
+  background-color: var(--white);
+  color: var(--tblack);
+}
+
 .second-bar-button {
   background: var(--tblack);
   color: var(--white);

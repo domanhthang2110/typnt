@@ -70,20 +70,20 @@ export default class RulerManager {
 
     for (let i = 0; i < width; i += 50) {
       // Draw main notch
-      ctx.fillRect(i + 1, 15, 1, 8);
+      ctx.fillRect(i-1, 15, 1, 8); // Moved 1px left
 
       // Handle text alignment differently for 0
       if (i === 0) {
         ctx.textAlign = "left";
-        ctx.fillText(i.toString(), 4, 10);
+        ctx.fillText(i.toString(), 3, 10); // Moved 1px left (from 4 to 3)
       } else {
         ctx.textAlign = "center";
-        ctx.fillText(i.toString(), i + 1, 10);
+        ctx.fillText(i.toString(), i, 10); // Moved 1px left (removed +1)
       }
 
       // Draw small notch at midpoint
       if (i + 25 < width) {
-        ctx.fillRect(i + 26, 18, 1, 5); // Shorter and slightly lower
+        ctx.fillRect(i + 25, 18, 1, 5); // Moved 1px left (from 26 to 25)
       }
     }
   }
@@ -107,7 +107,7 @@ export default class RulerManager {
     
     // Draw background
     ctx.fillStyle = this.rulerColor;
-    ctx.fillRect(0, 1, 25, height);
+    ctx.fillRect(0, 0, 25, height); // Moved 1px up (from 1 to 0)
 
     // Draw ticks and numbers with proper font
     ctx.fillStyle = this.textColor;
@@ -117,18 +117,22 @@ export default class RulerManager {
 
     for (let i = 0; i < height; i += 50) {
       // Draw main notch
-      ctx.fillRect(17, i + 1, 6, 1);
+      ctx.fillRect(17, i-1, 6, 1); // Moved 1px up (removed +1)
       
       // Draw rotated number
       ctx.save();
-      ctx.translate(12, i + 1);
+      if (i === 0) {
+        ctx.translate(12, i + 4); // Offset 0 mark down by 3px
+      } else {
+        ctx.translate(12, i);  // Moved 1px up (removed +1)
+      }
       ctx.rotate(-Math.PI / 2);
       ctx.fillText(i.toString(), 0, 0);
       ctx.restore();
 
       // Draw small notch at midpoint
       if (i + 25 < height) {
-        ctx.fillRect(19, i + 26, 4, 1); // Shorter and more inward
+        ctx.fillRect(19, i + 25, 4, 1); // Moved 1px up (from 26 to 25)
       }
     }
   }
