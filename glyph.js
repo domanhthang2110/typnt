@@ -241,276 +241,501 @@ async function initFontProfile() {
   }
 }
 
+// Modified function to create glyph grid with fixed selection highlighting
 function initGlyphGrid() {
   const glyphGrid = document.querySelector(".glyph-grid");
   glyphGrid.innerHTML = "";
   glyphGrid.style.display = "block";
 
-  // Get the current font family from the page.
+  // Get the current font family from the page
   const pageFont = document.querySelector(".font-name").textContent || "";
 
-  // Cache the glyph-letter element and set its font family.
+  // Cache the glyph-letter element and set its font family
   const glyphLetter = document.querySelector(".glyph-letter");
   glyphLetter.style.fontFamily = pageFont;
 
-  // Helper: update SVG letter content.
-  function updateSvgLetter(letter) {
+  // Set up a single event listener using event delegation for all cells
+  glyphGrid.addEventListener("click", (event) => {
+    const cell = event.target.closest(".grid-cell");
+    if (!cell) return; // Exit if we didn't click on a cell
+    
+    // Update selection highlighting - do this first for immediate visual feedback
+    const previouslySelected = glyphGrid.querySelector(".grid-cell.selected");
+    if (previouslySelected) {
+      previouslySelected.classList.remove("selected");
+    }
+    cell.classList.add("selected");
+    
+    // Update SVG with the letter
+    const letter = cell.textContent;
     const svgText = glyphLetter.querySelector("text");
     if (svgText) {
       svgText.textContent = letter;
+      updateLetterName(letter);
     }
-  }
-
-  // --- Uppercase Section ---
-  const uppercaseSection = document.createElement("div");
-  uppercaseSection.innerHTML =
-    "<h3 class='text-center font-bold mb-2'>Uppercase</h3>";
-  const uppercaseGrid = document.createElement("div");
-  uppercaseGrid.style.display = "grid";
-  uppercaseGrid.style.gridTemplateColumns = "repeat(8, 1fr)";
-  uppercaseGrid.style.gap = "0";
-
-  // --- Lowercase Section ---
-  const lowercaseSection = document.createElement("div");
-  lowercaseSection.innerHTML =
-    "<h3 class='text-center font-bold mt-4 mb-2'>Lowercase</h3>";
-  const lowercaseGrid = document.createElement("div");
-  lowercaseGrid.style.display = "grid";
-  lowercaseGrid.style.gridTemplateColumns = "repeat(8, 1fr)";
-  lowercaseGrid.style.gap = "0";
-
-  for (let i = 65; i <= 90; i++) {
-    const upper = String.fromCharCode(i);
-    const lower = String.fromCharCode(i + 32);
-
-    // Uppercase cell using the universal CSS class.
-    const uppercaseCell = document.createElement("div");
-    uppercaseCell.classList.add("grid-cell");
-    uppercaseCell.innerText = upper;
-    uppercaseCell.style.fontFamily = pageFont;
-    uppercaseCell.addEventListener("click", () => {
-      updateSvgLetter(upper);
-    });
-    uppercaseGrid.appendChild(uppercaseCell);
-
-    // Lowercase cell using the universal CSS class.
-    const lowercaseCell = document.createElement("div");
-    lowercaseCell.classList.add("grid-cell");
-    lowercaseCell.innerText = lower;
-    lowercaseCell.style.fontFamily = pageFont;
-    lowercaseCell.addEventListener("click", () => {
-      updateSvgLetter(lower);
-    });
-    lowercaseGrid.appendChild(lowercaseCell);
-  }
-
-  uppercaseSection.appendChild(uppercaseGrid);
-  lowercaseSection.appendChild(lowercaseGrid);
-
-  // --- Numerals Section ---
-  const numeralsSection = document.createElement("div");
-  numeralsSection.innerHTML =
-    "<h3 class='text-center font-bold mt-4 mb-2'>Numerals</h3>";
-  const numeralsGrid = document.createElement("div");
-  numeralsGrid.style.display = "grid";
-  numeralsGrid.style.gridTemplateColumns = "repeat(8, 1fr)";
-  numeralsGrid.style.gap = "0";
-
-  const numerals = Array.from({ length: 10 }, (_, i) => i.toString());
-  numerals.forEach((num) => {
-    const cell = document.createElement("div");
-    cell.classList.add("grid-cell");
-    cell.innerText = num;
-    cell.style.fontFamily = pageFont;
-    cell.addEventListener("click", () => {
-      updateSvgLetter(num);
-    });
-    numeralsGrid.appendChild(cell);
   });
+
+  // Create section for uppercase letters
+  const uppercaseSection = createSection("uppercase", "Uppercase");
+  const uppercaseGrid = createGrid(10);
+  
+  // Populate uppercase grid
+  for (let i = 65; i <= 90; i++) {
+    const cell = createCell(String.fromCharCode(i), pageFont);
+    // Mark the first cell (A) as selected
+    if (i === 65) cell.classList.add("selected");
+    uppercaseGrid.appendChild(cell);
+  }
+  uppercaseSection.appendChild(uppercaseGrid);
+  
+  // Create and populate other sections...
+  // ...existing code for other sections...
+  
+  // Create section for lowercase letters
+  const lowercaseSection = createSection("lowercase", "Lowercase");
+  const lowercaseGrid = createGrid(10);
+  
+  // Populate lowercase grid
+  for (let i = 97; i <= 122; i++) {
+    lowercaseGrid.appendChild(createCell(String.fromCharCode(i), pageFont));
+  }
+  lowercaseSection.appendChild(lowercaseGrid);
+  
+  // Create section for numerals
+  const numeralsSection = createSection("numerals", "Numerals");
+  const numeralsGrid = createGrid(10);
+  
+  // Populate numerals grid
+  for (let i = 0; i <= 9; i++) {
+    numeralsGrid.appendChild(createCell(i.toString(), pageFont));
+  }
   numeralsSection.appendChild(numeralsGrid);
-
-  // --- Punctuation Section --- (Unicode U+0021 to U+002F)
-  const punctuationSection = document.createElement("div");
-  punctuationSection.innerHTML =
-    "<h3 class='text-center font-bold mt-4 mb-2'>Punctuation</h3>";
-  const punctuationGrid = document.createElement("div");
-  punctuationGrid.style.display = "grid";
-  punctuationGrid.style.gridTemplateColumns = "repeat(8, 1fr)";
-  punctuationGrid.style.gap = "0";
-
-  const punctuationMarks = Array.from({ length: 0x2f - 0x21 + 1 }, (_, i) =>
-    String.fromCharCode(0x21 + i)
-  );
-  punctuationMarks.forEach((punct) => {
-    const cell = document.createElement("div");
-    cell.classList.add("grid-cell");
-    cell.innerText = punct;
-    cell.style.fontFamily = pageFont;
-    cell.addEventListener("click", () => {
-      updateSvgLetter(punct);
-    });
-    punctuationGrid.appendChild(cell);
+  
+  // Create section for punctuation
+  const punctuationSection = createSection("punctuation", "Punctuation");
+  const punctuationGrid = createGrid(10);
+  
+  // Populate punctuation grid (using simpler code for clarity)
+  const punctChars = [];
+  for (let i = 0x21; i <= 0x2F; i++) punctChars.push(String.fromCharCode(i));
+  for (let i = 0x3A; i <= 0x40; i++) punctChars.push(String.fromCharCode(i));
+  for (let i = 0x5B; i <= 0x60; i++) punctChars.push(String.fromCharCode(i));
+  for (let i = 0x7B; i <= 0x7E; i++) punctChars.push(String.fromCharCode(i));
+  
+  punctChars.forEach(char => {
+    punctuationGrid.appendChild(createCell(char, pageFont));
   });
   punctuationSection.appendChild(punctuationGrid);
-
-  // --- Extended Latin Section (Unicode U+0100 to U+017F) ---
-  const extendedLatinSection = document.createElement("div");
-  extendedLatinSection.innerHTML =
-    "<h3 class='text-center font-bold mt-4 mb-2'>Extended Latin</h3>";
-  const extendedLatinGrid = document.createElement("div");
-  extendedLatinGrid.style.display = "grid";
-  extendedLatinGrid.style.gridTemplateColumns = "repeat(8, 1fr)";
-  extendedLatinGrid.style.gap = "0";
-
-  for (let code = 0x0100; code <= 0x017f; code++) {
-    const char = String.fromCharCode(code);
-    const cell = document.createElement("div");
-    cell.classList.add("grid-cell");
-    cell.innerText = char;
-    cell.style.fontFamily = pageFont;
-    cell.addEventListener("click", () => {
-      updateSvgLetter(char);
-    });
-    extendedLatinGrid.appendChild(cell);
+  
+  // Create section for extended Latin
+  const extendedLatinSection = createSection("extended-latin", "Extended Latin");
+  const extendedLatinGrid = createGrid(10);
+  
+  // Populate extended Latin grid
+  for (let i = 0x0100; i <= 0x017F; i++) {
+    extendedLatinGrid.appendChild(createCell(String.fromCharCode(i), pageFont));
   }
   extendedLatinSection.appendChild(extendedLatinGrid);
-
-  // Append all sections to the glyph grid container.
+  
+  // Append all sections to the grid
   glyphGrid.appendChild(uppercaseSection);
   glyphGrid.appendChild(lowercaseSection);
   glyphGrid.appendChild(numeralsSection);
   glyphGrid.appendChild(punctuationSection);
   glyphGrid.appendChild(extendedLatinSection);
-
-  // Set an initial preview.
-  updateSvgLetter("A");
+  
+  // Set initial preview for "A" (already marked as selected in the grid)
+  const svgText = glyphLetter.querySelector("text");
+  if (svgText) {
+    svgText.textContent = "A";
+    updateLetterName("A");
+  }
+  
+  // Initially show only basic sections
+  toggleGlyphSections("basic");
 }
 
-// Place this function in glyph.js and call it after initializing the glyph grid.
+/**
+ * Helper function to create a section container
+ * @param {string} id - Section identifier
+ * @param {string} title - Section title
+ * @returns {HTMLElement} - Section container
+ */
+function createSection(id, title) {
+  const section = document.createElement("div");
+  section.setAttribute("data-section", id);
+  
+  const heading = document.createElement("h3");
+  heading.className = "section-heading";
+  heading.textContent = title;
+  
+  section.appendChild(heading);
+  return section;
+}
+
+/**
+ * Helper function to create a grid container
+ * @param {number} columns - Number of columns
+ * @returns {HTMLElement} - Grid container
+ */
+function createGrid(columns) {
+  const grid = document.createElement("div");
+  grid.className = "glyph-section-grid";
+  return grid;
+}
+
+/**
+ * Helper function to create a grid cell 
+ * @param {string} char - Character to display
+ * @param {string} fontFamily - Font family to use
+ * @returns {HTMLElement} - Grid cell
+ */
+function createCell(char, fontFamily) {
+  const cell = document.createElement("div");
+  cell.classList.add("grid-cell");
+  cell.textContent = char;
+  cell.style.fontFamily = fontFamily;
+  return cell;
+}
+
+// Simplified control section - single row layout
 function initControlSection() {
   const glyphControl = document.querySelector(".glyph-control");
   glyphControl.innerHTML = "";
-
-  // Create container for Unicode info.
-  const unicodeContainer = document.createElement("div");
-  unicodeContainer.classList.add("unicode-info");
-
-  // Create element for unicode title.
-  const unicodeTitle = document.createElement("span");
-  unicodeTitle.classList.add("unicode-title");
-  unicodeTitle.textContent = "Unicode Title:";
-
-  // Create element for unicode code.
-  const unicodeCode = document.createElement("span");
-  unicodeCode.classList.add("unicode-code");
-
-  // Get the current character from the SVG's <text> element.
-  const glyphLetter = document.querySelector(".glyph-letter");
-  const svgText = glyphLetter.querySelector("text");
-  const currentChar = svgText ? svgText.textContent : "A";
-  const codePoint = currentChar.charCodeAt(0).toString(16).toUpperCase();
-  unicodeCode.textContent = ` U+${codePoint}`;
-
-  // Append Unicode info elements.
-  unicodeContainer.appendChild(unicodeTitle);
-  unicodeContainer.appendChild(unicodeCode);
-
-  // Create container for mode switching buttons.
-  const modeSwitchContainer = document.createElement("div");
-  modeSwitchContainer.classList.add("mode-switch");
-
-  // Create the Solid mode button.
+  
+  // Apply CSS class
+  glyphControl.className = "glyph-control";
+  
+  // Create a single row container with flexbox
+  const controlRow = document.createElement("div");
+  controlRow.className = "control-row";
+  controlRow.style.display = "flex";
+  controlRow.style.width = "100%";
+  controlRow.style.justifyContent = "space-between";
+  controlRow.style.alignItems = "center";
+  
+  // ---- 1. Letter Name Display ----
+  const letterNameContainer = document.createElement("div");
+  letterNameContainer.className = "letter-name";
+  letterNameContainer.id = "letterName";
+  letterNameContainer.style.flex = "1"; // Take available space
+  
+  // Initialize with default letter name - using our function instead of hardcoding
+  // We'll call updateLetterName('A') after adding it to the DOM
+  
+  // ---- 2. Solid/Outline Toggle ----
+  const renderModeContainer = document.createElement("div");
+  renderModeContainer.className = "render-mode";
+  
+  const renderModeLabel = document.createElement("span");
+  renderModeLabel.textContent = "Mode:";
+  renderModeLabel.className = "mode-label";
+  
+  const toggleContainer = document.createElement("div");
+  toggleContainer.className = "toggle-container";
+  
   const solidBtn = document.createElement("button");
   solidBtn.id = "solidBtn";
-  solidBtn.classList.add("btn-solid");
   solidBtn.textContent = "Solid";
-
-  // Create the Outline mode button.
+  solidBtn.className = "mode-button active";
+  
   const outlineBtn = document.createElement("button");
   outlineBtn.id = "outlineBtn";
-  outlineBtn.classList.add("btn-outline");
   outlineBtn.textContent = "Outline";
-
-  // Append buttons to the mode switch container.
-  modeSwitchContainer.appendChild(solidBtn);
-  modeSwitchContainer.appendChild(outlineBtn);
-
-  // --- Add Baseline Slider ---
-  const sliderContainer = document.createElement("div");
-  sliderContainer.classList.add("baseline-slider-container");
-  sliderContainer.style.marginTop = "10px";
-  sliderContainer.innerHTML = `
-    <label for="baselineSlider">Baseline Offset: </label>
-    <input type="range" id="baselineSlider" min="0" max="500" value="250" style="vertical-align: middle;"/>
-    <span id="baselineValue">250</span>
-  `;
-
-  // Listen for slider changes.
-  const baselineSlider = sliderContainer.querySelector("#baselineSlider");
-  const baselineValueSpan = sliderContainer.querySelector("#baselineValue");
-  baselineSlider.addEventListener("input", (e) => {
-    window.currentBaseline = e.target.value;
-    baselineValueSpan.textContent = e.target.value;
-    updateGlyphPreview();
-  });
-
-  // --- Add Font Size Slider ---
-  const fontSizeSliderContainer = document.createElement("div");
-  fontSizeSliderContainer.classList.add("font-size-slider-container");
-  fontSizeSliderContainer.style.marginTop = "10px";
-  fontSizeSliderContainer.innerHTML = `
-    <label for="fontSizeSlider">Font Size: </label>
-    <input type="range" id="fontSizeSlider" min="10" max="2000" value="1000" style="vertical-align: middle;"/>
-    <span id="fontSizeValue">1000</span>
-  `;
-
-  // Listen for font size slider changes.
-  const fontSizeSlider = fontSizeSliderContainer.querySelector("#fontSizeSlider");
-  const fontSizeValueSpan = fontSizeSliderContainer.querySelector("#fontSizeValue");
-  fontSizeSlider.addEventListener("input", (e) => {
-    const newFontSize = e.target.value;
-    fontSizeValueSpan.textContent = newFontSize;
-    const textElem = document.querySelector(".glyph-letter svg text");
-    if (textElem) {
-      textElem.setAttribute("font-size", newFontSize);
-    }
-    updateGlyphPreview();
-  });
-
-  // Append containers to the control section.
-  glyphControl.appendChild(unicodeContainer);
-  glyphControl.appendChild(modeSwitchContainer);
-  glyphControl.appendChild(sliderContainer);
-  glyphControl.appendChild(fontSizeSliderContainer);
-
-  // Mode switching: update classes and SVG text attributes.
+  outlineBtn.className = "mode-button";
+  
+  toggleContainer.appendChild(solidBtn);
+  toggleContainer.appendChild(outlineBtn);
+  renderModeContainer.appendChild(renderModeLabel);
+  renderModeContainer.appendChild(toggleContainer);
+  
+  // ---- 3. Style Selection Dropdown ----
+  const styleSelectContainer = document.createElement("div");
+  styleSelectContainer.className = "style-select";
+  
+  const styleLabel = document.createElement("span");
+  styleLabel.textContent = "Style:";
+  styleLabel.className = "style-label";
+  
+  const styleSelect = document.createElement("select");
+  styleSelect.id = "fontStyle";
+  styleSelect.className = "font-style-dropdown";
+  
+  const defaultOption = document.createElement("option");
+  defaultOption.value = "regular";
+  defaultOption.textContent = "Regular";
+  defaultOption.selected = true;
+  styleSelect.appendChild(defaultOption);
+  
+  styleSelectContainer.appendChild(styleLabel);
+  styleSelectContainer.appendChild(styleSelect);
+  
+  // ---- 4. Basic/Full Set Toggle ----
+  const glyphSetContainer = document.createElement("div");
+  glyphSetContainer.className = "glyph-set";
+  
+  const glyphSetLabel = document.createElement("span");
+  glyphSetLabel.textContent = "Glyphs:";
+  glyphSetLabel.className = "glyph-set-label";
+  
+  const glyphSetToggle = document.createElement("div");
+  glyphSetToggle.className = "glyph-set-toggle";
+  
+  const basicBtn = document.createElement("button");
+  basicBtn.id = "basicGlyphsBtn";
+  basicBtn.textContent = "Basic";
+  basicBtn.className = "glyph-set-button active";
+  
+  const fullBtn = document.createElement("button");
+  fullBtn.id = "fullGlyphsBtn";
+  fullBtn.textContent = "Full Set";
+  fullBtn.className = "glyph-set-button";
+  
+  glyphSetToggle.appendChild(basicBtn);
+  glyphSetToggle.appendChild(fullBtn);
+  glyphSetContainer.appendChild(glyphSetLabel);
+  glyphSetContainer.appendChild(glyphSetToggle);
+  
+  // Add all elements to control row in order
+  controlRow.appendChild(letterNameContainer);
+  controlRow.appendChild(renderModeContainer);
+  controlRow.appendChild(styleSelectContainer);
+  controlRow.appendChild(glyphSetContainer);
+  
+  // Add control row to the main container
+  glyphControl.appendChild(controlRow);
+  
+  // Set initial letter name with Unicode properly
+  updateLetterName('A');
+  
+  // ----- Event Handlers -----
+  // Solid/Outline toggle
   solidBtn.addEventListener("click", () => {
-    glyphLetter.classList.remove("outline");
-    glyphLetter.classList.add("solid");
-    const svgText = glyphLetter.querySelector("text");
+    solidBtn.classList.add("active");
+    outlineBtn.classList.remove("active");
+    
+    const svgText = document.querySelector(".glyph-letter svg text");
     if (svgText) {
       svgText.setAttribute("fill", "white");
       svgText.removeAttribute("stroke");
       svgText.removeAttribute("stroke-width");
     }
   });
-
+  
   outlineBtn.addEventListener("click", () => {
-    glyphLetter.classList.remove("solid");
-    glyphLetter.classList.add("outline");
-    const svgText = glyphLetter.querySelector("text");
+    outlineBtn.classList.add("active");
+    solidBtn.classList.remove("active");
+    
+    const svgText = document.querySelector(".glyph-letter svg text");
     if (svgText) {
+      // Apply consistent outline style
       svgText.setAttribute("fill", "none");
       svgText.setAttribute("stroke", "white");
       svgText.setAttribute("stroke-width", "1");
+      svgText.setAttribute("stroke-mode", "inside");
+      
+      // Ensure crisp outline with vector tricks
+      //svgText.setAttribute("paint-order", "stroke");
+      //svgText.setAttribute("stroke-linejoin", "round");
+      //svgText.setAttribute("stroke-linecap", "round");
+    }
+  });
+  
+  // Glyph set toggle (basic/full)
+  basicBtn.addEventListener("click", () => {
+    basicBtn.classList.add("active");
+    fullBtn.classList.remove("active");
+    
+    // Show only basic sections
+    toggleGlyphSections("basic");
+  });
+  
+  fullBtn.addEventListener("click", () => {
+    fullBtn.classList.add("active");
+    basicBtn.classList.remove("active");
+    
+    // Show all sections
+    toggleGlyphSections("full");
+  });
+  
+  // Populate font style options and set up the change event
+  populateFontStyleOptions(styleSelect).then(() => {
+    styleSelect.addEventListener("change", updateFontStyle);
+  });
+}
+
+/**
+ * Updates the letter name display in the controls based on the selected character
+ */
+function updateLetterName(char) {
+  const letterName = document.getElementById("letterName");
+  if (!letterName) return;
+  
+  // Get the character code
+  const code = char.charCodeAt(0);
+  const unicodeHex = code.toString(16).toUpperCase().padStart(4, '0');
+  
+  // Determine letter type
+  let name = "";
+  
+  if (code >= 65 && code <= 90) { // A-Z
+    name = `Capital Letter ${char}`;
+  } else if (code >= 97 && code <= 122) { // a-z
+    name = `Small Letter ${char.toUpperCase()}`;
+  } else if (code >= 48 && code <= 57) { // 0-9
+    name = `Number ${char}`;
+  } else if (code >= 0x0100 && code <= 0x017F) { // Extended Latin
+    name = `Extended Latin ${char}`;
+  } else if ((code >= 0x0021 && code <= 0x002F) || // Punctuation and symbols
+           (code >= 0x003A && code <= 0x0040) ||
+           (code >= 0x005B && code <= 0x0060) ||
+           (code >= 0x007B && code <= 0x007E)) {
+    name = `Symbol ${char}`;
+  } else {
+    name = `Character ${char}`;
+  }
+  
+  // Clear existing content
+  letterName.innerHTML = '';
+  
+  // Create main text node
+  const nameText = document.createTextNode(name);
+  letterName.appendChild(nameText);
+  
+  // Create Unicode display
+  const unicodeSpan = document.createElement('span');
+  unicodeSpan.className = 'unicode-value';
+  unicodeSpan.textContent = ` U+${unicodeHex}`;
+  letterName.appendChild(unicodeSpan);
+  console.log(letterName.innerHTML);
+}
+
+/**
+ * Updates the font weight and style when changed in the dropdown
+ */
+function updateFontStyle() {
+  const styleSelect = document.getElementById("fontStyle");
+  if (!styleSelect) return;
+  
+  const selectedOption = styleSelect.options[styleSelect.selectedIndex];
+  if (!selectedOption) return;
+  
+  const svgText = document.querySelector(".glyph-letter svg text");
+  if (!svgText) return;
+  
+  // Extract weight and style from the selected option
+  const weight = selectedOption.dataset.weight || "400";
+  const fontStyle = selectedOption.dataset.style || "normal";
+  
+  // Update the text element's style
+  svgText.style.fontWeight = weight;
+  svgText.style.fontStyle = fontStyle;
+  
+}
+
+/**
+ * Toggles the visibility of glyph grid sections based on the selected mode
+ * @param {string} mode - "basic" or "full"
+ */
+function toggleGlyphSections(mode) {
+  const glyphGrid = document.querySelector(".glyph-grid");
+  if (!glyphGrid) return;
+  
+  // Get all sections
+  const sections = glyphGrid.querySelectorAll("div[data-section]");
+  
+  // Show/hide sections based on mode
+  sections.forEach(section => {
+    const sectionType = section.getAttribute("data-section");
+    
+    if (mode === "basic") {
+      // Only show uppercase, lowercase, and numerals in basic mode
+      section.style.display = (sectionType === "uppercase" || 
+                               sectionType === "lowercase" || 
+                               sectionType === "numerals") ? "block" : "none";
+    } else {
+      // Show all sections in full mode
+      section.style.display = "block";
     }
   });
 }
 
 /**
+ * Populates the font style options in the dropdown based on the available variants
+ * Combines weight and italic information into a single dropdown
+ * @param {HTMLSelectElement} styleSelect - The select element to populate
+ */
+async function populateFontStyleOptions(styleSelect) {
+  const fontFamily = document.querySelector(".font-name").textContent;
+  const fontData = await getFontData(fontFamily);
+  
+  if (!fontData || !fontData.variants) return;
+  
+  // Clear existing options
+  styleSelect.innerHTML = "";
+  
+  // Group variants by weight and style
+  const regularVariants = [];
+  const italicVariants = [];
+  
+  fontData.variants.forEach(variant => {
+    if (variant.includes("italic")) {
+      italicVariants.push(variant);
+    } else {
+      regularVariants.push(variant);
+    }
+  });
+  
+  // First add all regular styles
+  regularVariants.forEach(variant => {
+    const option = document.createElement("option");
+    option.value = variant;
+    
+    // Parse the weight
+    let weight = variant === "regular" ? "400" : variant;
+    
+    option.dataset.weight = weight;
+    option.dataset.style = "normal";
+    option.textContent = translateWeightToName(variant);
+    styleSelect.appendChild(option);
+  });
+  
+  // Add a separator if we have both styles
+  if (regularVariants.length > 0 && italicVariants.length > 0) {
+    const separator = document.createElement("option");
+    separator.disabled = true;
+    separator.textContent = "──────────";
+    styleSelect.appendChild(separator);
+  }
+  
+  // Then add all italic styles
+  italicVariants.forEach(variant => {
+    const option = document.createElement("option");
+    option.value = variant;
+    
+    // Parse the weight
+    let weight = variant === "italic" ? "400" : variant.replace("italic", "");
+    
+    option.dataset.weight = weight;
+    option.dataset.style = "italic";
+    option.textContent = translateWeightToName(variant);
+    styleSelect.appendChild(option);
+  });
+  
+  // Select the first option by default
+  if (styleSelect.options.length > 0) {
+    styleSelect.selectedIndex = 0;
+  }
+}
+
+// ========================================
+// Font Metrics and Glyph Display Scaling
+// ========================================
+
+/**
  * Loads metrics for the current font and makes them available for other uses.
  * It retrieves the font file from the font data and uses opentype.js to extract
- * the ascender, descender and x-height (from OS/2 table if available).
+ * the metrics (cap height, x-height, descender)
  */
 async function initFontMetrics() {
   // Get the current font family from the .font-name element.
@@ -547,29 +772,81 @@ async function initFontMetrics() {
   opentype.load(fileUrl, function(err, loadedFont) {
     if (err) {
       console.error(`Error loading font "${fontFamily}" from ${fileUrl}:`, err);
+      // Use fallback values when font cannot be loaded
+      window.currentFontMetrics = {
+        descender: -200,
+        xHeight: 500,
+        capHeight: 700,
+        unitsPerEm: 1000
+      };
+      console.warn("Using fallback metrics due to font loading error");
+      updateGlyphPreview();
       return;
     }
 
-    // Retrieve metric stats.
-    const ascender = loadedFont.ascender;
-    const descender = loadedFont.descender;
-    let xHeight = "N/A";
-    let capHeight = "N/A";
+    // Get the font's units per em - critical for proper scaling
+    const unitsPerEm = loadedFont.unitsPerEm || 1000;
+
+    // Retrieve basic metrics (these should be available in all fonts)
+    let descender = loadedFont.descender;
+    let xHeight = null;
+    let capHeight = null;
+
+    // Try to get metrics from OS/2 table (most reliable source)
     if (loadedFont.tables.os2) {
-      if (loadedFont.tables.os2.sxHeight) {
-        xHeight = loadedFont.tables.os2.sxHeight;
+      const os2 = loadedFont.tables.os2;
+      // Use OS/2 metrics if available
+      if (os2.sxHeight) {
+        xHeight = os2.sxHeight;
       }
-      if (loadedFont.tables.os2.sCapHeight) {
-        capHeight = loadedFont.tables.os2.sCapHeight;
+      if (os2.sCapHeight) {
+        capHeight = os2.sCapHeight;
+      }
+      
+      // Many fonts use usWinDescent for actual rendering boundaries
+      const winDescent = os2.usWinDescent;
+      
+      if (winDescent && winDescent > 0) {
+        descender = -winDescent; // Convert to negative as per font convention
+      } else if (os2.typoDescender) {
+        // Fall back to typographic metrics
+        descender = os2.typoDescender;
       }
     }
 
+    // If xHeight is missing, estimate from 'x' character
+    if (!xHeight || xHeight <= 0) {
+      try {
+        const xGlyph = loadedFont.charToGlyph('x');
+          xHeight = Math.round(unitsPerEm * 0.5); // Fallback: estimate as 50% of UPM
+      } catch (e) {
+        console.warn("Couldn't determine x-height from glyph:", e);
+        xHeight = Math.round(unitsPerEm * 0.5);
+      }
+    }
+
+    // If capHeight is missing, estimate from 'H' character
+    if (!capHeight || capHeight <= 0) {
+      try {
+        const hGlyph = loadedFont.charToGlyph('H');
+          capHeight = Math.round(unitsPerEm * 0.7); // Fallback: estimate as 70% of UPM
+      } catch (e) {
+        console.warn("Couldn't determine cap height from glyph:", e);
+        capHeight = Math.round(unitsPerEm * 0.7);
+      }
+    }
+
+    // Sanitize values: ensure all metrics are reasonable
+    if (descender >= 0 || descender < -unitsPerEm) descender = -Math.round(unitsPerEm * 0.2);
+    if (xHeight <= 0 || xHeight > unitsPerEm) xHeight = Math.round(unitsPerEm * 0.5);
+    if (capHeight <= xHeight || capHeight > unitsPerEm) capHeight = Math.round(unitsPerEm * 0.7);
+
     // Save metrics globally.
     window.currentFontMetrics = {
-      ascender,
       descender,
       xHeight,
       capHeight,
+      unitsPerEm
     };
 
     console.log(`Loaded metrics for ${fontFamily}:`, window.currentFontMetrics);
@@ -585,100 +862,112 @@ function updateGlyphPreview() {
   const textElem = svg.querySelector("text");
   if (!textElem || !window.currentFontMetrics) return;
 
-  const { descender, xHeight, capHeight } = window.currentFontMetrics;
+  const { descender, xHeight, capHeight, unitsPerEm } = window.currentFontMetrics;
 
-  // Compute the full range in font units using capHeight instead of ascender.
-  const glyphRange = capHeight + Math.abs(descender); // expected positive
+  // Set the SVG viewBox dimensions
+  const svgWidth = 500;
+  const svgHeight = 500;
+  svg.setAttribute('viewBox', `0 0 ${svgWidth} ${svgHeight}`);
+  
+  // Position the baseline at the vertical center of the SVG
+  const baseline = svgHeight / 2;
+  window.currentBaseline = baseline;
+  
+  // Calculate available height for the font
+  const availableHeight = svgHeight * 0.6; // 60% of SVG height
+  
+  // Calculate the font's total height in em units
+  const fontTotalHeight = capHeight - descender; // From cap height to descender
+  
+  // Calculate scale factor to fit the font in the available height
+  const scaleFactor = availableHeight / fontTotalHeight;
+  
+  // Calculate font size based on units per em and scale factor
+  const fontSize = unitsPerEm * scaleFactor;
+  
+  // Calculate the positions of all metric lines based on the baseline
+  // Note: In SVG, lower y values are higher up on the screen
+  const capHeightY = baseline - (capHeight * scaleFactor);
+  const xHeightY = baseline - (xHeight * scaleFactor);
+  const descenderY = baseline - (descender * scaleFactor); // Since descender is negative, this will be below baseline
+  
+  // Update the text element position and size
+  textElem.setAttribute('x', svgWidth / 2); // Center horizontally
+  textElem.setAttribute('y', baseline); // Position at baseline
+  textElem.setAttribute('font-size', fontSize);
+  textElem.setAttribute('dominant-baseline', 'alphabetic'); // This ensures text sits on the baseline
+  
+  // Metric line color
+  const lineColor = '#4F4F4F';
+  
+  // Update all metric lines
+  updateMetricLine(svg, 'baselineLine', 0, baseline, svgWidth, baseline, lineColor);
+  updateMetricLine(svg, 'capHeightLine', 0, capHeightY, svgWidth, capHeightY, lineColor);
+  updateMetricLine(svg, 'xHeightLine', 0, xHeightY, svgWidth, xHeightY, lineColor);
+  updateMetricLine(svg, 'descenderLine', 0, descenderY, svgWidth, descenderY, lineColor);
+  
+  // Clear existing labels
+  svg.querySelectorAll('.metric-label, .metric-value').forEach(el => el.remove());
+  
+  // Add metric labels with values on the left and right sides
+  addMetricLabels(svg, baseline, 'Baseline', '0', lineColor);
+  addMetricLabels(svg, capHeightY, 'Cap Height', capHeight, lineColor);
+  addMetricLabels(svg, xHeightY, 'x-Height', xHeight, lineColor);
+  addMetricLabels(svg, descenderY, 'Descender', descender, lineColor);
+  // Log the metrics for debugging
+  console.log("Font metrics positions:", {
+    baseline,
+    capHeightY,
+    xHeightY,
+    descenderY,
+    fontSize,
+    scaleFactor
+  });
+}
 
-  // Compute scale factor so the entire range fits into the preview.
-  const previewHeight = 350;
-  const scaleFactor = previewHeight / glyphRange;
-
-  // Update the text element's font-size using the scale factor.
-  const fontSize = 1000 * scaleFactor;
-  textElem.setAttribute("font-size", fontSize);
-
-  // Compute a default baseline so that the font's descender maps to the bottom.
-  const defaultBaseline = previewHeight - Math.abs(descender) * scaleFactor;
-
-  // Use the slider-controlled baseline if available, otherwise the default.
-  const baseline = window.currentBaseline !== undefined
-    ? parseInt(window.currentBaseline, 10)
-    : defaultBaseline;
-
-  // Calculate the metric line positions.
-  const capHeightY = baseline - capHeight * scaleFactor;
-  const descenderY = baseline + Math.abs(descender) * scaleFactor;
-  const xHeightY = baseline - xHeight * scaleFactor;
-
-  // Update the SVG metric lines.
-  const baselineLine = svg.querySelector("#baselineLine");
-  const capHeightLine = svg.querySelector("#capHeightLine");
-  const descenderLine = svg.querySelector("#descenderLine");
-  const xHeightLine = svg.querySelector("#xHeightLine");
-
-  if (baselineLine) {
-    baselineLine.setAttribute("y1", baseline);
-    baselineLine.setAttribute("y2", baseline);
+// Helper function to update a metric line with a more accurate position
+function updateMetricLine(svg, id, x1, y1, x2, y2, stroke) {
+  let line = svg.getElementById(id);
+  
+  if (!line) {
+    line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    line.id = id;
+    svg.appendChild(line);
   }
-  if (capHeightLine) {
-    capHeightLine.setAttribute("y1", capHeightY);
-    capHeightLine.setAttribute("y2", capHeightY);
-  } else {
-    // Create the cap height line if it doesn't exist
-    const newCapHeightLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
-    newCapHeightLine.setAttribute("id", "capHeightLine");
-    newCapHeightLine.setAttribute("x1", "0");
-    newCapHeightLine.setAttribute("x2", "100%");
-    newCapHeightLine.setAttribute("stroke", "orange");
-    newCapHeightLine.setAttribute("stroke-width", "1");
-    newCapHeightLine.setAttribute("y1", capHeightY);
-    newCapHeightLine.setAttribute("y2", capHeightY);
-    svg.appendChild(newCapHeightLine);
-  }
-  if (descenderLine) {
-    descenderLine.setAttribute("y1", descenderY);
-    descenderLine.setAttribute("y2", descenderY);
-  }
-  if (xHeightLine) {
-    xHeightLine.setAttribute("y1", xHeightY);
-    xHeightLine.setAttribute("y2", xHeightY);
-  }
+  
+  // Set precise coordinates with no rounding
+  line.setAttribute('x1', x1);
+  line.setAttribute('y1', y1);
+  line.setAttribute('x2', x2);
+  line.setAttribute('y2', y2);
+  line.setAttribute('stroke', stroke);
+  line.setAttribute('stroke-width', 1);
+}
 
-  // Update the y attribute so that the text baseline matches the computed baseline.
-  textElem.setAttribute("y", baseline);
-
-  // Ensure the text uses baseline alignment.
-  textElem.setAttribute("dominant-baseline", "alphabetic");
-
-  // Remove any existing metric labels.
-  const oldLabels = svg.querySelectorAll(".metric-label");
-  oldLabels.forEach((lbl) => lbl.remove());
-
-  // Helper function to create a label.
-  function addMetricLabel(yPos, labelText, color) {
-    const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
-    label.setAttribute("x", "5"); // 5px from left side
-    label.setAttribute("y", yPos - 5); // slightly above the line
-    label.setAttribute("fill", color);
-    label.setAttribute("font-size", "12");
-    label.classList.add("metric-label");
-    label.textContent = labelText;
-    svg.appendChild(label);
-  }
-
-  // Add labels for each metric line with raw values.
-  addMetricLabel(baseline, `Baseline: 0`, "red");
-  addMetricLabel(capHeightY, `Cap Height: ${capHeight}`, "orange");
-  addMetricLabel(descenderY, `Descender: ${descender}`, "purple");
-  addMetricLabel(xHeightY, `xHeight: ${xHeight}`, "green");
-
-  // Update the font size slider value
-  const fontSizeSlider = document.getElementById("fontSizeSlider");
-  if (fontSizeSlider) {
-    fontSizeSlider.value = fontSize;
-    document.getElementById("fontSizeValue").textContent = fontSize.toFixed(2);
-  }
+// More precise metric label placement
+function addMetricLabels(svg, y, name, value, color) {
+  // Left side label (name)
+  const nameLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+  nameLabel.setAttribute('x', 10);
+  nameLabel.setAttribute('y', y - 5); // Position slightly above the line
+  nameLabel.setAttribute('fill', color);
+  nameLabel.setAttribute('font-size', '12px');
+  nameLabel.setAttribute('font-family', 'sans-serif');
+  nameLabel.classList.add('metric-label');
+  nameLabel.textContent = name;
+  svg.appendChild(nameLabel);
+  
+  // Right side label (value)
+  const valueLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+  valueLabel.setAttribute('x', 490);
+  valueLabel.setAttribute('y', y - 5); // Position slightly above the line
+  valueLabel.setAttribute('fill', color);
+  valueLabel.setAttribute('font-size', '12px');
+  valueLabel.setAttribute('font-family', 'sans-serif');
+  valueLabel.setAttribute('text-anchor', 'end'); // Right align
+  valueLabel.classList.add('metric-value');
+  valueLabel.textContent = value;
+  svg.appendChild(valueLabel);
 }
 
 // ========================================
@@ -687,8 +976,17 @@ function updateGlyphPreview() {
 
 document.addEventListener("DOMContentLoaded", async () => {
   await initFontProfile();
-  initGlyphGrid();
+  
+  // Initialize the control section first so letter name container exists
   initControlSection();
+  
+  // Then initialize grid (which may update the letter again)
+  initGlyphGrid();
+  
   await initFontMetrics();
   updateGlyphPreview();
+  
+  // Force re-update of the letter name to ensure Unicode is displayed
+  const currentChar = document.querySelector(".glyph-letter svg text")?.textContent || 'A';
+  updateLetterName(currentChar);
 });

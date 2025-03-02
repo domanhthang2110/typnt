@@ -4,80 +4,267 @@
     margin-bottom: 0.5rem;
 }
 
-/* Styling for the mode switch buttons */
-.mode-switch button {
-    margin-right: 0.5rem;
-    padding: 0.5rem 1rem;
-    background-color: transparent;
-    border: 1px solid #fff;
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.mode-switch button:hover {
-    background-color: #fff;
-    color: #000;
-}
-
 /* Example preview styles for glyph-letter; update as needed */
 .glyph-letter.solid {
-    color: white;
-    -webkit-text-stroke: 0;
-    text-shadow: none;
+    color: var(--white);
 }
 
 .glyph-letter.outline {
-    /* Hide fill */
+    /* Styles will be handled through SVG attributes instead */
     color: transparent;
-    /* Remove any -webkit-text-stroke if applied */
-    -webkit-text-stroke: 0;
-    /* Create an inner outline effect using multiple shadows */
-    text-shadow:
-        -1px 0 0 white,
-        1px 0 0 white,
-        0 -1px 0 white,
-        0 1px 0 white,
-        -1px -1px 0 white,
-        1px -1px 0 white,
-        1px 1px 0 white,
-        -1px 1px 0 white;
 }
 
-.bounding-box {
-    stroke: yellow;
-    stroke-width: 2;
-    fill: none;
+
+
+/* ========================================
+   Control Panel Styles
+   ======================================== */
+.glyph-control {
+  display: flex;
+  /* Change from multi-row to single row layout */
+  height: auto; /* Let height be determined by content */
+  min-height: 80px; /* Minimum height for appearance */
+  padding: 0.75rem 1.5rem; /* Reduced vertical padding */
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 1px solid var(--dark-gray);
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background-color: var(--tblack);
 }
 
-.bottom-menu {
-    position: fixed;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 500px;
-    display: flex;
-    justify-content: space-around;
-    background-color: #121212;
-    /* Same background as other elements */
-    border: 1px solid #252525;
-
-    bottom: 10px;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
+/* Control row layout */
+.control-row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem; /* More space between controls */
+  width: 100%;
 }
 
-.nav-button {
-    background-color: #121212;
-    /* Same background as other elements */
-    color: white;
+/* Letter name display */
+.letter-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--white);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: 0.5rem;
+  min-width: 200px;
+  display: flex;
+  align-items: center;
+}
+
+/* Unicode value display */
+.unicode-value {
+  font-size: 0.9rem;
+  font-weight: 400;
+  opacity: 0.7;
+  margin-left: 8px;
+  font-family: 'Roboto Mono', monospace;
+  color: #9ca3af;
+}
+
+/* Render mode toggle */
+.render-mode {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.mode-label, .style-label, .glyph-set-label {
+  color: var(--white);
+}
+
+.toggle-container, .glyph-set-toggle {
+  display: flex;
+  border-radius: 0.25rem;
+  overflow: hidden;
+}
+
+.mode-button, .glyph-set-button {
+  padding: 0.25rem 0.75rem;
+  color: #9ca3af;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.mode-button.active, .glyph-set-button.active {
+  color: var(--white);
+}
+
+/* Style select dropdown */
+.style-select {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.font-style-dropdown {
+  background-color: var(--tblack);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.25rem;
+  min-width: 150px;
+  border: none;
+}
+
+/* Glyph set toggle */
+.glyph-set {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Section headings */
+.section-heading {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  color: #fff;
+}
+
+/* Grid section layout */
+.glyph-section-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 0;
+  border: 1px solid #333;
+}
+
+/* Separator in style dropdown */
+option[disabled] {
+  border-bottom: 1px solid #333;
+  background-color: #222;
+  color: #666;
+}
+
+/* ========================================
+   Glyph Grid Styles
+   ======================================== */
+.grid-cell {
+  text-align: center;
+  border: 1px solid #333;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 2rem;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.3s ease, background-color 0.2s ease;
+  padding: 0;
+}
+
+.grid-cell:hover {
+  border-color: var(--white);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.grid-cell.selected {
+  border-color: #4F4F4F;
+  background-color: rgba(79, 79, 79, 0.2);
+}
+
+/* Glyph layout and container styles */
+.glyph-display {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Content Row: Letter sidebar and Grid container */
+.glyph-display > div {
+  display: flex;
+  flex: 1;
+}
+
+/* Make glyph-letter sticky and set its width */
+.glyph-letter {
+  position: sticky;
+  top: 64px;
+  z-index: 20;
+  width: 100%;
+  height: 800px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0;
+}
+
+.glyph-letter svg {
+  width: 100%;
+  height: 100%;
+  max-height: 650px;
+}
+
+/* Glyph grid styles */
+.glyph-grid {
+  display: block;  /* Change to block so we can set column count in JS */
+  width: 50%;
+  padding: 1rem;
+  overflow-y: auto;
+  margin-bottom: 200px;
+}
+
+.glyph-grid h3 {
+  color: #fff;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Section styles */
+[data-section] {
+  margin-bottom: 2rem;
+}
+
+[data-section] > div {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  border: 1px solid #333;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .grid-cell {
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .glyph-display > div {
+    flex-direction: column;
+  }
+  
+  .glyph-letter, .glyph-grid {
     width: 100%;
-    border-radius: 15px;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+  }
+  
+  .glyph-letter {
+    height: 500px;
+  }
+
+  .glyph-control {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .style-select, .glyph-set {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .control-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
 }
 
-.nav-button:hover {
-    background-color: #555;
+/* Additional font layout margin */
+.font-layout {
+  margin-bottom: 1000px;
 }

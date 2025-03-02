@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&display=swap');
 @import url("slider.css");
 @import url("styles.css");
+@import url("components/scrollbar.css");
 
 
 :root {
@@ -16,6 +18,7 @@ html,
 body {
   font-family: "Epilogue", serif;
   background-color: var(--tblack);
+  color: var(--white);
 }
 
 

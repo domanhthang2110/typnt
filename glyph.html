@@ -9,6 +9,8 @@
     />
     <title>Typ.nt - Typography Exploration</title>
     <link rel="stylesheet" href="css/main.css" />
+    <!-- Add the new glyph.css stylesheet -->
+    <link rel="stylesheet" href="css/glyph.css" />
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts Link Placeholder -->
@@ -18,43 +20,24 @@
       href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
       rel="stylesheet"
     />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap"
-      rel="stylesheet"
-    />
-
   </head>
 
-  <body class="bg-[#040A10] text-white">
+  <body>
     <!-- Navigation Bar -->
-    <header
-      class="flex justify-between items-center bg-[#040A10] border-b border-[#333] pl-12 z-10"
-    >
-      <div class="text-4xl font-semibold logo">Typ.nt</div>
+    <header class="flex justify-between items-center pl-12 z-10">
+      <div class="text-4xl font-semibold logo">Typelab<span style="font-weight: 100;">™<span></div>
       <nav class="flex items-center">
-        <a href="#archive" class="top-bar-button text-white hover:underline"
-          >home.nt</a
-        >
-        <a href="#reads" class="top-bar-button text-white hover:underline"
-          >reads</a
-        >
-        <a href="#video" class="top-bar-button text-white hover:underline"
-          >videos</a
-        >
-        <a href="#practice" class="top-bar-button text-white hover:underline"
-          >practice</a
-        >
-        <a href="#typ-lab" class="top-bar-button text-white hover:underline"
-          >typ.lab</a
-        >
-        <a href="#archive" class="top-bar-button-end text-white hover:underline"
-          >archive</a
-        >
+        <a href="index.html" class="top-bar-button">home</a>
+        <a href="#reads" class="top-bar-button">reads</a>
+        <a href="#video" class="top-bar-button">videos</a>
+        <a href="#practice" class="top-bar-button">practice</a>
+        <a href="lab.html" class="top-bar-button">lab</a>
+        <a href="archive.html" class="top-bar-button-end active">archive</a>
       </nav>
-      <a href="#login" class="text-white hover:underline login-button">login</a>
+      <a href="#login" class="text-white hover:underline login-button"></a>
     </header>
     <header
-      class="flex justify-between items-center bg-[#040A10] border-b border-[#333] h-16 z-10"
+      class="flex justify-between items-center h-16 z-10"
     >
       <a
         href="index.html"
@@ -96,7 +79,7 @@
         <input
         id= "demoText" 
           type="text"
-          class="flex-1 text-base pl-2 bg-[#040A10] placeholder-[#9C9C9C] outline-none focus:ring-0 search"
+          class="flex-1 text-base pl-2 outline-none focus:ring-0 search"
           placeholder="demo text"
         />
         <div class="flex space-x-4 mr-auto">
@@ -136,30 +119,31 @@
       <div class="styles-list"></div>
       <div class="glyph-display flex flex-col">
         <!-- Control Section: full-width and sticky -->
-        <div class="glyph-control sticky top-0 bg-[#040A10] z-30 p-4">
-          <!-- Your control content here -->
-          Control Section
+        <div class="glyph-control">
+          <!-- This content will be replaced by JavaScript -->
+          <div style="width: 100%; text-align: center;">Loading controls...</div>
         </div>
         
         <!-- Content Row: Letter sidebar and Grid container -->
         <div class="flex flex-1">
           <!-- Letter Section: half width wrapped in a relative container -->
           <div class="w-1/2 relative">
-            <div class="glyph-letter w-full flex justify-center sticky top-[200px] bg-[#040A10] z-20 p-4">
-              <!-- This shows the currently selected letter using SVG with metric lines -->
-              <svg viewBox="0 0 500 500"  class="mx-auto block">
-                <!-- Bounding Box (yellow) -->
-                <rect id="bboxRect" x="0" y="0" width="0" height="0" fill="none" stroke="yellow" stroke-width="2" />
-                <!-- Baseline (red) -->
-                <line id="baselineLine" x1="0" y1="250" x2="500" y2="250" stroke="red" stroke-width="2" />
-                <!-- Descender line (purple) -->
-                <line id="descenderLine" x1="0" y1="350" x2="500" y2="350" stroke="purple" stroke-width="2" />
-                <!-- X-height line (green) -->
-                <line id="xHeightLine" x1="0" y1="200" x2="500" y2="200" stroke="green" stroke-width="2" />
-                <line id="capHeightLine" x1="0" y1="200" x2="500" y2="200" stroke="orange" stroke-width="2" />
-
+            <div class="glyph-letter w-full flex justify-center sticky z-20">
+              <svg viewBox="0 0 500 500" width="100%" height="100%" class="mx-auto block">
+                <!-- Metric lines - full width -->
+                <line id="baselineLine" x1="0" y1="250" x2="500" y2="250" stroke="#4F4F4F" stroke-width="1" />
+                <line id="descenderLine" x1="0" y1="350" x2="500" y2="350" stroke="#4F4F4F" stroke-width="1" />
+                <line id="xHeightLine" x1="0" y1="200" x2="500" y2="200" stroke="#4F4F4F" stroke-width="1" />
+                <line id="capHeightLine" x1="0" y1="175" x2="500" y2="175" stroke="#4F4F4F" stroke-width="1" />
+                
+                <!-- Adding a path for outline mode that will be updated by JS -->
+                <path id="letter-path" d="" fill="none" stroke="none"></path>
+                
+                <!-- The actual text element which will be used for solid rendering -->
                 <text
+                  id="letter-text"
                   x="50%"
+                  y="250"
                   dominant-baseline="alphabetic"
                   text-anchor="middle"
                   fill="white"
@@ -178,12 +162,6 @@
       </div>
       <div class="font-layout">layout</div>
       <div class="font-info">details</div>
-      <div class="bottom-menu">
-        <button class="nav-button">Home</button>
-        <button class="nav-button">About</button>
-        <button class="nav-button">Services</button>
-        <button class="nav-button">Contact</button>
-      </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/opentype.js@latest/dist/opentype.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>

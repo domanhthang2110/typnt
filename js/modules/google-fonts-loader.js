@@ -9,8 +9,88 @@ export const FONTS_PER_PAGE = 20;
 export class GoogleFontsLoader {
     constructor() {
         this.fontsData = [];
-        this.currentFontIndex = 0;
-        this.isLoadingFonts = false;
+        this.currentPage = 0;
+        this.loadedFonts = new Set();
+        this.categoryIndices = new Map(); // Track position for each category
+        this.lastFilterIndex = 0;  // Add this to track position in filtered search
+    }
+
+    /**
+     * Normalize variant strings to WebFont format
+     * @param {string} variant - Font variant (e.g., 'regular', 'italic', '500', '500italic')
+     * @returns {string} Normalized variant (e.g., '400', '400italic', '500', '500italic')
+     */
+    normalizeVariant(variant) {
+        if (variant === 'regular') return '400';
+        if (variant === 'italic') return '400italic';
+        return variant;
+    }
+
+    // Add this new method
+    getFonts() {
+        return this.fontsData;
+    }
+
+    async getFontsByCategory(category, page = 0) {
+        const startIndex = page * FONTS_PER_PAGE;
+        let filteredFonts;
+
+        // Filter fonts by category
+        filteredFonts = this.fontsData.filter(font => 
+            font.category?.toLowerCase() === category.toLowerCase()
+        );
+
+        const paginatedFonts = filteredFonts.slice(startIndex, startIndex + FONTS_PER_PAGE);
+        
+        // Load the fonts if needed
+        await this.loadFonts(paginatedFonts);
+
+        return {
+            fonts: paginatedFonts,
+            hasMore: startIndex + FONTS_PER_PAGE < filteredFonts.length,
+            totalFonts: filteredFonts.length,
+            currentPage: page
+        };
+    }
+
+    async getFontInfoBatch(page = 0, itemsPerPage = FONTS_PER_PAGE) {
+        const startIndex = page * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+        const batch = this.fontsData.slice(startIndex, endIndex);
+
+        // Load fonts if needed
+        await this.loadFonts(batch);
+
+        return {
+            fonts: batch,
+            hasMore: endIndex < this.fontsData.length,
+            totalFonts: this.fontsData.length,
+            currentPage: page
+        };
+    }
+
+    // Add helper method to handle font loading
+    async loadFonts(fontsToLoad) {
+        const unloadedFonts = fontsToLoad.filter(font => !this.loadedFonts.has(font.family));
+        if (unloadedFonts.length === 0) return;
+
+        const families = unloadedFonts.map(font => {
+            const weights = font.variants
+                .map(v => this.normalizeVariant(v))
+                .join(',');
+            return `${font.family}:${weights}`;
+        });
+
+        return new Promise((resolve) => {
+            WebFont.load({
+                google: { families },
+                active: () => {
+                    unloadedFonts.forEach(font => this.loadedFonts.add(font.family));
+                    resolve();
+                },
+                inactive: resolve // Don't block on failure
+            });
+        });
     }
 
     /**
@@ -27,54 +107,6 @@ export class GoogleFontsLoader {
             console.error('Failed to initialize Google Fonts loader:', error);
             throw error;
         }
-    }
-
-    /**
-     * Load a batch of fonts
-     * @param {number} startIndex - Starting index
-     * @param {number} count - Number of fonts to load
-     */
-    async loadFontBatch(startIndex = 0, count = FONTS_PER_PAGE) {
-        if (this.isLoadingFonts) return;
-        
-        this.isLoadingFonts = true;
-        const endIndex = Math.min(startIndex + count, this.fontsData.length);
-        const fontBatch = this.fontsData.slice(startIndex, endIndex);
-
-        return new Promise((resolve, reject) => {
-            const families = fontBatch.map(data => {
-                const weights = data.variants
-                    .map(variant => {
-                        if (variant === 'regular') return '400';
-                        if (variant === 'italic') return '400italic';
-                        return variant.includes('italic') 
-                            ? `${variant.replace('italic', '')}italic`
-                            : variant;
-                    })
-                    .join(',');
-                return `${data.family}:${weights}`;
-            });
-
-            WebFont.load({
-                google: {
-                    families: families
-                },
-                fontactive: (familyName, fvd) => {
-                    console.log(`Font ${familyName} with variant ${fvd} loaded`);
-                },
-                fontinactive: (familyName, fvd) => {
-                    console.warn(`Font ${familyName} with variant ${fvd} failed to load`);
-                },
-                active: () => {
-                    this.isLoadingFonts = false;
-                    resolve(fontBatch);
-                },
-                inactive: () => {
-                    this.isLoadingFonts = false;
-                    reject(new Error('Failed to load font batch'));
-                }
-            });
-        });
     }
 
     /**
@@ -139,6 +171,67 @@ export class GoogleFontsLoader {
         const baseName = weightNames[numWeight] || weight;
         
         return isItalic ? `${baseName} Italic` : baseName;
+    }
+
+    async searchFonts(query, page = 0) {
+        const startIndex = page * FONTS_PER_PAGE;
+        const queryLower = query.toLowerCase();
+        
+        // Filter fonts that contain the search query
+        const searchResults = this.fontsData.filter(font => 
+            font.family.toLowerCase().includes(queryLower)
+        );
+
+        // Sort results: exact match first, starts with second, contains third
+        searchResults.sort((a, b) => {
+            const aLower = a.family.toLowerCase();
+            const bLower = b.family.toLowerCase();
+
+            // Exact match gets highest priority
+            if (aLower === queryLower) return -1;
+            if (bLower === queryLower) return 1;
+
+            // Starts with gets second priority
+            const aStarts = aLower.startsWith(queryLower);
+            const bStarts = bLower.startsWith(queryLower);
+            if (aStarts && !bStarts) return -1;
+            if (!aStarts && bStarts) return 1;
+
+            // Default to alphabetical order
+            return aLower.localeCompare(bLower);
+        });
+
+        const paginatedResults = searchResults.slice(startIndex, startIndex + FONTS_PER_PAGE);
+        await this.loadFonts(paginatedResults);
+
+        return {
+            fonts: paginatedResults,
+            hasMore: startIndex + FONTS_PER_PAGE < searchResults.length,
+            totalFonts: searchResults.length,
+            currentPage: page
+        };
+    }
+
+    async loadSingleFont(fontFamily) {
+        if (this.loadedFonts.has(fontFamily)) {
+            return Promise.resolve();
+        }
+
+        return new Promise((resolve, reject) => {
+            WebFont.load({
+                google: {
+                    families: [fontFamily]
+                },
+                active: () => {
+                    this.loadedFonts.add(fontFamily);
+                    resolve();
+                },
+                inactive: () => {
+                    reject(new Error(`Failed to load font: ${fontFamily}`));
+                },
+                timeout: 2000 // 2 seconds timeout
+            });
+        });
     }
 }
 

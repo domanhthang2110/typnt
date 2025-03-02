@@ -65,7 +65,7 @@ function setupEventListeners() {
 
   // Listen for settings changes
   document.addEventListener("settings-changed", (e) => {
-    const { type, name, value, textbox } = e.detail;
+    const { type, name, value, textbox, format } = e.detail;
     if (!textbox) return;
 
     const textboxData = state.textboxes.get(textbox);
@@ -127,6 +127,30 @@ function setupEventListeners() {
 
       case "fontSize":
         textboxData.styles.size = `${value}px`;
+        break;
+        
+      case "format":
+        // Handle text formatting options
+        switch(format) {
+          case "align":
+            textboxData.styles.textAlign = value;
+            break;
+          case "italic":
+            textboxData.styles.fontStyle = value ? "italic" : "normal";
+            
+            // Add padding adjustment for italic text for all textbox types
+            if (value) {
+              // Apply right padding to accommodate italic slant
+              textboxData.styles.paddingRight = "0.5em";
+            } else {
+              // Remove padding when not italic
+              textboxData.styles.paddingRight = "0";
+            }
+            break;
+          case "underline":
+            textboxData.styles.textDecoration = value ? "underline" : "none";
+            break;
+        }
         break;
     }
 
@@ -815,46 +839,55 @@ function updateSettingsPanel(data) {
   }
 
   // Update the axes section in updateSettingsPanel function
-  if (
-    Object.keys(data.axes).length > 0
-  ) {
-    // Remove hasMultipleWeights check
-    const axesSection = document.createElement("div");
-    axesSection.className = "settings-section axes-section";
+  if (Object.keys(data.axes).length > 0) {
+    // Only show axes section if there are multiple weights or other axes
+    // Don't show the section if it's only weight axis with no range
+    const hasMultipleValues = Object.entries(data.axes).some(([tag, axis]) => {
+      // If min and max are the same, the axis has only one possible value
+      return axis.min !== axis.max;
+    });
 
-    axesSection.innerHTML = `
-      <h3>Variable Axes</h3>
-      <div class="axes-list">
-        ${Object.entries(data.axes)
-          .map(([tag, axis]) => {
-            const currentValue = data.currentAxes[tag] || axis.default;
-            const percentage =
-              ((currentValue - axis.min) / (axis.max - axis.min)) * 100;
+    if (hasMultipleValues) {
+      const axesSection = document.createElement("div");
+      axesSection.className = "settings-section axes-section";
 
-            return `
-            <div class="axis-control">
-              <div class="axis-header">
-                <label>${tag === "wght" ? "Weight" : axis.name}</label>
-                <span class="axis-value">${currentValue}</span>
-              </div>
-              <input type="range" 
-                data-axis="${tag}"
-                min="${axis.min}"
-                max="${axis.max}"
-                value="${currentValue}"
-                step="1"
-                class="master-slider"
-                style="--split-percent: ${percentage}%">
-            </div>`;
-          })
-          .join("")}
-      </div>
-    `;
-    settingsPanel.appendChild(axesSection);
+      axesSection.innerHTML = `
+        <h3>Variable Axes</h3>
+        <div class="axes-list">
+          ${Object.entries(data.axes)
+            .map(([tag, axis]) => {
+              // Skip axes that don't have a range
+              if (axis.min === axis.max) return '';
+              
+              const currentValue = data.currentAxes[tag] || axis.default;
+              const percentage =
+                ((currentValue - axis.min) / (axis.max - axis.min)) * 100;
+
+              return `
+              <div class="axis-control">
+                <div class="axis-header">
+                  <label>${tag === "wght" ? "Weight" : axis.name}</label>
+                  <span class="axis-value">${currentValue}</span>
+                </div>
+                <input type="range" 
+                  data-axis="${tag}"
+                  min="${axis.min}"
+                  max="${axis.max}"
+                  value="${currentValue}"
+                  step="1"
+                  class="master-slider"
+                  style="--split-percent: ${percentage}%">
+              </div>`;
+            })
+            .join("")}
+        </div>
+      `;
+      settingsPanel.appendChild(axesSection);
+    }
   }
 
-  // Add instances section if available
-  if (data.instances && data.instances.length > 0) {
+  // Add instances section if available and more than one instance
+  if (data.instances && data.instances.length > 1) {
     const instancesSection = document.createElement("div");
     instancesSection.className = "settings-section instances-section";
     instancesSection.innerHTML = `

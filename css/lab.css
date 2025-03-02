@@ -142,7 +142,7 @@ main {
     padding: 10px;
     cursor: move;
     color: var(--white);
-    font-family: "Roboto Mono", sans-serif;
+    font-family: inherit;
     border: 1px solid transparent;
     z-index: 10;
 
@@ -188,6 +188,10 @@ main {
     -webkit-user-select: text;
     -moz-user-select: text;
     -ms-user-select: text;
+}
+
+.textbox--editing {
+    border: 1px solid var(--white);
 }
 
 .textbox__content[contenteditable="true"] {

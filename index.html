@@ -9,206 +9,421 @@
     />
     <title>Typ.nt - Typography Exploration</title>
     <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/slider.css" />
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts Link Placeholder -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-
-  <body class="bg-[#040A10] text-white">
-    <!-- Navigation Bar -->
-    <header
-      class="flex justify-between items-center bg-[#040A10] border-b border-[#333] pl-12 z-10"
-    >
-      <div class="text-4xl font-semibold logo">Typ.nt</div>
-      <nav class="flex items-center">
-        <a href="#archive" class="top-bar-button text-white hover:underline"
-          >home.nt</a
-        >
-        <a href="#reads" class="top-bar-button text-white hover:underline"
-          >reads</a
-        >
-        <a href="#video" class="top-bar-button text-white hover:underline"
-          >videos</a
-        >
-        <a href="#practice" class="top-bar-button text-white hover:underline"
-          >practice</a
-        >
-        <a href="#typ-lab" class="top-bar-button text-white hover:underline"
-          >typ.lab</a
-        >
-        <a href="#archive" class="top-bar-button-end text-white hover:underline"
-          >archive</a
-        >
-      </nav>
-      <a href="#login" class="text-white hover:underline login-button">login</a>
-    </header>
-
-    <!-- Main Content -->
-    <main>
-      <!-- Search Bar -->
-      <div
-        class="flex justify-between items-center bg-[#040A10] p-2 pr-10 pl-10 h-24"
-      >
-        <div class="flex items-center bg-[#040A10] search-bar pt-8">
-          <div
-            class="text-3xl -mt-3 pb-5 text-[#9C9C9C] border-b-2 border-[#4F4F4F]"
-          >
-            ⌕
-          </div>
-          <input
-            type="text"
-            class="flex-1 text-base pl-2 pb-5 bg-[#040A10] placeholder-[#9C9C9C] border-b-2 border-[#4F4F4F] outline-none focus:ring-0 search"
-            placeholder="Search"
-          />
-        </div>
-        <div
-          class="second-bar flex-1 flex items-center pl-1 border-b-2 border-[#4F4F4F] h-full gap-2"
-        >
-          <div class="flex items-center space-x-4">
-            <div class="relative" id="categoriesDropdown">
-              <button
-                type="button"
-                class="second-bar-button relative z-40 bg-[#040A10] text-[#4F4F4F] py-2 pt-4 px-4 hover:text-white transition-all duration-200 flex items-center gap-2"
-                id="categoriesButton"
-              >
-                <span>Categories</span
-                ><span class="ml-1 text-xl dd-triangle" id="triangle">▾</span>
-              </button>
-              <div
-                class="py-1 pt-20 pb-5 -top-4 absolute -left-1 pl-2 pr-2 transition-all duration-200 ease-in-out opacity-0 -translate-y-1 invisible bg-[#040A10] min-w-max z-20"
-                id="dropdownContent"
-              >
-                <label class="block px-4 py-2 text-sm">
-                  <input type="radio" name="category" value="all" checked /> All
-                </label>
-                <label class="block px-4 py-2 text-sm">
-                  <input type="radio" name="category" value="sans-serif" />
-                  Sans-Serif
-                </label>
-                <label class="block px-4 py-2 text-sm">
-                  <input type="radio" name="category" value="serif" /> Serif
-                </label>
-                <label class="block px-4 py-2 text-sm">
-                  <input type="radio" name="category" value="display" /> Display
-                </label>
-                <label class="block px-4 py-2 text-sm">
-                  <input type="radio" name="category" value="handwriting" />
-                  Handwriting
-                </label>
-                <label class="block px-4 py-2 text-sm">
-                  <input type="radio" name="category" value="monospace" />
-                  Monospace
-                </label>
-              </div>
-            </div>
-            <!-- Button -->
-          </div>
-          <button
-            type="button"
-            class="second-bar-button bg-[#040A10] text-[#4F4F4F] py-2 px-4 pt-4 text-left hover:text-white transition-all duration-200 ease-in-out z-30 relative flex items-center gap-2"
-            id="propertiesButton"
-          >
-            <span>Properties</span
-            ><span class="ml-1 text-xl transition-transform duration-200"
-              >▾</span
-            >
-          </button>
-
-          <button
-            type="button"
-            class="second-bar-button bg-[#040A10] text-[#4F4F4F] py-2 px-4 pt-4 text-left hover:text-white transition-all duration-200 ease-in-out z-30 relative flex items-center gap-2"
-            id="personalityButton"
-          >
-            <span>Personality</span
-            ><span class="ml-1 text-xl transition-transform duration-200"
-              >▾</span
-            >
-          </button>
-          <div class="flex items-center ml-auto">
-            <span id="sliderValue" class="text-white mr-4 mt-2">96 px</span>
-            <!-- Added span for slider value -->
-            <input
-              type="range"
-              min="12"
-              max="210"
-              value="96"
-              class="mt-2 master-slider"
-            />
-          </div>
-        </div>
-      </div>
-
-      <!-- Header Options -->
-      <div
-        class="flex justify-between items-center p-4 pl-10 pr-10 border-b border-[#4F4F4F]"
-      >
-        <div class="text-lg total-entry">1804 Total</div>
-        <div class="flex space-x-4 mr-auto">
-          <button
-            class="text-white bg-transparent border-none py-2 px-4 hover:text-white"
-            id="listViewBtn"
-          >
-            List view
-          </button>
-          <button
-            class="text-[#9C9C9C] bg-transparent border-none py-2 px-4 hover:text-white"
-            id="gridViewBtn"
-          >
-            Grid view
-          </button>
-          <!-- Alignment Buttons -->
-          <button
-            class="text-white bg-transparent border-none py-2 px-4 hover:bg-[#4F4F4F]"
-            id="alignLeftBtn"
-          >
-            Align Left
-          </button>
-          <button
-            class="text-white bg-transparent border-none py-2 px-4 hover:bg-[#4F4F4F]"
-            id="alignCenterBtn"
-          >
-            Align Center
-          </button>
-          <button
-            class="text-white bg-transparent border-none py-2 px-4 hover:bg-[#4F4F4F]"
-            id="alignRightBtn"
-          >
-            Align Right
-          </button>
-        </div>
-        <div class="flex items-center space-x-4">
-          <span>Sort by:</span>
-          <button
-            class="text-[#9C9C9C] bg-transparent border-none py-2 px-4 hover:text-white"
-          >
-            Latest
-          </button>
-          <button
-            class="text-[#9C9C9C] bg-transparent border-none py-2 px-4 hover:text-white"
-          >
-            Popular
-          </button>
-          <button
-            class="text-[#9C9C9C] bg-transparent border-none py-2 px-4 hover:text-white"
-          >
-            Alphabetical
-          </button>
-        </div>
-      </div>
-      <!-- Font Display -->
-      <div id="font-container" class="p-10 pt-20"></div>
-
-      <div id="load-more-trigger"></div>
-    </main>
-
-    <!-- JavaScript -->
-    <script src="script.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+    <!-- Add Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style>
+      /* Disable text selection for the entire page */
+      * {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      .home-font-title {
+        font-family: "Epilogue", sans-serif;
+        font-weight: 200;
+        line-height: 1.2; /* Improve line height */
+      }
+      .quote-container {
+        font-weight: 200;
+      }
+      header {
+        position: relative;
+        border-bottom: var(--dark-gray) 1px solid;
+        z-index: 1000;
+      }
+      .three-d-container {
+        perspective: 1000px;
+        transform-style: preserve-3d;
+        width: 100%;
+        max-width: 800px;
+        margin: 2rem 0 4rem; /* Add vertical spacing */
+      }
+      .three-d-title {
+        transition: transform 0.1s ease;
+        transform-style: preserve-3d;
+        text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
+      }
+      /* Feature cards styling */
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        margin-top: 4rem;
+        max-width: 1200px;
+        width: 100%;
+        padding: 0 2rem;
+      }
+      .feature-card {
+        background-color: var(--dark-gray);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 0.75rem;
+        padding: 2rem;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        background-color: var(--light-gray);
+      }
+      .feature-icon {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        color: rgba(255, 255, 255, 0.9);
+      }
+      /* Sample text showcase */
+      .sample-text {
+        margin-top: 3rem;
+        max-width: 800px;
+        text-align: center;
+        opacity: 0.8;
+        line-height: 1.6;
+        transition: opacity 0.3s ease;
+      }
+      .sample-text:hover {
+        opacity: 1;
+      }
+      /* Particles styles */
+      .particles-container {
+        position: fixed;
+        padding-top: 100px;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+        z-index: -10;
+        pointer-events: none;
+      }
+      .typography-particle {
+        position: absolute;
+        font-size: 1rem;
+        color: rgba(255, 255, 255, 0.4);
+        user-select: none;
+        pointer-events: none;
+        animation: float 15s infinite linear;
+      }
+      .home {
+        position: relative;
+        z-index: 5;
+        padding-top: 4rem; /* Add top padding for better spacing */
+      }
+      @keyframes float {
+        0% {
+          transform: translateY(100vh);
+          opacity: 0;
+        }
+        10% {
+          opacity: 0.2;
+        }
+        90% {
+          opacity: 0.1;
+        }
+        100% {
+          transform: translateY(-100px);
+          opacity: 0;
+        }
+      }
+      /* Fix the particles issue */
+      body {
+        position: relative;
+        background-color: transparent;
+        min-height: 100vh;
+      }
+
+      /* Make sure header is above everything */
+      header {
+        position: relative;
+        border-bottom: var(--dark-gray) 1px solid;
+        z-index: 1000;
+      }
+
+      /* Font particles styles - update these in your home.html file */
+      .font-particle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        pointer-events: none;
+        color: rgba(255, 255, 255, 0.1);
+        transition: opacity 0.5s ease;
+        transform: translateZ(0);
+        white-space: nowrap;
+        text-shadow: 2 2 10px rgba(255, 255, 255, 0.1);
+      }
+
+      .font-display {
+        font-size: 1.8rem;
+        letter-spacing: 0.02em;
+      }
+
+      .text-trail-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 9999;
+      }
+
+      .trail-character {
+        position: absolute;
+        font-family: "Epilogue", sans-serif;
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.2);
+        transform: translateY(0);
+        transition: all 1s ease;
+        pointer-events: none;
+      }
+      .trail-character {
+        position: absolute;
+        font-family: "Epilogue", sans-serif;
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.2);
+        transform-origin: center;
+        opacity: 0.5;
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        pointer-events: none;
+        user-select: none;
+        will-change: transform, opacity;
+        width: 16px; /* Set explicit width */
+        height: 16px; /* Set explicit height */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .home-font-name {
+        font-size: 1.5rem;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 0.5rem;
+        letter-spacing: 0.02em;
+        animation: fadeUp 0.8s ease forwards;
+        animation-delay: 0.2s;
+      }
+
+      .home-font-designer {
+        font-size: 0.875rem;
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 4rem; /* Increase space before the main title */
+        letter-spacing: 0.03em;
+        animation: fadeUp 0.8s ease forwards;
+        animation-delay: 0.4s;
+      }
+
+      .home-font-title > div {
+        margin-top: 1rem; /* Space between "Welcome to" and "Typelab" */
+      }
+
+      /* Animation for smooth entry */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes rotate {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .background-svg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        z-index: -20;
+      }
+
+      .out-top {
+        animation: rotate 20s linear infinite;
+        transform-origin: 13px 25px;
+      }
+
+      .in-top {
+        animation: rotate 10s linear infinite;
+        transform-origin: 13px 25px;
+      }
+
+      .out-bottom {
+        animation: rotate 25s linear infinite;
+        transform-origin: 84px 93px;
+      }
+
+      .in-bottom {
+        animation: rotate 15s linear infinite;
+        transform-origin: 84px 93px;
+      }
+
+      /* Adjust colors to match your theme */
+      .blob-1 {
+        fill: rgba(18, 18, 18, 1);
+      } /* #9b5de5 with opacity */
+      .blob-2 {
+        fill: rgba(19, 19, 19, 1);
+      } /* #f15bb5 with opacity */
+      .blob-3 {
+        fill: rgba(20, 20, 20, 1);
+      } /* #00bbf9 with opacity */
+      .blob-4 {
+        fill: rgba(22, 22, 22, 1);
+      } /* #00f5d4 with opacity */
+      .button-container {
+        position: relative;
+        width: 40px;
+        height: 40px;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      .button-container.expanded {
+        width: 250px;
+        height: auto;
+        min-height: 120px;
+      }
+
+      .morph-button {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #4a90e2;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        font-size: 18px;
+        cursor: pointer;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .button-container.expanded .morph-button {
+        border-radius: 8px;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 15px;
+      }
+
+      .button-text {
+        font-size: 14px;
+        line-height: 1.5;
+        color: white;
+        opacity: 0;
+        transition: opacity 0.3s;
+        transition-delay: 0.1s;
+        max-width: 220px;
+      }
+
+      .button-container.expanded .button-text {
+        opacity: 1;
+      }
+
+      .button-icon {
+        transition: opacity 0.2s;
+      }
+
+      .button-container.expanded .button-icon {
+        opacity: 0;
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body>
+    <svg
+      class="background-svg"
+      preserveAspectRatio="xMidYMid slice"
+      viewBox="10 10 80 80"
+    >
+      <path
+        class="blob-1 out-top"
+        d="M37-5C25.1-14.7,5.7-19.1-9.2-10-28.5,1.8-32.7,31.1-19.8,49c15.5,21.5,52.6,22,67.2,2.3C59.4,35,53.7,8.5,37-5Z"
+      />
+      <path
+        class="blob-2 in-top"
+        d="M20.6,4.1C11.6,1.5-1.9,2.5-8,11.2-16.3,23.1-8.2,45.6,7.4,50S42.1,38.9,41,24.5C40.2,14.1,29.4,6.6,20.6,4.1Z"
+      />
+      <path
+        class="blob-3 out-bottom"
+        d="M105.9,48.6c-12.4-8.2-29.3-4.8-39.4.8-23.4,12.8-37.7,51.9-19.1,74.1s63.9,15.3,76-5.6c7.6-13.3,1.8-31.1-2.3-43.8C117.6,63.3,114.7,54.3,105.9,48.6Z"
+      />
+      <path
+        class="blob-4 in-bottom"
+        d="M102,67.1c-9.6-6.1-22-3.1-29.5,2-15.4,10.7-19.6,37.5-7.6,47.8s35.9,3.9,44.5-12.5C115.5,92.6,113.9,74.6,102,67.1Z"
+      />
+    </svg>
+
+    <header class="flex justify-between items-center pl-12 z-10">
+      <div class="text-4xl font-semibold logo">
+        Typelab<span style="font-weight: 100">™</span>
+      </div>
+      <nav class="flex items-center">
+        <a href="home.html" class="top-bar-button active">home</a>
+        <a href="#reads" class="top-bar-button">reads</a>
+        <a href="#video" class="top-bar-button">videos</a>
+        <a href="#practice" class="top-bar-button">practice</a>
+        <a href="lab.html" class="top-bar-button">lab</a>
+        <a href="archive.html" class="top-bar-button-end">archive</a>
+      </nav>
+      <a href="#login" class="text-white hover:underline login-button"></a>
+    </header>
+    <div class="home flex flex-col items-center justify-start">
+      <div class="particles-container" id="particles"></div>
+      <div class="home-font-name">
+        <a href="https://fonts.google.com/specimen/Epilogue" target="_blank"
+          >Epilogue</a
+        >
+      </div>
+      <div class="home-font-designer">
+        designed by
+        <a
+          href="https://fonts.google.com/?query=Tyler+Finck"
+          target="_blank"
+          class="hover:underline"
+          >Tyler Finck</a
+        >,
+        <a
+          href="https://fonts.google.com/?query=ETC"
+          target="_blank"
+          class="hover:underline"
+          >ETC</a
+        >
+      </div>
+      <div class="three-d-container">
+        <div class="home-font-title three-d-title text-8xl text-center">
+          Welcome to
+          <div class="text-8xl text-center">Typelab</div>
+        </div>
+        <div class="quote-container opacity-0 transition-opacity duration-500">
+          <blockquote
+            class="text-2xl text-center pt-24 quote-text"
+          ></blockquote>
+          <div class="text-right w-full mt-4 quote-author"></div>
+        </div>
+      </div>
+    </div>
+    <script src="js/home.js" type="module"></script>
   </body>
 </html>

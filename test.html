@@ -1,73 +1,686 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Custom Scrollbar Demo</title>
-    <link rel="stylesheet" href="css/components/scrollbar.css">
-    <style>
-        :root {
-            --light-gray: #d3d3d3;
-            --tblack: #000000;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #f0f0f0;
-        }
-        .scroll-container {
-            width: 300px;
-            height: 200px;
-            overflow-y: scroll;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            padding: 10px;
-        }
-        .content {
-            height: 600px;
-            background: linear-gradient(to bottom, #ffcccc, #ccffcc, #ccccff);
-        }
-
-        /* Custom Scrollbar Styles */
-        .custom-scrollbar {
-            /* Firefox */
-
-        }
-
-        /* Webkit (Chrome, Edge, Safari) */
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 2px; /* More reasonable width */
-        }
-
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: var(--white); /* Match Firefox's color scheme */
-        }
-
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: var(--light-gray); /* Match Firefox's color scheme */
-            border-radius: 4px; /* Optional: adds rounded corners */
-        }
-
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: #a0a0a0; /* Slightly darker on hover */
-        }
-
-        .custom-scrollbar::-webkit-scrollbar-button {
-            display: none;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alphabet Art Generator</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: #f5f5f7;
+      padding: 20px;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    h1 {
+      text-align: center;
+      margin-bottom: 24px;
+      color: #333;
+      font-size: 32px;
+    }
+    
+    .app-layout {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    
+    @media (min-width: 768px) {
+      .app-layout {
+        flex-direction: row;
+      }
+    }
+    
+    .controls-panel {
+      flex: 1;
+      padding: 20px;
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+    
+    .result-panel {
+      flex: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    
+    .result-container {
+      width: 100%;
+      background-color: #f8f9fa;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+    
+    .result-view {
+      width: 100%;
+      min-height: 400px;
+      background-color: white;
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #aaa;
+    }
+    
+    .upload-area {
+      border: 2px dashed #ccc;
+      border-radius: 8px;
+      padding: 30px 20px;
+      text-align: center;
+      margin-bottom: 20px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    
+    .upload-area:hover {
+      background-color: #f0f0f0;
+    }
+    
+    .upload-icon {
+      font-size: 32px;
+      margin-bottom: 10px;
+      color: #666;
+    }
+    
+    .control-group {
+      margin-bottom: 20px;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: #333;
+    }
+    
+    .slider-container {
+      width: 100%;
+      margin-bottom: 4px;
+    }
+    
+    .slider {
+      width: 100%;
+      height: 6px;
+      border-radius: 3px;
+    }
+    
+    .slider-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: #777;
+    }
+    
+    input[type="text"] {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .button-row {
+      display: flex;
+      gap: 10px;
+    }
+    
+    button {
+      flex: 1;
+      background-color: #0066cc;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 15px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    
+    button:hover {
+      background-color: #0055aa;
+    }
+    
+    button:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+    
+    button.toggle-button {
+      background-color: #666;
+      margin-bottom: 16px;
+    }
+    
+    button.toggle-button:hover {
+      background-color: #555;
+    }
+    
+    .settings {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+    
+    .settings.show {
+      max-height: 1000px;
+    }
+    
+    .hidden {
+      display: none;
+    }
+    
+    canvas {
+      display: none;
+    }
+    
+    /* Progress bar */
+    #progress-container {
+      width: 100%;
+      height: 6px;
+      background-color: #eee;
+      border-radius: 3px;
+      margin-top: 10px;
+      overflow: hidden;
+      display: none;
+    }
+    
+    #progress-bar {
+      height: 100%;
+      width: 0%;
+      background-color: #0066cc;
+      transition: width 0.3s;
+    }
+  </style>
 </head>
 <body>
-    <div class="scroll-container custom-scrollbar">
-        <div class="content">
-            Scroll to see the custom scrollbar in action.
+  <div class="container">
+    <h1>Alphabet Art Generator</h1>
+    
+    <div class="app-layout">
+      <!-- Controls Panel -->
+      <div class="controls-panel">
+        <div class="upload-area" id="upload-area">
+          <div class="upload-icon">⬆️</div>
+          <p>Click to upload an image</p>
+          <input type="file" id="image-upload" accept="image/*" class="hidden">
         </div>
+        
+        <button class="toggle-button" id="toggle-settings">
+          ⚙️ Show Settings
+        </button>
+        
+        <div class="settings" id="settings-panel">
+          <div class="control-group">
+            <label for="density-slider">Letter Density</label>
+            <div class="slider-container">
+              <input type="range" id="density-slider" class="slider" min="0.1" max="3" step="0.1" value="1">
+            </div>
+            <div class="slider-labels">
+              <span>Sparse</span>
+              <span>Dense</span>
+            </div>
+          </div>
+          
+          <div class="control-group">
+            <label for="fontSize-slider">Font Size</label>
+            <div class="slider-container">
+              <input type="range" id="fontSize-slider" class="slider" min="4" max="24" step="1" value="12">
+            </div>
+            <div class="slider-labels">
+              <span>Small</span>
+              <span>Large</span>
+            </div>
+          </div>
+          
+          <div class="control-group">
+            <label for="maxRotation-slider">Max Rotation Deviation</label>
+            <div class="slider-container">
+              <input type="range" id="maxRotation-slider" class="slider" min="0" max="45" step="5" value="20">
+            </div>
+            <div class="slider-labels">
+              <span>Aligned</span>
+              <span>Random</span>
+            </div>
+          </div>
+          
+          <div class="control-group">
+            <label for="edgeInfluence-slider">Edge Following Strength</label>
+            <div class="slider-container">
+              <input type="range" id="edgeInfluence-slider" class="slider" min="0" max="1" step="0.1" value="0.7">
+            </div>
+            <div class="slider-labels">
+              <span>Weak</span>
+              <span>Strong</span>
+            </div>
+          </div>
+          
+          <div class="control-group">
+            <label for="edge-threshold-slider">Edge Threshold</label>
+            <div class="slider-container">
+              <input type="range" id="edge-threshold-slider" class="slider" min="10" max="100" step="5" value="40">
+            </div>
+            <div class="slider-labels">
+              <span>Sensitive</span>
+              <span>Strong Edges</span>
+            </div>
+          </div>
+          
+          <div class="control-group">
+            <label for="characters-input">Characters</label>
+            <input type="text" id="characters-input" value="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz">
+          </div>
+          
+          <div class="control-group">
+            <div class="checkbox-container">
+              <input type="checkbox" id="color-checkbox" checked>
+              <label for="color-checkbox">Use Color</label>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <div class="checkbox-container">
+              <input type="checkbox" id="randomPosition-checkbox" checked>
+              <label for="randomPosition-checkbox">Random Positioning</label>
+            </div>
+          </div>
+        </div>
+        
+        <div id="progress-container">
+          <div id="progress-bar"></div>
+        </div>
+        
+        <div class="button-row">
+          <button id="generate-button" disabled>
+            🔄 Generate
+          </button>
+          <button id="download-button" disabled>
+            💾 Download
+          </button>
+        </div>
+      </div>
+      
+      <!-- Result Panel -->
+      <div class="result-panel">
+        <div class="result-container">
+          <div class="result-view" id="result-view">
+            Upload an image to see the result
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+  
+  <!-- Hidden canvases -->
+  <canvas id="source-canvas"></canvas>
+  <canvas id="edge-canvas"></canvas>
+  <canvas id="result-canvas"></canvas>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // DOM Elements
+      const uploadArea = document.getElementById('upload-area');
+      const imageUpload = document.getElementById('image-upload');
+      const resultView = document.getElementById('result-view');
+      const generateButton = document.getElementById('generate-button');
+      const downloadButton = document.getElementById('download-button');
+      const toggleSettingsButton = document.getElementById('toggle-settings');
+      const settingsPanel = document.getElementById('settings-panel');
+      const sourceCanvas = document.getElementById('source-canvas');
+      const edgeCanvas = document.getElementById('edge-canvas');
+      const resultCanvas = document.getElementById('result-canvas');
+      const progressContainer = document.getElementById('progress-container');
+      const progressBar = document.getElementById('progress-bar');
+      
+      // Setting controls
+      const densitySlider = document.getElementById('density-slider');
+      const fontSizeSlider = document.getElementById('fontSize-slider');
+      const maxRotationSlider = document.getElementById('maxRotation-slider');
+      const edgeInfluenceSlider = document.getElementById('edgeInfluence-slider');
+      const edgeThresholdSlider = document.getElementById('edge-threshold-slider');
+      const charactersInput = document.getElementById('characters-input');
+      const colorCheckbox = document.getElementById('color-checkbox');
+      const randomPositionCheckbox = document.getElementById('randomPosition-checkbox');
+      
+      // State
+      let originalImage = null;
+      let resultImage = null;
+      let edgeData = null;
+      let gradientData = null;
+      
+      // Event Listeners
+      uploadArea.addEventListener('click', () => imageUpload.click());
+      
+      imageUpload.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = (event) => {
+            const img = new Image();
+            img.onload = () => {
+              originalImage = img;
+              generateButton.disabled = false;
+              generateAlphabetArt();
+            };
+            img.src = event.target.result;
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+      
+      generateButton.addEventListener('click', generateAlphabetArt);
+      
+      downloadButton.addEventListener('click', () => {
+        if (resultImage) {
+          const link = document.createElement('a');
+          link.href = resultImage;
+          link.download = 'alphabet-art.png';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        }
+      });
+      
+      toggleSettingsButton.addEventListener('click', () => {
+        settingsPanel.classList.toggle('show');
+        toggleSettingsButton.textContent = settingsPanel.classList.contains('show') 
+          ? '⚙️ Hide Settings' 
+          : '⚙️ Show Settings';
+      });
+      
+      // Edge detection functions
+      function detectEdges(imageData, threshold = 40) {
+        const width = imageData.width;
+        const height = imageData.height;
+        const pixels = imageData.data;
+        const edges = new Uint8ClampedArray(width * height);
+        const gradients = new Array(width * height);
+        
+        // Calculate gradient directions and strengths
+        for (let y = 1; y < height - 1; y++) {
+          for (let x = 1; x < width - 1; x++) {
+            const pos = (y * width + x) * 4;
+            
+            // Calculate gradient using Sobel operator
+            // Horizontal gradient
+            const gx = (
+              -1 * getBrightness(pixels, pos - 4 - width * 4) +
+              -2 * getBrightness(pixels, pos - 4) +
+              -1 * getBrightness(pixels, pos - 4 + width * 4) +
+              1 * getBrightness(pixels, pos + 4 - width * 4) +
+              2 * getBrightness(pixels, pos + 4) +
+              1 * getBrightness(pixels, pos + 4 + width * 4)
+            );
+            
+            // Vertical gradient
+            const gy = (
+              -1 * getBrightness(pixels, pos - 4 - width * 4) +
+              -2 * getBrightness(pixels, pos - width * 4) +
+              -1 * getBrightness(pixels, pos + 4 - width * 4) +
+              1 * getBrightness(pixels, pos - 4 + width * 4) +
+              2 * getBrightness(pixels, pos + width * 4) +
+              1 * getBrightness(pixels, pos + 4 + width * 4)
+            );
+            
+            // Gradient magnitude
+            const magnitude = Math.sqrt(gx * gx + gy * gy);
+            
+            // Gradient direction (perpendicular to edge)
+            const angle = Math.atan2(gy, gx);
+            
+            // Store edge information
+            const i = y * width + x;
+            edges[i] = magnitude > threshold ? 255 : 0;
+            gradients[i] = { magnitude, angle };
+          }
+        }
+        
+        return { edges, gradients, width, height };
+      }
+      
+      function getBrightness(pixels, pos) {
+        // Get brightness of pixel at position
+        if (pos < 0 || pos >= pixels.length) return 0;
+        return (pixels[pos] + pixels[pos + 1] + pixels[pos + 2]) / 3;
+      }
+      
+      // Draw alphabet art
+      function generateAlphabetArt() {
+        if (!originalImage) return;
+        
+        // Show progress
+        progressContainer.style.display = 'block';
+        progressBar.style.width = '10%';
+        
+        // Get settings
+        const density = parseFloat(densitySlider.value);
+        const fontSize = parseFloat(fontSizeSlider.value);
+        const maxRotation = parseFloat(maxRotationSlider.value);
+        const edgeInfluence = parseFloat(edgeInfluenceSlider.value);
+        const edgeThreshold = parseFloat(edgeThresholdSlider.value);
+        const characters = charactersInput.value || 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const useColor = colorCheckbox.checked;
+        const useRandomPositioning = randomPositionCheckbox.checked;
+        
+        // Setup source canvas
+        const ctx = sourceCanvas.getContext('2d');
+        const MAX_DIMENSION = 1000;
+        
+        // Scale the image to fit within maximum dimensions
+        const scale = Math.min(
+          MAX_DIMENSION / originalImage.width,
+          MAX_DIMENSION / originalImage.height
+        );
+        
+        const scaledWidth = Math.floor(originalImage.width * scale);
+        const scaledHeight = Math.floor(originalImage.height * scale);
+        
+        sourceCanvas.width = scaledWidth;
+        sourceCanvas.height = scaledHeight;
+        
+        // Draw original image
+        ctx.clearRect(0, 0, scaledWidth, scaledHeight);
+        ctx.drawImage(originalImage, 0, 0, scaledWidth, scaledHeight);
+        
+        // Get image data
+        const imageData = ctx.getImageData(0, 0, scaledWidth, scaledHeight);
+        
+        // Detect edges
+        progressBar.style.width = '20%';
+        const edgeResult = detectEdges(imageData, edgeThreshold);
+        edgeData = edgeResult.edges;
+        gradientData = edgeResult.gradients;
+        
+        // Setup edge visualization (debugging)
+        const edgeCtx = edgeCanvas.getContext('2d');
+        edgeCanvas.width = scaledWidth;
+        edgeCanvas.height = scaledHeight;
+        const edgeImageData = edgeCtx.createImageData(scaledWidth, scaledHeight);
+        for (let i = 0; i < edgeData.length; i++) {
+          const pos = i * 4;
+          const edgeValue = edgeData[i];
+          edgeImageData.data[pos] = edgeValue;
+          edgeImageData.data[pos + 1] = edgeValue;
+          edgeImageData.data[pos + 2] = edgeValue;
+          edgeImageData.data[pos + 3] = 255;
+        }
+        edgeCtx.putImageData(edgeImageData, 0, 0);
+        
+        // Setup result canvas
+        const resultCtx = resultCanvas.getContext('2d');
+        resultCanvas.width = scaledWidth;
+        resultCanvas.height = scaledHeight;
+        resultCtx.clearRect(0, 0, scaledWidth, scaledHeight);
+        resultCtx.fillStyle = 'white';
+        resultCtx.fillRect(0, 0, scaledWidth, scaledHeight);
+        
+        progressBar.style.width = '30%';
+        
+        // Calculate sampling step based on density
+        const step = Math.max(2, Math.floor(16 / density));
+        
+        // Number of points to process
+        const totalPoints = Math.ceil((scaledWidth / step) * (scaledHeight / step));
+        let processedPoints = 0;
+        
+        // Use a batch processing approach to keep UI responsive
+        function processBatch(startY) {
+          const batchSize = 10; // Number of rows to process per batch
+          const endY = Math.min(startY + batchSize, scaledHeight);
+          
+          for (let y = startY; y < endY; y += step) {
+            for (let x = 0; x < scaledWidth; x += step) {
+              const i = y * scaledWidth + x;
+              const pixelPos = i * 4;
+              
+              // Skip pixels with transparency or very light pixels
+              if (imageData.data[pixelPos + 3] < 128) continue;
+              
+              const brightness = (
+                imageData.data[pixelPos] +
+                imageData.data[pixelPos + 1] +
+                imageData.data[pixelPos + 2]
+              ) / 3;
+              
+              // Skip very bright pixels (white areas)
+              if (brightness > 240) continue;
+              
+              // Get a random letter
+              const letter = characters.charAt(Math.floor(Math.random() * characters.length));
+              
+              // Get gradient information for this pixel
+              let rotation = 0;
+              let magnitude = 0;
+              
+              if (i < gradientData.length && gradientData[i]) {
+                magnitude = gradientData[i].magnitude;
+                // Get angle perpendicular to the edge (for text to follow the edge)
+                rotation = gradientData[i].angle * (180 / Math.PI) + 90;
+              }
+              
+              // Apply edge detection logic only if edge influence > 0
+              let finalRotation = 0;
+              if (edgeInfluence > 0 && magnitude > 0) {
+                // If it's near an edge, align with the edge
+                // Otherwise, apply random rotation
+                const randomRotationComponent = (Math.random() * 2 - 1) * maxRotation;
+                
+                // Higher magnitude = follow edge more closely
+                const edgeWeight = Math.min(1, magnitude / 255 * edgeInfluence);
+                
+                // Mix edge-based rotation with random rotation
+                finalRotation = rotation * edgeWeight + randomRotationComponent * (1 - edgeWeight);
+              } else {
+                // No edge influence, just use random rotation
+                finalRotation = (Math.random() * 2 - 1) * maxRotation;
+              }
+              
+              // Random position variation around the base point
+              let posX = x;
+              let posY = y;
+              
+              if (useRandomPositioning) {
+                // Make darker areas have more random position to create denser clusters
+                const randomFactor = (255 - brightness) / 255 * step * 0.8;
+                posX += (Math.random() * 2 - 1) * randomFactor;
+                posY += (Math.random() * 2 - 1) * randomFactor;
+              }
+              
+              // Size variation based on brightness
+              // Darker areas get larger letters
+              const sizeFactor = 1 - brightness / 255 * 0.6;
+              const letterSize = fontSize * sizeFactor;
+              
+              // Set the font and draw the letter
+              resultCtx.save();
+              resultCtx.translate(posX, posY);
+              resultCtx.rotate(finalRotation * Math.PI / 180);
+              resultCtx.font = `${letterSize}px Arial`;
+              resultCtx.textAlign = 'center';
+              resultCtx.textBaseline = 'middle';
+              
+              if (useColor) {
+                resultCtx.fillStyle = `rgb(${
+                  imageData.data[pixelPos]}, ${
+                  imageData.data[pixelPos + 1]}, ${
+                  imageData.data[pixelPos + 2]})`;
+              } else {
+                // Grayscale based on brightness
+                const grayValue = Math.floor(255 - brightness);
+                resultCtx.fillStyle = `rgb(${grayValue}, ${grayValue}, ${grayValue})`;
+              }
+              
+              resultCtx.fillText(letter, 0, 0);
+              resultCtx.restore();
+              
+              processedPoints++;
+            }
+          }
+          
+          // Update progress
+          const progress = 30 + Math.min(70, (processedPoints / totalPoints) * 70);
+          progressBar.style.width = `${progress}%`;
+          
+          // Continue with next batch or finish
+          if (endY < scaledHeight) {
+            setTimeout(() => processBatch(endY), 0);
+          } else {
+            finalizeResult();
+          }
+        }
+        
+        // Start batch processing
+        processBatch(0);
+        
+        function finalizeResult() {
+          // Set result image
+          resultImage = resultCanvas.toDataURL('image/png');
+          
+          // Display result
+          const img = new Image();
+          img.onload = () => {
+            resultView.innerHTML = '';
+            resultView.appendChild(img);
+            downloadButton.disabled = false;
+            progressContainer.style.display = 'none';
+          };
+          img.src = resultImage;
+          img.style.width = '100%';
+          img.style.height = 'auto';
+        }
+      }
+      
+      // Initialize settings panel
+      settingsPanel.classList.add('show');
+      toggleSettingsButton.textContent = '⚙️ Hide Settings';
+    });
+  </script>
 </body>
 </html>

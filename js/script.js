@@ -1,601 +1,530 @@
 // scripts.js
 
-// Constants and Variables
-const categoriesButton = document.getElementById("categoriesButton");
-const dropdownContent = document.getElementById("dropdownContent");
-const triangle = document.getElementById("triangle");
-const listViewBtn = document.getElementById("listViewBtn");
-const gridViewBtn = document.getElementById("gridViewBtn");
+import { googleFontsLoader } from './modules/google-fonts-loader.js';
+import { initDebugTools } from "./debug-tools.js";
+// Simplify constants
 const fontContainer = document.getElementById("font-container");
 const searchInput = document.querySelector('input[placeholder="Search"]');
 const masterSlider = document.querySelector(".master-slider");
-const fontsPerPage = 20;
-let currentFontIndex = 0;
-let fontsData = [];
-const googleFontsAPI =
-  "https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyBJr2Qgi8BBZ0eAMid_JNP96o7Pp328cYY";
+const sliderValue = document.getElementById("sliderValue");
+let isUpdating = false;
+
+// Keep essential categories
+const categories = ['all', 'serif', 'sans-serif', 'display', 'handwriting', 'monospace'];
+let currentCategory = 'all';
+
+let currentState = {
+    category: 'all',
+    page: 0,
+    hasMore: true,
+    totalFonts: 0,
+    masterFontSize: 96,
+    searchTerm: '',
+    viewMode: 'list',     // Add these
+    textAlign: 'left'     // new properties
+};
 
 // Event Listeners
 document.addEventListener("DOMContentLoaded", initApp);
 
-// Functions
 async function initApp() {
-  fontsData = await fetchLocalFontsData();
-  loadFonts(fontsData.items.slice(0, fontsPerPage));
-  displayFonts(fontsData.items.slice(0, fontsPerPage));
-  currentFontIndex += fontsPerPage;
-  setupEventListeners();
-  setupIntersectionObserver();
-}
-
-// Function to setup Intersection Observer
-function setupIntersectionObserver() {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      if (entries[0].isIntersecting) {
-        loadMoreFonts();
-      }
-    },
-    {
-      root: null,
-      rootMargin: "0px",
-      threshold: 1.0,
+    try {
+        await googleFontsLoader.init('fonts.json');
+        
+        // Set initial view mode class
+        fontContainer.classList.add(`${currentState.viewMode}-view`);
+        updateViewButtonStates();
+        updateAlignButtonStates(currentState.textAlign);
+        
+        await loadAndDisplayFonts(true);
+        setupEventListeners();
+        setupIntersectionObserver();
+        initDebugTools();
+    } catch (error) {
+        console.error("Failed to initialize app:", error);
+        fontContainer.innerHTML = '<div class="text-center text-red-400">Failed to load fonts</div>';
     }
-  );
-
-  observer.observe(document.querySelector("#load-more-trigger"));
 }
 
-function loadMoreFonts() {
-  const nextFonts = fontsData.items.slice(
-    currentFontIndex,
-    currentFontIndex + fontsPerPage
-  );
-  loadFonts(nextFonts);
-  displayFonts(nextFonts);
-  currentFontIndex += fontsPerPage;
-}
-// Function to load fonts using Web Font Loader
-function loadFonts(fontData) {
-  const families = fontData.map((data) => {
-    const weights = data.variants
-      .map((variant) => {
-        if (variant === "regular") return "400";
-        if (variant === "italic") return "400italic";
-        return variant.includes("italic")
-          ? `${variant.replace("italic", "")}italic`
-          : variant;
-      })
-      .join(",");
-    return `${data.family}:${weights}`;
-  });
-
-  WebFont.load({
-    google: {
-      families: families,
-    },
-    fontactive: function (familyName, fvd) {
-      console.log(`Font ${familyName} with variant ${fvd} has loaded.`);
-    },
-    fontinactive: function (familyName, fvd) {
-      console.log(`Font ${familyName} with variant ${fvd} failed to load.`);
-    },
-  });
-}
-
-// Load font data from the local JSON file
-async function fetchLocalFontsData() {
-  const response = await fetch("fonts.json");
-  return await response.json();
-}
-
-function createFontDataMap(fontsData) {
-  return fontNames.reduce((acc, fontName) => {
-    const fontDetails = fontsData.items.find(
-      (item) => item.family === fontName
-    );
-    if (!fontDetails) {
-      console.log(`Font details not found for: ${fontName}`);
+async function loadAndDisplayFonts(reset = false) {
+    if (reset) {
+        currentState.page = 0;
+        fontContainer.innerHTML = '';
     }
-    if (fontDetails) {
-      console.log(`Font details found for: ${fontName}`);
-      const weights = [
-        ...new Set(
-          fontDetails.variants
-            .map((variant) =>
-              parseInt(variant.replace("italic", "").replace("regular", "400"))
-            )
-            .filter((weight) => !isNaN(weight))
-        ),
-      ].sort((a, b) => a - b);
 
-      acc[fontName] = {
-        details: fontDetails,
-        weights: weights,
-        minWeight: weights[0],
-        maxWeight: weights[weights.length - 1],
-      };
-      console.log(acc);
+    try {
+        let result;
+        
+        if (currentState.searchTerm) {
+            result = await googleFontsLoader.searchFonts(currentState.searchTerm, currentState.page);
+        } else {
+            result = currentState.category === 'all'
+                ? await googleFontsLoader.getFontInfoBatch(currentState.page)
+                : await googleFontsLoader.getFontsByCategory(currentState.category, currentState.page);
+        }
+
+        // Update total count regardless of whether fonts were found
+        currentState.totalFonts = result.totalFonts;
+        const totalEntry = document.querySelector('.total-entry');
+        if (totalEntry) {
+            totalEntry.textContent = `${result.totalFonts} Total`;
+        }
+
+        if (result.fonts.length > 0) {
+            displayFonts(result.fonts, !reset);
+            currentState.hasMore = result.hasMore;
+            currentState.page++;
+        } else if (reset) {
+            fontContainer.innerHTML = '<div class="text-center text-gray-400">No fonts found</div>';
+            currentState.hasMore = false;
+        }
+    } catch (error) {
+        console.error('Error loading fonts:', error);
     }
-    return acc;
-  }, {});
-}
-
-function displayFonts(fontData) {
-  const fragment = document.createDocumentFragment();
-  fontData.forEach((font) => {
-    const card = createFontCard(font);
-    fragment.appendChild(card);
-  });
-  fontContainer.appendChild(fragment);
 }
 
 function createFontCard(fontData) {
-  const card = document.createElement("div");
-  card.classList.add(
-    "card",
-    "bg",
-    "p-6",
-    "border",
-    "border-[#4F4F4F]",
-    "hover:border-[#FFF9F9]",
-    "transition-colors",
-    "duration-300",
-    "ease-in-out",
-    "shadow-lg",
-    "mb-6",
-    "relative"
-  );
+    const card = document.createElement("div");
+    card.classList.add("card", "bg", "border", "border-[#4F4F4F]", "hover:border-[#FFF9F9]",
+        "transition-colors", "duration-300", "ease-in-out", "shadow-lg", "mb-6", "relative");
 
-  const name = document.createElement("h3");
-  name.innerText = fontData.family;
-  name.classList.add("text-sm", "text-white");
+    // Update the slider input value to match master
+    const sliderHtml = `<input type="range" min="12" max="210" value="${currentState.masterFontSize}" class="slider">`;
+    
+    // Update the initial font size to match master
+    const sampleStyle = `font-family: '${fontData.family}', sans-serif; 
+                        font-size: ${currentState.masterFontSize}px; 
+                        line-height: ${currentState.masterFontSize * 1.4}px;
+                        text-align: ${currentState.textAlign};`;
 
-  // Create an anchor element
-  const link = document.createElement("a");
-  link.href = `glyph.html?font=${encodeURIComponent(fontData.family)}`;
-  link.appendChild(name);
+    card.innerHTML = `
+        <div class="flex justify-between items-center w-full card-header">
+            <div class="flex items-center gap-2">
+                <a href="glyph.html?font=${encodeURIComponent(fontData.family)}">
+                    <h3 class="text-sm text-white">${fontData.family}</h3>
+                </a>
+                <div class="text-xs text-[#9C9C9C] px-2 py-1 border border-[#4F4F4F] rounded-full ml-2">
+                    ${fontData.category || 'unknown'}
+                </div>
+            </div>
+            <p class="text-sm text-gray-400 styles-count">${fontData.variants.length} styles</p>
+        </div>
+        
+        <div class="flex items-center gap-2 controls-container mt-2">
+            ${sliderHtml}
+            ${createVariantDropdownHTML(fontData.variants)}
+        </div>
+        
+        <div class="card-sample-container">
+            <p class="card-sample text-8xl outline-none" 
+               contenteditable="true" 
+               style="${sampleStyle}">
+                ${fontData.family}
+            </p>
+            <div class="font-size-indicator" style="position: absolute; right: 10px; top: 10px; 
+                 background-color: rgba(0,0,0,0.7); color: white; padding: 3px 6px; 
+                 border-radius: 3px; font-size: 12px; opacity: 0; transition: opacity 0.2s ease">
+                96px
+            </div>
+        </div>
+        
+        <div class="justify-between items-center w-full absolute bottom-2 left-2 card-footer">
+            <p class="text-sm text-gray-400">${Math.random() > 0.5 ? "Open source" : "Closed source"}</p>
+            <p class="text-sm text-gray-400">Designed by ${fontData.designer || 'Unknown'}</p>
+        </div>
+    `;
 
-  const stylesCount = document.createElement("p");
-  stylesCount.innerText = `${fontData.variants.length} styles`;
-  stylesCount.classList.add("text-sm", "text-gray-400");
-
-  // Create the slider
-  const weightSlider = document.createElement("input");
-  weightSlider.type = "range";
-  weightSlider.min = 12;
-  weightSlider.max = 210;
-  weightSlider.value = 96;
-  weightSlider.classList.add("slider", "self-start");
-
-  const variantDropdown = createVariantDropdown(fontData.variants, card);
-  variantDropdown.querySelector("div").addEventListener("change", (e) => {
-    const selectedVariant = e.target.value;
-    const button = variantDropdown.querySelector("button");
-    const buttonText = button.querySelector("span:first-child");
-    buttonText.textContent = translateWeightToName(selectedVariant);
-    if (selectedVariant === "regular") {
-      sample.style.fontWeight = "400";
-      sample.style.fontStyle = "normal";
-      return;
-    }
-    sample.style.fontWeight = selectedVariant.replace("italic", "") || "400";
-    sample.style.fontStyle = selectedVariant.includes("italic")
-      ? "italic"
-      : "normal";
-  });
-
-  let isDragging = false;
-
-  weightSlider.addEventListener("input", (e) => {
-    const rawValue = parseInt(e.target.value);
-    const percent = (rawValue / 210) * 100 - 2;
-    weightSlider.style.setProperty("--split-percent", `${percent}%`);
-    sample.style.fontSize = `${rawValue}px`;
-    sample.style.lineHeight = `${rawValue * 1.4}px`;
-  });
-
-  weightSlider.addEventListener("mouseenter", () => {
-    weightSlider.style.setProperty("--grey-opacity", "1");
-  });
-
-  weightSlider.addEventListener("mouseleave", () => {
-    if (!isDragging) {
-      weightSlider.style.setProperty("--grey-opacity", "0");
-    }
-  });
-
-  weightSlider.addEventListener("mousedown", () => {
-    isDragging = true;
-    weightSlider.style.setProperty("--grey-opacity", "1");
-  });
-
-  document.addEventListener("mouseup", () => {
-    if (isDragging) {
-      isDragging = false;
-      weightSlider.style.setProperty("--grey-opacity", "0");
-    }
-  });
-
-  const sampleContainer = document.createElement("div");
-  sampleContainer.classList.add("card-sample-container");
-
-  const sample = document.createElement("p");
-  sample.innerText = fontData.family;
-  sample.style.fontFamily = `'${fontData.family}', sans-serif`;
-  sample.classList.add("card-sample", "text-8xl", "mt-4", "mb-4", "outline-none");
-  sample.contentEditable = true;
-
-  sampleContainer.appendChild(sample);
-
-  const sourceType = document.createElement("p");
-  sourceType.innerText = Math.random() > 0.5 ? "Open source" : "Closed source";
-  sourceType.classList.add("text-sm", "text-gray-400");
-
-  const designer = document.createElement("p");
-  designer.innerText = `Designed by ${fontData.designer}`;
-  designer.classList.add("text-sm", "text-gray-400");
-
-  // Create a nested flex container for the link, slider, and variant dropdown
-  const linkContainer = document.createElement("div");
-  linkContainer.classList.add("flex", "items-center", "space-x-4");
-  linkContainer.appendChild(link);
-  linkContainer.appendChild(weightSlider);
-  linkContainer.appendChild(variantDropdown);
-
-  const topContainer = document.createElement("div");
-  topContainer.classList.add("flex", "justify-between", "items-center", "w-full");
-  topContainer.appendChild(linkContainer);
-  topContainer.appendChild(stylesCount);
-
-  const bottomContainer = document.createElement("div");
-  bottomContainer.classList.add("justify-between", "items-center", "w-full", "absolute", "bottom-2", "left-2");
-  bottomContainer.appendChild(sourceType);
-  bottomContainer.appendChild(designer);
-
-  card.appendChild(topContainer);
-  card.appendChild(sampleContainer);
-  card.appendChild(bottomContainer);
-
-  return card;
+    setupCardInteractions(card, fontData);
+    return card;
 }
 
-function createVariantDropdown(variants, card) {
-  const dropdown = document.createElement("div");
-  dropdown.className = "relative max-w-48 variantDropdown";
+function createVariantDropdownHTML(variants) {
+    // Generate a unique ID for this card's radio group
+    const radioGroupName = `variant-${Math.random().toString(36).substr(2, 9)}`;
+    
+    const options = variants.map(variant => 
+        `<label class="block px-2 py-2 text-sm">
+            <input type="radio" name="${radioGroupName}" 
+                   value="${variant}" ${variant === 'regular' ? 'checked' : ''}>
+            ${googleFontsLoader.translateWeightToName(variant)}
+        </label>`
+    ).join('');
 
-  const button = document.createElement("button");
-  button.type = "button";
-  button.className =
-    "relative z-40 bg-[#040A10] text-white py-2 px-4 transition-all duration-200 flex items-center gap-2 dropdown-button opacity-0";
-  button.innerHTML = `<span>${translateWeightToName(
-    "regular"
-  )}</span><span class="ml-1 text-xl dd-triangle">▾</span>`;
-
-  const triangle = button.querySelector(".dd-triangle");
-
-  const dropdownContent = document.createElement("div");
-  dropdownContent.className = `
-    py-1 absolute -left-2 pl-2
-    transition-all duration-200 ease-in-out 
-    opacity-0 -translate-y-1 invisible 
-    bg-[#040A10] w-full z-20
-    max-h-64 overflow-hidden top-full -mt-12 ml-1 dropdown-content
-  `;
-
-  const contentWrapper = document.createElement("div");
-  contentWrapper.className = "dropdown-content-wrapper custom-scrollbar";
-  contentWrapper.style.marginTop = "70px";
-  contentWrapper.style.maxHeight = "150px";
-  contentWrapper.style.overflowY = "auto";
-
-  const randomId = `variant-${Math.random().toString(36).substring(2, 10)}`;
-  variants.forEach((variant) => {
-    const label = document.createElement("label");
-    label.className = "block px-2 py-2 text-sm";
-    const input = document.createElement("input");
-    input.type = "radio";
-    input.name = randomId;
-    input.value = variant;
-
-    if (variant === "regular") {
-      input.checked = true;
-    }
-
-    const labelText = document.createTextNode(
-      ` ${translateWeightToName(variant)}`
-    );
-
-    label.appendChild(input);
-    label.appendChild(labelText);
-    contentWrapper.appendChild(label);
-  });
-
-  dropdownContent.appendChild(contentWrapper);
-
-  let isDropdownVisible = false;
-  let wasDropdownVisible = false;
-
-  dropdown.appendChild(button);
-  dropdown.appendChild(dropdownContent);
-
-  function updateDropdownState(visible) {
-    isDropdownVisible = visible;
-    if (visible) {
-      dropdownContent.classList.add(
-        "opacity-100",
-        "visible",
-        "border",
-        "border-[#4F4F4F]"
-      );
-      dropdownContent.classList.remove("opacity-0", "invisible");
-      button.classList.add("text-white");
-      triangle.classList.add("rotate-triangle");
-    } else {
-      dropdownContent.classList.remove(
-        "opacity-100",
-        "visible",
-        "border",
-        "border-[#4F4F4F]"
-      );
-      dropdownContent.classList.add("opacity-0", "invisible");
-      button.classList.remove("text-white");
-      triangle.classList.remove("rotate-triangle");
-    }
-  }
-
-  button.addEventListener("click", (e) => {
-    e.stopPropagation();
-    updateDropdownState(!isDropdownVisible);
-    wasDropdownVisible = !wasDropdownVisible;
-  });
-
-  document.addEventListener("click", (event) => {
-    if (!dropdown.contains(event.target)) {
-      updateDropdownState(false);
-      wasDropdownVisible = false;
-    }
-  });
-
-  card.addEventListener("mouseenter", () => {
-    if (wasDropdownVisible) {
-      updateDropdownState(true);
-    }
-  });
-
-  card.addEventListener("mouseleave", () => {
-    if (isDropdownVisible) {
-      updateDropdownState(false);
-    }
-  });
-
-  return dropdown;
+    return `
+        <div class="relative variantDropdown">
+            <button type="button" class="dropdown-button relative z-40 text-white 
+                    transition-all duration-200 flex items-center gap-2 opacity-0">
+                <span>${googleFontsLoader.translateWeightToName("regular")}</span>
+                <span class="ml-1 text-xl dd-triangle">▾</span>
+            </button>
+            <div class="absolute pl-2 transition-all duration-200 ease-in-out 
+                        opacity-0 invisible w-full z-20 overflow-hidden dropdown-content">
+                <div class="dropdown-content-wrapper overflow-y-auto" 
+                     style="margin-top: 40px; max-height: 150px;">
+                    <div class="pr-2">
+                        ${options}
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
 }
 
-  const weightNames = {
-    100: "Thin",
-    200: "Extra Light",
-    300: "Light",
-    400: "Regular",
-    500: "Medium",
-    600: "Semi Bold",
-    700: "Bold",
-    800: "Extra Bold",
-    900: "Black",
-  };
+function setupCardInteractions(card, fontData) {
+    const sample = card.querySelector('.card-sample');
+    const slider = card.querySelector('.slider');
+    const indicator = card.querySelector('.font-size-indicator');
+    const variantDropdown = card.querySelector('.variantDropdown');
+    
+    // Add card hover handlers
+    card.addEventListener('mouseenter', () => {
+        // Only restore if dropdown was in open state
+        if (variantDropdown.classList.contains('dropdown-open')) {
+            showDropdownContent(variantDropdown);
+        }
+    });
 
-export function translateWeightToName(weight) {
+    card.addEventListener('mouseleave', () => {
+        // Hide content but maintain open state
+        hideDropdownContent(variantDropdown);
+    });
 
+    slider.addEventListener('input', (e) => {
+        const size = parseInt(e.target.value);
+        updateSampleSize(sample, size);
+        updateSliderVisual(slider, size);
+        showSizeIndicator(indicator, size);
+    });
 
-  if (weight === "regular") return "Regular";
-  if (weight === "italic") return "Italic";
+    setupVariantDropdown(variantDropdown, sample);
+}
 
-  if (weightNames[weight]) return weightNames[weight];
+// Add these new helper functions
+function showDropdownContent(dropdown) {
+    const button = dropdown.querySelector('.dropdown-button');
+    const dropdownContent = dropdown.querySelector('.dropdown-content');
+    const triangle = button.querySelector('.dd-triangle');
+    
+    button.style.backgroundColor = "transparent";
+    dropdownContent.classList.add("opacity-100", "visible", "border", "border-[#4F4F4F]");
+    dropdownContent.classList.remove("opacity-0", "invisible");
+    triangle.classList.add("rotate-triangle");
+}
 
-  const weightWithoutItalic = weight.replace("italic", "");
-  if (weightWithoutItalic && weightNames[weightWithoutItalic]) {
-    return weightNames[weightWithoutItalic] + " Italic";
-  }
+function hideDropdownContent(dropdown) {
+    const button = dropdown.querySelector('.dropdown-button');
+    const dropdownContent = dropdown.querySelector('.dropdown-content');
+    const triangle = button.querySelector('.dd-triangle');
+    
+    button.style.backgroundColor = "";
+    dropdownContent.classList.remove("opacity-100", "visible", "border", "border-[#4F4F4F]");
+    dropdownContent.classList.add("opacity-0", "invisible");
+    triangle.classList.remove("rotate-triangle");
+}
 
-  return weight;
+function setupVariantDropdown(variantDropdown, sample) {
+    let isDropdownVisible = false;
+    const button = variantDropdown.querySelector('.dropdown-button');
+    const dropdownContent = variantDropdown.querySelector('.dropdown-content');
+
+    button.addEventListener("click", (e) => {
+        e.stopPropagation();
+        isDropdownVisible = !isDropdownVisible;
+        
+        if (isDropdownVisible) {
+            variantDropdown.classList.add("dropdown-open");
+            showDropdownContent(variantDropdown);
+        } else {
+            variantDropdown.classList.remove("dropdown-open");
+            hideDropdownContent(variantDropdown);
+        }
+    });
+
+    document.addEventListener("click", (e) => {
+        if (isDropdownVisible && !variantDropdown.contains(e.target)) {
+            isDropdownVisible = false;
+            variantDropdown.classList.remove("dropdown-open");
+            hideDropdownContent(variantDropdown);
+        }
+    });
+
+    variantDropdown.addEventListener("change", (e) => {
+        if (!e.target.matches('input[type="radio"]')) return;
+        
+        const selectedVariant = e.target.value;
+        const buttonText = variantDropdown.querySelector("button span:first-child");
+        buttonText.textContent = googleFontsLoader.translateWeightToName(selectedVariant);
+        
+        if (selectedVariant === "regular") {
+            sample.style.fontWeight = "400";
+            sample.style.fontStyle = "normal";
+        } else {
+            sample.style.fontWeight = selectedVariant.replace("italic", "") || "400";
+            sample.style.fontStyle = selectedVariant.includes("italic") ? "italic" : "normal";
+        }
+    });
 }
 
 function setupEventListeners() {
-  searchInput.addEventListener("input", (e) => {
-    const searchTerm = e.target.value.toLowerCase();
-    const filteredFonts = fontsData.items.filter((font) =>
-      font.family.toLowerCase().startsWith(searchTerm)
-    );
-
-    // Reset currentFontIndex for new search results
-    currentFontIndex = 0;
-
-    // Clear existing font cards
-    fontContainer.innerHTML = "";
-
-    // Display the first 20 filtered results
-    displayFonts(filteredFonts.slice(0, fontsPerPage));
-    currentFontIndex += fontsPerPage;
-
-    // Update the Intersection Observer to load more filtered results
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          loadMoreFilteredFonts(filteredFonts);
+    // Categories filter
+    const categoriesButton = document.getElementById("categoriesButton");
+    const dropdownContent = document.getElementById("dropdownContent");
+    const triangle = document.getElementById("triangle");
+    
+    // Fix dropdown toggle
+    categoriesButton.addEventListener("click", (e) => {
+        e.stopPropagation(); // Add this to prevent immediate closing
+        const isExpanded = dropdownContent.classList.contains("visible");
+        
+        if (isExpanded) {
+            closeDropdown(dropdownContent, triangle, categoriesButton);
+        } else {
+            openDropdown(dropdownContent, triangle, categoriesButton);
         }
-      },
-      {
-        root: null,
-        rootMargin: "0px",
-        threshold: 1.0,
-      }
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener("click", (e) => {
+        if (!categoriesButton.contains(e.target) && !dropdownContent.contains(e.target)) {
+            closeDropdown(dropdownContent, triangle, categoriesButton);
+        }
+    });
+
+    // Category radio buttons
+    const categoryRadios = document.querySelectorAll('#dropdownContent input[type="radio"]');
+    categoryRadios.forEach(radio => {
+        radio.addEventListener('change', async (e) => {
+            const category = e.target.value;
+            if (currentState.category === category) return;
+            
+            // Update state and UI
+            currentState.category = category;
+            currentState.searchTerm = '';
+            
+            // Close dropdown and update UI
+            closeDropdown(dropdownContent, triangle, categoriesButton);
+            
+            // Update button text with selected category name
+            const categoryName = e.target.parentElement.textContent.trim();
+            categoriesButton.querySelector('span:first-child').textContent = 
+                category === 'all' ? 'Categories' : categoryName;
+            
+            await loadAndDisplayFonts(true);
+        });
+    });
+    
+    // Update the checked radio button based on the current category
+    function updateCategoryRadioState(category) {
+        const radio = document.querySelector(`#dropdownContent input[value="${category}"]`);
+        if (radio) radio.checked = true;
+    }
+    
+    // Initialize radio button state
+    updateCategoryRadioState(currentState.category);
+
+    // Category buttons
+    categories.forEach(category => {
+        const categoryBtn = document.getElementById(`${category}-Button`);
+        if (categoryBtn) {
+            categoryBtn.addEventListener("click", async () => {
+                if (currentState.category === category) return;
+                
+                currentState.category = category;
+                
+                // Close dropdown and update UI
+                closeDropdown(dropdownContent, triangle, categoriesButton);
+                
+                // Update button text
+                categoriesButton.querySelector('span:first-child').textContent = 
+                    category === 'all' ? 'Categories' : category.charAt(0).toUpperCase() + category.slice(1);
+                
+                await loadAndDisplayFonts(true);
+                updateCategoryButtonStates(category);
+            });
+        }
+    });
+
+    // Search functionality
+    let searchTimeout = null;
+    searchInput.addEventListener("input", (e) => {
+        const searchTerm = e.target.value.toLowerCase();
+        if (searchTimeout) clearTimeout(searchTimeout);
+        
+        searchTimeout = setTimeout(async () => {
+            // Reset category when searching
+            currentState.category = 'all';
+            currentState.searchTerm = searchTerm;
+            updateCategoryButtonStates('all');
+            
+            // Update category button text
+            const categoriesButton = document.getElementById("categoriesButton");
+            if (categoriesButton) {
+                categoriesButton.querySelector('span:first-child').textContent = 'Categories';
+            }
+            
+            await loadAndDisplayFonts(true);
+        }, 300);
+    });
+
+    // Add master slider handler
+    masterSlider.addEventListener('input', (e) => {
+        const size = parseInt(e.target.value);
+        currentState.masterFontSize = size;
+        
+        // Update display value
+        sliderValue.textContent = `${size} px`;
+        
+        // Update master slider visual
+        updateSliderVisual(masterSlider, size);
+        
+        // Update all card sliders and samples
+        document.querySelectorAll('.card').forEach(card => {
+            const sample = card.querySelector('.card-sample');
+            const slider = card.querySelector('.slider');
+            const indicator = card.querySelector('.font-size-indicator');
+            
+            if (sample && slider) {
+                slider.value = size;
+                updateSampleSize(sample, size);
+                updateSliderVisual(slider, size);
+                showSizeIndicator(indicator, size);
+            }
+        });
+    });
+
+    // View mode toggle
+    const listViewBtn = document.getElementById('listViewBtn');
+    const gridViewBtn = document.getElementById('gridViewBtn');
+
+    listViewBtn.addEventListener('click', () => {
+        if (currentState.viewMode === 'list') return;
+        currentState.viewMode = 'list';
+        fontContainer.classList.remove('grid-view');
+        fontContainer.classList.add('list-view');
+        updateViewButtonStates();
+    });
+
+    gridViewBtn.addEventListener('click', () => {
+        if (currentState.viewMode === 'grid') return;
+        currentState.viewMode = 'grid';
+        fontContainer.classList.remove('list-view');
+        fontContainer.classList.add('grid-view');
+        updateViewButtonStates();
+    });
+
+    // Text alignment buttons
+    ['Left', 'Center', 'Right'].forEach(align => {
+        const btn = document.getElementById(`align${align}Btn`);
+        if (btn) {
+            btn.addEventListener('click', () => {
+                const alignment = align.toLowerCase();
+                if (currentState.textAlign === alignment) return;
+                
+                currentState.textAlign = alignment;
+                updateTextAlignment(alignment);
+                updateAlignButtonStates(alignment);
+            });
+        }
+    });
+}
+
+function openDropdown(content, triangle, button) {
+    content.classList.add("visible", "opacity-100", "border", "border-[#4F4F4F]");
+    content.classList.remove("invisible", "opacity-0");
+    triangle.classList.add("rotate-triangle");
+    button.style.backgroundColor = "transparent";
+}
+
+function closeDropdown(content, triangle, button) {
+    content.classList.remove("visible", "opacity-100", "border", "border-[#4F4F4F]");
+    content.classList.add("invisible", "opacity-0");
+    triangle.classList.remove("rotate-triangle");
+    button.style.backgroundColor = "";
+}
+
+function displayFonts(fonts, append = false) {
+    if (!Array.isArray(fonts) || fonts.length === 0) return;
+
+    const fragment = document.createDocumentFragment();
+    fonts.forEach(font => {
+        try {
+            const card = createFontCard(font);
+            fragment.appendChild(card);
+        } catch (error) {
+            console.error(`Error creating card for ${font.family}:`, error);
+        }
+    });
+
+    if (!append) {
+        fontContainer.innerHTML = '';
+    }
+    fontContainer.appendChild(fragment);
+}
+
+function setupIntersectionObserver() {
+    const observer = new IntersectionObserver(
+        (entries) => {
+            if (entries[0].isIntersecting && currentState.hasMore) {
+                loadAndDisplayFonts(false);
+            }
+        },
+        { rootMargin: "200px" }
     );
 
-    observer.observe(document.querySelector("#load-more-trigger"));
-  });
-
-  const masterSlider = document.querySelector(".master-slider");
-  const sliderValue = document.getElementById("sliderValue");
-
-  let isDragging = false;
-  let animationFrameId = null;
-
-  masterSlider.addEventListener("input", (e) => {
-    const rawValue = parseInt(e.target.value);
-    const percent = ((rawValue - 12) / (210 - 12)) * 100; // Adjust the range to 12-100
-    masterSlider.style.setProperty("--split-percent", `${percent}%`);
-    sliderValue.textContent = rawValue + " px";
-
-    if (!isDragging) {
-      isDragging = true;
-      updateSamples(rawValue);
-    }
-  });
-
-  function updateSamples(rawValue) {
-    if (animationFrameId) {
-      cancelAnimationFrame(animationFrameId);
-    }
-
-    animationFrameId = requestAnimationFrame(() => {
-      const samples = document.querySelectorAll(".card-sample");
-
-      samples.forEach((sample) => {
-        sample.style.fontSize = `${rawValue}px`;
-        sample.style.lineHeight = `${rawValue * 1.4}px`;
-      });
-
-      isDragging = false;
-    });
-  }
-
-  categoriesButton.addEventListener("click", () => {
-    triangle.classList.toggle("rotate-triangle");
-    categoriesButton.classList.toggle("border-transparent");
-    categoriesButton.classList.toggle("border-[#4F4F4F]");
-    categoriesButton.classList.toggle("text-white");
-    dropdownContent.classList.toggle("opacity-100");
-    dropdownContent.classList.toggle("invisible");
-    dropdownContent.classList.toggle("border");
-    dropdownContent.classList.toggle("border-[#4F4F4F]");
-  });
-
-  document.addEventListener("click", (event) => {
-    if (
-      !categoriesButton.contains(event.target) &&
-      !dropdownContent.contains(event.target)
-    ) {
-      dropdownContent.classList.add("opacity-0");
-      dropdownContent.classList.remove("opacity-100");
-      dropdownContent.classList.add("invisible");
-      dropdownContent.classList.remove("border", "border-[#4F4F4F]");
-      categoriesButton.classList.remove("text-white", "border-[#4F4F4F]");
-      categoriesButton.classList.add("border-transparent");
-      triangle.classList.remove("rotate-triangle");
-    }
-  });
-
-  const radioButtons = document.querySelectorAll('input[name="category"]');
-  radioButtons.forEach((radio) => {
-    radio.addEventListener("change", (e) => {
-      const selectedCategory = e.target.value;
-      const fontCards = document.querySelectorAll("#font-container > div");
-
-      fontCards.forEach((card) => {
-        const fontName = card.querySelector("h3").innerText;
-        const fontData = fontDataMap[fontName];
-
-        card.style.display =
-          selectedCategory === "all" ||
-          fontData.details.category === selectedCategory
-            ? "block"
-            : "none";
-      });
-    });
-  });
-
-  listViewBtn.addEventListener("click", () => {
-    fontContainer.classList.remove("grid", "grid-cols-4", "gap-y-0");
-    fontContainer.classList.add("flex", "flex-col", "space-y-6");
-    listViewBtn.classList.remove("text-[#9c9c9c]");
-    listViewBtn.classList.add("text-white");
-    gridViewBtn.classList.remove("text-white");
-    gridViewBtn.classList.add("text-[#9c9c9c]");
-  });
-
-  gridViewBtn.addEventListener("click", () => {
-    fontContainer.classList.remove("flex", "flex-col", "space-y-6");
-    fontContainer.classList.add("grid", "grid-cols-4", "gap-y-0");
-    listViewBtn.classList.add("text-[#9c9c9c]");
-    listViewBtn.classList.remove("text-white");
-    gridViewBtn.classList.add("text-white");
-    gridViewBtn.classList.remove("text-[#9c9c9c]");
-    document.querySelectorAll("#font-container > .card").forEach((card) => {
-      card.classList.remove("mb-6", "space-y-6");
-      card.classList.add("m-0");
-    });
-  });
-
-  // Alignment buttons event listeners
-  const alignLeftBtn = document.getElementById("alignLeftBtn");
-  const alignCenterBtn = document.getElementById("alignCenterBtn");
-  const alignRightBtn = document.getElementById("alignRightBtn");
-
-  alignLeftBtn.addEventListener("click", () => {
-    document.querySelectorAll(".card-sample").forEach((sample) => {
-      sample.classList.remove("align-center", "align-right");
-      sample.classList.add("align-left");
-    });
-  });
-
-  alignCenterBtn.addEventListener("click", () => {
-    document.querySelectorAll(".card-sample").forEach((sample) => {
-      sample.classList.remove("align-left", "align-right");
-      sample.classList.add("align-center");
-    });
-  });
-
-  alignRightBtn.addEventListener("click", () => {
-    document.querySelectorAll(".card-sample").forEach((sample) => {
-      sample.classList.remove("align-left", "align-center");
-      sample.classList.add("align-right");
-    });
-  });
-
-  // Event listener for key presses
-  document.addEventListener("keydown", (event) => {
-    // Check if the 'O' key is pressed (you can change this to any key you prefer)
-    if (event.key === "o" || event.key === "O") {
-      toggleOutline();
-    }
-  });
+    const trigger = document.querySelector("#load-more-trigger");
+    if (trigger) observer.observe(trigger);
 }
 
-// Flag to track the outline state
-let outlineEnabled = false;
-
-// Function to toggle the outline
-function toggleOutline() {
-  if (outlineEnabled) {
-    const styleElement = document.querySelector('style#outline-style');
-    if (styleElement) {
-      styleElement.remove();
-    }
-  } else {
-    const style = document.createElement('style');
-    style.id = 'outline-style';
-    style.innerHTML = '* { outline: 1px solid red; }';
-    document.head.appendChild(style);
-  }
-  outlineEnabled = !outlineEnabled;
+function updateCategoryButtonStates(selectedCategory) {
+    categories.forEach(category => {
+        const btn = document.getElementById(`${category}-Button`);
+        if (btn) {
+            if (category === selectedCategory) {
+                btn.classList.add("text-white");
+                btn.classList.remove("text-[#9C9C9C]");
+            } else {
+                btn.classList.remove("text-white");
+                btn.classList.add("text-[#9C9C9C]");
+            }
+        }
+    });
 }
 
-function loadMoreFilteredFonts(filteredFonts) {
-  const nextFonts = filteredFonts.slice(
-    currentFontIndex,
-    currentFontIndex + fontsPerPage
-  );
-  loadFonts(nextFonts);
-  displayFonts(nextFonts);
-  currentFontIndex += fontsPerPage;
+function updateViewButtonStates() {
+    const listBtn = document.getElementById('listViewBtn');
+    const gridBtn = document.getElementById('gridViewBtn');
+
+    if (currentState.viewMode === 'list') {
+        listBtn.classList.add('text-white');
+        listBtn.classList.remove('text-[#9C9C9C]');
+        gridBtn.classList.add('text-[#9C9C9C]');
+        gridBtn.classList.remove('text-white');
+    } else {
+        gridBtn.classList.add('text-white');
+        gridBtn.classList.remove('text-[#9C9C9C]');
+        listBtn.classList.add('text-[#9C9C9C]');
+        listBtn.classList.remove('text-white');
+    }
+}
+
+function updateAlignButtonStates(selectedAlign) {
+    ['Left', 'Center', 'Right'].forEach(align => {
+        const btn = document.getElementById(`align${align}Btn`);
+        if (btn) {
+            const isSelected = align.toLowerCase() === selectedAlign;
+            btn.classList.toggle('text-white', isSelected);
+            btn.classList.toggle('text-[#9C9C9C]', !isSelected);
+            btn.classList.toggle('bg-[#4F4F4F]', isSelected);
+        }
+    });
+}
+
+function updateTextAlignment(alignment) {
+    document.querySelectorAll('.card-sample').forEach(sample => {
+        sample.style.textAlign = alignment;
+    });
+}
+
+function clampSize(size) {
+    return Math.min(Math.max(size, 12), 210);
 }

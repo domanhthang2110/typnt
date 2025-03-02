@@ -1,10 +1,278 @@
-.card:hover .slider {
-  opacity: 1;
-  /* Reveal the slider on hover */
+/* =================
+   Card Components
+   ================= */
+/* Card Base */
+.card {
+  position: relative;
+  min-height: 350px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
+/* Card Sample Area */
+.card-sample-container {
+  position: relative;
+  flex: 1;
+  min-height: 180px;
+  margin: 10px 0;
+}
+
+.card-sample {
+  line-height: 1.4;
+  width: 100%;
+  flex: 1;
+  will-change: font-size;
+  transition: none !important;
+  -webkit-transition: none !important;
+}
+
+/* =================
+   Controls & Inputs
+   ================= */
+/* Control Layout */
+.controls-container {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Radio Inputs */
+input[type="radio"] {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--light-gray);
+  border-radius: 50%;
+  margin-right: 8px;
+  transition: all 0.2s ease;
+  vertical-align: middle;
+}
+
+input[type="radio"]:hover {
+  border-color: var(--white);
+}
+
+input[type="radio"]:checked {
+  background: var(--white);
+  border-color: var(--white);
+}
+
+/* =================
+   Dropdowns & Menus
+   ================= */
+.variantDropdown {
+  min-width: 200px;
+}
+
+.dd-triangle {
+  display: inline-block;
+  transform: rotate(90deg);
+  transition: transform 0.2s ease;
+}
+
+.rotate-triangle {
+  transform: rotate(0deg) !important;
+}
+
+/* Common dropdown styles for both variant and second bar dropdowns */
+.dropdown-content,
+#dropdownContent,
+#propertiesContent,
+#personalityContent {
+  padding-top: 20px;
+  min-width: 150px;
+  background-color: var(--tblack);
+  transform-origin: top center;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Specific size for category dropdown */
+#dropdownContent {
+  width: 201px;
+  padding-top: 80px;
+  top: -9px;
+  left: -3px;
+  z-index: 1;
+}
+
+/* Category dropdown radio buttons */
+#dropdownContent label {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.2s ease;
+  color: var(--light-gray);
+}
+
+#dropdownContent label:hover {
+  color: var(--white);
+}
+
+#dropdownContent input[type="radio"] + label {
+  color: var(--light-gray);
+}
+
+#dropdownContent input[type="radio"]:checked + label,
+#dropdownContent label:has(input[type="radio"]:checked) {
+  color: var(--white);
+}
+
+.dropdown-content-wrapper,
+.second-bar-dropdown-wrapper {
+  min-width: 150px;
+  overflow-y: auto;
+}
+
+/* Dropdown visibility states */
+.dropdown-visible {
+  transform: translateY(0);
+  pointer-events: auto;
+  opacity: 1;
+  visibility: visible;
+  border: 1px solid var(--dark-gray);
+}
+
+.dropdown-hidden {
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* =================
+   Navigation & Header
+   ================= */
+nav {
+  height: 100px;
+  align-items: stretch;
+}
+
+header {
+  background-color: var(--tblack);
+  border-bottom: var(--dark-gray ) 1px solid;
+}
+
+.logo {
+  display: flex;
+  background-color: var(--tblack);
+  font-weight: bold;
+  align-items: center;
+  height: 100%;
+}
+
+/* =================
+   Buttons & Navigation
+   ================= */
+.top-bar-button, .top-bar-button-end {
+  background: var(--tblack);
+  color: var(--white);
+  border-left: 1px solid var(--dark-gray);
+  height: 100%;
+  min-width: 200px;
+  padding: 10px 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  position: relative;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+.second-bar-button {  
+  color: var(--white);
+  height: 100%;
+  min-width: 200px;
+  width: auto;
+  padding-left: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-decoration: none;
+}
+
+/* =================
+   Layout & Spacing
+   ================= */
+
+
+.total-entry {
+  margin-right: 209px;
+}
+
+.second-top-bar {
+  display: flex;
+  width: 100%;
+  height: 70px; /* Explicit height */
+}
+
+/* =================
+   States & Modifiers
+   ================= */
+.top-bar-button:hover, .top-bar-button-end:hover {
+  border-bottom-color: var(--white);
+}
+
+.top-bar-button.active {
+  background-color: var(--white);
+  color: var (--tblack);
+}
+
+.card:hover .slider,
 .card:hover .dropdown-button {
   opacity: 1;
+}
+
+/* =================
+   View Modes
+   ================= */
+.list-view .card {
+  max-width: 100%;
+  margin-bottom: 1rem;
+}
+
+.grid-view {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.grid-view .card {
+  margin-bottom: 0;
+}
+
+/* =================
+   Text Alignment
+   ================= */
+.card-sample.align-left {
+  text-align: left;
+}
+
+.card-sample.align-center {
+  text-align: center;
+}
+
+.card-sample.align-right {
+  text-align: right;
+}
+
+/* =================
+   Font Size Indicator
+   ================= */
+.font-size-indicator {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  padding: 3px 6px;
+  background: rgba(0,0,0,0.7);
+  border-radius: 3px;
+  font-size: 12px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
 }
 
 input[type="radio"] {
@@ -37,36 +305,10 @@ input[type="radio"]:checked {
   transform: rotate(0deg) !important;
 }
 
-.dropdown-content {
-  padding-top: 20px;
-  max-height: 200px;
-  min-width: 150px;
-}
-
-
-/* Keep padding for scrollbar space */
-.dropdown-content-wrapper {
-  min-width: 150px;
-  /* Adjust the padding to the width of the scrollbar */
-}
-
-body {
-  font-family: "Roboto Mono", serif;
-  background-color: var(--tblack);
-}
-
 nav {
   height: 100px;
   align-items: stretch;
 }
-
-.logo {
-  display: flex;
-  font-weight: bold;
-  align-items: center;
-  height: 100%;
-}
-
 .top-bar-button, .top-bar-button-end {
   background: var(--tblack);
   color: var(--white);
@@ -96,22 +338,6 @@ nav {
   color: var(--tblack);
 }
 
-.second-bar-button {
-  background: var(--tblack);
-  color: var(--white);
-  height: 100%;
-  min-width: 200px;
-  width: auto;
-  padding: 10px 10px;
-  cursor: pointer;
-  display: flex;
-  /* Ensure the button content is centered */
-  align-items: center;
-  /* Center the content vertically */
-  justify-content: center;
-  /* Center the content horizontally */
-  text-decoration: none;
-}
 
 .top-bar-button-end {
   border-right: 1px solid #252525;
@@ -121,32 +347,12 @@ nav {
   margin-right: 120px;
 }
 
-.search-bar {
-  width: 260px;
-  margin-right: 56px;
-  color: #9C9C9C
-}
-
-#dropdownContent {
-  width:201px;
-}
-
-.second-bar-button {
-  width:198px;
-  left: -3px;
-}
-
 .total-entry {
   margin-right: 209px;
 }
 
 #listViewBtn {
   margin-right: 70px;
-}
-
-.card {
-  position: relative;
-  min-height: 350px;
 }
 
 .card .slider {
@@ -159,26 +365,6 @@ nav {
 
 .card .absolute {
   position: absolute;
-}
-
-.card-sample-container {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  min-height: 200px;
-  height:100%;
-}
-
-.card-sample {
-  line-height: 40px;
-  max-width: 100%;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;
-  overflow: hidden;
-  width: 100%;
-  flex: 1; /* Allow the sample to grow and fill the container */
 }
 
 .card-sample.align-left {
@@ -226,53 +412,83 @@ nav {
 width: 500px;
 }
 
-
-/* Make glyph-control sticky at the top */
-.glyph-control {
-  position: sticky;
-  top: 0;
-  z-index: 30;
-  background-color: #040A10;
+/* View Modes */
+.list-view .card {
+  max-width: 100%;
+  margin-bottom: 1rem;
 }
 
-/* Make glyph-letter sticky and set its width */
-.glyph-letter {
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  background-color: #040A10;
-  width: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 4rem;
-}
-
-/* Allow only the grid section to scroll */
-.glyph-grid {
+.grid-view {
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  gap: 0 !important;
-  /* Adjust spacing between items as needed */
-  width: 50%;
-  padding-bottom: 200px;
-  margin-bottom: 1000px;
-  /* Preserve your width setting */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
 }
-.grid-cell {
-  text-align: center;
-  border: 1px solid #333; /* adjust as needed */
 
-  cursor: pointer;
-  font-family: inherit;
-  font-size: 3rem;
-  aspect-ratio: 1 / 1;
+.grid-view .card {
+  margin-bottom: 0;
+}
+
+/* Text Alignment Classes */
+.card-sample.align-left {
+  text-align: left;
+}
+
+.card-sample.align-center {
+  text-align: center;
+}
+
+.card-sample.align-right {
+  text-align: right;
+}
+
+/* Active Button States */
+.active-view {
+  color: var(--white);
+}
+
+.search-bar input[type="text"] {
+  background-color: var(--tblack);
+  color: var(--white);
+  padding: 10px;
+  width: 100%;
+}
+
+.search-bar {
+  border-bottom: var(--dark-gray) 1px solid;
+  max-width: 20%;
+  width: 247px;
+  margin-right: 30px;
+}
+.search-bar {
+  color: var(--white);
   display: flex;
   align-items: center;
-  justify-content: center;
-  transition: border-color 0.3s ease;
+}
+.second-bar {
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-between; /* Change from flex-start to space-between */
+  align-items: center;
+  background-color: var(--tblack);
+  border-bottom: 1px solid var(--dark-gray);
+  height: 100%; /* Ensure full height */
 }
 
-.grid-cell:hover {
-  border-color: white;
+/* Add specific styles for the buttons container */
+.buttons-container {
+  display: flex;
+  height: 100%;
+}
+
+.master-slider-container {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin-left: auto; /* Push to the right */
+  /* Add some padding */
+}
+
+.master-slider-container {
+  align-self: flex-end;
+  margin-right: 0%;
 }

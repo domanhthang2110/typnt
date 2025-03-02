@@ -326,14 +326,39 @@ function init(playgroundSelector) {
       }
     })
     .on("dblclick", ".textbox", (e) => {
+      // Exit editing mode for any other textbox first
+      state.textboxes.forEach((data, el) => {
+        if (el !== e.currentTarget) {
+          setTextboxState($(el), STATE.DEFAULT);
+        }
+      });
+      
       setTextboxState($(e.currentTarget), STATE.EDITING);
       state.activeTextbox = e.currentTarget;
     })
     .on("mousedown", ".textbox", (e) => {
-      if (e.target.closest('.textbox__content[contenteditable="true"]')) return;
+      const clickedTextbox = $(e.currentTarget);
+      
+      // Early return if clicking anywhere in or on an editing textbox
+      if (clickedTextbox.hasClass("textbox--editing") || 
+          clickedTextbox.find('.textbox__content[contenteditable="true"]').length) {
+          e.stopPropagation();
+          return;
+      }
 
-      setTextboxState($(e.currentTarget), STATE.SELECTED);
-      state.activeTextbox = e.currentTarget;
+      // Only proceed with state changes if we're clicking a non-editing textbox
+      if (!clickedTextbox.hasClass("textbox--editing")) {
+          // If clicking a different textbox while one is in editing mode
+          const currentlyEditing = state.textboxes
+              .get(state.activeTextbox)
+              ?.element.hasClass("textbox--editing");
+          if (currentlyEditing && state.activeTextbox !== e.currentTarget) {
+              setTextboxState($(state.activeTextbox), STATE.DEFAULT);
+          }
+
+          setTextboxState(clickedTextbox, STATE.SELECTED);
+          state.activeTextbox = e.currentTarget;
+      }
     });
 
   // Add keyboard event listener for delete key
@@ -345,7 +370,14 @@ function init(playgroundSelector) {
 }
 
 function clearSelection() {
-  // Clear settings panel when no textbox is selected
+  // Exit editing mode for any textbox
+  state.textboxes.forEach((data, element) => {
+    if ($(element).hasClass('textbox--editing')) {
+      setTextboxState($(element), STATE.DEFAULT);
+    }
+  });
+  
+  // Rest of the existing clearSelection code...
   updateSettingsPanel({
     size: null,
     features: [],
@@ -376,7 +408,7 @@ function deleteActiveTextbox() {
     instances: [],
     currentFeatures: {},
     currentAxes: {},
-    currentInstance: "Regular",
+    currentInstance: {},
   });
 }
 

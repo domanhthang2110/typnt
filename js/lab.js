@@ -16,23 +16,9 @@ class LabApp {
 
     init() {
         this.rulerManager = new RulerManager();
-        this.setupKeyboardShortcuts();
         this.setupPanelToggles();
         this.initFontManager();
         this.setupGridToggle();
-    }
-
-    setupKeyboardShortcuts() {
-        document.addEventListener("keydown", (event) => {
-            switch(event.key.toLowerCase()) {
-                case 'o':
-                    this.toggleOutline();
-                    break;
-                case 'escape':
-                    this.deselectAll();
-                    break;
-            }
-        });
     }
 
     setupPanelToggles() {
@@ -61,27 +47,6 @@ class LabApp {
                 icon.textContent = 'grid_on';
             }
         });
-    }
-
-    toggleOutline() {
-        if (this.outlineEnabled) {
-            const styleElement = document.querySelector("style#outline-style");
-            if (styleElement) {
-                styleElement.remove();
-            }
-        } else {
-            const style = document.createElement("style");
-            style.id = "outline-style";
-            style.innerHTML = "* { outline: 1px solid red; }";
-            document.head.appendChild(style);
-        }
-        this.outlineEnabled = !this.outlineEnabled;
-    }
-
-    deselectAll() {
-        if (this.textEditor) {
-            this.textEditor.clearActiveTextBox();
-        }
     }
 
     async initFontManager() {

@@ -2,7 +2,6 @@
 
 /* Apply to all elements */
 
-
 /* width */
 ::-webkit-scrollbar {
   width: 10px;
@@ -12,7 +11,7 @@
 /* Track */
 ::-webkit-scrollbar-track {
   background: var(--tblack); 
-  border-left: 2px solid var(--dark-gray);
+
 }
  
 /* Handle */
