@@ -10,7 +10,7 @@ export class GoogleFontsLoader {
   constructor() {
     this.fontsData = [];
     this.currentPage = 0;
-    this.loadedFonts = new Set();
+    this.loadedFonts = new Set();  // Make this property accessible from outside
     this.categoryIndices = new Map(); // Track position for each category
     this.lastFilterIndex = 0; // Add this to track position in filtered search
     this.variableFonts = new Map(); // Track variable font data with weight ranges
@@ -218,7 +218,7 @@ export class GoogleFontsLoader {
   }
 
   /**
-   * Load a variable font
+   * Load a variable font with better error handling
    * @param {Object} font - Font data object
    * @returns {Promise} Resolves when font is loaded
    */
@@ -227,7 +227,7 @@ export class GoogleFontsLoader {
       return Promise.resolve();
     }
 
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       // Get weight range
       const range = this.getWeightRange(font);
 
@@ -236,7 +236,7 @@ export class GoogleFontsLoader {
       const fontFamily = font.family.replace(/ /g, "+");
 
       // Check if font has italic variant
-      const hasItalic = font.variants.some((v) => v.includes("italic"));
+      const hasItalic = font.variants && font.variants.some((v) => v.includes("italic"));
       let importRule;
 
       // Create import rule with correct format
@@ -249,19 +249,25 @@ export class GoogleFontsLoader {
       style.textContent = importRule;
       document.head.appendChild(style);
 
+      // Set a timeout for font loading
+      let timeoutId = setTimeout(() => {
+        // Even if it times out, we still add it to loadedFonts to avoid repeated attempts
+        this.loadedFonts.add(font.family);
+        reject(new Error(`Failed to load variable font: ${font.family} (timeout)`));
+      }, 5000);
+
       // Use FontFaceObserver for more reliable font loading detection
       const observer = new FontFaceObserver(font.family);
       observer
-        .load("BESbswy", 5000) // 5 second timeout
+        .load("BESbswy", 4000) // 4 second timeout
         .then(() => {
+          clearTimeout(timeoutId);
           this.loadedFonts.add(font.family);
           resolve();
         })
-        .catch(() => {
-          // Even if it fails, mark as loaded to avoid repeated attempts
-          console.warn(`Failed to load variable font: ${font.family}`);
-          this.loadedFonts.add(font.family);
-          resolve();
+        .catch((err) => {
+          clearTimeout(timeoutId);
+          reject(new Error(`Failed to load variable font: ${font.family}`));
         });
     });
   }
@@ -437,23 +443,37 @@ export class GoogleFontsLoader {
 
     // Check if it's a variable font
     if (this.isVariableFont(fontData)) {
-      return this.loadVariableFont(fontData);
+      try {
+        await this.loadVariableFont(fontData);
+        return Promise.resolve();
+      } catch (error) {
+        return Promise.reject(new Error(`Failed to load font: ${fontFamily}`));
+      }
     }
 
-    // Standard font loading
+    // Standard font loading with better error handling
     return new Promise((resolve, reject) => {
+      let timeoutId;
+      
+      // Set a safety timeout
+      timeoutId = setTimeout(() => {
+        reject(new Error(`Failed to load font: ${fontFamily} (timeout)`));
+      }, 5000);
+      
       WebFont.load({
         google: {
           families: [fontFamily],
         },
         active: () => {
+          clearTimeout(timeoutId);
           this.loadedFonts.add(fontFamily);
           resolve();
         },
         inactive: () => {
+          clearTimeout(timeoutId);
           reject(new Error(`Failed to load font: ${fontFamily}`));
         },
-        timeout: 2000, // 2 seconds timeout
+        timeout: 3000, // 3 seconds timeout
       });
     });
   }
