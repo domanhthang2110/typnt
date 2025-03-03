@@ -14,6 +14,7 @@ window.googleFontsLoader = googleFontsLoader;
 let currentFontData = null;
 let currentWeight = 400; // Add this line to make currentWeight global
 let wasDragging = false; // Add this variable at the top with other globals
+let dragStartWeight = 400; // Add this to keep track of starting weight
 const quoteContainer = document.querySelector(".quote-container");
 const quoteText = document.querySelector(".quote-text");
 const quoteAuthor = document.querySelector(".quote-author");
@@ -36,7 +37,7 @@ function updateQuote(quote) {
     }
 }
 
-// Modify the changeRandomFont function to remove quote fetching
+// Modify the changeRandomFont function to properly handle variable fonts
 async function changeRandomFont() {
     const titleElement = document.querySelector(".home-font-title");
     const fontNameElement = document.querySelector(".home-font-name");
@@ -53,7 +54,17 @@ async function changeRandomFont() {
             return;
         }
 
-        const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
+        // Filter only variable fonts
+        const variableFonts = fonts.filter(font => googleFontsLoader.isVariableFont(font));
+        
+        if (variableFonts.length === 0) {
+            console.warn("No variable fonts available, using default Epilogue font");
+            return; // Keep using current font (Epilogue)
+        }
+
+        // Select a random variable font
+        const randomFont = variableFonts[Math.floor(Math.random() * variableFonts.length)];
+        
         // Get a random quote with each font change
         const randomQuote = getRandomQuote();
 
@@ -62,20 +73,29 @@ async function changeRandomFont() {
 
         // Store current font data
         currentFontData = randomFont;
+        
+        // Reset weight to 400 (normal) for each new font
+        currentWeight = 400;
+        dragStartWeight = 400;
 
         // Update the title font
         titleElement.style.fontFamily = `'${randomFont.family}', sans-serif`;
-        titleElement.style.fontVariationSettings = `'wght' ${currentWeight = 400}`;
+        titleElement.style.fontVariationSettings = `'wght' ${currentWeight}`;
+        titleElement.style.fontWeight = currentWeight;
+        
+        // Also set for quote elements
+        quoteElements.forEach(el => {
+            el.style.fontFamily = `'${randomFont.family}', sans-serif`;
+            el.style.fontVariationSettings = `'wght' ${currentWeight}`;
+            el.style.fontWeight = currentWeight;
+        });
+        
+        console.log(`Loaded variable font: ${randomFont.family} with weight ${currentWeight}`);
 
         // Update font info
         fontNameElement.textContent = randomFont.family;
         const designer = randomFont.designer || "Unknown Designer";
         fontDesignerElement.textContent = "Designed by " + designer;
-
-        // Update quote font and content
-        quoteElements.forEach(el => {
-            el.style.fontFamily = `'${randomFont.family}', sans-serif`;
-        });
         
         // Update the quote text
         if (randomQuote) updateQuote(randomQuote);
@@ -84,19 +104,58 @@ async function changeRandomFont() {
     }
 }
 
+// Helper function to find the closest available weight
+function findClosestWeight(variants, targetWeight) {
+    if (!variants || variants.length === 0) {
+        return 400; // Default to normal
+    }
+    
+    // Extract numeric weights
+    const weights = variants
+        .map(v => parseInt(v.replace('italic', '').replace('regular', '400')))
+        .filter(w => !isNaN(w));
+    
+    if (weights.length === 0) {
+        return 'normal'; // If no numeric weights, use normal
+    }
+    
+    // Find the closest weight
+    return weights.reduce((prev, curr) => {
+        return (Math.abs(curr - targetWeight) < Math.abs(prev - targetWeight)) ? curr : prev;
+    });
+}
+
+// Initialize the default Epilogue font data
+function initDefaultFont() {
+    // Create a default font data structure for Epilogue
+    currentFontData = {
+        family: "Epilogue",
+        category: "sans-serif",
+        variants: ["100", "200", "300", "400", "500", "600", "700", "800", "900", 
+                  "100italic", "200italic", "300italic", "400italic", "500italic", 
+                  "600italic", "700italic", "800italic", "900italic"],
+        axes: ["wght"],  // This indicates it's a variable font
+        files: {}
+    };
+    
+    console.log("Default font initialized: Epilogue");
+}
+
 // 3D Effect for mouse movement
 function init3DEffect() {
   const titleElement = document.querySelector(".home-font-title");
   let isDragging = false;
   let startX = 0;
-  // Remove local currentWeight declaration since we're using the global one
   
   document.addEventListener("mousedown", (event) => {
     isDragging = true;
     wasDragging = false; // Reset at the start of potential drag
     startX = event.clientX;
+    // Store the weight at the start of dragging
+    dragStartWeight = currentWeight;
   });
 
+  // Update the mousemove event handler in init3DEffect
   document.addEventListener("mousemove", (event) => {
     const container = document.querySelector(".three-d-container");
     if (!container || !titleElement) return;
@@ -113,14 +172,15 @@ function init3DEffect() {
 
     // Weight adjustment while dragging
     if (isDragging) {
-      wasDragging = true; // If we detect movement while dragging, set wasDragging
-      const dx = event.clientX - startX;
-      const weightChange = Math.round(dx); // Adjust sensitivity here
-      currentWeight = Math.min(Math.max(400 + weightChange, 100), 900);
-      
-      // Apply weight change
-      titleElement.style.fontVariationSettings = `'wght' ${currentWeight}`;
-      quoteContainer.style.fontVariationSettings = `'wght' ${currentWeight}`;
+        wasDragging = true; // If we detect movement while dragging, set wasDragging
+        const dx = event.clientX - startX;
+        const weightChange = Math.round(dx / 2); // Reduced sensitivity for better control
+        const newWeight = Math.min(Math.max(dragStartWeight + weightChange, 100), 900);
+        
+        if (newWeight !== currentWeight) {
+            currentWeight = newWeight;
+            updateFontWeight();
+        }
     }
   });
 
@@ -131,6 +191,47 @@ function init3DEffect() {
   document.addEventListener("mouseleave", () => {
     isDragging = false;
   });
+}
+
+// Separate function to update font weight for better maintenance
+function updateFontWeight() {
+    const titleElement = document.querySelector(".home-font-title");
+    const quoteElements = document.querySelectorAll('.quote-container, .quote-text, .quote-author');
+    
+    if (!titleElement) return;
+    
+    // Default to treating as variable font for Epilogue
+    let isVariable = true;
+    
+    // If we have current font data, use it to determine if variable
+    if (currentFontData) {
+        isVariable = googleFontsLoader.isVariableFont ? 
+                    googleFontsLoader.isVariableFont(currentFontData) : 
+                    currentFontData.axes && currentFontData.axes.includes("wght");
+    }
+    
+    console.log(`Updating font weight: ${currentWeight}, Variable: ${isVariable}`);
+    
+    if (isVariable) {
+        // Variable font approach
+        titleElement.style.fontVariationSettings = `'wght' ${currentWeight}`;
+        titleElement.style.fontWeight = currentWeight;
+        
+        quoteElements.forEach(el => {
+            el.style.fontVariationSettings = `'wght' ${currentWeight}`;
+            el.style.fontWeight = currentWeight;
+        });
+    } else if (currentFontData) {
+        // Standard font - find closest available weight
+        const closestWeight = findClosestWeight(currentFontData.variants, currentWeight);
+        titleElement.style.fontVariationSettings = '';
+        titleElement.style.fontWeight = closestWeight;
+        
+        quoteElements.forEach(el => {
+            el.style.fontVariationSettings = '';
+            el.style.fontWeight = closestWeight;
+        });
+    }
 }
 
 // Add floating font particles
@@ -145,7 +246,8 @@ function initFontParticles() {
   // Initialize with some fonts
   googleFontsLoader.init('/fonts.json')
     .then(fonts => {
-      availableFonts = fonts;
+      // Filter only variable fonts
+      availableFonts = fonts.filter(font => googleFontsLoader.isVariableFont(font));
       isInitialized = true;
     })
     .then(() => {
@@ -160,7 +262,7 @@ function initFontParticles() {
       return;
     }
     
-    // Select a random font
+    // Select a random variable font
     const randomIndex = Math.floor(Math.random() * availableFonts.length);
     const randomFont = availableFonts[randomIndex];
     
@@ -170,6 +272,11 @@ function initFontParticles() {
         // Create particle element after font is loaded
         const particle = document.createElement('div');
         particle.classList.add('font-particle');
+        
+        // Get a random weight for this particle
+        const weightRange = googleFontsLoader.getWeightRange(randomFont);
+        const randomWeight = Math.floor(Math.random() * 
+            (weightRange.max - weightRange.min + 1)) + weightRange.min;
         
         // Randomly determine if particle enters from left or right
         const enterFromLeft = Math.random() > 0.5;
@@ -181,7 +288,8 @@ function initFontParticles() {
         
         // Set content - font name styled with its own font
         particle.innerHTML = `
-          <span class="font-display" style="font-family: '${randomFont.family}'">${randomFont.family}</span>
+          <span class="font-display" style="font-family: '${randomFont.family}'; 
+          font-variation-settings: 'wght' ${randomWeight};">${randomFont.family}</span>
         `;
         
         // Set styles
@@ -333,11 +441,14 @@ function initTextTrail() {
   });
 }
 
-// Modify the initHomePage function to keep the default font but show a quote
+// Modify the initHomePage function to set up the default font properly
 function initHomePage() {
     // Initialize fonts loader first
     googleFontsLoader.init('/fonts.json')
         .then(() => {
+            // Set up initial font data for Epilogue
+            initDefaultFont();
+            
             init3DEffect();
             
             // Show a quote on first load without changing the font
@@ -360,6 +471,10 @@ function initHomePage() {
         })
         .catch(error => {
             console.error('Failed to initialize fonts:', error);
+            // Still set up the default font even if Google Fonts fail
+            initDefaultFont();
+            init3DEffect();
+            initTextTrail();
         });
 }
 
