@@ -136,6 +136,8 @@ main {
    ========================================================================== */
 .textbox {
     position: absolute;
+    top: 20%;
+    left: 20%;
     background: transparent;
     min-width: 10px;
     min-height: 5px;
@@ -153,10 +155,10 @@ main {
     border: 1px solid var(--white);
 }
 .textbox--paragraph {
-    max-width: 1000px;
-    max-height: 700px;
-    width: 400px;
+    width: 270px;
     height: 270px;
+    max-width: 2000px;
+    max-height: 2000px;
 }
 
 .textbox--paragraph .textbox__content {

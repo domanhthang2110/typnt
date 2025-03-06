@@ -18,6 +18,7 @@ body {
   font-family: "Epilogue", serif;
   background-color: var(--tblack);
   color: var(--white);
+  scroll-behavior: smooth;
 }
 
 

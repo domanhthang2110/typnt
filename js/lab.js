@@ -5,7 +5,7 @@
 import RulerManager from './modules/rulers.js';
 import PanelManager from './modules/panels.js';
 import { init as initTextbox } from './modules/textbox.js';
-import { initFontManager } from './modules/font-manager.js';
+import { initFontManager, showUserManual } from './modules/font-manager.js';
 
 class LabApp {
     constructor() {
@@ -14,11 +14,19 @@ class LabApp {
         this.panelManager = new PanelManager();
     }
 
-    init() {
+    async init() {
         this.rulerManager = new RulerManager();
         this.setupPanelToggles();
-        this.initFontManager();
+        await this.initFontManager(); // Make this await the font manager initialization
         this.setupGridToggle();
+        
+        // Show the user manual when the app starts
+        document.addEventListener("font-manager-ready", () => {
+            showUserManual();
+        });
+        
+        // Dispatch event to trigger initial manual display
+        document.dispatchEvent(new CustomEvent("font-manager-ready"));
     }
 
     setupPanelToggles() {
@@ -50,14 +58,22 @@ class LabApp {
     }
 
     async initFontManager() {
-        await initFontManager(this.textBoxManager);
+        console.log("Initializing font manager...");
+        try {
+            await initFontManager(this.textBoxManager);
+            console.log("Font manager initialized successfully");
+        } catch (error) {
+            console.error("Error initializing font manager:", error);
+        }
     }
 }
 
 // Initialize the app when document is ready
-$(document).ready(() => {
+$(document).ready(async () => {
+    console.log("Lab starting up...");
     const lab = new LabApp();
-    initTextbox('.playground');
+    await initTextbox('.playground');
+    console.log("Lab initialized");
 });
 
 export default LabApp;

@@ -3,66 +3,43 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Explore, read, and practice typography with Typ.nt's vast collection of fonts and resources."
-    />
+    <meta name="description" content="Explore, read, and practice typography with Typ.nt's vast collection of fonts and resources." />
     <title>Typ.nt - Typography Exploration</title>
     <link rel="stylesheet" href="css/main.css" />
     <!-- Add the new glyph.css stylesheet -->
     <link rel="stylesheet" href="css/glyph.css" />
-    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts Link Placeholder -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet" />
   </head>
-
   <body>
-    <!-- Navigation Bar -->
-    <header class="flex justify-between items-center pl-12 z-10">
-      <div class="text-4xl font-semibold logo">Typelab<span style="font-weight: 100;">™<span></div>
-      <nav class="flex items-center">
+    <header class="flex justify-between items-center z-10">
+      <div class="text-4xl font-semibold logo pl-12 flex-1"> Typelab <span style="font-weight: 100">™</span>
+      </div>
+      <nav class="flex items-center justify-center">
         <a href="index.html" class="top-bar-button">home</a>
         <a href="#reads" class="top-bar-button">reads</a>
-        <a href="#video" class="top-bar-button">videos</a>
+        <a href="videos.html" class="top-bar-button">videos</a>
         <a href="#practice" class="top-bar-button">practice</a>
         <a href="lab.html" class="top-bar-button">lab</a>
         <a href="archive.html" class="top-bar-button-end active">archive</a>
       </nav>
-      <a href="#login" class="text-white hover:underline login-button"></a>
+      <div class="flex-1 pr-12">
+        <!-- Empty div that takes equal space as the logo -->
+      </div>
     </header>
-    <header
-      class="flex justify-between items-center h-16 z-10"
-    >
-      <a
-        href="index.html"
-        class="text-white hover:underline ml-12 h-full flex items-center border-r border-[#333] justify-center min-w-[250px]"
-        >← back to archive</a
-      >
-      <nav class="flex items-center h-full">
-        <a href="#reads" class="text-white second-bar-button hover:underline"
-          >specimen</a
-        >
-        <a href="#video" class="second-bar-button text-white hover:underline"
-          >glyphs</a
-        >
-        <a href="#practice" class="second-bar-button text-white hover:underline"
-          >layouts</a
-        >
-        <a href="#typ-lab" class="second-bar-button text-white hover:underline"
-          >details</a
-        >
+    <header class="flex justify-between items-center second-header">
+      <a href="archive.html" class="text-white hover:underline ml-12 h-full flex items-center border-r border-[#333] justify-center min-w-[250px]">← back to archive</a>
+      <nav class="flex items-center center-nav">
+        <button class="second-header-button" onClick="scrollToSection('specimen-section')">specimen</button>
+        <button class="second-header-button" onClick="scrollToSection('glyph-section')">glyphs</button>
+        <button class="second-header-button" onClick="scrollToSection('layout-section')">layouts</button>
+        <button class="second-header-button" onClick="scrollToSection('details-section')">details</button>
       </nav>
-      <a
-        href="#archive"
-        class="text-white hover:underline mr-12 h-full flex items-center justify-center min-w-[250px] border-l border-[#333]"
-        >♡ save</a
-      >
+      <a href="#archive" class="text-white hover:underline mr-12 h-full flex items-center justify-center min-w-[250px] border-l border-[#333]">♡ save</a>
     </header>
     <main>
       <div class="font-title text-4xl text-center mt-12">
@@ -71,100 +48,232 @@
         <div class="font-title-name"></div>
         <div class="styles-count"></div>
       </div>
-      <div class="text-lg ml-12">All styles</div>
-      <div
-        class="styles-control flex justify-between items-center p-4 pl-10 pr-10 border-b border-[#4F4F4F]"
-      >
-        <div class="text-1xl pl-2 -mt-1 text-[#9C9C9C]">✎</div>
-        <input
-        id= "demoText" 
-          type="text"
-          class="flex-1 text-base pl-2 outline-none focus:ring-0 search"
-          placeholder="demo text"
-        />
-        <div class="flex space-x-4 mr-auto">
-          <button
-            class="text-white bg-transparent border-none py-2 px-4 hover:text-white"
-            id="defaultDemoBtn"
-          >
-            default
-          </button>
-          <button
-            class="text-[#9C9C9C] bg-transparent border-none py-2 px-4 hover:text-white"
-            id="citiesDemoBtn"
-          >
-            cities
-          </button>
-          <!-- Alignment Buttons -->
-          <button
-            class="text-white bg-transparent border-none py-2 px-4 hover:bg-[#4F4F4F]"
-            id="alignLeftBtn"
-          >
-            Align Left
-          </button>
-          <button
-            class="text-white bg-transparent border-none py-2 px-4 hover:bg-[#4F4F4F]"
-            id="alignCenterBtn"
-          >
-            Align Center
-          </button>
-          <button
-            class="text-white bg-transparent border-none py-2 px-4 hover:bg-[#4F4F4F]"
-            id="alignRightBtn"
-          >
-            Align Right
-          </button>
-        </div>
+      <div class="">
+      <div class="section-heading-container" id="specimen-section">
+        <h2 class="main-section-heading">All styles</h2>
       </div>
-      <div class="styles-list"></div>
-      <div class="glyph-display flex flex-col">
+      <div class="styles-control flex justify-between items-center pl-12 pr-12 pb-4">
+        <div class="text-1xl pl-2 -mt-1 text-[#9C9C9C]">✎</div>
+        <input id="demoText" type="text" class="flex-1 text-base pl-2 outline-none focus:ring-0" placeholder="demo text" />
+        <div class="flex space-x-4 mr-auto">
+          <button class="demo-btn active" id="defaultDemoBtn">default</button>
+          <button class="demo-btn inactive" id="citiesDemoBtn">cities</button>
+          <!-- Alignment Buttons -->
+           <div class="pl-40 flex space-x-4">
+            <button class="align-btn active" id="alignLeftBtn" data-align="left">
+              <img src="images/align_left.svg" alt="Align Left" width="18" height="18">
+            </button>
+            <button class="align-btn" id="alignCenterBtn" data-align="center">
+              <img src="images/align_center.svg" alt="Align Center" width="18" height="18">
+            </button>
+            <button class="align-btn" id="alignRightBtn" data-align="right">
+              <img src="images/align_right.svg" alt="Align Right" width="18" height="18">
+            </button>
+          </div>
+        </div>
+        <div class="master-slider-container">
+            <span id="sliderValue" class="text-white mr-4">96 px</span>
+            <input
+              type="range"
+              min="12"
+              max="210"
+              value="96"
+              class="master-slider"
+            />
+          </div>
+      </div>
+      <div class="styles-list pl-12 pr-12"></div>
+      </div>
+      <div class="glyph-display flex flex-col" id="glyph-section">
+        <div class="section-heading-container" id="glyph-section">
+          <h2 class="main-section-heading">Glyphs</h2>
+        </div>
         <!-- Control Section: full-width and sticky -->
-        <div class="glyph-control">
+        <div class="glyph-control pl-12 pr-12">
           <!-- This content will be replaced by JavaScript -->
           <div style="width: 100%; text-align: center;">Loading controls...</div>
         </div>
-        
         <!-- Content Row: Letter sidebar and Grid container -->
-        <div class="flex flex-1">
+        <div class="flex flex-1 pr-12">
           <!-- Letter Section: half width wrapped in a relative container -->
           <div class="w-1/2 relative">
             <div class="glyph-letter w-full flex justify-center sticky z-20">
-              <svg viewBox="0 0 500 500" width="100%" height="100%" class="mx-auto block">
-                <!-- Metric lines - full width -->
-                <line id="baselineLine" x1="0" y1="250" x2="500" y2="250" stroke="#4F4F4F" stroke-width="1" />
-                <line id="descenderLine" x1="0" y1="350" x2="500" y2="350" stroke="#4F4F4F" stroke-width="1" />
-                <line id="xHeightLine" x1="0" y1="200" x2="500" y2="200" stroke="#4F4F4F" stroke-width="1" />
-                <line id="capHeightLine" x1="0" y1="175" x2="500" y2="175" stroke="#4F4F4F" stroke-width="1" />
-                
+              <svg viewBox="-100 0 700 500" width="100%" height="100%" class="mx-auto block">
+                <!-- Metric lines - extended width -->
+                <line id="baselineLine" x1="-100" y1="250" x2="600" y2="250" stroke="#4F4F4F" stroke-width="1" />
+                <line id="descenderLine" x1="-100" y1="350" x2="600" y2="350" stroke="#4F4F4F" stroke-width="1" />
+                <line id="xHeightLine" x1="-100" y1="200" x2="600" y2="200" stroke="#4F4F4F" stroke-width="1" />
+                <line id="capHeightLine" x1="-100" y1="175" x2="600" y2="175" stroke="#4F4F4F" stroke-width="1" />
                 <!-- Adding a path for outline mode that will be updated by JS -->
                 <path id="letter-path" d="" fill="none" stroke="none"></path>
-                
                 <!-- The actual text element which will be used for solid rendering -->
-                <text
-                  id="letter-text"
-                  x="50%"
-                  y="250"
-                  dominant-baseline="alphabetic"
-                  text-anchor="middle"
-                  fill="white"
-                >
-                  A
-                </text>
+                <text id="letter-text" x="50%" y="250" dominant-baseline="alphabetic" text-anchor="middle" fill="white"> A </text>
               </svg>
             </div>
           </div>
-          
           <!-- Grid Section: half width -->
           <div class="glyph-grid w-1/2 p-4">
             <!-- Your grid goes here -->
           </div>
         </div>
       </div>
-      <div class="font-layout">layout</div>
-      <div class="font-info">details</div>
+      <div class="font-layout" id="layout-section">
+        <div class="section-heading-container" id="layout-section">
+          <h2 class="main-section-heading">layout</h2>
+        </div>
+        
+        <div class="layout-blocks">
+          <!-- Single column layout -->
+          <div class="layout-block" data-columns="1">
+            <div class="block-controls">
+              <label class="block-font-name">Font</label>
+              <div class="control-group">
+                <select class="style-dropdown">
+                  <!-- Will be populated by JavaScript -->
+                </select>
+              </div>
+              <div class="control-group">
+                <span class="size-value">94px</span>
+                <input type="range" min="12" max="210" value="94" class="master-slider">
+              </div>
+              <div class="control-group">
+                <select class="columns-dropdown">
+                  <option value="1" selected>1 Column</option>
+                  <option value="2">2 Columns</option>
+                  <option value="3">3 Columns</option>
+                </select>
+              </div>
+              <div class="button-group">
+                <button class="clone-button">Clone</button>
+                <button class="remove-button" disabled>Remove</button>
+              </div>
+            </div>
+            <div class="block-content" contenteditable="true">
+              <p>Welcome to Typelab</p>
+            </div>
+          </div>
+          
+          <!-- Two column layout -->
+          <div class="layout-block" data-columns="2">
+            <div class="block-controls">
+              <label class="block-font-name">Font</label>
+              <div class="control-group">
+                
+                <select class="style-dropdown">
+                  <!-- Will be populated by JavaScript -->
+                </select>
+              </div>
+              <div class="control-group">
+                <span class="size-value">32px</span>
+                <input type="range" min="12" max="210" value="32" class="master-slider">
+              </div>
+              <div class="control-group">
+                <select class="columns-dropdown">
+                  <option value="1">1 Column</option>
+                  <option value="2" selected>2 Columns</option>
+                  <option value="3">3 Columns</option>
+                </select>
+              </div>
+              <div class="button-group">
+                <button class="clone-button">Clone</button>
+                <button class="remove-button">Remove</button>
+              </div>
+            </div>
+            <div class="block-content" contenteditable="true">
+              <p>The history of typography begins with the paired punch and counter punch system invented by Francesco Griffo under the patronage of Aldus Manutius in 1494. The mechanical system of movable type and printing press invented by Johannes Gutenberg flourished, spreading to become the standard across Europe. Various foundries competed in the type design scene, developing new forms to fit their needs.</p>
+            </div>
+          </div>
+          
+          <!-- Three column layout -->
+          <div class="layout-block" data-columns="3">
+            <div class="block-controls">
+              <label class="block-font-name">Font</label>
+              <div class="control-group">
+                <select class="style-dropdown dropdown-menu">
+                  <!-- Will be populated by JavaScript -->
+                </select>
+              </div>
+              <div class="control-group">
+                <span class="size-value">18px</span>
+                <input type="range" min="12" max="210" value="18" class="master-slider">
+              </div>
+              <div class="control-group">
+                <select class="columns-dropdown">
+                  <option value="1">1 Column</option>
+                  <option value="2">2 Columns</option>
+                  <option value="3" selected>3 Columns</option>
+                </select>
+              </div>
+              <div class="button-group">
+                <button class="clone-button">Clone</button>
+                <button class="remove-button">Remove</button>
+              </div>
+            </div>
+            <div class="block-content" contenteditable="true">
+              <p>Digital typography has transformed as technology advances. From bitmap fonts to scalable vector graphics, the art of type design continues to evolve. With web fonts and variable font technology, typography becomes increasingly dynamic, responsive, and customizable across different devices and platforms, enabling designers to create more sophisticated typographic experiences than ever before.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="font-info" id="details-section">
+        <div class="section-heading-container" id="details-section">
+          <h2 class="main-section-heading">Font Details</h2>
+        </div>
+        
+        <div class="details-container">
+          <div class="details-list">
+            <div class="details-item">
+              <span class="detail-label">Family</span>
+              <span class="detail-value" id="font-family">Loading...</span>
+            </div>
+            
+            <div class="details-item">
+              <span class="detail-label">Designer</span>
+              <span class="detail-value" id="font-designer">Loading...</span>
+            </div>
+            
+            <div class="details-item">
+              <span class="detail-label">Category</span>
+              <span class="detail-value category-badge" id="font-category">Loading...</span>
+            </div>
+            
+            <div class="details-item">
+              <span class="detail-label">Added on</span>
+              <span class="detail-value" id="font-date">Loading...</span>
+            </div>
+          </div>
+          
+          <div class="details-list">
+            <div class="details-item tooltip-container">
+              <span class="detail-label">License</span>
+              <span class="detail-value" id="font-license">Loading...</span>
+              <div class="tooltip" id="license-tooltip">
+                <p id="license-details">This font is licensed under the SIL Open Font License 1.1.</p>
+              </div>
+            </div>
+            
+            <div class="details-item">
+              <span class="detail-label">Available styles</span>
+              <span class="detail-value" id="font-styles">Loading...</span>
+            </div>
+            
+            <div class="details-item">
+              <span class="detail-label">Variable font</span>
+              <span class="detail-value" id="font-variable">Loading...</span>
+            </div>
+            
+            <div class="details-item" id="axes-container">
+              <span class="detail-label">Axes</span>
+              <div class="detail-value" id="font-axes">
+                <!-- Will be populated by JavaScript -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/opentype.js@latest/dist/opentype.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
-    <script src="glyph.js"></script>
+    <script type="module" src="js/glyph.js"></script>
+    <script type="module" src="js/layout.js"></script>
   </body>
 </html>

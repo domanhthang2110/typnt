@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SVG Text Outline Test</title>
+  <link href="https://fonts.googleapis.com/css2?family=42dot+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #121212;
+      color: #fff;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+    }
+    
+    h1 {
+      margin-bottom: 2rem;
+    }
+    
+    .test-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      width: 100%;
+      max-width: 1200px;
+    }
+    
+    .test-case {
+      background-color: #2a2a2a;
+      border-radius: 8px;
+      padding: 1rem;
+    }
+    
+    .test-case h2 {
+      margin-top: 0;
+      border-bottom: 1px solid #444;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    svg {
+      background-color: #1a1a1a;
+      width: 100%;
+      height: 300px;
+    }
+    
+    .controls {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    
+    button {
+      background-color: #333;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    button:hover {
+      background-color: #444;
+    }
+    
+    button.active {
+      background-color: #0066cc;
+    }
+    
+    select {
+      background-color: #333;
+      color: white;
+      border: none;
+      padding: 0.5rem;
+      border-radius: 4px;
+    }
+    
+    .test-fonts button {
+      font-size: 0.8rem;
+      padding: 0.3rem 0.6rem;
+    }
+    
+    /* Test font loading */
+    @font-face {
+      font-family: 'Roboto';
+      src: url(https://fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Mu4mxKKTU1Kg.woff2) format('woff2');
+    }
+    
+    @font-face {
+      font-family: 'Lora';
+      src: url(https://fonts.gstatic.com/s/lora/v32/0QI6MX1D_JOuGQbT0gvTJPa787weuxJBkqt8ndeYxZ2JTg.woff2) format('woff2');
+    }
+    
+    @font-face {
+      font-family: 'Courier Prime';
+      src: url(https://fonts.gstatic.com/s/courierprime/v9/u-450q2lgwslOqpF_6gQ8kELawRpBY0gYw.woff2) format('woff2');
+    }
+  </style>
+</head>
+<body>
+  <h1>SVG Text Outline Methods</h1>
+  
+  <div class="test-container">
+    <!-- Method 1: WebKit Text Stroke -->
+    <div class="test-case">
+      <h2>Method 1: WebKit Text Stroke</h2>
+      <svg id="svg1" viewBox="0 0 500 300">
+        <text id="text1" x="250" y="150" font-size="72" text-anchor="middle" dominant-baseline="middle" fill="white" font-family="Roboto">Ag@&</text>
+      </svg>
+      <div class="controls">
+        <button onclick="toggleOutline1(true)" class="active">Solid</button>
+        <button onclick="toggleOutline1(false)">Outline</button>
+        <select id="char1" onchange="changeChar('text1', this.value)">
+          <option value="Ag@&">Ag@&</option>
+          <option value="Bd#$">Bd#$</option>
+          <option value="OQ09">OQ09</option>
+          <option value="MWAE">MWAE</option>
+        </select>
+      </div>
+    </div>
+    
+    <!-- Method 2: SVG Stroke with Paint Order -->
+    <div class="test-case">
+      <h2>Method 2: SVG Stroke with Paint Order</h2>
+      <svg id="svg2" viewBox="0 0 500 300">
+        <text id="text2" x="250" y="150" font-size="72" text-anchor="middle" dominant-baseline="middle" fill="white" font-family="Roboto">Ag@&</text>
+      </svg>
+      <div class="controls">
+        <button onclick="toggleOutline2(true)" class="active">Solid</button>
+        <button onclick="toggleOutline2(false)">Outline</button>
+        <select id="char2" onchange="changeChar('text2', this.value)">
+          <option value="Ag@&">Ag@&</option>
+          <option value="Bd#$">Bd#$</option>
+          <option value="OQ09">OQ09</option>
+          <option value="MWAE">MWAE</option>
+        </select>
+      </div>
+    </div>
+    
+    <!-- Method 3: Clone with Background Stroke -->
+    <div class="test-case">
+      <h2>Method 3: Clone with Background Stroke</h2>
+      <svg id="svg3" viewBox="0 0 500 300">
+        <text id="text3" x="250" y="150" font-size="72" text-anchor="middle" dominant-baseline="middle" fill="white" font-family="Roboto">Ag@&</text>
+      </svg>
+      <div class="controls">
+        <button onclick="toggleOutline3(true)" class="active">Solid</button>
+        <button onclick="toggleOutline3(false)">Outline</button>
+        <select id="char3" onchange="changeChar('text3', this.value)">
+          <option value="Ag@&">Ag@&</option>
+          <option value="Bd#$">Bd#$</option>
+          <option value="OQ09">OQ09</option>
+          <option value="MWAE">MWAE</option>
+        </select>
+      </div>
+    </div>
+    
+    <!-- Method 4: Drop Shadow Filter -->
+    <div class="test-case">
+      <h2>Method 4: Drop Shadow Filter</h2>
+      <svg id="svg4" viewBox="0 0 500 300">
+        <defs>
+          <filter id="outline-filter" x="-10%" y="-10%" width="120%" height="120%">
+            <feMorphology operator="dilate" radius="1" in="SourceAlpha" result="thicken"/>
+            <feFlood flood-color="white" result="white"/>
+            <feComposite in="white" in2="thicken" operator="in" result="stroke"/>
+            <feComposite in="stroke" in2="SourceGraphic" operator="out"/>
+          </filter>
+        </defs>
+        <text id="text4" x="250" y="150" font-size="72" text-anchor="middle" dominant-baseline="middle" fill="white" font-family="Roboto">Ag@&</text>
+      </svg>
+      <div class="controls">
+        <button onclick="toggleOutline4(true)" class="active">Solid</button>
+        <button onclick="toggleOutline4(false)">Outline</button>
+        <select id="char4" onchange="changeChar('text4', this.value)">
+          <option value="Ag@&">Ag@&</option>
+          <option value="Bd#$">Bd#$</option>
+          <option value="OQ09">OQ09</option>
+          <option value="MWAE">MWAE</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  
+<div class="test-fonts" style="margin-top: 2rem;">
+  <h3>Test with different fonts:</h3>
+  <button onclick="changeFont('Roboto')" class="active">Roboto</button>
+  <button onclick="changeFont('Lora')">Lora</button>
+  <button onclick="changeFont('Courier Prime')">Courier Prime</button>
+  <button onclick="changeFont('42dot Sans')">42dot Sans</button>
+  <button onclick="changeFont('Arial')">Arial</button>
+  <button onclick="changeFont('Times New Roman')">Times New Roman</button>
+</div>
+  
+  <script>
+    // Method 1: WebKit Text Stroke
+    function toggleOutline1(solid) {
+      const text = document.getElementById('text1');
+      
+      // Update button states
+      updateButtonStates('svg1', solid);
+      
+      if (solid) {
+        // Solid mode
+        text.setAttribute('fill', 'white');
+        text.style.webkitTextStroke = '0';
+        text.removeAttribute('stroke');
+        text.removeAttribute('stroke-width');
+        text.removeAttribute('paint-order');
+      } else {
+        // Outline mode
+        text.setAttribute('fill', 'transparent');
+        text.style.webkitTextStroke = '1px white';
+      }
+    }
+    
+    // Method 2: SVG Stroke with Paint Order
+    function toggleOutline2(solid) {
+      const text = document.getElementById('text2');
+      
+      // Update button states
+      updateButtonStates('svg2', solid);
+      
+      if (solid) {
+        // Solid mode
+        text.setAttribute('fill', 'white');
+        text.removeAttribute('stroke');
+        text.removeAttribute('stroke-width');
+        text.removeAttribute('paint-order');
+      } else {
+        // Outline mode
+        text.setAttribute('fill', 'transparent');
+        text.setAttribute('stroke', 'white');
+        text.setAttribute('stroke-width', '1');
+        text.setAttribute('paint-order', 'stroke fill');
+      }
+    }
+    
+    // Method 3: Clone with Background Stroke
+    function toggleOutline3(solid) {
+      const svg = document.getElementById('svg3');
+      const text = document.getElementById('text3');
+      
+      // Update button states
+      updateButtonStates('svg3', solid);
+      
+      // Remove any existing outline text
+      const existingOutline = svg.querySelector('#outline-text3');
+      if (existingOutline) {
+        existingOutline.remove();
+      }
+      
+      if (solid) {
+        // Solid mode
+        text.setAttribute('fill', 'white');
+      } else {
+        // Outline mode - create duplicate text for the outline
+        const outlineText = text.cloneNode(true);
+        outlineText.id = 'outline-text3';
+        outlineText.setAttribute('fill', 'none');
+        outlineText.setAttribute('stroke', 'white');
+        outlineText.setAttribute('stroke-width', '2');
+        
+        // Insert before the original text
+        text.parentNode.insertBefore(outlineText, text);
+        
+        // Make original text transparent
+        text.setAttribute('fill', 'transparent');
+      }
+    }
+    
+    // Method 4: Drop Shadow Filter
+    function toggleOutline4(solid) {
+      const text = document.getElementById('text4');
+      
+      // Update button states
+      updateButtonStates('svg4', solid);
+      
+      if (solid) {
+        // Solid mode
+        text.setAttribute('fill', 'white');
+        text.removeAttribute('filter');
+      } else {
+        // Outline mode
+        text.setAttribute('fill', 'transparent');
+        text.setAttribute('filter', 'url(#outline-filter)');
+      }
+    }
+    
+    // Helper function to update button states
+    function updateButtonStates(svgId, solid) {
+      const buttons = document.querySelector(`#${svgId}`).parentNode.querySelectorAll('button');
+      buttons[0].classList.toggle('active', solid);
+      buttons[1].classList.toggle('active', !solid);
+    }
+    
+    // Change character
+    function changeChar(textId, value) {
+      document.getElementById(textId).textContent = value;
+      
+      // If this is method 3, update the outline text as well
+      if (textId === 'text3') {
+        const outlineText = document.getElementById('outline-text3');
+        if (outlineText) {
+          outlineText.textContent = value;
+        }
+      }
+    }
+    
+    // Change font for all texts
+    function changeFont(fontFamily) {
+      const texts = document.querySelectorAll('svg text');
+      texts.forEach(text => {
+        text.setAttribute('font-family', fontFamily);
+      });
+      
+      // Update font buttons
+      const buttons = document.querySelectorAll('.test-fonts button');
+      buttons.forEach(btn => {
+        btn.classList.toggle('active', btn.textContent === fontFamily);
+      });
+    }
+  </script>
+</body>
+</html>

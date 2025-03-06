@@ -2,13 +2,12 @@
  * Typelab Home Page Scripts
  * Controls font weight slider, 3D effects, and particles animations
  */
-// Add this near the top of the file
-import { googleFontsLoader } from './modules/google-fonts-loader.js';
+// Update import to use the class-based loader
+import { GoogleFontsLoader } from './modules/google-fonts-loader.js';
 import { quotes } from './quotes.js';
-import { initDebugTools } from './debug-tools.js';
 
-// Make it available globally
-window.googleFontsLoader = googleFontsLoader;
+// Create an instance of the loader
+let googleFontsLoader; 
 
 // Add near the top with other global variables
 let currentFontData = null;
@@ -26,6 +25,17 @@ let maxRetries = 5; // Maximum number of retries before giving up
 let preloadedFonts = []; // Queue to store preloaded fonts
 const PRELOAD_BATCH_SIZE = 3; // Number of fonts to preload at once
 let isPreloading = false; // Flag to track if preloading is in progress
+
+// Add font usage tracking
+const fontUsage = new Map(); // Maps font name to last usage timestamp
+const FONT_CLEANUP_INTERVAL = 60000; // Check for cleanup every 60 seconds
+const FONT_EXPIRATION_TIME = 60000; // Unload fonts after 60 seconds of non-use
+
+// Function to update font usage time
+function updateFontUsageTime(fontName) {
+  if (!fontName) return;
+  fontUsage.set(fontName, Date.now());
+}
 
 // Replace the fetchRandomQuote function with this simpler version
 function getRandomQuote() {
@@ -46,13 +56,15 @@ function updateQuote(quote) {
 }
 
 // Helper function to get a random variable font that hasn't failed before
-function getRandomVariableFont(fonts, currentFontFamily = null) {
+function getRandomVariableFont(currentFontFamily = null) {
+    // Get all fonts from the loader
+    const fonts = googleFontsLoader.fonts;
     if (!fonts || fonts.length === 0) return null;
     
     // Filter only variable fonts that haven't failed before
     const variableFonts = fonts.filter(font => 
-      googleFontsLoader.isVariableFont(font) && 
-      !failedFonts.has(font.family));
+      googleFontsLoader.isVariableFont(font.name) && 
+      !failedFonts.has(font.name));
     
     if (variableFonts.length === 0) {
       console.warn("No eligible variable fonts available");
@@ -63,14 +75,14 @@ function getRandomVariableFont(fonts, currentFontFamily = null) {
     
     // Select a random font different from the current one if possible
     let candidates = currentFontFamily ? 
-      variableFonts.filter(font => font.family !== currentFontFamily) : 
+      variableFonts.filter(font => font.name !== currentFontFamily) : 
       variableFonts;
     
     // If no other fonts are available, fall back to all variable fonts
     if (candidates.length === 0) candidates = variableFonts;
     
     return candidates[Math.floor(Math.random() * candidates.length)];
-  }
+}
 
 // Helper function to preload fonts in the background
 async function preloadFonts() {
@@ -80,7 +92,7 @@ async function preloadFonts() {
   
   try {
     // Get all available fonts
-    const fonts = await googleFontsLoader.getFonts();
+    const fonts = googleFontsLoader.fonts;
     if (!fonts || fonts.length === 0) {
       console.warn("No fonts available for preloading");
       isPreloading = false;
@@ -88,12 +100,12 @@ async function preloadFonts() {
     }
     
     // Get all variable fonts that haven't failed and aren't already preloaded or in use
-    const currentFontFamily = currentFontData?.family;
+    const currentFontFamily = currentFontData?.name;
     const preloadableFonts = fonts.filter(font => 
-      googleFontsLoader.isVariableFont(font) && 
-      !failedFonts.has(font.family) && 
-      !preloadedFonts.some(f => f.family === font.family) &&
-      font.family !== currentFontFamily
+      googleFontsLoader.isVariableFont(font.name) && 
+      !failedFonts.has(font.name) && 
+      !preloadedFonts.some(f => f.name === font.name) &&
+      font.name !== currentFontFamily
     );
     
     if (preloadableFonts.length === 0) {
@@ -107,17 +119,19 @@ async function preloadFonts() {
     
     // Take a few fonts to preload
     const fontsToPreload = shuffled.slice(0, PRELOAD_BATCH_SIZE);
-    console.log(`Preloading ${fontsToPreload.length} fonts: ${fontsToPreload.map(f => f.family).join(', ')}`);
+    console.log(`Preloading ${fontsToPreload.length} fonts: ${fontsToPreload.map(f => f.name).join(', ')}`);
     
     // Load each font in parallel and add to preloaded queue if successful
     await Promise.all(fontsToPreload.map(async (font) => {
       try {
-        await googleFontsLoader.loadSingleFont(font.family);
+        await googleFontsLoader.loadFont(font.name);
         preloadedFonts.push(font);
-        console.log(`Successfully preloaded: ${font.family}`);
+        // Update usage time for preloaded fonts
+        updateFontUsageTime(font.name);
+        console.log(`Successfully preloaded: ${font.name}`);
       } catch (error) {
-        console.warn(`Failed to preload font: ${font.family}`);
-        failedFonts.add(font.family);
+        console.warn(`Failed to preload font: ${font.name}`);
+        failedFonts.add(font.name);
       }
     }));
   } catch (error) {
@@ -133,7 +147,7 @@ function getNextFont(currentFontFamily = null) {
   if (preloadedFonts.length > 0) {
     // Get a random preloaded font that's different from current
     const availablePreloaded = preloadedFonts.filter(font => 
-      font.family !== currentFontFamily);
+      font.name !== currentFontFamily);
     
     if (availablePreloaded.length > 0) {
       // Remove the font from the preloaded queue
@@ -141,7 +155,7 @@ function getNextFont(currentFontFamily = null) {
       const selectedFont = availablePreloaded[randomIndex];
       
       // Remove this font from the preloaded list
-      preloadedFonts = preloadedFonts.filter(font => font.family !== selectedFont.family);
+      preloadedFonts = preloadedFonts.filter(font => font.name !== selectedFont.name);
       
       // Start preloading more fonts in the background for next clicks
       setTimeout(() => preloadFonts(), 100);
@@ -151,7 +165,7 @@ function getNextFont(currentFontFamily = null) {
   }
   
   // If no preloaded fonts, fall back to getting a random font
-  return getRandomVariableFont(googleFontsLoader.getFonts(), currentFontFamily);
+  return getRandomVariableFont(currentFontFamily);
 }
 
 // Modified changeRandomFont function to use preloaded fonts and remove cooldown
@@ -183,10 +197,10 @@ async function changeRandomFont(retryCount = 0) {
 
   try {
     // Get the current font family
-    const currentFontFamily = currentFontData?.family;
+    const currentFontFamily = currentFontData?.name;
     
     // Get the next font to use (preloaded if available)
-    const nextFont = await getNextFont(currentFontFamily);
+    const nextFont = getNextFont(currentFontFamily);
     
     if (!nextFont) {
       console.warn("No suitable variable fonts found");
@@ -197,13 +211,15 @@ async function changeRandomFont(retryCount = 0) {
     // Get a random quote with each font change
     const randomQuote = getRandomQuote();
 
-    console.log(`Changing to font: ${nextFont.family} (attempt ${retryCount + 1})`);
+    console.log(`Changing to font: ${nextFont.name} (attempt ${retryCount + 1})`);
 
-    // The font should already be loaded if it was preloaded
-    // But we'll check the loaded fonts set to be sure
-    if (!googleFontsLoader.loadedFonts.has(nextFont.family)) {
-      await googleFontsLoader.loadSingleFont(nextFont.family);
+    // Load the font if it's not already loaded
+    if (!googleFontsLoader.loadedFonts.has(nextFont.name)) {
+      await googleFontsLoader.loadFont(nextFont.name);
     }
+    
+    // Update font usage time
+    updateFontUsageTime(nextFont.name);
 
     // Store current font data
     currentFontData = nextFont;
@@ -213,23 +229,25 @@ async function changeRandomFont(retryCount = 0) {
     dragStartWeight = 400;
 
     // Update the title font
-    titleElement.style.fontFamily = `'${nextFont.family}', sans-serif`;
+    titleElement.style.fontFamily = `'${nextFont.name}', sans-serif`;
     titleElement.style.fontVariationSettings = `'wght' ${currentWeight}`;
     titleElement.style.fontWeight = currentWeight;
     
     // Also set for quote elements
     quoteElements.forEach(el => {
-      el.style.fontFamily = `'${nextFont.family}', sans-serif`;
+      el.style.fontFamily = `'${nextFont.name}', sans-serif`;
       el.style.fontVariationSettings = `'wght' ${currentWeight}`;
       el.style.fontWeight = currentWeight;
     });
     
-    console.log(`Successfully applied font: ${nextFont.family} with weight ${currentWeight}`);
+    console.log(`Successfully applied font: ${nextFont.name} with weight ${currentWeight}`);
 
     // Update font info
-    fontNameElement.textContent = nextFont.family;
+    fontNameElement.innerHTML = `<a href="https://fonts.google.com/specimen/${nextFont.name.replace(/\s+/g, '+')}" target="_blank">${nextFont.name}</a>`;
+    
+    // Get designer info if available
     const designer = nextFont.designer || "Unknown Designer";
-    fontDesignerElement.textContent = "Designed by " + designer;
+    fontDesignerElement.innerHTML = "designed by " + designer;
     
     // Update the quote text
     if (randomQuote) updateQuote(randomQuote);
@@ -239,6 +257,12 @@ async function changeRandomFont(retryCount = 0) {
     
     // Start preloading more fonts right after successful change
     setTimeout(() => preloadFonts(), 100);
+    
+    // If we had a previous font, mark it for potential cleanup
+    if (currentFontFamily && currentFontFamily !== nextFont.name) {
+      // Keep the timestamp updated so it can be cleaned up later
+      updateFontUsageTime(currentFontFamily); 
+    }
     
   } catch (error) {
     console.error(`Failed to load font: ${error}`);
@@ -260,6 +284,43 @@ async function changeRandomFont(retryCount = 0) {
       isChangingFont = false;
     }
   }
+}
+
+// Add a function to clean up unused fonts
+function cleanupUnusedFonts() {
+  const now = Date.now();
+  
+  // Get list of currently loaded fonts from the loader
+  const loadedFonts = Array.from(googleFontsLoader.loadedFonts);
+  
+  // Skip if we don't have enough loaded fonts
+  if (loadedFonts.length <= 5) return;
+  
+  // Get current font and preloaded fonts (these should not be unloaded)
+  const currentFontName = currentFontData?.name;
+  const preloadedFontNames = preloadedFonts.map(font => font.name);
+  
+  // Check each loaded font to see if it's unused
+  loadedFonts.forEach(fontName => {
+    // Skip the current font
+    if (fontName === currentFontName) return;
+    
+    // Skip preloaded fonts
+    if (preloadedFontNames.includes(fontName)) return;
+    
+    // Skip Epilogue (default font)
+    if (fontName === "Epilogue") return;
+    
+    // Check if the font has been unused for the expiration time
+    const lastUsed = fontUsage.get(fontName) || 0;
+    const timeSinceUse = now - lastUsed;
+    
+    if (lastUsed > 0 && timeSinceUse > FONT_EXPIRATION_TIME) {
+      console.log(`Unloading unused font: ${fontName} (unused for ${Math.round(timeSinceUse/1000)}s)`);
+      googleFontsLoader.unloadFont(fontName);
+      fontUsage.delete(fontName);
+    }
+  });
 }
 
 // Helper function to find the closest available weight
@@ -287,14 +348,15 @@ function findClosestWeight(variants, targetWeight) {
 function initDefaultFont() {
     // Create a default font data structure for Epilogue
     currentFontData = {
-        family: "Epilogue",
+        name: "Epilogue",
         category: "sans-serif",
-        variants: ["100", "200", "300", "400", "500", "600", "700", "800", "900", 
-                  "100italic", "200italic", "300italic", "400italic", "500italic", 
-                  "600italic", "700italic", "800italic", "900italic"],
-        axes: ["wght"],  // This indicates it's a variable font
-        files: {}
+        axes: {
+            wght: { min: 100, max: 900, default: 400 }
+        }
     };
+    
+    // Mark Epilogue as used
+    updateFontUsageTime("Epilogue");
     
     console.log("Default font initialized: Epilogue");
 }
@@ -348,7 +410,7 @@ function init3DEffect() {
         }
         
         const dx = event.clientX - startX;
-        const weightChange = Math.round(dx / 2); // Reduced sensitivity for better control
+        const weightChange = Math.round(dx); // Reduced sensitivity for better control
         const newWeight = Math.min(Math.max(dragStartWeight + weightChange, 100), 900);
         
         if (newWeight !== currentWeight) {
@@ -396,9 +458,7 @@ function updateFontWeight() {
     
     // If we have current font data, use it to determine if variable
     if (currentFontData) {
-        isVariable = googleFontsLoader.isVariableFont ? 
-                    googleFontsLoader.isVariableFont(currentFontData) : 
-                    currentFontData.axes && currentFontData.axes.includes("wght");
+        isVariable = googleFontsLoader.isVariableFont(currentFontData.name);
     }
     
     console.log(`Updating font weight: ${currentWeight}, Variable: ${isVariable}`);
@@ -413,15 +473,24 @@ function updateFontWeight() {
             el.style.fontWeight = currentWeight;
         });
     } else if (currentFontData) {
-        // Standard font - find closest available weight
-        const closestWeight = findClosestWeight(currentFontData.variants, currentWeight);
-        titleElement.style.fontVariationSettings = '';
-        titleElement.style.fontWeight = closestWeight;
-        
-        quoteElements.forEach(el => {
-            el.style.fontVariationSettings = '';
-            el.style.fontWeight = closestWeight;
-        });
+        // For standard fonts with weights - use the GoogleFontsLoader to get variants
+        const font = googleFontsLoader.getFont(currentFontData.name);
+        if (font) {
+            const variants = googleFontsLoader.getFontVariants(font.name);
+            const closestVariant = variants.find(v => v.weight === currentWeight) || 
+                                   variants.reduce((prev, curr) => 
+                                     Math.abs(curr.weight - currentWeight) < Math.abs(prev.weight - currentWeight) ? curr : prev);
+            
+            titleElement.style.fontVariationSettings = '';
+            titleElement.style.fontWeight = closestVariant.weight;
+            titleElement.style.fontStyle = closestVariant.style;
+            
+            quoteElements.forEach(el => {
+                el.style.fontVariationSettings = '';
+                el.style.fontWeight = closestVariant.weight;
+                el.style.fontStyle = closestVariant.style;
+            });
+        }
     }
 }
 
@@ -434,18 +503,28 @@ function initFontParticles() {
   let availableFonts = [];
   let isInitialized = false;
   
-  // Initialize with some fonts
-  googleFontsLoader.init('/fonts.json')
-    .then(fonts => {
-      // Filter only variable fonts
-      availableFonts = fonts.filter(font => googleFontsLoader.isVariableFont(font));
-      isInitialized = true;
-    })
-    .then(() => {
-      // Start generating particles once fonts are loaded
-      createFloatingParticle();
-    })
-    .catch(error => console.error('Failed to initialize font particles:', error));
+  // Calculate visible height constraints for particles
+  const containerTop = 120; // Match the container's padding-top from CSS
+  const maxParticleHeight = window.innerHeight - containerTop;
+  
+  // Function to recalculate height constraints on window resize
+  function updateHeightConstraints() {
+    return window.innerHeight - containerTop;
+  }
+  
+  // Add window resize listener to update constraints
+  window.addEventListener('resize', () => {
+    updateHeightConstraints();
+  });
+  
+  // Start generating particles after fonts are loaded
+  function startParticles() {
+    // Filter only variable fonts
+    availableFonts = googleFontsLoader.fonts.filter(font => googleFontsLoader.isVariableFont(font.name));
+    isInitialized = true;
+    // Start generating particles
+    createFloatingParticle();
+  }
   
   function createFloatingParticle() {
     if (!isInitialized || availableFonts.length === 0) {
@@ -458,16 +537,25 @@ function initFontParticles() {
     const randomFont = availableFonts[randomIndex];
     
     // Load the selected font before creating the particle
-    googleFontsLoader.loadSingleFont(randomFont.family)
+    googleFontsLoader.loadFont(randomFont.name)
       .then(() => {
+        // Update font usage time for this particle
+        updateFontUsageTime(randomFont.name);
+        
         // Create particle element after font is loaded
         const particle = document.createElement('div');
         particle.classList.add('font-particle');
         
         // Get a random weight for this particle
-        const weightRange = googleFontsLoader.getWeightRange(randomFont);
-        const randomWeight = Math.floor(Math.random() * 
-            (weightRange.max - weightRange.min + 1)) + weightRange.min;
+        const font = googleFontsLoader.getFont(randomFont.name);
+        let weightMin = 400, weightMax = 700;
+        
+        if (font && font.axes && font.axes.wght) {
+          weightMin = font.axes.wght.min || 400;
+          weightMax = font.axes.wght.max || 700;
+        }
+        
+        const randomWeight = Math.floor(Math.random() * (weightMax - weightMin + 1)) + weightMin;
         
         // Randomly determine if particle enters from left or right
         const enterFromLeft = Math.random() > 0.5;
@@ -475,12 +563,18 @@ function initFontParticles() {
         // Set initial position
         const startX = enterFromLeft ? -300 : window.innerWidth + 300;
         const endX = enterFromLeft ? window.innerWidth + 300 : -300;
-        const y = Math.random() * window.innerHeight;
+        
+        // Calculate a random Y position within the visible area constraints
+        // Leave some margin at top and bottom for better aesthetics
+        const margin = 50; // 50px margin from top and bottom
+        const minY = containerTop + margin;
+        const maxY = Math.min(maxParticleHeight, window.innerHeight - margin);
+        const y = minY + Math.random() * (maxY - minY);
         
         // Set content - font name styled with its own font
         particle.innerHTML = `
-          <span class="font-display" style="font-family: '${randomFont.family}'; 
-          font-variation-settings: 'wght' ${randomWeight};">${randomFont.family}</span>
+          <span class="font-display" style="font-family: '${randomFont.name}'; 
+          font-variation-settings: 'wght' ${randomWeight};">${randomFont.name}</span>
         `;
         
         // Set styles
@@ -531,10 +625,18 @@ function initFontParticles() {
         setTimeout(createFloatingParticle, nextDelay);
       })
       .catch(error => {
-        console.error(`Failed to load font for particle: ${randomFont.family}`, error);
+        console.error(`Failed to load font for particle: ${randomFont.name}`, error);
         // Try again with a small delay if this font failed
         setTimeout(createFloatingParticle, 1000);
       });
+  }
+  
+  // Start once fonts are available
+  if (googleFontsLoader.fonts && googleFontsLoader.fonts.length > 0) {
+    startParticles();
+  } else {
+    // Wait a bit and check again
+    setTimeout(startParticles, 2000);
   }
 }
 
@@ -632,37 +734,67 @@ function initTextTrail() {
   });
 }
 
-// Modify the initHomePage function to remove the separate click listener
-function initHomePage() {
-    // Initialize fonts loader first
-    googleFontsLoader.init('/fonts.json')
-        .then(() => {
-            // Set up initial font data for Epilogue
-            initDefaultFont();
-            
-            init3DEffect(); // This now handles clicks properly
-            
-            // Show a quote on first load without changing the font
-            const initialQuote = getRandomQuote();
-            if (initialQuote) updateQuote(initialQuote);
-            
-            // Start preloading fonts right away
-            setTimeout(() => preloadFonts(), 500);
-            
-            initFontParticles();
-            initTextTrail();
-            
-            // Initialize debug tools
-            initDebugTools();
-        })
-        .catch(error => {
-            console.error('Failed to initialize fonts:', error);
-            // Still set up the default font even if Google Fonts fail
-            initDefaultFont();
-            init3DEffect();
-            initTextTrail();
-        });
+// Start the cleanup interval
+function startFontCleanupInterval() {
+  // Don't run cleanup too frequently
+  setInterval(cleanupUnusedFonts, FONT_CLEANUP_INTERVAL);
+  console.log(`Font cleanup scheduled every ${FONT_CLEANUP_INTERVAL/1000} seconds`);
 }
+
+// Modify the initHomePage function to initialize the GoogleFontsLoader
+async function initHomePage() {
+    try {
+        // Initialize the GoogleFontsLoader with data from fontinfo.json
+        googleFontsLoader = await GoogleFontsLoader.fromJson("/data/fontinfo.json");
+        
+        // Make it available globally
+        window.googleFontsLoader = googleFontsLoader;
+        
+        console.log(`Loaded ${googleFontsLoader.fonts.length} fonts`);
+        
+        // Set up initial font data for Epilogue
+        initDefaultFont();
+        
+        // Ensure Epilogue is loaded
+        await googleFontsLoader.loadFont("Epilogue");
+        updateFontUsageTime("Epilogue");
+        
+        init3DEffect(); // This now handles clicks properly
+        
+        // Show a quote on first load without changing the font
+        const initialQuote = getRandomQuote();
+        if (initialQuote) updateQuote(initialQuote);
+        
+        // Start preloading fonts right away
+        setTimeout(() => preloadFonts(), 500);
+        
+        initFontParticles();
+        initTextTrail();
+        
+        // Start font cleanup interval
+        startFontCleanupInterval();
+      
+    } catch (error) {
+        console.error('Failed to initialize fonts:', error);
+        // Still set up the default font even if Google Fonts fail
+        initDefaultFont();
+        init3DEffect();
+        initTextTrail();
+    }
+}
+
+// Add event listener to update when page becomes hidden or visible
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible') {
+    // When page becomes visible again, delay font cleanup a bit
+    setTimeout(cleanupUnusedFonts, 30000);
+  }
+});
 
 // Initialize when DOM is loaded
 document.addEventListener("DOMContentLoaded", initHomePage);
+
+// Clean up resources before page unload
+window.addEventListener('beforeunload', () => {
+  // Additional cleanup here if needed
+});

@@ -1,5 +1,6 @@
 import { state, applyStyles } from "./textbox.js";
-import { googleFontsLoader, FONTS_PER_PAGE } from "./google-fonts-loader.js";
+import { GoogleFontsLoader } from "./google-fonts-loader.js";
+import { getAxisName, getAxisDefaultValue } from "./font-axis-utils.js";  // Import the new utility
 
 const fonts = new Map();
 const fontListElement = document.getElementById("font-list");
@@ -8,9 +9,10 @@ let textBoxManager = null;
 
 // Add these constants at the top
 let currentPage = 0;
+const FONTS_PER_PAGE = 20; // Define this here since we don't import it anymore
 let googleFontsData = [];
 let googleSection;
-let isLoadingFonts = false; // Add this
+let isLoadingFonts = false;
 let hasMoreFonts = true;
 let selectedFontCard = null;
 
@@ -18,6 +20,9 @@ let selectedFontCard = null;
 let searchQuery = '';
 let filteredFontsList = [];
 let isSearching = false;
+
+// Initialize the GoogleFontsLoader
+let googleFontsLoader = null;
 
 function setupEventListeners() {
   document.addEventListener("textbox-updated", (e) => {
@@ -182,7 +187,17 @@ async function init(manager) {
   const searchInput = searchDiv.querySelector('.font-search__input');
   searchInput.addEventListener('input', debounce(handleSearch, 300));
 
-  await loadFonts();
+  try {
+    // Initialize the Google Fonts loader first
+    console.log("Initializing Google Fonts loader...");
+    googleFontsLoader = await GoogleFontsLoader.fromJson("/data/fontinfo.json");
+    console.log(`Google Fonts loader initialized with ${googleFontsLoader.getAllFontNames().length} fonts`);
+    
+    // Then load fonts
+    await loadFonts();
+  } catch (error) {
+    console.error("Error initializing font manager:", error);
+  }
 }
 
 // Add debounce utility function
@@ -203,6 +218,7 @@ async function handleSearch(e) {
   searchQuery = e.target.value.toLowerCase();
   currentPage = 0;
   isLoadingFonts = false;
+  hasMoreFonts = true; // Reset this flag when searching
   
   // Clear existing fonts
   const localSection = document.querySelector('.local-fonts');
@@ -274,11 +290,13 @@ async function loadLocalFonts() {
   }
 }
 
-// Update loadGoogleFonts function
+// Update loadGoogleFonts function to use GoogleFontsLoader
 async function loadGoogleFonts() {
   try {
-    // Initialize Google Fonts loader
-    await googleFontsLoader.init();
+    if (!googleFontsLoader) {
+      console.error("Google Fonts loader not initialized");
+      return;
+    }
 
     // Create Google fonts section if not exists
     if (!googleSection) {
@@ -299,13 +317,16 @@ async function loadGoogleFonts() {
   }
 }
 
-// Modify loadMoreGoogleFonts to handle search
+// Modify loadMoreGoogleFonts to use GoogleFontsLoader correctly
 async function loadMoreGoogleFonts() {
   if (isLoadingFonts) return;
 
   const start = currentPage * FONTS_PER_PAGE;
-  const filteredFonts = googleFontsLoader.fontsData.filter(font => 
-    font.family.toLowerCase().includes(searchQuery)
+  
+  // Get all available fonts and apply search filter
+  const allFontNames = googleFontsLoader.getAllFontNames();
+  const filteredFonts = allFontNames.filter(fontName => 
+    fontName.toLowerCase().includes(searchQuery)
   );
 
   // Check if we've reached the end of results
@@ -320,27 +341,48 @@ async function loadMoreGoogleFonts() {
   }
 
   isLoadingFonts = true;
-  const loadingIndicator = googleSection.querySelector(".loading-indicator");
+  
+  // Remove the existing loading indicator if it exists
+  let loadingIndicator = googleSection.querySelector(".loading-indicator");
   if (loadingIndicator) {
     loadingIndicator.remove();
   }
 
   try {
     const fontBatch = filteredFonts.slice(start, start + FONTS_PER_PAGE);
+    console.log(`Loading font batch: ${start} to ${start + fontBatch.length}`, fontBatch);
     
-    for (const fontData of fontBatch) {
-      const fontInfo = googleFontsLoader.getFontInfo(fontData.family);
-      if (!fontInfo) continue;
+    // Pre-load this batch of fonts before creating cards
+    try {
+      await googleFontsLoader.loadFonts(fontBatch);
+      console.log(`✅ Successfully loaded ${fontBatch.length} fonts`);
+    } catch (error) {
+      console.error("Error pre-loading Google fonts:", error);
+    }
+    
+    for (const fontName of fontBatch) {
+      // Get font info from the loader
+      const font = googleFontsLoader.getFont(fontName);
+      if (!font) {
+        console.warn(`Could not find font data for ${fontName}`);
+        continue;
+      }
+
+      // Create font info object in the format needed by createFontCard
+      const fontInfo = {
+        name: font.family || fontName,
+        source: "google",  // Mark as Google font
+        style: "Regular",
+        features: font.features || [],
+        axes: font.axes || {},
+        instances: font.variants?.map(variant => ({
+          name: { en: variant },
+          coordinates: variant === "Regular" ? {} : { wght: parseInt(variant) || 400 }
+        })) || []
+      };
 
       createFontCard(fontInfo, googleSection);
       fonts.set(fontInfo.name, fontInfo);
-    }
-
-    // Only add loading indicator if there are more fonts to load
-    if (start + FONTS_PER_PAGE < filteredFonts.length) {
-      if (loadingIndicator) {
-        googleSection.appendChild(loadingIndicator);
-      }
     }
 
     currentPage++;
@@ -348,25 +390,45 @@ async function loadMoreGoogleFonts() {
     console.error("Error loading Google fonts batch:", error);
   } finally {
     isLoadingFonts = false;
+    
+    // Only re-create loading indicator if there are more fonts to load
+    // Check if we have more fonts to load before adding the loading indicator
+    if (start + FONTS_PER_PAGE < filteredFonts.length) {
+      hasMoreFonts = true;
+      // Create a new loading indicator if it doesn't exist
+      loadingIndicator = googleSection.querySelector(".loading-indicator");
+      if (!loadingIndicator) {
+        loadingIndicator = document.createElement("div");
+        loadingIndicator.className = "loading-indicator";
+        loadingIndicator.innerHTML = `
+          <div class="loading-spinner"></div>
+          <span>Loading more fonts...</span>
+        `;
+        googleSection.appendChild(loadingIndicator);
+      } else {
+        // Move the existing loading indicator to the bottom
+        googleSection.appendChild(loadingIndicator);
+      }
+      
+      // Re-observe the loading indicator with our existing observer
+      if (window.fontScrollObserver) {
+        window.fontScrollObserver.observe(loadingIndicator);
+      }
+    } else {
+      // No more fonts to load
+      hasMoreFonts = false;
+      console.log('No more fonts to load. Reached end of list.');
+    }
   }
 }
 
 // Add infinite scroll setup
 function setupInfiniteScroll() {
-  // Create and append loading indicator
-  const loadingIndicator = document.createElement("div");
-  loadingIndicator.className = "loading-indicator";
-  loadingIndicator.innerHTML = `
-      <div class="loading-spinner"></div>
-      <span>Loading more fonts...</span>
-  `;
-  googleSection.appendChild(loadingIndicator);
-
   // Create intersection observer
   const observer = new IntersectionObserver(
     async (entries) => {
       const indicator = entries[0];
-      if (indicator.isIntersecting && !isLoadingFonts) {
+      if (indicator.isIntersecting && !isLoadingFonts && hasMoreFonts) {
         await loadMoreGoogleFonts();
       }
     },
@@ -376,31 +438,34 @@ function setupInfiniteScroll() {
       threshold: 0.1,
     }
   );
+  
+  // Store the observer globally so we can reuse it
+  window.fontScrollObserver = observer;
 
-  // Start observing the loading indicator
-  observer.observe(loadingIndicator);
-}
+  // Only create loading indicator if there are fonts to load
+  const allFontNames = googleFontsLoader.getAllFontNames();
+  const filteredFonts = allFontNames.filter(fontName => 
+    fontName.toLowerCase().includes(searchQuery)
+  );
 
-async function loadFontsFromDirectory(directory) {
-  try {
-    const response = await fetch(directory);
-    const dirList = await response.text();
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(dirList, "text/html");
-    const fontFiles = Array.from(doc.querySelectorAll("a"))
-      .map((a) => a.href)
-      .filter((href) => href.match(/\.(ttf|otf|woff|woff2)$/i));
+  if (FONTS_PER_PAGE < filteredFonts.length) {
+    // Create and append loading indicator
+    const loadingIndicator = document.createElement("div");
+    loadingIndicator.className = "loading-indicator";
+    loadingIndicator.innerHTML = `
+      <div class="loading-spinner"></div>
+      <span>Loading more fonts...</span>
+    `;
+    googleSection.appendChild(loadingIndicator);
 
-    for (const fontUrl of fontFiles) {
-      const fontInfo = await loadFont(fontUrl);
-      if (fontInfo) {
-        createFontCard(fontInfo);
-      }
-    }
-  } catch (error) {
-    console.error("Error loading fonts directory:", error);
+    // Start observing the loading indicator
+    observer.observe(loadingIndicator);
+  } else {
+    // No need for infinite scroll if all fonts fit in first batch
+    hasMoreFonts = false;
   }
 }
+
 
 // Update the loadFont function to include features, axes, and instances
 async function loadFont(fontPath) {
@@ -417,7 +482,13 @@ async function loadFont(fontPath) {
     if (font.tables.fvar) {
       font.tables.fvar.axes.forEach((axis) => {
         // Get axis name from name table if available
-        let axisName = axis.name ? axis.name.en : axis.tag;
+        // Use getAxisName from the utility for more readable names
+        let axisName = getAxisName(axis.tag);
+        
+        // If there's a specific name in the font, prefer that
+        if (axis.name && axis.name.en) {
+          axisName = axis.name.en;
+        }
 
         axes[axis.tag] = {
           name: axisName,
@@ -514,82 +585,132 @@ function getOpenTypeFeatures(font) {
   return Array.from(features);
 }
 
-// Update the createFontCard function
+// Update the createFontCard function for proper Google font handling
 function createFontCard(fontInfo, parentElement) {
   const card = document.createElement("div");
   card.className = "font-card";
-
-  const style = document.createElement("style");
-  style.textContent = `
-        @font-face {
-            font-family: "${fontInfo.name}";
-            src: url("${fontInfo.source}");
-        }
+  
+  // For Google Fonts, we need to create a different style rule
+  let fontStyleRule;
+  
+  if (fontInfo.source === "google") {
+    // Add the font family name only, don't add a new <style> tag
+    // WebFontLoader or GoogleFontsLoader will handle the actual loading
+    fontStyleRule = `
+      .font-card__name[data-font="${fontInfo.name}"] {
+        font-family: "${fontInfo.name}", sans-serif;
+      }
     `;
-  document.head.appendChild(style);
+    
+    // Add to existing or create new style element for Google fonts
+    let googleStyleElement = document.getElementById("google-fonts-preview-styles");
+    if (!googleStyleElement) {
+      googleStyleElement = document.createElement("style");
+      googleStyleElement.id = "google-fonts-preview-styles";
+      document.head.appendChild(googleStyleElement);
+      
+      // Initialize with base styles
+      googleStyleElement.textContent = "";
+    }
+    
+    // Add this font's rule if not already present
+    if (!googleStyleElement.textContent.includes(`[data-font="${fontInfo.name}"]`)) {
+      googleStyleElement.textContent += fontStyleRule;
+    }
+  } else {
+    // For local fonts, create an individual font-face rule
+    const style = document.createElement("style");
+    style.textContent = `
+      @font-face {
+        font-family: "${fontInfo.name}";
+        src: url("${fontInfo.source}");
+      }
+    `;
+    document.head.appendChild(style);
+  }
 
   const nameEl = document.createElement("div");
   nameEl.className = "font-card__name";
   nameEl.textContent = fontInfo.name;
-  nameEl.style.fontFamily = fontInfo.name;
+  nameEl.setAttribute("data-font", fontInfo.name);
+  nameEl.style.fontFamily = `"${fontInfo.name}", sans-serif`;
 
   card.appendChild(nameEl);
 
   // Update the card click handler
-  card.addEventListener("click", (e) => {
+  card.addEventListener("click", async (e) => {
     e.stopPropagation();
 
-    // Create initial feature states (all disabled by default)
-    const featureStates = {};
-    if (fontInfo.features && Array.isArray(fontInfo.features)) {
-      fontInfo.features.forEach((feature) => {
-        featureStates[feature] = false;
-      });
-    }
+    try {
+      // If it's a Google Font, ensure it's loaded before continuing
+      if (fontInfo.source === "google") {
+        console.log(`Loading Google font for selection: ${fontInfo.name}`);
+        await googleFontsLoader.loadFont(fontInfo.name);
+      }
 
-    // Create initial axis values (using defaults)
-    const axisValues = {};
-    if (fontInfo.axes) {
-      Object.entries(fontInfo.axes).forEach(([tag, axis]) => {
-        axisValues[tag] = axis.default;
-      });
-    }
+      // Create initial feature states (all disabled by default)
+      const featureStates = {};
+      if (fontInfo.features && Array.isArray(fontInfo.features)) {
+        fontInfo.features.forEach((feature) => {
+          featureStates[feature] = false;
+        });
+      }
 
-    // Get default instance (usually 'Regular') if available
-    const defaultInstance =
-      fontInfo.instances && fontInfo.instances.length > 0
-        ? fontInfo.instances[0]
-        : { name: { en: "Regular" }, coordinates: {} };
+      // Create initial axis values using defaults from our utility
+      const axisValues = {};
+      if (fontInfo.axes) {
+        Object.entries(fontInfo.axes).forEach(([tag, axis]) => {
+          // Use the default from the axis if available, otherwise use our utility
+          axisValues[tag] = axis.default !== undefined ? axis.default : 
+            getAxisDefaultValue(tag, axis.min, axis.max);
+        });
+      }
 
-    const fontData = {
-      family: fontInfo.name,
-      features: featureStates,
-      axes: axisValues,
-      instance: defaultInstance.name?.en || "Regular",
-      instanceData: defaultInstance.coordinates || {},
-    };
+      // Get default instance (usually 'Regular') if available
+      const defaultInstance =
+        fontInfo.instances && fontInfo.instances.length > 0
+          ? fontInfo.instances[0]
+          : { name: { en: "Regular" }, coordinates: {} };
 
-    // Add detailed logging
-    console.group(`Font Selected: ${fontInfo.name}`);
-    console.log("Font Info:", fontInfo);
-    console.log("Initial Font Data:", fontData);
-    console.groupEnd();
+      // Get current active textbox styles for text formatting
+      let currentTextFormatting = {};
+      if (state.activeTextbox) {
+        const styles = state.textboxes.get(state.activeTextbox).styles;
+        currentTextFormatting = {
+          textAlign: styles.textAlign || 'left',
+          fontStyle: styles.fontStyle || 'normal',
+          textDecoration: styles.textDecoration || 'none'
+        };
+      }
 
-    updateFontCardSelection(card);
+      const fontData = {
+        family: fontInfo.name,
+        features: featureStates,
+        axes: axisValues,
+        instance: defaultInstance.name?.en || "Regular",
+        instanceData: defaultInstance.coordinates || {},
+        // Pass current formatting to preserve it
+        currentStyles: currentTextFormatting
+      };
 
-    // Dispatch custom event for font selection
-    const event = new CustomEvent("font-selected", {
-      detail: {
-        fontData,
-        fontInfo: {
-          ...fontInfo,
-          availableFeatures: fontInfo.features || [],
-          availableAxes: fontInfo.axes || {},
-          availableInstances: fontInfo.instances || [],
+      updateFontCardSelection(card);
+
+      // Dispatch custom event for font selection
+      const event = new CustomEvent("font-selected", {
+        detail: {
+          fontData,
+          fontInfo: {
+            ...fontInfo,
+            availableFeatures: fontInfo.features || [],
+            availableAxes: fontInfo.axes || {},
+            availableInstances: fontInfo.instances || [],
+          },
         },
-      },
-    });
-    document.dispatchEvent(event);
+      });
+      document.dispatchEvent(event);
+    } catch (error) {
+      console.error(`Error selecting font ${fontInfo.name}:`, error);
+    }
   });
 
   // Append to specified parent instead of fontListElement
@@ -662,7 +783,8 @@ function getSelectedFontData() {
   const axisValues = {};
   if (fontInfo.axes) {
     Object.entries(fontInfo.axes).forEach(([tag, axis]) => {
-      axisValues[tag] = axis.default;
+      axisValues[tag] = axis.default !== undefined ? axis.default : 
+        getAxisDefaultValue(tag, axis.min, axis.max);
     });
   }
 
@@ -706,6 +828,25 @@ function updateSettingsPanel(data) {
     return;
   }
 
+  // If no data is provided, show user manual
+  if (!data) {
+    showUserManual();
+    console.log("Showing user manual (no data provided)");
+    console.groupEnd();
+    return;
+  }
+
+  // Get current textbox formatting settings
+  let currentTextFormatting = {};
+  if (state.activeTextbox) {
+    const styles = state.textboxes.get(state.activeTextbox).styles;
+    currentTextFormatting = {
+      textAlign: styles.textAlign || 'left',
+      fontStyle: styles.fontStyle || 'normal',
+      textDecoration: styles.textDecoration || 'none'
+    };
+  }
+
   // Clear existing content
   settingsPanel.innerHTML = "";
   console.log("data", data)
@@ -743,41 +884,41 @@ function updateSettingsPanel(data) {
   if (data.size != null) {
     // ...existing font size section code...
 
-    // Add text formatting section
+    // Add text formatting section with preserved states
     const textFormattingSection = document.createElement('div');
     textFormattingSection.className = 'settings-section text-formatting-section';
     textFormattingSection.innerHTML = `
       <h3>Text Formatting</h3>
       <div class="formatting-controls">
         <div class="button-group alignment-controls">
-          <button class="icon-button active" data-format="align" data-value="left" title="Align Left">
+          <button class="icon-button ${currentTextFormatting.textAlign === 'left' ? 'active' : ''}" data-format="align" data-value="left" title="Align Left">
             <svg width="16" height="16" viewBox="0 0 16 16">
               <path d="M1 1h14v2H1V1zm0 4h10v2H1V5zm0 4h14v2H1V9zm0 4h10v2H1v-2z"/>
             </svg>
           </button>
-          <button class="icon-button" data-format="align" data-value="center" title="Center">
+          <button class="icon-button ${currentTextFormatting.textAlign === 'center' ? 'active' : ''}" data-format="align" data-value="center" title="Center">
             <svg width="16" height="16" viewBox="0 0 16 16">
               <path d="M1 1h14v2H1V1zm2 4h10v2H3V5zM1 9h14v2H1V9zm2 4h10v2H3v-2z"/>
             </svg>
           </button>
-          <button class="icon-button" data-format="align" data-value="right" title="Align Right">
+          <button class="icon-button ${currentTextFormatting.textAlign === 'right' ? 'active' : ''}" data-format="align" data-value="right" title="Align Right">
             <svg width="16" height="16" viewBox="0 0 16 16">
               <path d="M1 1h14v2H1V1zm4 4h10v2H5V5zM1 9h14v2H1V9zm4 4h10v2H5v-2z"/>
             </svg>
           </button>
-          <button class="icon-button" data-format="align" data-value="justify" title="Justify">
+          <button class="icon-button ${currentTextFormatting.textAlign === 'justify' ? 'active' : ''}" data-format="align" data-value="justify" title="Justify">
             <svg width="16" height="16" viewBox="0 0 16 16">
               <path d="M1 1h14v2H1V1zm0 4h14v2H1V5zm0 4h14v2H1V9zm0 4h14v2H1v-2z"/>
             </svg>
           </button>
         </div>
         <div class="button-group style-controls">
-          <button class="icon-button" data-format="italic" title="Italic">
+          <button class="icon-button ${currentTextFormatting.fontStyle === 'italic' ? 'active' : ''}" data-format="italic" title="Italic">
             <svg width="16" height="16" viewBox="0 0 16 16">
               <path d="M11.5 2h-4L7 3h1.5l-2 10H5l-.5 1h4l.5-1H7.5l2-10H11l.5-1z"/>
             </svg>
           </button>
-          <button class="icon-button" data-format="underline" title="Underline">
+          <button class="icon-button ${currentTextFormatting.textDecoration === 'underline' ? 'active' : ''}" data-format="underline" title="Underline">
             <svg width="16" height="16" viewBox="0 0 16 16">
               <path d="M3 2v5.5c0 2.5 2 4.5 5 4.5s5-2 5-4.5V2h-2v5.5c0 1.4-1.1 2.5-3 2.5s-3-1.1-3-2.5V2H3zm-1 11h12v1H2v-1z"/>
             </svg>
@@ -786,29 +927,6 @@ function updateSettingsPanel(data) {
       </div>
     `;
     settingsPanel.appendChild(textFormattingSection);
-
-    // Add active states based on current styles
-    if (data.currentStyles) {
-      const { textAlign, fontStyle, textDecoration } = data.currentStyles;
-      
-      // Set default to left align if no alignment is specified
-      if (textAlign) {
-        const alignButton = textFormattingSection.querySelector(`[data-format="align"][data-value="${textAlign}"]`);
-        if (alignButton) {
-          textFormattingSection.querySelectorAll('[data-format="align"]')
-            .forEach(btn => btn.classList.remove('active'));
-          alignButton.classList.add('active');
-        }
-      }
-      
-      if (fontStyle === 'italic') {
-        textFormattingSection.querySelector('[data-format="italic"]')?.classList.add('active');
-      }
-      
-      if (textDecoration === 'underline') {
-        textFormattingSection.querySelector('[data-format="underline"]')?.classList.add('active');
-      }
-    }
   }
 
   // Update the features section HTML in updateSettingsPanel
@@ -859,14 +977,21 @@ function updateSettingsPanel(data) {
               // Skip axes that don't have a range
               if (axis.min === axis.max) return '';
               
-              const currentValue = data.currentAxes[tag] || axis.default;
+              // Use default value from axis if available, otherwise use our utility
+              const defaultValue = axis.default !== undefined ? axis.default :
+                getAxisDefaultValue(tag, axis.min, axis.max);
+              
+              const currentValue = data.currentAxes[tag] || defaultValue;
               const percentage =
                 ((currentValue - axis.min) / (axis.max - axis.min)) * 100;
+
+              // Use axis name from the axis object if available, or fallback to utility
+              const displayName = axis.name || getAxisName(tag);
 
               return `
               <div class="axis-control">
                 <div class="axis-header">
-                  <label>${tag === "wght" ? "Weight" : axis.name}</label>
+                  <label>${displayName}</label>
                   <span class="axis-value">${currentValue}</span>
                 </div>
                 <input type="range" 
@@ -1174,12 +1299,108 @@ searchStyles.textContent = `
 `;
 document.head.appendChild(searchStyles);
 
+// Add a helper function to handle font loading errors
+function handleFontLoadError(fontName, error) {
+  console.error(`Failed to load font "${fontName}":`, error);
+  
+  // Add visual indication for failed fonts
+  const fontCard = Array.from(
+    document.querySelectorAll(".font-card__name")
+  ).find(nameEl => nameEl.textContent === fontName)?.parentElement;
+  
+  if (fontCard) {
+    fontCard.classList.add("font-card--error");
+    const errorMsg = document.createElement("div");
+    errorMsg.className = "font-card__error";
+    errorMsg.textContent = "Failed to load";
+    fontCard.appendChild(errorMsg);
+  }
+}
+
+// Add CSS for error state
+const errorStyles = document.createElement("style");
+errorStyles.textContent = `
+  .font-card--error {
+    opacity: 0.5;
+    position: relative;
+  }
+  
+  .font-card__error {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: rgba(255, 0, 0, 0.7);
+    color: white;
+    font-size: 10px;
+    padding: 2px 5px;
+    border-radius: 2px;
+  }
+`;
+document.head.appendChild(errorStyles);
+
+// Update this function to display a more concise user manual with icons
+function showUserManual() {
+  const settingsPanel = document.querySelector(
+    "#settings-panel .panel__content-wrapper"
+  );
+  
+  if (!settingsPanel) return;
+
+  // Clear existing content
+  settingsPanel.innerHTML = "";
+  
+  // Create user manual content
+  const manualSection = document.createElement("div");
+  manualSection.className = "settings-section user-manual";
+  manualSection.innerHTML = `
+    <h2 class="user-manual__title">TypeLab Guide</h2>
+    
+    <div class="user-manual__section">
+      <h3><span class="material-symbols-outlined">add_circle</span> Create</h3>
+      <p>Use the bottom menu to add text or paragraph boxes to your canvas.</p>
+    </div>
+    
+    <div class="user-manual__section">
+      <h3><span class="material-symbols-outlined">edit</span> Edit</h3>
+      <ul class="user-manual__list">
+        <li>Click to <strong>select</strong> a textbox</li>
+        <li>Double-click to <strong>edit</strong> text</li>
+        <li>Click and drag to <strong>move</strong></li>
+        <li>Use corner handles to <strong>resize</strong></li>
+      </ul>
+    </div>
+    
+    <div class="user-manual__section">
+      <h3><span class="material-symbols-outlined">text_format</span> Format</h3>
+      <ul class="user-manual__list">
+        <li>Choose fonts from the left panel</li>
+        <li>Adjust size, alignment, and style</li>
+        <li>Explore OpenType features</li>
+      </ul>
+    </div>
+    
+    <div class="user-manual__footer">
+      <span class="material-symbols-outlined">help_outline</span>
+      <p>Select any textbox to see formatting options</p>
+    </div>
+  `;
+  
+  settingsPanel.appendChild(manualSection);
+}
+
+// Add this to make the function available for external use
+document.addEventListener("font-manager-ready", () => {
+  // Show the manual initially
+  showUserManual();
+});
+
 export {
   init as initFontManager,
   updateSettingsPanel,
   scrollToFont,
   updateFontCardSelection,
-  getSelectedFontData, // Add this export
+  getSelectedFontData,
+  showUserManual, // Export the new function
 };
 
 export function updateFontSizeSlider(newSize) {
@@ -1198,3 +1419,24 @@ export function updateFontSizeSlider(newSize) {
     }
   }
 }
+
+// Add event listener for font-selected to update text formatting
+document.addEventListener("font-selected", (e) => {
+  const { fontData } = e.detail;
+  
+  // If currentStyles is included in fontData, we should update the textbox's formatting
+  if (fontData.currentStyles && state.activeTextbox) {
+    const textboxData = state.textboxes.get(state.activeTextbox);
+    if (textboxData) {
+      // Preserve current formatting when changing fonts
+      Object.assign(textboxData.styles, {
+        textAlign: fontData.currentStyles.textAlign || textboxData.styles.textAlign || 'left',
+        fontStyle: fontData.currentStyles.fontStyle || textboxData.styles.fontStyle || 'normal',
+        textDecoration: fontData.currentStyles.textDecoration || textboxData.styles.textDecoration || 'none'
+      });
+      
+      // Apply the updated styles
+      applyStyles(textboxData.element, textboxData.styles);
+    }
+  }
+});

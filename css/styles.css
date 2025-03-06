@@ -63,7 +63,8 @@ input[type="radio"]:checked {
    Dropdowns & Menus
    ================= */
 .variantDropdown {
-  min-width: 200px;
+  min-width: 160px;
+  font-size: 0.8rem;
 }
 
 .dd-triangle {
@@ -74,6 +75,15 @@ input[type="radio"]:checked {
 
 .rotate-triangle {
   transform: rotate(0deg) !important;
+}
+
+.dropdown-content {
+  top: -20px;
+  left: -17px;
+}
+
+.dropdown-content-wrapper label {
+  font-size: 0.8rem;
 }
 
 /* Common dropdown styles for both variant and second bar dropdowns */
@@ -218,8 +228,14 @@ header {
 
 .top-bar-button.active {
   background-color: var(--white);
-  color: var (--tblack);
+  color: var(--tblack);
 }
+
+.top-bar-button-end.active {
+  background-color: var(--white);
+  color: var(--tblack);
+}
+
 
 .card:hover .slider,
 .card:hover .dropdown-button {

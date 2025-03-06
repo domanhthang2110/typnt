@@ -14,7 +14,76 @@
     color: transparent;
 }
 
+.second-header {
+  position: sticky;
+  height: 86px;
+  background-color: var(--tblack);
+  top: 0;
+  z-index: 40;
+}
 
+.second-header-button {
+  text-align: center;
+  width: 25%;
+  height: 100%;
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: var(--tblack) 1px solid;
+  transition: border-bottom 0.2s ease;
+}
+.second-header-button:hover {
+  border-bottom: var(--white) 1px solid;
+}
+
+.center-nav {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  padding: 0 5rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.styles-control {
+  margin-bottom: 50px;
+  border-bottom: var(--dark-gray) 1px solid;
+}
+
+#demoText {
+  max-width: 30%;
+  background-color: var(--tblack);
+}
+
+.variant-card {
+  padding-top: 1rem;
+  border-bottom: var(--dark-gray) 1px solid;
+}
+
+.font-title-name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  font-size: 10rem;
+  margin-bottom: 0.5rem;
+}
+
+.styles-list {
+  margin-bottom: 100px;
+}
+
+.outline {
+  fill: transparent;
+  position: relative;
+  -webkit-text-stroke: 10px white;
+}
 
 /* ========================================
    Control Panel Styles
@@ -24,13 +93,12 @@
   /* Change from multi-row to single row layout */
   height: auto; /* Let height be determined by content */
   min-height: 80px; /* Minimum height for appearance */
-  padding: 0.75rem 1.5rem; /* Reduced vertical padding */
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
   border-bottom: 1px solid var(--dark-gray);
   position: sticky;
-  top: 0;
+  top: 85px;
   z-index: 30;
   background-color: var(--tblack);
 }
@@ -133,7 +201,6 @@
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   gap: 0;
-  border: 1px solid #333;
 }
 
 /* Separator in style dropdown */
@@ -174,6 +241,7 @@ option[disabled] {
 .glyph-display {
   display: flex;
   flex-direction: column;
+  margin-bottom: 2rem;
 }
 
 /* Content Row: Letter sidebar and Grid container */
@@ -185,7 +253,7 @@ option[disabled] {
 /* Make glyph-letter sticky and set its width */
 .glyph-letter {
   position: sticky;
-  top: 64px;
+  top: 165px;
   z-index: 20;
   width: 100%;
   height: 800px;
@@ -207,7 +275,7 @@ option[disabled] {
   width: 50%;
   padding: 1rem;
   overflow-y: auto;
-  margin-bottom: 200px;
+  margin-bottom: 100px;
 }
 
 .glyph-grid h3 {
@@ -219,12 +287,6 @@ option[disabled] {
 /* Section styles */
 [data-section] {
   margin-bottom: 2rem;
-}
-
-[data-section] > div {
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  border: 1px solid #333;
 }
 
 /* Responsive adjustments */
@@ -267,4 +329,458 @@ option[disabled] {
 /* Additional font layout margin */
 .font-layout {
   margin-bottom: 1000px;
+}
+
+/* ========================================
+   Layout Section Styles
+   ======================================== */
+.font-layout {
+  background-color: var(--tblack);
+  min-height: 600px;
+  margin-bottom: 4rem;
+}
+
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: white;
+  text-align: center;
+}
+
+.layout-blocks {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 0 3rem;
+}
+
+.layout-block {
+  background-color: var(--tblack);
+  border-bottom: var(--dark-gray) 1px solid;
+  overflow: hidden;
+  padding-top: 0.4rem;
+  transition: all 0.3s ease;
+}
+
+/* Keep the block controls as a flex container with space-between */
+.block-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between; /* This will push elements to the edges */
+  gap: 1rem;
+  padding: 0.5rem 0;
+}
+
+/* Create a center container for the three control groups */
+.controls-center {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center these controls */
+  gap: 1.5rem;
+  flex: 1; /* Take up available space */
+  margin: 0 1rem; /* Add some margin on the sides */
+}
+
+/* Keep the control group styling */
+.control-group {
+  display: flex;
+  opacity: 0;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 120px; /* Set minimum width for consistency */
+}
+
+/* Keep the font name on the left */
+.block-font-name {
+  color: var(--white);
+  margin-right: auto;
+  opacity: 1 !important;
+  font-size: 0.8rem;
+}
+
+/* Keep the button group on the right */
+.button-group {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: 5rem;
+}
+
+.block-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 2rem;
+}
+
+
+.control-group {
+  display: flex;
+  opacity: 0;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.layout-block:hover .control-group {
+  opacity: 1;
+}
+
+.style-dropdown, .columns-dropdown {
+  background-color: #2b2b2b;
+  color: white;
+  border: 1px solid #444;
+  padding: 0.3rem 0.5rem;
+  border-radius: 3px;
+  min-width: 120px;
+  font-size: 0.9rem;
+}
+
+.size-slider {
+  width: 100px;
+  margin: 0;
+  background-color: #2b2b2b;
+}
+
+.size-value {
+  color: white;
+  font-family: 'Roboto Mono', monospace;
+  min-width: 45px;
+  font-size: 0.9rem;
+}
+
+.button-group {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
+.clone-button, .remove-button {
+  background-color: transparent;
+  padding: 0.3rem 0.75rem;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+  border: 1px solid #444;
+}
+
+.clone-button {
+  color: #7dd3fc; /* Light blue */
+  border-color: #164e63;
+}
+
+.clone-button:hover {
+  background-color: #164e63;
+}
+
+.remove-button {
+  color: #fca5a5; /* Light red */
+  border-color: #7f1d1d;
+}
+
+.remove-button:hover:not(:disabled) {
+  background-color: #7f1d1d;
+}
+
+.remove-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.block-content {
+  padding: 1rem 0;
+  color: var(--white);
+  outline: none;
+}
+
+/* Column layout styles */
+.layout-block[data-columns="1"] .block-content {
+  column-count: 1;
+  column-gap: 2rem;
+}
+
+.layout-block[data-columns="2"] .block-content {
+  column-count: 2;
+  column-gap: 2rem;
+}
+
+.layout-block[data-columns="3"] .block-content {
+  column-count: 3;
+  column-gap: 2rem;
+}
+
+/* Add space between paragraphs */
+.block-content p {
+  margin-bottom: 1em;
+}
+
+.block-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991px) {
+  .layout-block[data-columns="3"] .block-content {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 768px) {
+  .layout-block[data-columns] .block-content {
+    column-count: 1;
+  }
+  
+  .block-controls {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .button-group {
+    margin-left: 0;
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+/* ========================================
+   Font Details Section Styles - Simplified List Version
+   ======================================== */
+#details-section {
+  padding: 4rem 3rem 6rem;
+  background-color: var(--tblack);
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Container layout with a balanced 2-column layout */
+.details-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+/* List styles */
+.details-list {
+  min-width: 300px;
+}
+
+.details-item {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid #333;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.detail-label {
+  color: #9ca3af;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.detail-value {
+  color: var(--white);
+  font-weight: 500;
+  font-size: 1.25rem;
+}
+
+/* License description */
+.license-description {
+  color: #9ca3af;
+  font-size: 0.9rem;
+  margin-top: 0.75rem;
+  line-height: 1.5;
+}
+
+/* Category badge styling */
+.category-badge {
+  color: white;
+}
+
+/* Axes display for variable fonts */
+.axis-tag {
+  display: inline-block;
+  background-color: #2d3748;
+  color: #a3bffa;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.8rem;
+  padding: 0.2rem 0.4rem;
+  margin: 0.2rem 0.2rem 0.2rem 0;
+  border-radius: 3px;
+}
+
+/* Tooltip styles */
+.tooltip-container {
+  position: relative;
+}
+
+.tooltip {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  background-color: #1a1a1a;
+  color: #9ca3af;
+  border: 1px solid #444;
+  border-radius: 6px;
+  padding: 12px 16px;
+  width: 350px;
+  max-width: 90%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  z-index: 100;
+  top: calc(100% - 10px);
+  left: 0;
+  transform: translateY(5px);
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.tooltip-container:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tooltip p {
+  margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .details-container {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  
+  .details-item {
+    padding: 1.2rem 0;
+  }
+  
+  .detail-value {
+    font-size: 1.1rem;
+  }
+}
+
+/* ========================================
+   Main Section Headings Styling
+   ======================================== */
+.section-heading-container {
+  padding: 2rem 0 1rem 3rem;
+  border-bottom: 1px solid var(--dark-gray);
+  margin-bottom: 1.5rem;
+}
+
+.main-section-heading {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--white);
+  text-align: left;
+  line-height: 1.2;
+  margin: 0;
+}
+
+/* Override existing section title styles */
+.section-title {
+  display: none; /* Hide the old centered titles */
+}
+
+/* Adjust spacing after the specimen heading */
+#specimen-section {
+  margin-top: 3rem;
+}
+
+/* Make the styles control closer to the heading */
+.styles-control {
+  margin-top: -0.5rem;
+}
+
+/* Adjust glyph section spacing */
+.glyph-display .section-heading-container {
+  margin-top: 5rem;
+}
+
+/* Layout section adjustments */
+.font-layout {
+  padding-top: 0; /* Remove top padding as it's now in the heading container */
+}
+
+/* Font info section adjustments */
+.font-info {
+  padding-top: 0; /* Remove top padding as it's now in the heading container */
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Responsive adjustments for headings */
+@media (max-width: 768px) {
+  .section-heading-container {
+    padding: 2rem 1.5rem 1rem;
+  }
+  
+  .main-section-heading {
+    font-size: 2rem;
+  }
+}
+
+/* Demo Text Button Styles */
+.demo-btn {
+  background-color: transparent;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.demo-btn.active {
+  color: var(--white);
+  font-weight: 500;
+}
+
+.demo-btn.inactive {
+  color: var(--light-gray, #9C9C9C);
+}
+
+.demo-btn:hover {
+  color: var(--white);
+}
+
+/* Alignment Button Styles */
+.align-btn {
+  background-color: transparent;
+  border: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Define color variables for SVG filters */
+:root {
+  --svg-inactive: #9C9C9C; /* Light gray for inactive state */
+  --svg-active: #FFFFFF; /* White for active state */
+}
+
+/* SVG image styling - using filters to change colors */
+.align-btn img {
+  scale:  1.5;
+  /* Set default SVG color to light gray */
+  filter: brightness(0) saturate(100%) invert(77%) sepia(0%) saturate(0%) hue-rotate(145deg) brightness(82%) contrast(93%);
+}
+
+/* Hover state - change SVG color to white */
+.align-btn:hover img {
+  filter: brightness(200%);
+}
+
+.align-btn.active img {
+  /* White SVG color */
+  filter: brightness(200%);
 }

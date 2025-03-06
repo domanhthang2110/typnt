@@ -3,6 +3,7 @@ import {
   updateFontCardSelection,
   updateFontSizeSlider,
   getSelectedFontData,
+  showUserManual
 } from "./font-manager.js";
 
 const STATE = {
@@ -22,8 +23,8 @@ const state = {
 function createTextbox(type) {
   const content =
     type === "paragraph"
-      ? "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras blandit odio lorem, ac aliquet ligula mattis fermentum. Sed blandit sem non imperdiet dapibus. Fusce scelerisque eleifend diam, quis tincidunt sem. Nullam euismod, justo ac eleifend mollis, est sapien lacinia erat, a interdum sapien neque sed quam. Donec eu diam elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer facilisis turpis eget tortor porta sodales. Nunc ultricies tristique ex in rutrum."
-      : "Text";
+      ? "Typelab is an interactive learning platform designed for typography enthusiasts, students, and professionals. It offers a structured approach to learning, practicing, and applying typography knowledge."
+      : "Typelab";
 const element = $(`
     <div class="textbox ${type === "paragraph" ? "textbox--paragraph" : ""}">
         <div class="textbox__content" contenteditable="false" spellcheck="false">
@@ -33,7 +34,7 @@ const element = $(`
         <div class="textbox__resize-handle"></div>
     </div>
 `);
-  const size = type === "paragraph" ? "16px" : "32px";
+  const size = type === "paragraph" ? "18px" : "32px";
 
   // Get the selected font data if any font card is selected
   const selectedFontData = getSelectedFontData();
@@ -57,7 +58,7 @@ const element = $(`
   state.textboxes.set(element[0], { element, type, styles });
 
   // Position the new textbox and set dimensions
-  const initialStyles = {
+  /*const initialStyles = {
     position: "absolute",
     top: "20%",
     left: "20%",
@@ -69,7 +70,7 @@ const element = $(`
     initialStyles.whiteSpace = "nowrap";
   }
 
-  element.css(initialStyles);
+  element.css(initialStyles);*/
 
   setTextboxState(element, STATE.SELECTED);
   state.activeTextbox = element[0];
@@ -82,7 +83,7 @@ function applyStyles(element, styles) {
   const content = element.find(".textbox__content");
   const cssStyles = {
     "font-family": styles.family || "inherit",
-    "font-size": styles.size || "16px",
+    "font-size": styles.size || "18px",
     // Add text formatting styles
     "text-align": styles.textAlign || "left",
     "font-style": styles.italic ? "italic" : "normal",
@@ -94,13 +95,12 @@ function applyStyles(element, styles) {
 
   // Add extra padding for italic text in non-paragraph textboxes
   const isNonParagraph = !element.hasClass("textbox--paragraph");
-  if (isNonParagraph) {
     // Add padding to account for italic slant
     const extraPadding = styles.italic ? '0.2em' : '0';
     content.css({
       'padding-right': extraPadding
     });
-    
+    if (isNonParagraph) {
     // Force width recalculation for fit-content
     element.css({
       width: 'fit-content'
@@ -153,8 +153,6 @@ function setupInteractions(element, type, styles) {
       handles: "n, e, s, w, ne, nw, se, sw",
       minWidth: 100,
       minHeight: 50,
-      maxWidth: 1000,
-      maxHeight: 500,
       borderless: true,
       containment: ".playground",
       start: function (event, ui) {
@@ -391,6 +389,7 @@ function clearSelection() {
     setTextboxState($(element), STATE.DEFAULT);
   });
   state.activeTextbox = null;
+  showUserManual();
 }
 
 function deleteActiveTextbox() {

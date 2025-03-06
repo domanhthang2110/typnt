@@ -10,7 +10,7 @@
     <title>Typ.nt - Typography Exploration</title>
     <link rel="stylesheet" href="css/main.css" />
     <link rel="stylesheet" href="css/slider.css" />
-    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts Link Placeholder -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -51,7 +51,6 @@
         margin: 2rem 0 4rem; /* Add vertical spacing */
       }
       .three-d-title {
-        transition: transform 0.1s ease;
         transform-style: preserve-3d;
         text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
       }
@@ -94,17 +93,19 @@
       .sample-text:hover {
         opacity: 1;
       }
-      /* Particles styles */
+      /* Particles styles - Updated for better height control */
       .particles-container {
         position: fixed;
-        padding-top: 100px;
+        padding-top: 120px; /* Space from the top */
         top: 0;
         left: 0;
         width: 100%;
-        height: 100vh;
+        height: 100vh; /* Full viewport height */
         overflow: hidden;
         z-index: -10;
         pointer-events: none;
+        /* Add a pseudo boundary for debugging - can be removed later */
+        /* border-bottom: 1px dashed rgba(255, 255, 255, 0.1); */
       }
       .typography-particle {
         position: absolute;
@@ -159,7 +160,6 @@
         transition: opacity 0.5s ease;
         transform: translateZ(0);
         white-space: nowrap;
-        text-shadow: 2 2 10px rgba(255, 255, 255, 0.1);
       }
 
       .font-display {
@@ -381,9 +381,9 @@
         Typelab<span style="font-weight: 100">™</span>
       </div>
       <nav class="flex items-center">
-        <a href="home.html" class="top-bar-button active">home</a>
+        <a href="index.html" class="top-bar-button active">home</a>
         <a href="#reads" class="top-bar-button">reads</a>
-        <a href="#video" class="top-bar-button">videos</a>
+        <a href="videos.html" class="top-bar-button">videos</a>
         <a href="#practice" class="top-bar-button">practice</a>
         <a href="lab.html" class="top-bar-button">lab</a>
         <a href="archive.html" class="top-bar-button-end">archive</a>

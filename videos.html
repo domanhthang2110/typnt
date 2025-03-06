@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Typography video resources from Typ.nt - Learn typography through curated videos."
+    />
+    <title>Typ.nt - Typography Videos</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/videos.css" />
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header class="flex justify-between items-center pl-12 z-10">
+      <div class="text-4xl font-semibold logo">
+        Typelab<span style="font-weight: 100">™</span>
+      </div>
+      <nav class="flex items-center">
+        <a href="index.html" class="top-bar-button">home</a>
+        <a href="#reads" class="top-bar-button">reads</a>
+        <a href="videos.html" class="top-bar-button active">videos</a>
+        <a href="#practice" class="top-bar-button">practice</a>
+        <a href="lab.html" class="top-bar-button">lab</a>
+        <a href="archive.html" class="top-bar-button-end">archive</a>
+      </nav>
+      <a href="#login" class="text-white hover:underline login-button"></a>
+    </header>
+
+    <div class="videos-container">
+      
+      <!-- Lessons Section -->
+      <section class="video-section" id="lessons-section">
+        <h2 class="section-title">Lessons</h2>
+        
+        <!-- Category tabs -->
+        <div class="category-tabs">
+          <button class="category-tab active" data-category="all-lessons">All</button>
+          <button class="category-tab" data-category="basics">Basics</button>
+          <button class="category-tab" data-category="history">History</button>
+          <button class="category-tab" data-category="technique">Techniques</button>
+          <button class="category-tab" data-category="design">Design</button>
+          <button class="category-tab" data-category="showcase">Showcase</button>
+        </div>
+        
+        <!-- Video grid for lessons -->
+        <div class="video-grid" id="lessons-grid">
+          <div class="loading">
+            <div class="loading-spinner"></div>
+          </div>
+        </div>
+        
+        <!-- Show more button -->
+        <div class="show-more-container">
+          <button id="show-more-lessons" class="show-more-button">
+            <span>Show More</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+        </div>
+      </section>
+      
+      <!-- Shorts Section -->
+      <section class="video-section" id="shorts-section">
+        <h2 class="section-title">Shorts</h2>
+        
+        <!-- Category tabs for shorts -->
+        <div class="category-tabs">
+          <button class="category-tab active" data-category="all-shorts">All</button>
+          <button class="category-tab" data-category="quick-tips">Quick Tips</button>
+          <button class="category-tab" data-category="inspiration">Inspiration</button>
+        </div>
+        
+        <!-- Video grid for shorts -->
+        <div class="video-grid shorts-grid" id="shorts-grid">
+          <div class="loading">
+            <div class="loading-spinner"></div>
+          </div>
+        </div>
+        
+        <!-- Show more button -->
+        <div class="show-more-container">
+          <button id="show-more-shorts" class="show-more-button">
+            <span>Show More</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <!-- Video Overlay -->
+    <div class="video-overlay" id="video-overlay">
+      <button class="close-overlay" id="close-overlay">×</button>
+      <div class="video-player-container">
+        <div class="video-player-wrapper">
+          <div id="youtube-player"></div>
+        </div>
+      </div>
+      <div class="video-details">
+        <h2 class="video-overlay-title" id="overlay-title"></h2>
+        <div class="video-overlay-channel" id="overlay-channel"></div>
+        <div class="video-overlay-meta" id="overlay-meta"></div>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/videos.js"></script>
+  </body>
+</html>

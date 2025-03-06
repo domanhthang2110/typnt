@@ -1,375 +1,369 @@
+import { getAxisName, getAxisDefaultValue } from "./font-axis-utils.js";  // Import the utility
 /**
- * Google Fonts Loader Module
- * Handles loading and managing Google fonts with WebFont.js
+ * Google Fonts Loader Module - Simplified
+ *
+ * Direct implementation for loading Google fonts with minimal complexity
  */
 
-// Constants
-export const FONTS_PER_PAGE = 20;
-
 export class GoogleFontsLoader {
-  constructor() {
-    this.fontsData = [];
-    this.currentPage = 0;
-    this.loadedFonts = new Set();  // Make this property accessible from outside
-    this.categoryIndices = new Map(); // Track position for each category
-    this.lastFilterIndex = 0; // Add this to track position in filtered search
-    this.variableFonts = new Map(); // Track variable font data with weight ranges
+  /**
+   * Creates a new GoogleFontsLoader instance
+   * @param {Object[]} fontData - Array of font information objects from fontinfo.json
+   */
+  constructor(fontData) {
+    this.fonts = fontData || [];
+    this.loadedFonts = new Set();
+    this.baseUrl = "https://fonts.googleapis.com/css2";
+    this.fontLinkElements = new Map(); // Track font link elements by fontName
   }
 
   /**
-   * Normalize variant strings to WebFont format
-   * @param {string} variant - Font variant (e.g., 'regular', 'italic', '500', '500italic')
-   * @returns {string} Normalized variant (e.g., '400', '400italic', '500', '500italic')
+   * Loads font data from the provided JSON path
+   * @param {string} jsonPath - Path to the fontinfo.json file
+   * @returns {Promise<GoogleFontsLoader>} - The loader instance with loaded font data
    */
-  normalizeVariant(variant) {
-    if (variant === "regular") return "400";
-    if (variant === "italic") return "400italic";
-    return variant;
-  }
-
-  // Add this new method
-  getFonts() {
-    return this.fontsData;
-  }
-
-  /**
-   * Check if font is variable based on metadata
-   * @param {Object} font - Font data object
-   * @returns {boolean} True if font is variable
-   */
-  isVariableFont(font) {
-    if (!font) return false;
-    
-    // Special case for Epilogue which we know is variable
-    if (font.family === "Epilogue") return true;
-    
-    // First check our cache
-    if (this.variableFonts.has(font.family)) {
-      return true;
-    }
-
-    // Check for axes data which indicates variable font
-    if (font.axes && font.axes.includes("wght")) {
-      return true;
-    }
-
-    // Check for variant ranges (e.g., "100..900")
-    if (font.variants && font.variants.some((v) => v.includes(".."))) {
-      return true;
-    }
-    
-    // If the font has a large number of weight variants, it's likely variable
-    if (font.variants && font.variants.length >= 7) {
-      const weights = font.variants
-        .map(v => parseInt(v.replace('italic', '').replace('regular', '400')))
-        .filter(w => !isNaN(w));
-      
-      if (weights.length >= 7) {
-        return true;
-      }
-    }
-
-    return false;
-  }
-
-  /**
-   * Get weight range for a font
-   * @param {Object} font - Font data object
-   * @returns {Object} Object with min and max weight
-   */
-  getWeightRange(font) {
-    if (!font) return { min: 400, max: 400 };
-    
-    // Special case for Epilogue
-    if (font.family === "Epilogue") {
-      return { min: 100, max: 900 };
-    }
-    
-    // Check cache first
-    if (this.variableFonts.has(font.family)) {
-      return this.variableFonts.get(font.family);
-    }
-
-    // Default range
-    let range = { min: 400, max: 400 };
-
-    // Try to extract from variants
-    if (font.variants) {
-      // Check for explicit range notation (e.g. "100..900")
-      const rangeVariant = font.variants.find((v) => v.includes(".."));
-      if (rangeVariant) {
-        const [minStr, maxStr] = rangeVariant.split("..");
-        const min = parseInt(minStr);
-        const max = parseInt(maxStr);
-        if (!isNaN(min) && !isNaN(max)) {
-          range = { min, max };
-        }
-      } else {
-        // Extract from individual weights
-        const weights = font.variants
-          .map((v) =>
-            parseInt(v.replace("italic", "").replace("regular", "400"))
-          )
-          .filter((w) => !isNaN(w));
-
-        if (weights.length > 0) {
-          range = {
-            min: Math.min(...weights),
-            max: Math.max(...weights),
-          };
-        }
-      }
-    }
-
-    // Store in cache
-    if (this.isVariableFont(font)) {
-      this.variableFonts.set(font.family, range);
-    }
-
-    return range;
-  }
-
-  async getFontsByCategory(category, page = 0) {
-    const startIndex = page * FONTS_PER_PAGE;
-    let filteredFonts;
-
-    // Filter fonts by category
-    filteredFonts = this.fontsData.filter(
-      (font) => font.category?.toLowerCase() === category.toLowerCase()
-    );
-
-    const paginatedFonts = filteredFonts.slice(
-      startIndex,
-      startIndex + FONTS_PER_PAGE
-    );
-
-    // Load the fonts if needed
-    await this.loadFonts(paginatedFonts);
-
-    return {
-      fonts: paginatedFonts,
-      hasMore: startIndex + FONTS_PER_PAGE < filteredFonts.length,
-      totalFonts: filteredFonts.length,
-      currentPage: page,
-    };
-  }
-
-  async getFontInfoBatch(page = 0, itemsPerPage = FONTS_PER_PAGE) {
-    const startIndex = page * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    const batch = this.fontsData.slice(startIndex, endIndex);
-
-    // Load fonts if needed
-    await this.loadFonts(batch);
-
-    return {
-      fonts: batch,
-      hasMore: endIndex < this.fontsData.length,
-      totalFonts: this.fontsData.length,
-      currentPage: page,
-    };
-  }
-
-  // Updated helper method to handle font loading with variable fonts
-  async loadFonts(fontsToLoad) {
-    // Separate variable and standard fonts
-    const variableFonts = [];
-    const standardFonts = [];
-
-    for (const font of fontsToLoad) {
-      if (this.loadedFonts.has(font.family)) {
-        continue; // Skip already loaded fonts
-      }
-
-      if (this.isVariableFont(font)) {
-        variableFonts.push(font);
-      } else {
-        standardFonts.push(font);
-      }
-    }
-
-    // Load standard fonts using WebFont.load
-    if (standardFonts.length > 0) {
-      const families = standardFonts.map((font) => {
-        const weights = font.variants
-          .map((v) => this.normalizeVariant(v))
-          .join(",");
-        return `${font.family}:${weights}`;
-      });
-
-      await new Promise((resolve) => {
-        WebFont.load({
-          google: { families },
-          active: () => {
-            standardFonts.forEach((font) => this.loadedFonts.add(font.family));
-            resolve();
-          },
-          inactive: resolve, // Don't block on failure
-        });
-      });
-    }
-
-    // Load variable fonts
-    if (variableFonts.length > 0) {
-      await Promise.all(
-        variableFonts.map((font) => this.loadVariableFont(font))
-      );
-    }
-  }
-
-  /**
-   * Load a variable font with better error handling
-   * @param {Object} font - Font data object
-   * @returns {Promise} Resolves when font is loaded
-   */
-  async loadVariableFont(font) {
-    if (this.loadedFonts.has(font.family)) {
-      return Promise.resolve();
-    }
-
-    return new Promise((resolve, reject) => {
-      // Get weight range
-      const range = this.getWeightRange(font);
-
-      // Create style element for @import
-      const style = document.createElement("style");
-      const fontFamily = font.family.replace(/ /g, "+");
-
-      // Check if font has italic variant
-      const hasItalic = font.variants && font.variants.some((v) => v.includes("italic"));
-      let importRule;
-
-      // Create import rule with correct format
-      if (hasItalic) {
-        importRule = `@import url('https://fonts.googleapis.com/css2?family=${fontFamily}:ital,wght@0,${range.min}..${range.max};1,${range.min}..${range.max}&display=swap');`;
-      } else {
-        importRule = `@import url('https://fonts.googleapis.com/css2?family=${fontFamily}:wght@${range.min}..${range.max}&display=swap');`;
-      }
-
-      style.textContent = importRule;
-      document.head.appendChild(style);
-
-      // Set a timeout for font loading
-      let timeoutId = setTimeout(() => {
-        // Even if it times out, we still add it to loadedFonts to avoid repeated attempts
-        this.loadedFonts.add(font.family);
-        reject(new Error(`Failed to load variable font: ${font.family} (timeout)`));
-      }, 5000);
-
-      // Use FontFaceObserver for more reliable font loading detection
-      const observer = new FontFaceObserver(font.family);
-      observer
-        .load("BESbswy", 4000) // 4 second timeout
-        .then(() => {
-          clearTimeout(timeoutId);
-          this.loadedFonts.add(font.family);
-          resolve();
-        })
-        .catch((err) => {
-          clearTimeout(timeoutId);
-          reject(new Error(`Failed to load variable font: ${font.family}`));
-        });
-    });
-  }
-
-  /**
-   * Initialize the fonts loader
-   * @param {string} jsonPath - Path to the fonts.json file
-   */
-  async init(jsonPath = "/fonts.json") {
+  static async fromJson(jsonPath = "/data/fontinfo.json") {
     try {
       const response = await fetch(jsonPath);
-      const data = await response.json();
-      this.fontsData = data.items || [];
+      if (!response.ok)
+        throw new Error(`Failed to load font data: ${response.status}`);
+      const fontData = await response.json();
+      return new GoogleFontsLoader(fontData);
+    } catch (error) {
+      console.error("Error loading font data:", error);
+      return new GoogleFontsLoader([]);
+    }
+  }
 
-      // Pre-process fonts to identify variable fonts
-      for (const font of this.fontsData) {
-        if (this.isVariableFont(font)) {
-          // Cache the weight range for faster access later
-          this.variableFonts.set(font.family, this.getWeightRange(font));
+  /**
+   * Gets a font by name
+   * @param {string} fontName - The name of the font to retrieve
+   * @returns {Object|null} - The font object or null if not found
+   */
+  getFont(fontName) {
+    const font = this.fonts.find((font) => font.name === fontName) || null;
+    
+    // If the font has axes, enhance them with proper names and default values
+    if (font && font.axes) {
+      Object.keys(font.axes).forEach(axisTag => {
+        // Add proper name if missing
+        if (!font.axes[axisTag].name) {
+          font.axes[axisTag].name = getAxisName(axisTag);
+        }
+        
+        // Set proper default value if missing or incorrect
+        if (font.axes[axisTag].default === undefined || font.axes[axisTag].default === null) {
+          font.axes[axisTag].default = getAxisDefaultValue(
+            axisTag,
+            font.axes[axisTag].min, 
+            font.axes[axisTag].max
+          );
+        }
+      });
+    }
+    
+    return font;
+  }
+
+  /**
+   * Creates a URL-friendly font family name
+   * @param {string} fontName - The name of the font
+   * @returns {string} - URL-friendly font family name
+   */
+  formatFontFamily(fontName) {
+    return fontName.replace(/\s+/g, "+");
+  }
+
+  /**
+   * Builds a URL for loading fonts from Google Fonts
+   * @param {Object[]} requests - Array of font request objects
+   * @param {Object} options - Additional options for the URL
+   * @returns {string} - The constructed URL
+   */
+  buildUrl(requests, options = {}) {
+    if (!Array.isArray(requests)) {
+      requests = [requests];
+    }
+
+    let url = `${this.baseUrl}?`;
+
+    requests.forEach((request, index) => {
+      const font = this.getFont(request.family);
+      if (!font) return;
+
+      let family = `${this.formatFontFamily(request.family)}`;
+
+      if (this.isVariableFont(font)) {
+        const axes = Object.keys(font.axes).sort((a, b) => {
+          const aIsUpper = a === a.toUpperCase();
+          const bIsUpper = b === b.toUpperCase();
+          if (aIsUpper && !bIsUpper) return 1;
+          if (!aIsUpper && bIsUpper) return -1;
+          return a.localeCompare(b);
+        });
+
+        const axisNames = axes.join(",");
+        const axisValues = axes
+          .map((axis) => {
+            return `${font.axes[axis].min}..${font.axes[axis].max}`;
+          })
+          .join(",");
+
+        if (axes.includes("ital")) {
+          const italicValues = `ital,${axisNames}@0,${axisValues};1,${axisValues}`;
+          family += `:${italicValues}`;
+        } else {
+          family += `:${axisNames}@${axisValues}`;
+        }
+      } else {
+        const weights = request.weight
+          ? [request.weight]
+          : font.weights || [400];
+        const styles = request.style
+          ? [request.style]
+          : font.styles || ["normal"];
+
+        if (styles.includes("italic")) {
+          const weightValues = weights.join(",");
+          const italicValues = `ital,wght@${weights
+            .map((weight) => `0,${weight}`)
+            .join(";")};${weights.map((weight) => `1,${weight}`).join(";")}`;
+          family += `:${italicValues}`;
+        } else {
+          const weightValues = weights.join(";");
+          family += `:wght@${weightValues}`;
         }
       }
 
-      return this.fontsData;
-    } catch (error) {
-      console.error("Failed to initialize Google Fonts loader:", error);
-      throw error;
+      if (index > 0) {
+        url += "&";
+      }
+      url += `family=${family}`;
+    });
+
+    if (options.display) {
+      url += `&display=${options.display}`;
     }
+
+    return url;
   }
 
   /**
-   * Get font information for a specific font family
-   * @param {string} fontFamily - Name of the font family
+   * Loads a single font from Google Fonts
+   * @param {string} fontName - Name of the font to load
+   * @param {Object} options - Options for the font
+   * @returns {Promise<boolean>} - Promise resolving to true if loaded successfully
    */
-  getFontInfo(fontFamily) {
-    const fontData = this.fontsData.find((font) => font.family === fontFamily);
-    if (!fontData) return null;
+  async loadFont(fontName, options = {}) {
+    if (this.loadedFonts.has(fontName)) return true;
 
-    const isVariable = this.isVariableFont(fontData);
-    let weightRange;
-    let weights;
+    const font = this.getFont(fontName);
+    if (!font) return false;
 
-    if (isVariable) {
-      // Get range for variable font
-      weightRange = this.getWeightRange(fontData);
-
-      // For variable fonts, create virtual instances at common weights within range
-      weights = [100, 200, 300, 400, 500, 600, 700, 800, 900].filter(
-        (w) => w >= weightRange.min && w <= weightRange.max
-      );
-    } else {
-      // For standard fonts, use discrete weights
-      weights = [
-        ...new Set(
-          fontData.variants
-            .map((variant) =>
-              parseInt(variant.replace("italic", "").replace("regular", "400"))
-            )
-            .filter((weight) => !isNaN(weight))
-        ),
-      ].sort((a, b) => a - b);
-
-      weightRange = {
-        min: weights[0] || 400,
-        max: weights[weights.length - 1] || 400,
+    try {
+      // Create font request from options
+      const request = {
+        family: fontName,
+        weight: options.weight,
+        style: options.style,
       };
-    }
 
-    return {
-      name: fontData.family,
-      source: fontData.files?.regular || fontData.files?.[400] || fontData.menu,
-      style: "Regular",
-      features: [], // Google Fonts don't expose OpenType features
-      isVariable: isVariable,
-      axes: {
-        wght: {
-          name: "Weight",
-          default: 400,
-          min: weightRange.min,
-          max: weightRange.max,
-        },
-      },
-      instances: weights.map((weight) => ({
-        name: {
-          en: weight === 400 ? "Regular" : this.translateWeightToName(weight),
-        },
-        coordinates: { wght: weight },
-      })),
-      variants: fontData.variants,
-      files: fontData.files,
-    };
+      // Add any custom axis values
+      if (options.customAxesValues) {
+        request.axes = options.customAxesValues;
+      }
+
+      // Handle weight array case
+      if (options.weights && options.weights.length) {
+        // We need to create multiple requests, one for each weight
+        const requests = options.weights.map((weight) => ({
+          ...request,
+          weight: weight,
+        }));
+
+        // Also handle style array if present
+        if (options.styles && options.styles.length) {
+          // Create a request for each weight+style combination
+          const combinedRequests = [];
+          for (const weight of options.weights) {
+            for (const style of options.styles) {
+              combinedRequests.push({
+                ...request,
+                weight: weight,
+                style: style,
+              });
+            }
+          }
+
+          // Use the combined requests if we created any
+          if (combinedRequests.length > 0) {
+            const url = this.buildUrl(combinedRequests, { display: "swap" });
+            const link = document.createElement("link");
+            link.rel = "stylesheet";
+            link.href = url.toString();
+            link.setAttribute("data-font", fontName);
+
+            const loadPromise = new Promise((resolve, reject) => {
+              link.onload = () => resolve(true);
+              link.onerror = () =>
+                reject(new Error(`Failed to load font: ${fontName}`));
+            });
+
+            document.head.appendChild(link);
+            await loadPromise;
+            this.loadedFonts.add(fontName);
+            this.fontLinkElements.set(fontName, link);
+            return true;
+          }
+        }
+
+        // Use weight-specific requests
+        const url = this.buildUrl(requests, { display: "swap" });
+        const link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = url.toString();
+        link.setAttribute("data-font", fontName);
+
+        const loadPromise = new Promise((resolve, reject) => {
+          link.onload = () => resolve(true);
+          link.onerror = () =>
+            reject(new Error(`Failed to load font: ${fontName}`));
+        });
+
+        document.head.appendChild(link);
+        await loadPromise;
+        this.loadedFonts.add(fontName);
+        this.fontLinkElements.set(fontName, link);
+        return true;
+      }
+
+      // Standard single font request
+      const url = this.buildUrl(request, { display: "swap" });
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = url.toString();
+      link.setAttribute("data-font", fontName);
+
+      const loadPromise = new Promise((resolve, reject) => {
+        link.onload = () => resolve(true);
+        link.onerror = () =>
+          reject(new Error(`Failed to load font: ${fontName}`));
+      });
+
+      document.head.appendChild(link);
+      await loadPromise;
+      this.loadedFonts.add(fontName);
+      this.fontLinkElements.set(fontName, link);
+      return true;
+    } catch (error) {
+      console.error(`Error loading font ${fontName}:`, error);
+      return false;
+    }
   }
 
   /**
-   * Translate numerical weight to name
-   * @param {string|number} weight - Font weight
+   * Unloads a font by removing its stylesheet from the document
+   * @param {string} fontName - Name of the font to unload
+   * @returns {boolean} - True if the font was unloaded, false if not found
+   */
+  unloadFont(fontName) {
+    // Get the link element for this font
+    const link = this.fontLinkElements.get(fontName);
+    if (!link) {
+      console.warn(`Cannot unload font ${fontName}: link element not found`);
+      return false;
+    }
+
+    try {
+      // Remove the link element from the document
+      link.parentNode.removeChild(link);
+      
+      // Update tracking
+      this.loadedFonts.delete(fontName);
+      this.fontLinkElements.delete(fontName);
+      
+      console.log(`Successfully unloaded font: ${fontName}`);
+      return true;
+    } catch (error) {
+      console.error(`Error unloading font ${fontName}:`, error);
+      return false;
+    }
+  }
+
+  /**
+   * Loads multiple fonts from Google Fonts
+   * @param {string[]} fontNames - Array of font names to load
+   * @param {Object} options - Options for the fonts
+   * @returns {Promise<Object>} - Promise resolving to object with results
+   */
+  async loadFonts(fontNames, options = {}) {
+    const results = {};
+    await Promise.allSettled(
+      fontNames.map(async (name) => {
+        results[name] = await this.loadFont(name, options);
+      })
+    );
+    return results;
+  }
+
+  /**
+   * Preloads a specified set of common fonts for better performance
+   * @param {number} count - Number of fonts to preload (default 10)
+   * @returns {Promise<Object>} - Promise resolving to object with results
+   */
+  async preloadCommonFonts(count = 10) {
+    const commonFonts = this.fonts
+      .slice(0, Math.min(count, this.fonts.length))
+      .map((font) => font.name);
+    return this.loadFonts(commonFonts);
+  }
+
+  /**
+   * Gets a list of all available font names
+   * @returns {string[]} - Array of font names
+   */
+  getAllFontNames() {
+    return this.fonts.map((font) => font.name);
+  }
+
+  /**
+   * Gets fonts by category
+   * @param {string} category - The font category (e.g., "serif", "sans-serif")
+   * @returns {Object[]} - Array of font objects in the category
+   */
+  getFontsByCategory(category) {
+    const normalizedCategory = category.toUpperCase();
+    return this.fonts.filter(
+      (font) =>
+        font.category && font.category.toUpperCase() === normalizedCategory
+    );
+  }
+
+  /**
+   * Checks if a font is a variable font
+   * @param {string|Object} font - Font name or font object
+   * @returns {boolean} - True if the font is variable (has axes)
+   */
+  isVariableFont(font) {
+    if (typeof font === "string") {
+      font = this.getFont(font);
+    }
+
+    return (font && font.axes && Object.keys(font.axes).length > 0) || false;
+  }
+
+  /**
+   * Translates a font weight value to a readable name
+   * @param {string|number} weight - Weight value (e.g., "regular", 400, "700italic")
+   * @returns {string} - Human-readable weight name
    */
   translateWeightToName(weight) {
-    const weightNames = {
+    const weightMap = {
       100: "Thin",
       200: "Extra Light",
       300: "Light",
       400: "Regular",
+      regular: "Regular",
       500: "Medium",
       600: "Semi Bold",
       700: "Bold",
@@ -377,106 +371,76 @@ export class GoogleFontsLoader {
       900: "Black",
     };
 
-    weight = weight.toString();
-    if (weight === "regular") return "Regular";
-    if (weight === "italic") return "Italic";
+    if (!weight) return "Regular";
 
-    const numWeight = parseInt(weight.replace("italic", ""));
-    const isItalic = weight.includes("italic");
-    const baseName = weightNames[numWeight] || weight;
+    // Handle cases like "700italic"
+    const numericPart = weight.toString().replace(/italic$/, "");
+    const hasItalic = weight.toString().includes("italic");
 
-    return isItalic ? `${baseName} Italic` : baseName;
+    const weightName = weightMap[numericPart] || "Regular";
+    return hasItalic ? `${weightName} Italic` : weightName;
   }
 
-  async searchFonts(query, page = 0) {
-    const startIndex = page * FONTS_PER_PAGE;
-    const queryLower = query.toLowerCase();
-
-    // Filter fonts that contain the search query
-    const searchResults = this.fontsData.filter((font) =>
-      font.family.toLowerCase().includes(queryLower)
-    );
-
-    // Sort results: exact match first, starts with second, contains third
-    searchResults.sort((a, b) => {
-      const aLower = a.family.toLowerCase();
-      const bLower = b.family.toLowerCase();
-
-      // Exact match gets highest priority
-      if (aLower === queryLower) return -1;
-      if (bLower === queryLower) return 1;
-
-      // Starts with gets second priority
-      const aStarts = aLower.startsWith(queryLower);
-      const bStarts = bLower.startsWith(queryLower);
-      if (aStarts && !bStarts) return -1;
-      if (!aStarts && bStarts) return 1;
-
-      // Default to alphabetical order
-      return aLower.localeCompare(bLower);
-    });
-
-    const paginatedResults = searchResults.slice(
-      startIndex,
-      startIndex + FONTS_PER_PAGE
-    );
-    await this.loadFonts(paginatedResults);
-
-    return {
-      fonts: paginatedResults,
-      hasMore: startIndex + FONTS_PER_PAGE < searchResults.length,
-      totalFonts: searchResults.length,
-      currentPage: page,
-    };
-  }
-
-  async loadSingleFont(fontFamily) {
-    if (this.loadedFonts.has(fontFamily)) {
-      return Promise.resolve();
+  /**
+   * Generates a complete list of variants for a font
+   * @param {string} fontName - The name of the font
+   * @returns {Array} - Array of variant objects with weight, style, and display name
+   */
+  getFontVariants(fontName) {
+    console.log(`Getting variants for font: ${fontName}`);
+    const font = this.getFont(fontName);
+    if (!font) {
+      return [{ weight: 400, style: "normal", display: "Regular" }];
     }
 
-    // Find the font data
-    const fontData = this.fontsData.find((font) => font.family === fontFamily);
-    if (!fontData) {
-      return Promise.reject(new Error(`Font data not found for ${fontFamily}`));
+    // Handle variable fonts that have weight axis
+    if (this.isVariableFont(font) && font.axes.wght) {
+      const styles = font.styles || ["normal"];
+      const result = [];
+      const { min = 100, max = 900 } = font.axes.wght;
+
+      // Create variants in increments of 100 within the range
+      for (
+        let weight = Math.ceil(min / 100) * 100;
+        weight <= Math.floor(max / 100) * 100;
+        weight += 100
+      ) {
+        for (const style of styles) {
+          result.push({
+            weight: weight,
+            style: style,
+            display: `${this.translateWeightToName(weight)}${
+              style === "italic" ? " Italic" : ""
+            }`,
+          });
+        }
+      }
+
+      return result;
     }
 
-    // Check if it's a variable font
-    if (this.isVariableFont(fontData)) {
-      try {
-        await this.loadVariableFont(fontData);
-        return Promise.resolve();
-      } catch (error) {
-        return Promise.reject(new Error(`Failed to load font: ${fontFamily}`));
+    // Otherwise use weights and styles arrays to generate combinations
+    const weights = font.weights || [400];
+    const styles = font.styles || ["normal"];
+    const result = [];
+
+    for (const weight of weights) {
+      for (const style of styles) {
+        const variantName =
+          weight === 400 && style === "normal"
+            ? "regular"
+            : `${weight}${style === "italic" ? "italic" : ""}`;
+
+        result.push({
+          weight: weight,
+          style: style,
+          display: this.translateWeightToName(variantName),
+        });
       }
     }
 
-    // Standard font loading with better error handling
-    return new Promise((resolve, reject) => {
-      let timeoutId;
-      
-      // Set a safety timeout
-      timeoutId = setTimeout(() => {
-        reject(new Error(`Failed to load font: ${fontFamily} (timeout)`));
-      }, 5000);
-      
-      WebFont.load({
-        google: {
-          families: [fontFamily],
-        },
-        active: () => {
-          clearTimeout(timeoutId);
-          this.loadedFonts.add(fontFamily);
-          resolve();
-        },
-        inactive: () => {
-          clearTimeout(timeoutId);
-          reject(new Error(`Failed to load font: ${fontFamily}`));
-        },
-        timeout: 3000, // 3 seconds timeout
-      });
-    });
+    return result;
   }
 }
 
-export const googleFontsLoader = new GoogleFontsLoader();
+export default GoogleFontsLoader;

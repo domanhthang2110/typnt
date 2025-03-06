@@ -1,56 +1,44 @@
 /**
- * Debug Tools for Typelab
- * Provides keyboard shortcuts to help with debugging and development
+ * Debug Tools Module
+ * Provides debugging functionality for the font archive
  */
 
-// State to track if outlines are currently enabled
-let outlinesEnabled = false;
+// Debug state
+const debugState = {
+  loggingEnabled: localStorage.getItem('font-debug-logging') === 'true',
+  stats: {
+    loadedFonts: 0,
+    variableFonts: 0,
+    failedFonts: 0,
+    loadTime: 0
+  }
+};
 
-// Create a style element to hold our debug styles
-const debugStyles = document.createElement('style');
-debugStyles.id = 'debug-outline-styles';
-document.head.appendChild(debugStyles);
-
-/**
- * Toggle outline on all elements for debugging layout
- */
-function toggleOutlines() {
-    outlinesEnabled = !outlinesEnabled;
-    
-    if (outlinesEnabled) {
-        // Apply debug outlines
-        debugStyles.textContent = `
-            * {
-                outline: 1px solid rgba(255, 0, 0, 0.5) !important;
-            }
-            
-            *:hover {
-                outline: 1px solid rgba(255, 0, 0, 1) !important;
-            }
-        `;
-        console.log('✅ Debug outlines enabled');
-    } else {
-        // Remove debug outlines
-        debugStyles.textContent = '';
-        console.log('❌ Debug outlines disabled');
-    }
+// Initialize debug tools
+export function initDebugTools() {
+  // Check if debug panel exists
+  const debugPanel = document.getElementById('debug-panel');
+  if (!debugPanel) return;
+  
+  // Setup event listeners for debug buttons
+  setupDebugEventListeners();
+  
+  // Override console methods if debug logging is enabled
+  if (debugState.loggingEnabled) {
+    enableVerboseLogging();
+  }
+  
+  // Log that debug tools are initialized
+  debugLog('Debug tools initialized');
 }
 
-/**
- * Initialize debug keyboard shortcuts
- */
-function initDebugTools() {
-    // Listen for keyboard shortcuts
-    document.addEventListener('keydown', (event) => {
-        // Ctrl+Shift+O to toggle outlines
-        if (event.key === 'o') {
-            event.preventDefault();
-            toggleOutlines();
-        }
-    });
-    
-    console.log('Debug tools initialized - Press Ctrl+Shift+O to toggle element outlines');
-}
-
-// Export the initialization function
-export { initDebugTools };
+// Update debug statistics displayed in the panel
+export function updateDebugStats(state, fontLoader) {
+  const debugLoadedCount = document.getElementById('debug-loaded-count');
+  const debugVariableCount = document.getElementById('debug-variable-count');
+  const debugCurrentPage = document.getElementById('debug-current-page');
+  const debugTotalFonts = document.getElementById('debug-total-fonts');
+  const debugFilter = document.getElementById('debug-filter');
+  
+  if (debugLoadedCount) {
+    debugLoadedCount.textContent = fontLoader?.loade

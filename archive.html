@@ -9,7 +9,7 @@
     />
     <title>Typ.nt - Typography Exploration</title>
     <link rel="stylesheet" href="css/main.css" />
-    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts Link Placeholder -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -23,11 +23,13 @@
   <body>
     <!-- Navigation Bar -->
     <header class="flex justify-between items-center pl-12 z-10">
-      <div class="text-4xl font-semibold logo">Typelab<span style="font-weight: 100;">™<span></div>
+      <div class="text-4xl font-semibold logo">
+        Typelab<span style="font-weight: 100">™</span>
+      </div>
       <nav class="flex items-center">
         <a href="index.html" class="top-bar-button">home</a>
         <a href="#reads" class="top-bar-button">reads</a>
-        <a href="#video" class="top-bar-button">videos</a>
+        <a href="videos.html" class="top-bar-button">videos</a>
         <a href="#practice" class="top-bar-button">practice</a>
         <a href="lab.html" class="top-bar-button">lab</a>
         <a href="archive.html" class="top-bar-button-end active">archive</a>
@@ -39,15 +41,15 @@
     <main>
       <!-- Search Bar -->
       <div class="second-top-bar pr-10 pl-10">
-        <div class="search-bar">
-          <div class="text-3xl">⌕</div>
-          <input
-            type="text"
-            class="flex-1 text-base pl-2 outline-none focus:ring-0 search"
-            placeholder="Search"
-          />
-        </div>
         <div class="second-bar">
+          <div class="search-bar">
+            <div class="text-3xl">⌕</div>
+            <input
+              type="text"
+              class="flex-1 text-base pl-2 outline-none focus:ring-0 search"
+              placeholder="Search"
+            />
+          </div>
           <div class="buttons-container">
             <div class="relative h-full" id="categoriesDropdown">
               <button
@@ -55,47 +57,78 @@
                 class="second-bar-button relative z-40 py-2 pt-4 px-4 hover:text-white transition-all duration-200 flex items-center gap-2"
                 id="categoriesButton"
               >
-                <span>Categories</span><span class="ml-1 text-xl dd-triangle" id="triangle">▾</span>
+                <span>Categories</span
+                ><span class="ml-1 text-xl dd-triangle" id="triangle">▾</span>
               </button>
-              <div id="dropdownContent" class="py-1 absolute left-0 right-0 mt-2 transition-all duration-200 ease-in-out opacity-0 invisible dropdown-content z-50">
+              <div
+                id="dropdownContent"
+                class="py-1 absolute left-0 right-0 mt-2 transition-all duration-200 ease-in-out opacity-0 invisible dropdown-content z-50"
+              >
                 <div class="second-bar-dropdown-wrapper">
                   <label class="block px-4 py-2 text-sm">
-                    <input type="radio" name="category-filter" value="all" checked>
+                    <input
+                      type="radio"
+                      name="category-filter"
+                      value="all"
+                      checked
+                    />
                     All
                   </label>
                   <label class="block px-4 py-2 text-sm">
-                    <input type="radio" name="category-filter" value="serif">
+                    <input type="radio" name="category-filter" value="serif" />
                     Serif
                   </label>
                   <label class="block px-4 py-2 text-sm">
-                    <input type="radio" name="category-filter" value="sans-serif">
+                    <input
+                      type="radio"
+                      name="category-filter"
+                      value="sans_serif"
+                    />
                     Sans Serif
                   </label>
                   <label class="block px-4 py-2 text-sm">
-                    <input type="radio" name="category-filter" value="display">
+                    <input
+                      type="radio"
+                      name="category-filter"
+                      value="display"
+                    />
                     Display
                   </label>
                   <label class="block px-4 py-2 text-sm">
-                    <input type="radio" name="category-filter" value="handwriting">
+                    <input
+                      type="radio"
+                      name="category-filter"
+                      value="handwriting"
+                    />
                     Handwriting
                   </label>
                   <label class="block px-4 py-2 text-sm">
-                    <input type="radio" name="category-filter" value="monospace">
+                    <input
+                      type="radio"
+                      name="category-filter"
+                      value="monospace"
+                    />
                     Monospace
                   </label>
                 </div>
               </div>
             </div>
-          
+
             <div class="relative h-full" id="propertiesDropdown">
               <button
                 type="button"
                 class="second-bar-button py-2 pt-4 text-left hover:text-white transition-all duration-200 ease-in-out z-30 relative flex items-center gap-2"
                 id="propertiesButton"
               >
-                <span>Properties</span><span class="ml-1 text-xl dd-triangle" id="propertiesTriangle">▾</span>
+                <span>Properties</span
+                ><span class="ml-1 text-xl dd-triangle" id="propertiesTriangle"
+                  >▾</span
+                >
               </button>
-              <div class="py-1 absolute left-0 right-0 transition-all duration-200 ease-in-out opacity-0 invisible bg-[#040A10] z-10" id="propertiesContent">
+              <div
+                class="py-1 absolute left-0 right-0 transition-all duration-200 ease-in-out opacity-0 invisible bg-[#040A10] z-10"
+                id="propertiesContent"
+              >
                 <div class="mt-10 px-4 py-2">
                   <p class="text-sm">Property filters will appear here</p>
                 </div>
@@ -108,16 +141,22 @@
                 class="second-bar-button py-2 pt-4 text-left hover:text-white transition-all duration-200 ease-in-out z-30 relative flex items-center gap-2"
                 id="personalityButton"
               >
-                <span>Personality</span><span class="ml-1 text-xl dd-triangle" id="personalityTriangle">▾</span>
+                <span>Personality</span
+                ><span class="ml-1 text-xl dd-triangle" id="personalityTriangle"
+                  >▾</span
+                >
               </button>
-              <div class="py-1 absolute left-0 right-0 transition-all duration-200 ease-in-out opacity-0 invisible bg-[#040A10] z-10" id="personalityContent">
+              <div
+                class="py-1 absolute left-0 right-0 transition-all duration-200 ease-in-out opacity-0 invisible bg-[#040A10] z-10"
+                id="personalityContent"
+              >
                 <div class="mt-10 px-4 py-2">
                   <p class="text-sm">Personality filters will appear here</p>
                 </div>
               </div>
             </div>
           </div>
-          
+
           <div class="master-slider-container">
             <span id="sliderValue" class="text-white mr-4">96 px</span>
             <input
@@ -132,9 +171,7 @@
       </div>
 
       <!-- Header Options -->
-      <div
-        class="flex justify-between items-center p-4 pl-10 pr-10 border-b"
-      >
+      <div class="flex justify-between items-center p-4 pl-10 pr-10 border-b">
         <div class="text-lg total-entry">1804 Total</div>
         <div class="flex space-x-4 mr-auto">
           <button
@@ -171,19 +208,9 @@
         </div>
         <div class="flex items-center space-x-4">
           <span>Sort by:</span>
-          <button
-            class=" bg-transparent border-none py-2 px-4"
-          >
-            Latest
-          </button>
-          <button
-            class=" bg-transparent border-none py-2 px-4"
-          >
-            Popular
-          </button>
-          <button
-            class=" bg-transparent border-none py-2 px-4"
-          >
+          <button class="bg-transparent border-none py-2 px-4">Latest</button>
+          <button class="bg-transparent border-none py-2 px-4">Popular</button>
+          <button class="bg-transparent border-none py-2 px-4">
             Alphabetical
           </button>
         </div>
@@ -195,7 +222,8 @@
     </main>
 
     <!-- JavaScript -->
-    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+    <script src="https://opentype.js.org/dist/opentype.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fontfaceobserver@2.1.0/fontfaceobserver.js"></script>
     <script type="module" src="js/script.js"></script>
   </body>
 </html>
