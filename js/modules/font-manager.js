@@ -256,18 +256,14 @@ async function loadFonts() {
   }
 }
 
-// Modify loadLocalFonts to handle search
+// Create fonts.json at build time with a list of all your fonts
 async function loadLocalFonts() {
   try {
-    const response = await fetch("./fonts/");
-    const dirList = await response.text();
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(dirList, "text/html");
-    const fontFiles = Array.from(doc.querySelectorAll("a"))
-      .map((a) => a.href)
-      .filter((href) => href.match(/\.(ttf|otf|woff|woff2)$/i));
-
-    // Create a section for local fonts if it doesn't exist
+    // Use a manifest instead of directory listing
+    const response = await fetch("./fonts/fonts.json");
+    const fontFiles = await response.json();
+    
+    // Create section for local fonts
     let localSection = document.querySelector('.local-fonts');
     if (!localSection) {
       localSection = document.createElement("div");
@@ -276,8 +272,8 @@ async function loadLocalFonts() {
       fontListElement.appendChild(localSection);
     }
 
-    for (const fontUrl of fontFiles) {
-      const fontInfo = await loadFont(fontUrl);
+    for (const fontPath of fontFiles) {
+      const fontInfo = await loadFont(`./fonts/${fontPath}`);
       if (fontInfo && (!searchQuery || fontInfo.name.toLowerCase().includes(searchQuery))) {
         const card = createFontCard(fontInfo, localSection);
         if (!selectedFontCard) {

@@ -1,2 +1,0 @@
-- Video search functionality
-- User manual in lab 
