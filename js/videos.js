@@ -5,7 +5,8 @@
  */
 
 // YouTube API key - Replace with your own
-const API_KEY = "";
+const API_KEY = "AIzaSyD-9vfDrTeZUu7dBM00P2X9xh7uQLqtB3U";
+
 
 // Constants
 const VIDEOS_PER_ROW = 4;
