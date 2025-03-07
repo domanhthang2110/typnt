@@ -2,7 +2,7 @@ import json
 import requests
 import os
 
-def check_google_fonts(json_path='../../data/fontinfo.json', api_key='AIzaSyBJr2Qgi8BBZ0eAMid_JNP96o7Pp328cYY'):
+def check_google_fonts(json_path='../../data/fontinfo.json', api_key=''):
     """
     Check if fonts from fontinfo.json exist on Google Fonts
     """
