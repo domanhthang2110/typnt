@@ -259,7 +259,7 @@ async function loadFonts() {
 // Modify loadLocalFonts to handle search
 async function loadLocalFonts() {
   try {
-    const response = await fetch("/fonts/");
+    const response = await fetch("./fonts/");
     const dirList = await response.text();
     const parser = new DOMParser();
     const doc = parser.parseFromString(dirList, "text/html");
