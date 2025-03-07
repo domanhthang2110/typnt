@@ -99,6 +99,11 @@ class TypographyLayoutManager {
     columnDropdowns.forEach((dropdown) => {
       this.convertToCustomColumnsDropdown(dropdown);
     });
+
+    // Replace text in buttons with icons for all blocks
+    document.querySelectorAll(".layout-block").forEach(block => {
+      this.updateButtonIcons(block);
+    });
   }
 
   /**
@@ -132,8 +137,11 @@ class TypographyLayoutManager {
     // Get the parent container
     const controlGroup = dropdown.parentElement;
     
+    // Get the currently selected value from the native dropdown
+    const selectedValue = dropdown.value;
+    
     // Create the custom dropdown structure
-    const customDropdown = this.createCustomColumnsDropdown();
+    const customDropdown = this.createCustomColumnsDropdown(selectedValue);
     
     // Replace the select with the custom dropdown
     controlGroup.innerHTML = customDropdown;
@@ -192,8 +200,9 @@ class TypographyLayoutManager {
 
   /**
    * Creates a custom columns dropdown HTML structure
+   * @param {string} selectedValue - The currently selected column count
    */
-  createCustomColumnsDropdown() {
+  createCustomColumnsDropdown(selectedValue = "1") {
     // Generate a unique ID for this dropdown
     const radioGroupName = `columns-${Math.random().toString(36).substr(2, 9)}`;
     
@@ -202,24 +211,31 @@ class TypographyLayoutManager {
       { value: "1", display: "1 Column" },
       { value: "2", display: "2 Columns" },
       { value: "3", display: "3 Columns" }
-    ].map((option, index) => {
-      const isDefault = index === 0; // 1 column as default
+    ].map((option) => {
+      const isSelected = option.value === selectedValue;
       
       return `<label class="block px-2 py-2">
         <input type="radio" name="${radioGroupName}" 
           data-columns="${option.value}" 
           value="${option.value}" 
-          ${isDefault ? 'checked' : ''}>
+          ${isSelected ? 'checked' : ''}>
         ${option.display}
       </label>`;
     }).join('');
+    
+    // Find the display text for the selected option
+    const selectedOption = [
+      { value: "1", display: "1 Column" },
+      { value: "2", display: "2 Columns" },
+      { value: "3", display: "3 Columns" }
+    ].find(option => option.value === selectedValue);
     
     // Return the full dropdown HTML structure
     return `
       <div class="relative columnsDropdown">
         <button type="button" class="dropdown-button relative z-40 text-white 
                 transition-all duration-200 flex items-center gap-2">
-          <span>1 Column</span>
+          <span class="text-sm">${selectedOption ? selectedOption.display : "1 Column"}</span>
           <span class="ml-1 text-xl dd-triangle">▾</span>
         </button>
         <div class="absolute pl-2 transition-all duration-200 ease-in-out 
@@ -508,9 +524,12 @@ class TypographyLayoutManager {
     const uniqueId = Date.now().toString();
     clone.id = `layout-block-${uniqueId}`;
 
-    // Make sure the remove button is enabled
+    // Make sure the remove button is enabled and has the trash icon
     const removeButton = clone.querySelector(".remove-button");
     removeButton.disabled = false;
+    
+    // Update icons in the clone to ensure they're properly set
+    this.updateButtonIcons(clone);
 
     // Insert after the original block
     block.parentNode.insertBefore(clone, block.nextSibling);
@@ -536,6 +555,32 @@ class TypographyLayoutManager {
     const clonedContent = clone.querySelector(".block-content");
     if (clonedContent) {
       Object.assign(clonedContent.style, originalFontStyles);
+    }
+  }
+
+  /**
+   * Update button icons in a block
+   * @param {HTMLElement} block - The layout block to update icons in
+   */
+  updateButtonIcons(block) {
+    // Update clone button icon
+    const cloneButton = block.querySelector(".clone-button");
+    if (cloneButton) {
+      cloneButton.innerHTML = `
+        <svg class="button-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+        </svg>
+      `;
+    }
+    
+    // Update remove button icon
+    const removeButton = block.querySelector(".remove-button");
+    if (removeButton) {
+      removeButton.innerHTML = `
+        <svg class="button-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+        </svg>
+      `;
     }
   }
 
@@ -585,6 +630,9 @@ class TypographyLayoutManager {
       this.setupColumnsDropdown(newDropdown);
     }
 
+    // Update the button icons in this block
+    this.updateButtonIcons(block);
+    
     // Clone button
     const cloneBtn = block.querySelector(".clone-button");
     if (cloneBtn) {
@@ -637,46 +685,7 @@ class TypographyLayoutManager {
       this.applyFontStyle(content, selectedOption);
     }
   }
-
-  /**
-   * Modifies the HTML structure to center the control groups
-   * Usage: Call this after all control groups are populated
-   */
-  reorganizeControlLayout() {
-    document.querySelectorAll('.layout-block').forEach(block => {
-      const controls = block.querySelector('.block-controls');
-      const fontName = block.querySelector('.block-font-name');
-      const buttonGroup = block.querySelector('.button-group');
-      
-      // Get all control groups
-      const controlGroups = Array.from(controls.querySelectorAll('.control-group, .variantDropdown, .columnsDropdown'));
-      
-      // If we already have the wrapper, we don't need to reorganize
-      if (controls.querySelector('.controls-center')) return;
-      
-      // Create a center container for the controls
-      const centerContainer = document.createElement('div');
-      centerContainer.className = 'controls-center';
-      
-      // Move the control groups to the center container
-      controlGroups.forEach(group => {
-        centerContainer.appendChild(group);
-      });
-      
-      // Clear and rebuild the controls container
-      while (controls.firstChild) {
-        controls.removeChild(controls.firstChild);
-      }
-      
-      // Add back the elements in the right order
-      controls.appendChild(fontName);
-      controls.appendChild(centerContainer);
-      controls.appendChild(buttonGroup);
-    });
-  }
 }
-
-
 
 // Initialize when the DOM is loaded
 document.addEventListener("DOMContentLoaded", () => {

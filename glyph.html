@@ -32,7 +32,10 @@
       </div>
     </header>
     <header class="flex justify-between items-center second-header">
-      <a href="archive.html" class="text-white hover:underline ml-12 h-full flex items-center border-r border-[#333] justify-center min-w-[250px]">← back to archive</a>
+<a href="archive.html" class="text-white ml-12 h-full flex items-center border-r border-[#333] justify-center min-w-[250px]">
+  <span class="inline-block mr-5">&#8592;</span>
+  <span>back to archive</span>
+</a>
       <nav class="flex items-center center-nav">
         <button class="second-header-button" onClick="scrollToSection('specimen-section')">specimen</button>
         <button class="second-header-button" onClick="scrollToSection('glyph-section')">glyphs</button>
@@ -44,13 +47,13 @@
     <main>
       <div class="font-title text-4xl text-center mt-12">
         <div class="font-name"></div>
-        <div class="designer-name"></div>
+        <div class="font-designer"></div>
         <div class="font-title-name"></div>
         <div class="styles-count"></div>
       </div>
       <div class="">
       <div class="section-heading-container" id="specimen-section">
-        <h2 class="main-section-heading">All styles</h2>
+        <h2 class="main-section-heading">all styles</h2>
       </div>
       <div class="styles-control flex justify-between items-center pl-12 pr-12 pb-4">
         <div class="text-1xl pl-2 -mt-1 text-[#9C9C9C]">✎</div>
@@ -86,7 +89,7 @@
       </div>
       <div class="glyph-display flex flex-col" id="glyph-section">
         <div class="section-heading-container" id="glyph-section">
-          <h2 class="main-section-heading">Glyphs</h2>
+          <h2 class="main-section-heading">glyphs</h2>
         </div>
         <!-- Control Section: full-width and sticky -->
         <div class="glyph-control pl-12 pr-12">
@@ -144,8 +147,16 @@
                 </select>
               </div>
               <div class="button-group">
-                <button class="clone-button">Clone</button>
-                <button class="remove-button" disabled>Remove</button>
+                <button class="clone-button" title="Clone block">
+                  <svg class="button-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                  </svg>
+                </button>
+                <button class="remove-button" disabled title="Remove block">
+                  <svg class="button-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                  </svg>
+                </button>
               </div>
             </div>
             <div class="block-content" contenteditable="true">
@@ -175,8 +186,16 @@
                 </select>
               </div>
               <div class="button-group">
-                <button class="clone-button">Clone</button>
-                <button class="remove-button">Remove</button>
+                <button class="clone-button" title="Clone block">
+                  <svg class="button-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                  </svg>
+                </button>
+                <button class="remove-button" title="Remove block">
+                  <svg class="button-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                  </svg>
+                </button>
               </div>
             </div>
             <div class="block-content" contenteditable="true">
@@ -205,8 +224,16 @@
                 </select>
               </div>
               <div class="button-group">
-                <button class="clone-button">Clone</button>
-                <button class="remove-button">Remove</button>
+                <button class="clone-button" title="Clone block">
+                  <svg class="button-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                  </svg>
+                </button>
+                <button class="remove-button" title="Remove block">
+                  <svg class="button-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                  </svg>
+                </button>
               </div>
             </div>
             <div class="block-content" contenteditable="true">
@@ -215,10 +242,11 @@
           </div>
         </div>
       </div>
-      <div class="font-info" id="details-section">
-        <div class="section-heading-container" id="details-section">
-          <h2 class="main-section-heading">Font Details</h2>
+      <div class="section-heading-container">
+          <h2 class="main-section-heading">details</h2>
         </div>
+      <div class="font-info" id="details-section">
+        
         
         <div class="details-container">
           <div class="details-list">

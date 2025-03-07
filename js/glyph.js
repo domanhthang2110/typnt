@@ -37,6 +37,7 @@ import { GoogleFontsLoader } from "./modules/google-fonts-loader.js";
 let fontLoader;
 let fontFamily;
 let variantObjects = [];
+let fontData;
 
 async function initFontLoader() {
   // Initialize the font loader from JSON data
@@ -191,10 +192,12 @@ async function initFontProfile() {
   fontFamily = urlParams.get("font");
 
   if (fontFamily) {
+    fontData = fontLoader.getFont(fontFamily);
     variantObjects = await fontLoader.getFontVariants(fontFamily);
     // Update the font-name and font-title elements
     const fontNameElement = document.querySelector(".font-name");
     const fontTitleElement = document.querySelector(".font-title-name");
+    const fontDesigner = document.querySelector(".font-designer");
     // Set up the save button to link to Google Fonts
     const saveButton = document.querySelector("a[href='#archive']");
     if (saveButton) {
@@ -206,14 +209,14 @@ async function initFontProfile() {
     // Load fonts
     await loadFonts(fontFamily);
     // Apply the font family
-    fontNameElement.style.fontFamily = fontFamily;
     fontTitleElement.style.fontFamily = fontFamily;
     fontNameElement.textContent = fontFamily;
+    fontDesigner.innerHTML = '<span style="color:var(--gray);">Designed by </span>' + fontData.designer;
     fontTitleElement.textContent = fontFamily;
 
     // Create a static SVG version of the glyphs for better rendering
     setupStaticGlyphRendering(fontFamily);
-    const fontData = fontLoader.getFont(fontFamily);
+    
     // Display variant cards
     displayVariantCards(fontData);
 
@@ -554,7 +557,7 @@ function initControlSection() {
     fullBtn.classList.remove("active");
 
     // Show only basic sections
-    toggleGlyphSections("basic");
+    scrollToSection("glyph-section");
   });
 
   fullBtn.addEventListener("click", () => {
@@ -667,7 +670,7 @@ function toggleGlyphSections(mode) {
         sectionType === "numerals"
           ? "block"
           : "none";
-      scrollToSection("glyph-section");
+      //scrollToSection("glyph-section");
     } else {
       // Show all sections in full mode
       section.style.display = "block";
@@ -752,8 +755,6 @@ async function initFontMetrics() {
     console.error("No font family found in .font-name element.");
     return;
   }
-
-  const fontData = await fontLoader.getFont(fontFamily);
   if (!fontData) {
     console.error(`Font family "${fontFamily}" not found`);
     return;
