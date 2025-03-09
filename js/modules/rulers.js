@@ -70,7 +70,7 @@ export default class RulerManager {
 
     for (let i = 0; i < width; i += 50) {
       // Draw main notch
-      ctx.fillRect(i-1, 15, 1, 8); // Moved 1px left
+      ctx.fillRect(i, 15, 1, 8); // Moved 1px left
 
       // Handle text alignment differently for 0
       if (i === 0) {

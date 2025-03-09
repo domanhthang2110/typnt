@@ -52,7 +52,7 @@
 }
 
 .styles-control {
-  margin-bottom: 50px;
+  min-height: 60px;
   border-bottom: var(--dark-gray) 1px solid;
 }
 
@@ -111,7 +111,7 @@
   display: flex;
   /* Change from multi-row to single row layout */
   height: auto; /* Let height be determined by content */
-  min-height: 80px; /* Minimum height for appearance */
+  min-height: 60px; /* Minimum height for appearance */
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
@@ -686,7 +686,6 @@ option[disabled] {
 .section-heading-container {
   padding: 2rem 0 1rem 3rem;
   border-bottom: 1px solid var(--dark-gray);
-  margin-bottom: 1.5rem;
 }
 
 .main-section-heading {
@@ -706,11 +705,6 @@ option[disabled] {
 /* Adjust spacing after the specimen heading */
 #specimen-section {
   margin-top: 3rem;
-}
-
-/* Make the styles control closer to the heading */
-.styles-control {
-  margin-top: -0.5rem;
 }
 
 /* Layout section adjustments */
@@ -755,6 +749,8 @@ option[disabled] {
 .align-btn {
   background-color: transparent;
   border: none;
+  /* Remove the problematic static top positioning */
+  /* top: -50px; */ 
   padding: 0.5rem 0.75rem;
   border-radius: 3px;
   cursor: pointer;
@@ -762,6 +758,7 @@ option[disabled] {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative; /* Add relative positioning instead */
 }
 
 /* Define color variables for SVG filters */
@@ -785,4 +782,16 @@ option[disabled] {
 .align-btn.active img {
   /* White SVG color */
   filter: brightness(200%);
+}
+
+/* Add specific styling for the glyph control dropdown */
+.glyph-control .variantDropdown .dropdown-button {
+  font-size: 1rem;
+}
+
+.glyph-control .variantDropdown .dropdown-content-wrapper {
+  font-size: 1rem;
+}
+.glyph-control .variantDropdown .dropdown-content {
+  top: -16px;
 }

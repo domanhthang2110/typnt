@@ -15,9 +15,16 @@
     margin: 0;
     transition: opacity 0.3s ease;
     /* Remove default margin */
+    --grey-opacity: 0; /* Set to 0 by default */
 }
 
-/* Track styling for Webkit browsers (Chrome, Safari) */
+/* When card is hovered or slider is active, show the gray track */
+.slider:hover,
+.slider:active {
+    --grey-opacity: 255; /* Make gray fully visible on hover/active */
+}
+
+/* Track styling for Webkit browsers (Chrome, Safari) with transition */
 .slider::-webkit-slider-runnable-track {
     width: 200px;
     height: 2px;
@@ -29,6 +36,7 @@
             rgba(128, 128, 128, var(--grey-opacity, 0)) 100%);
     border-radius: 5px;
     /* Rounded track edges */
+    transition: background 0.3s ease; /* Add transition to background */
 }
 
 /* Thumb styling for Webkit browsers (Chrome, Safari) */
@@ -60,7 +68,7 @@
     /* Change border color on hover */
 }
 
-/* Track styling for Firefox */
+/* Track styling for Firefox with transition */
 .slider::-moz-range-track {
     width: 200px;
     height: 2px;
@@ -72,6 +80,7 @@
             rgba(128, 128, 128, var(--grey-opacity, 0)) 100%);
     border-radius: 5px;
     /* Rounded track edges */
+    transition: background 0.3s ease; /* Add transition to background */
 }
 
 /* Thumb styling for Firefox */
@@ -111,7 +120,7 @@
     z-index: 2;
     margin: 0;
     transition: opacity 0.3s ease;
-}
+    }
 
 /* Track styling for Webkit browsers (Chrome, Safari) */
 .master-slider::-webkit-slider-runnable-track {
@@ -179,3 +188,4 @@
 .master-slider::-moz-range-thumb:hover {
     background-color: white;
 }
+

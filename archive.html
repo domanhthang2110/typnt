@@ -18,6 +18,8 @@
       href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
       rel="stylesheet"
     />
+    <!-- Add Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
 
   <body>
@@ -46,7 +48,7 @@
             <div class="text-3xl">⌕</div>
             <input
               type="text"
-              class="flex-1 text-base pl-2 outline-none focus:ring-0 search"
+              class="flex-1 outline-none search"
               placeholder="Search"
             />
           </div>
@@ -171,7 +173,7 @@
       </div>
 
       <!-- Header Options -->
-      <div class="flex justify-between items-center p-4 pl-10 pr-10 border-b">
+      <div class="flex justify-between items-center p-4 pl-10 pr-10 third-bar-container">
         <div class="text-lg total-entry">1804 Total</div>
         <div class="flex space-x-4 mr-auto">
           <button
@@ -186,21 +188,21 @@
           >
             Grid view
           </button>
-          <!-- Alignment Buttons -->
+          <!-- Alignment Buttons (will be replaced with icons via JS) -->
           <button
-            class="text-white bg-transparent border-none py-2 px-4"
+            class="alignment-button"
             id="alignLeftBtn"
           >
             Align Left
           </button>
           <button
-            class="text-white bg-transparent border-none py-2 px-4"
+            class="alignment-button"
             id="alignCenterBtn"
           >
             Align Center
           </button>
           <button
-            class="text-white bg-transparent border-none py-2 px-4"
+            class="alignment-button"
             id="alignRightBtn"
           >
             Align Right

@@ -15,6 +15,13 @@ export class GoogleFontsLoader {
     this.loadedFonts = new Set();
     this.baseUrl = "https://fonts.googleapis.com/css2";
     this.fontLinkElements = new Map(); // Track font link elements by fontName
+    
+    // Popular fonts - This would ideally come from analytics data or usage statistics
+    this.popularFonts = [
+      "Roboto", "Open Sans", "Montserrat", "Lato", "Poppins", 
+      "Roboto Condensed", "Source Sans Pro", "Oswald", "Raleway", "Ubuntu",
+      "Playfair Display", "Merriweather", "Nunito", "PT Sans", "Noto Sans"
+    ];
   }
 
   /**
@@ -440,6 +447,90 @@ export class GoogleFontsLoader {
     }
 
     return result;
+  }
+
+  /**
+   * Gets fonts sorted by a specific criteria
+   * @param {string} sortBy - Sorting criteria ('alphabetical', 'latest', 'popular')
+   * @param {string} category - Optional category filter
+   * @param {string} searchTerm - Optional search term
+   * @returns {Object[]} - Array of sorted font objects
+   */
+  getSortedFonts(sortBy = 'alphabetical', category = 'all', searchTerm = '') {
+    // First filter fonts by category and search term if needed
+    let filteredFonts = [...this.fonts];
+    
+    if (category && category !== 'all') {
+      const normalizedCategory = category.toUpperCase();
+      filteredFonts = filteredFonts.filter(
+        font => font.category && font.category.toUpperCase() === normalizedCategory
+      );
+    }
+    
+    if (searchTerm) {
+      const term = searchTerm.toLowerCase();
+      filteredFonts = filteredFonts.filter(
+        font => (font.name || font.family || "").toLowerCase().includes(term)
+      );
+    }
+    
+    // Now sort according to the requested criteria
+    switch (sortBy) {
+      case 'latest':
+        // Check if any font has dateAdded property
+        if (filteredFonts.some(font => font.dateAdded)) {
+          // Sort by date-added (newest first) if property exists
+          return filteredFonts.sort((a, b) => {
+            const dateA = a.dateAdded ? new Date(a.dateAdded) : new Date(0);
+            const dateB = b.dateAdded ? new Date(b.dateAdded) : new Date(0);
+            return dateB - dateA; // Newest first
+          });
+        } 
+        // Fallback: Use ID if available (assuming newer fonts have higher IDs)
+        else if (filteredFonts.some(font => font.id)) {
+          return filteredFonts.sort((a, b) => (b.id || 0) - (a.id || 0));
+        }
+        // Final fallback: Use name hashing for consistent "latest" ordering
+        else {
+          // Create a deterministic but "random-looking" order based on font name
+          const getNameHash = name => {
+            name = name || "";
+            let hash = 0;
+            for (let i = 0; i < name.length; i++) {
+              hash = ((hash << 5) - hash) + name.charCodeAt(i);
+              hash = hash & hash; // Convert to 32bit integer
+            }
+            return hash;
+          };
+          
+          // Use the name hash to create a pseudo-random but stable order
+          return filteredFonts.sort((a, b) => {
+            const nameA = a.name || a.family || "";
+            const nameB = b.name || b.family || "";
+            return getNameHash(nameB) % 100 - getNameHash(nameA) % 100;
+          });
+        }
+        
+      case 'popular':
+        // Sort by popularity (popular fonts first)
+        return filteredFonts.sort((a, b) => {
+          const aIsPopular = this.popularFonts.includes(a.name || a.family || "");
+          const bIsPopular = this.popularFonts.includes(b.name || b.family || "");
+          
+          if (aIsPopular && !bIsPopular) return -1;
+          if (!aIsPopular && bIsPopular) return 1;
+          
+          // If both are popular or both are not, sort alphabetically
+          return (a.name || a.family || "").localeCompare(b.name || b.family || "");
+        });
+        
+      case 'alphabetical':
+      default:
+        // Sort alphabetically by name
+        return filteredFonts.sort((a, b) => 
+          (a.name || a.family || "").localeCompare(b.name || b.family || "")
+        );
+    }
   }
 }
 

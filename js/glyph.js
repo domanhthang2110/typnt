@@ -417,27 +417,29 @@ function initControlSection() {
   const glyphControl = document.querySelector(".glyph-control");
   glyphControl.innerHTML = "";
 
-  // Apply CSS class
-  //glyphControl.className = "glyph-control";
-
   // Create a single row container with flexbox
   const controlRow = document.createElement("div");
   controlRow.className = "control-row";
   controlRow.style.display = "flex";
   controlRow.style.width = "100%";
-  controlRow.style.justifyContent = "space-between";
   controlRow.style.alignItems = "center";
+  controlRow.style.gap = "1rem";
 
-  // ---- 1. Letter Name Display ----
+  // ---- Left Side Container (50% width) ----
+  const leftContainer = document.createElement("div");
+  leftContainer.className = "left-controls-container";
+  leftContainer.style.display = "flex";
+  leftContainer.style.alignItems = "center";
+  leftContainer.style.gap = "1rem";
+  leftContainer.style.width = "50%"; // Match the right side width
+
+  // ---- 1. Letter Name Display (Left Side) ----
   const letterNameContainer = document.createElement("div");
   letterNameContainer.className = "letter-name";
   letterNameContainer.id = "letterName";
-  letterNameContainer.style.flex = "1"; // Take available space
+  letterNameContainer.style.flex = "1"; // Take available space in left container
 
-  // Initialize with default letter name - using our function instead of hardcoding
-  // We'll call updateLetterName('A') after adding it to the DOM
-
-  // ---- 2. Solid/Outline Toggle ----
+  // ---- 2. Solid/Outline Toggle (Now on left side) ----
   const renderModeContainer = document.createElement("div");
   renderModeContainer.className = "render-mode";
 
@@ -463,26 +465,26 @@ function initControlSection() {
   renderModeContainer.appendChild(renderModeLabel);
   renderModeContainer.appendChild(toggleContainer);
 
+  // Add items to left container
+  leftContainer.appendChild(letterNameContainer);
+  leftContainer.appendChild(renderModeContainer);
+
+  // ---- Right Controls Container (50% width) ----
+  const rightControlsContainer = document.createElement("div");
+  rightControlsContainer.className = "right-controls-container";
+  rightControlsContainer.style.display = "flex";
+  rightControlsContainer.style.justifyContent = "space-between"; // Space items evenly
+  rightControlsContainer.style.alignItems = "center";
+  rightControlsContainer.style.width = "50%"; // Exact 50% width
+
   // ---- 3. Style Selection Dropdown ----
-  const styleSelectContainer = document.createElement("div");
-  styleSelectContainer.className = "style-select";
 
-  const styleLabel = document.createElement("span");
-  styleLabel.textContent = "Style:";
-  styleLabel.className = "style-label";
+  // Create custom dropdown container
+  const customDropdownContainer = document.createElement("div");
+  customDropdownContainer.className = "variantDropdown relative ml-32";
+  customDropdownContainer.id = "fontStyleDropdown";
 
-  const styleSelect = document.createElement("select");
-  styleSelect.id = "fontStyle";
-  styleSelect.className = "font-style-dropdown";
-
-  const defaultOption = document.createElement("option");
-  defaultOption.value = "regular";
-  defaultOption.textContent = "Regular";
-  defaultOption.selected = true;
-  styleSelect.appendChild(defaultOption);
-
-  styleSelectContainer.appendChild(styleLabel);
-  styleSelectContainer.appendChild(styleSelect);
+  rightControlsContainer.appendChild(customDropdownContainer);
 
   // ---- 4. Basic/Full Set Toggle ----
   const glyphSetContainer = document.createElement("div");
@@ -510,11 +512,12 @@ function initControlSection() {
   glyphSetContainer.appendChild(glyphSetLabel);
   glyphSetContainer.appendChild(glyphSetToggle);
 
-  // Add all elements to control row in order
-  controlRow.appendChild(letterNameContainer);
-  controlRow.appendChild(renderModeContainer);
-  controlRow.appendChild(styleSelectContainer);
-  controlRow.appendChild(glyphSetContainer);
+  // Add controls to the right container
+  rightControlsContainer.appendChild(glyphSetContainer);
+
+  // Add main sections to control row
+  controlRow.appendChild(leftContainer);
+  controlRow.appendChild(rightControlsContainer);
 
   // Add control row to the main container
   glyphControl.appendChild(controlRow);
@@ -557,6 +560,7 @@ function initControlSection() {
     fullBtn.classList.remove("active");
 
     // Show only basic sections
+    toggleGlyphSections("basic");
     scrollToSection("glyph-section");
   });
 
@@ -568,10 +572,205 @@ function initControlSection() {
     toggleGlyphSections("full");
   });
 
-  // Populate font style options and set up the change event
-  populateFontStyleOptions(styleSelect).then(() => {
-    styleSelect.addEventListener("change", updateFontStyle);
+  // Populate custom dropdown and set up events
+  createAndSetupFontStyleDropdown(customDropdownContainer);
+}
+
+/**
+ * Creates and sets up the custom font style dropdown
+ * @param {HTMLElement} container - The container for the dropdown
+ */
+function createAndSetupFontStyleDropdown(container) {
+  // Create the dropdown HTML
+  container.innerHTML = createCustomVariantDropdownHTML();
+
+  // Set up event listeners for the dropdown
+  setupCustomVariantDropdown(container);
+}
+
+/**
+ * Creates HTML structure for the custom variant dropdown
+ * @returns {string} HTML structure for dropdown
+ */
+function createCustomVariantDropdownHTML() {
+  // Generate a unique ID for radio group
+  const radioGroupName = `variant-${Math.random().toString(36).substr(2, 9)}`;
+  let optionsHTML = '';
+  
+  // If we have variant objects from the font loader, use them
+  if (variantObjects && variantObjects.length > 0) {
+    // First find the regular variant (400 normal) to set as default
+    const defaultIndex = variantObjects.findIndex(v => 
+      v.weight === 400 && v.style === 'normal'
+    ) || 0;
+    
+    // Generate HTML for regular variants
+    const regularVariants = variantObjects.filter(v => v.style === "normal");
+    regularVariants.forEach((variant, index) => {
+      const isDefault = variant.weight === 400 && variant.style === 'normal';
+      optionsHTML += `<label class="block px-2 py-2">
+        <input type="radio" name="${radioGroupName}" 
+          data-weight="${variant.weight}" 
+          data-style="normal"
+          value="${variant.weight}" 
+          ${isDefault ? 'checked' : ''}>
+        ${fontLoader.translateWeightToName(variant.weight.toString())}
+      </label>`;
+    });
+    
+    // Add separator if we have both regular and italic variants
+    const italicVariants = variantObjects.filter(v => v.style === "italic");
+    if (regularVariants.length > 0 && italicVariants.length > 0) {
+      optionsHTML += `<label class="block px-2 py-2 disabled">
+        <div>──────────</div>
+      </label>`;
+    }
+    
+    // Generate HTML for italic variants
+    italicVariants.forEach((variant) => {
+      optionsHTML += `<label class="block px-2 py-2">
+        <input type="radio" name="${radioGroupName}" 
+          data-weight="${variant.weight}" 
+          data-style="italic"
+          value="${variant.weight}italic">
+        ${fontLoader.translateWeightToName(variant.weight + "italic")}
+      </label>`;
+    });
+  } else {
+    // Fallback for when no variants are available
+    optionsHTML = `<label class="block px-2 py-2">
+      <input type="radio" name="${radioGroupName}" 
+        data-weight="400" 
+        data-style="normal"
+        value="regular" checked>
+      Regular
+    </label>`;
+  }
+  
+  // Return complete dropdown HTML structure
+  return `
+    <button type="button" class="dropdown-button relative z-40 text-white 
+            transition-all duration-200 flex items-center gap-2">
+      <span>Regular</span>
+      <span class="ml-1 text-xl dd-triangle">▾</span>
+    </button>
+    <div class="absolute pl-2 transition-all duration-200 ease-in-out 
+              opacity-0 invisible w-full z-20 overflow-hidden dropdown-content block-control">
+      <div class="dropdown-content-wrapper overflow-y-auto" 
+           style="margin-top: 40px; max-height: 150px;">
+        <div class="pr-2">
+          ${optionsHTML}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+/**
+ * Sets up event handlers for the custom variant dropdown
+ * @param {HTMLElement} dropdown - The dropdown container
+ */
+function setupCustomVariantDropdown(dropdown) {
+  if (!dropdown) return;
+  
+  let isDropdownVisible = false;
+  const button = dropdown.querySelector('.dropdown-button');
+  const dropdownContent = dropdown.querySelector('.dropdown-content');
+  
+  // Button click handler to toggle dropdown
+  button.addEventListener("click", (e) => {
+    e.stopPropagation();
+    isDropdownVisible = !isDropdownVisible;
+    
+    if (isDropdownVisible) {
+      dropdown.classList.add("dropdown-open");
+      showDropdownContent(dropdown);
+    } else {
+      dropdown.classList.remove("dropdown-open");
+      hideDropdownContent(dropdown);
+    }
   });
+
+  // Click outside to close
+  document.addEventListener("click", (e) => {
+    if (isDropdownVisible && !dropdown.contains(e.target)) {
+      isDropdownVisible = false;
+      dropdown.classList.remove("dropdown-open");
+      hideDropdownContent(dropdown);
+    }
+  });
+
+  // Radio button change handler
+  dropdown.addEventListener("change", (e) => {
+    if (!e.target.matches('input[type="radio"]')) return;
+    
+    const weight = e.target.dataset.weight || "400";
+    const style = e.target.dataset.style || "normal";
+    const buttonText = dropdown.querySelector("button span:first-child");
+    
+    // Update button text with selected variant name
+    buttonText.textContent = fontLoader.translateWeightToName(
+      style === 'italic' ? `${weight}italic` : weight
+    );
+    
+    // Apply the selected style to the glyph preview
+    updateGlyphStyle(weight, style);
+    
+    // Close dropdown after selection
+    isDropdownVisible = false;
+    dropdown.classList.remove("dropdown-open");
+    hideDropdownContent(dropdown);
+  });
+}
+
+/**
+ * Updates glyph preview with selected style
+ * @param {string} weight - Font weight
+ * @param {string} style - Font style (normal/italic)
+ */
+function updateGlyphStyle(weight, style) {
+  const svgText = document.querySelector(".glyph-letter svg text");
+  if (svgText) {
+    svgText.style.fontWeight = weight;
+    svgText.style.fontStyle = style;
+  }
+  
+  // Also update all grid cells with the new style
+  const gridCells = document.querySelectorAll(".grid-cell");
+  gridCells.forEach(cell => {
+    cell.style.fontWeight = weight;
+    cell.style.fontStyle = style;
+  });
+}
+
+/**
+ * Shows dropdown content with animation
+ * @param {HTMLElement} dropdown - The dropdown container
+ */
+function showDropdownContent(dropdown) {
+  const button = dropdown.querySelector('.dropdown-button');
+  const dropdownContent = dropdown.querySelector('.dropdown-content');
+  const triangle = button.querySelector('.dd-triangle');
+  
+  button.style.backgroundColor = "transparent";
+  dropdownContent.classList.add("opacity-100", "visible", "border", "border-[#4F4F4F]");
+  dropdownContent.classList.remove("opacity-0", "invisible");
+  triangle.classList.add("rotate-triangle");
+}
+
+/**
+ * Hides dropdown content with animation
+ * @param {HTMLElement} dropdown - The dropdown container
+ */
+function hideDropdownContent(dropdown) {
+  const button = dropdown.querySelector('.dropdown-button');
+  const dropdownContent = dropdown.querySelector('.dropdown-content');
+  const triangle = button.querySelector('.dd-triangle');
+  
+  button.style.backgroundColor = "";
+  dropdownContent.classList.remove("opacity-100", "visible", "border", "border-[#4F4F4F]");
+  dropdownContent.classList.add("opacity-0", "invisible");
+  triangle.classList.remove("rotate-triangle");
 }
 
 /**
@@ -989,6 +1188,59 @@ function setupStaticGlyphRendering(fontFamily) {
 }
 
 // ========================================
+// Alignment Button Functionality
+// ========================================
+
+/**
+ * Initializes the alignment buttons with event listeners
+ */
+function initAlignmentButtons() {
+  const alignButtons = document.querySelectorAll('.align-btn');
+  
+  alignButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Get the alignment from data attribute
+      const alignment = button.getAttribute('data-align');
+      
+      // Remove active class from all buttons
+      alignButtons.forEach(btn => btn.classList.remove('active'));
+      
+      // Add active class to clicked button
+      button.classList.add('active');
+      
+      // Apply the text alignment to all sample texts
+      updateTextAlignment(alignment);
+    });
+  });
+}
+
+/**
+ * Updates the text alignment for all sample text elements
+ * @param {string} alignment - The text alignment value (left, center, right)
+ */
+function updateTextAlignment(alignment) {
+  const sampleTexts = document.querySelectorAll('.sample-text');
+  
+  sampleTexts.forEach(element => {
+    // Remove all existing alignment classes
+    element.classList.remove('text-left', 'text-center', 'text-right');
+    
+    // Apply the new alignment class
+    switch (alignment) {
+      case 'left':
+        element.style.textAlign = 'left';
+        break;
+      case 'center':
+        element.style.textAlign = 'center';
+        break;
+      case 'right':
+        element.style.textAlign = 'right';
+        break;
+    }
+  });
+}
+
+// ========================================
 // DOMContentLoaded Initialization
 // ========================================
 
@@ -1008,6 +1260,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     await initFontMetrics();
     updateGlyphPreview();
+    
+    // Initialize alignment buttons
+    initAlignmentButtons();
 
     // Force re-update of the letter name to ensure Unicode is displayed
     const currentChar =
