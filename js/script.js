@@ -49,6 +49,9 @@ async function initApp() {
     // Set initial view mode class
     fontContainer.classList.add(`${currentState.viewMode}-view`);
     updateViewButtonStates();
+    
+    // Make sure left alignment is the default
+    currentState.textAlign = "left";
     updateAlignButtonStates(currentState.textAlign);
 
     // Load and display the first batch of fonts
@@ -678,17 +681,19 @@ function setupEventListeners() {
 
   // Text alignment buttons
   const alignmentButtons = [
-    { id: "alignLeftBtn", icon: "format_align_left", align: "left" },
-    { id: "alignCenterBtn", icon: "format_align_center", align: "center" },
-    { id: "alignRightBtn", icon: "format_align_right", align: "right" },
+    { id: "alignLeftBtn", align: "left" },
+    { id: "alignCenterBtn", align: "center" },
+    { id: "alignRightBtn", align: "right" },
   ];
 
   alignmentButtons.forEach((config) => {
     const btn = document.getElementById(config.id);
     if (btn) {
-      // Replace text with icon
-      btn.innerHTML = `<i class="material-icons">${config.icon}</i>`;
-      btn.classList.add("alignment-button");
+      // Don't replace the SVG images
+      // Remove this line: btn.innerHTML = `<i class="material-icons">${config.icon}</i>`;
+      
+      // Make sure the button has the proper class
+      btn.classList.add("align-btn");
 
       // Add click event
       btn.addEventListener("click", () => {
@@ -734,14 +739,14 @@ function setupEventListeners() {
 
   // Sort buttons event listeners - FIXED SELECTORS
   const sortButtons = {
-    latest: document.querySelector(
-      ".flex.items-center.space-x-4 button:nth-of-type(1)"
+    latest: document.getElementById(
+      "latestBtn"
     ),
-    popular: document.querySelector(
-      ".flex.items-center.space-x-4 button:nth-of-type(2)"
+    popular: document.getElementById(
+      "popularBtn"
     ),
-    alphabetical: document.querySelector(
-      ".flex.items-center.space-x-4 button:nth-of-type(3)"
+    alphabetical: document.getElementById(
+      "alphabetBtn"
     ),
   };
 
@@ -770,17 +775,12 @@ function setupEventListeners() {
  * @param {string} selectedSort - The currently selected sort method
  */
 function updateSortButtonStates(selectedSort) {
-  const sortButtonsContainer = document.querySelector(
-    ".flex.items-center.space-x-4"
-  );
-  if (!sortButtonsContainer) return;
 
-  const sortButtons = sortButtonsContainer.querySelectorAll("button");
+  const sortButtons = document.querySelectorAll(".sortBtn");
 
   // Clear all active states first
   sortButtons.forEach((button) => {
-    button.classList.remove("text-white");
-    button.classList.add("text-gray-400");
+    button.classList.remove("active");
   });
 
   // Set active state based on selected sort
@@ -795,8 +795,7 @@ function updateSortButtonStates(selectedSort) {
   }
 
   if (activeButton) {
-    activeButton.classList.add("text-white");
-    activeButton.classList.remove("text-gray-400");
+    activeButton.classList.add("active");
   }
 }
 
@@ -900,7 +899,13 @@ function updateAlignButtonStates(selectedAlign) {
   alignmentButtons.forEach((config) => {
     const btn = document.getElementById(config.id);
     if (btn) {
-      btn.classList.toggle("selected", config.align === selectedAlign);
+      // Remove both classes first
+      btn.classList.remove("selected", "active");
+      
+      // Then add them if this is the selected alignment
+      if (config.align === selectedAlign) {
+        btn.classList.add("selected", "active");
+      }
     }
   });
 }

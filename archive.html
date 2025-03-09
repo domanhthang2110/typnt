@@ -177,7 +177,7 @@
         <div class="text-lg total-entry">1804 Total</div>
         <div class="flex space-x-4 mr-auto">
           <button
-            class="text-white bg-transparent border-none py-2 px-4 hover:text-white"
+            class="text-white bg-transparent border-none py-2 px-3 hover:text-white"
             id="listViewBtn"
           >
             List view
@@ -188,31 +188,34 @@
           >
             Grid view
           </button>
-          <!-- Alignment Buttons (will be replaced with icons via JS) -->
+          <!-- Alignment Buttons with SVG images -->
           <button
-            class="alignment-button"
+            class="align-btn active"
             id="alignLeftBtn"
+            data-align="left"
           >
-            Align Left
+            <img src="images/align_left.svg" alt="Align Left" width="24" height="24">
           </button>
           <button
-            class="alignment-button"
+            class="align-btn"
             id="alignCenterBtn"
+            data-align="center"
           >
-            Align Center
+            <img src="images/align_center.svg" alt="Align Center" width="24" height="24">
           </button>
           <button
-            class="alignment-button"
+            class="align-btn"
             id="alignRightBtn"
+            data-align="right"
           >
-            Align Right
+            <img src="images/align_right.svg" alt="Align Right" width="24" height="24">
           </button>
         </div>
         <div class="flex items-center space-x-4">
           <span>Sort by:</span>
-          <button class="bg-transparent border-none py-2 px-4">Latest</button>
-          <button class="bg-transparent border-none py-2 px-4">Popular</button>
-          <button class="bg-transparent border-none py-2 px-4">
+          <button class="sortBtn py-2 px-4" id="latestBtn">Latest</button>
+          <button class="sortBtn py-2 px-4" id="popularBtn">Popular</button>
+          <button class="sortBtn py-2 px-4" id="alphabetBtn">
             Alphabetical
           </button>
         </div>
