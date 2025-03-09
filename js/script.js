@@ -49,7 +49,7 @@ async function initApp() {
     // Set initial view mode class
     fontContainer.classList.add(`${currentState.viewMode}-view`);
     updateViewButtonStates();
-    
+
     // Make sure left alignment is the default
     currentState.textAlign = "left";
     updateAlignButtonStates(currentState.textAlign);
@@ -148,20 +148,15 @@ function createFontCard(fontData) {
   const card = document.createElement("div");
   card.classList.add("card");
 
-  // Check if this is an enhanced font with detailed info
-  const isEnhancedFont = !!fontData.detailedInfo;
-
   // Fix variable font detection logic
-  const isVariable =
-    (isEnhancedFont && fontData.detailedInfo.isVariable) ||
-    (fontData.axes && Object.keys(fontData.axes).length > 0);
 
   // Get the font designer - fallback to 'Unknown' if not available
-  const designer =
-    fontData.designer || fontData.detailedInfo?.name || "Unknown";
+  const designer = fontData.designer || "Unknown";
 
   // Get font name
   const fontName = fontData.family || fontData.name;
+
+  const isVariable = googleFontsLoader.isVariableFont(fontName);
 
   // Use the same method as layout.js to get variants count
   const variants = googleFontsLoader.getFontVariants(fontName);
@@ -170,6 +165,13 @@ function createFontCard(fontData) {
   // Add "Variable" indicator for variable fonts
   const variableBadge = isVariable
     ? '<span class="variable-badge">Variable</span>'
+    : "";
+
+  const weightSliderHTML = isVariable
+    ? `<div class="slider-container">
+     <span class="slider-title">Weight</span>
+     <input type="range" min="100" max="900" step="5" value="400" class="slider" data-slider-type="weight">
+   </div>`
     : "";
 
   card.innerHTML = `
@@ -187,10 +189,7 @@ function createFontCard(fontData) {
           currentState.masterFontSize
         }" class="slider" data-slider-type="size">
     </div>
-    <div class="slider-container">
-        <span class="slider-title">Weight</span>
-        <input type="range" min="100" max="900" step="5" value="400" class="slider" data-slider-type="weight">
-    </div>
+    ${weightSliderHTML}
     ${createVariantDropdownHTML(fontData)}
 </div>
             
@@ -203,7 +202,9 @@ function createFontCard(fontData) {
         <div class="card-sample-container">
             <p class="card-sample align-${currentState.textAlign}" 
                contenteditable="true" 
-               style="font-family: '${fontName}', sans-serif; font-size: ${currentState.masterFontSize}px; line-height: ${currentState.masterFontSize * 1.4}px; font-weight: 400;">
+               style="font-family: '${fontName}', sans-serif; font-size: ${
+    currentState.masterFontSize
+  }px; line-height: ${currentState.masterFontSize * 1.4}px; font-weight: 400;">
                 ${fontName}
             </p>
             <div class="font-size-indicator">${
@@ -282,8 +283,7 @@ function setupCardInteractions(card, fontData) {
   const indicator = card.querySelector(".font-size-indicator");
   const variantDropdown = card.querySelector(".variantDropdown");
   const sizeTitleElement = sizeSlider.parentNode.querySelector(".slider-title");
-  const weightTitleElement =
-    weightSlider.parentNode.querySelector(".slider-title");
+
   // Get the font name from fontData
   const fontName = fontData.family || fontData.name;
 
@@ -291,37 +291,63 @@ function setupCardInteractions(card, fontData) {
   const isVariableFont = googleFontsLoader.isVariableFont(fontName);
 
   // Create default weight settings
-  let weightSettings = { min: 100, max: 900, default: 400, step: 5 };
+  if (weightSlider) {
+      const weightTitleElement =
+        weightSlider.parentNode.querySelector(".slider-title");
+    let weightSettings = { min: 100, max: 900, default: 400, step: 5 };
 
-  // For variable fonts, check for custom weight axis
-  if (isVariableFont) {
-    const fontObj = googleFontsLoader.getFont(fontName);
-    if (fontObj && fontObj.axes && fontObj.axes.wght) {
-      weightSettings.min = fontObj.axes.wght.min || 100;
-      weightSettings.max = fontObj.axes.wght.max || 900;
+    // For variable fonts, check for custom weight axis
+    if (isVariableFont) {
+      const fontObj = googleFontsLoader.getFont(fontName);
+      if (fontObj && fontObj.axes && fontObj.axes.wght) {
+        weightSettings.min = fontObj.axes.wght.min || 100;
+        weightSettings.max = fontObj.axes.wght.max || 900;
 
-      // Set a sensible default within the range
-      weightSettings.default = Math.max(
-        Math.min(400, weightSettings.max),
-        weightSettings.min
-      );
+        // Set a sensible default within the range
+        weightSettings.default = Math.max(
+          Math.min(400, weightSettings.max),
+          weightSettings.min
+        );
+      }
     }
+
+    // Apply settings to the weight slider
+    weightSlider.min = weightSettings.min;
+    weightSlider.max = weightSettings.max;
+    weightSlider.step = weightSettings.step;
+    weightSlider.value = weightSettings.default;
+
+    // Update the slider visual to match the actual range
+    updateSliderVisual(
+      weightSlider,
+      weightSettings.default,
+      weightSettings.min,
+      weightSettings.max
+    );
+
+    // Weight slider interaction
+    weightSlider.addEventListener("input", (e) => {
+      const weight = parseInt(e.target.value);
+      updateFontWeight(sample, weight, weightSettings);
+      updateSliderVisual(
+        weightSlider,
+        weight,
+        weightSettings.min,
+        weightSettings.max
+      );
+      // Update title to show value
+      weightTitleElement.textContent = weight;
+      weightTitleElement.classList.add("showing-value");
+    });
+
+    weightSlider.addEventListener("mouseout", () => {
+      // Reset title when not interacting
+      setTimeout(() => {
+        weightTitleElement.textContent = "Weight";
+        weightTitleElement.classList.remove("showing-value");
+      }, 1000);
+    });
   }
-
-  // Apply settings to the weight slider
-  weightSlider.min = weightSettings.min;
-  weightSlider.max = weightSettings.max;
-  weightSlider.step = weightSettings.step;
-  weightSlider.value = weightSettings.default;
-
-  // Update the slider visual to match the actual range
-  updateSliderVisual(
-    weightSlider,
-    weightSettings.default,
-    weightSettings.min,
-    weightSettings.max
-  );
-
   // Add card hover handlers
   card.addEventListener("mouseenter", () => {
     // Only restore if dropdown was in open state
@@ -351,29 +377,6 @@ function setupCardInteractions(card, fontData) {
     setTimeout(() => {
       sizeTitleElement.textContent = "Size";
       sizeTitleElement.classList.remove("showing-value");
-    }, 1000);
-  });
-
-  // Weight slider interaction
-  weightSlider.addEventListener("input", (e) => {
-    const weight = parseInt(e.target.value);
-    updateFontWeight(sample, weight, weightSettings);
-    updateSliderVisual(
-      weightSlider,
-      weight,
-      weightSettings.min,
-      weightSettings.max
-    );
-    // Update title to show value
-    weightTitleElement.textContent = weight;
-    weightTitleElement.classList.add("showing-value");
-  });
-
-  weightSlider.addEventListener("mouseout", () => {
-    // Reset title when not interacting
-    setTimeout(() => {
-      weightTitleElement.textContent = "Weight";
-      weightTitleElement.classList.remove("showing-value");
     }, 1000);
   });
 
@@ -691,7 +694,7 @@ function setupEventListeners() {
     if (btn) {
       // Don't replace the SVG images
       // Remove this line: btn.innerHTML = `<i class="material-icons">${config.icon}</i>`;
-      
+
       // Make sure the button has the proper class
       btn.classList.add("align-btn");
 
@@ -739,15 +742,9 @@ function setupEventListeners() {
 
   // Sort buttons event listeners - FIXED SELECTORS
   const sortButtons = {
-    latest: document.getElementById(
-      "latestBtn"
-    ),
-    popular: document.getElementById(
-      "popularBtn"
-    ),
-    alphabetical: document.getElementById(
-      "alphabetBtn"
-    ),
+    latest: document.getElementById("latestBtn"),
+    popular: document.getElementById("popularBtn"),
+    alphabetical: document.getElementById("alphabetBtn"),
   };
 
   // Initialize with default sort (alphabetical)
@@ -775,7 +772,6 @@ function setupEventListeners() {
  * @param {string} selectedSort - The currently selected sort method
  */
 function updateSortButtonStates(selectedSort) {
-
   const sortButtons = document.querySelectorAll(".sortBtn");
 
   // Clear all active states first
@@ -901,7 +897,7 @@ function updateAlignButtonStates(selectedAlign) {
     if (btn) {
       // Remove both classes first
       btn.classList.remove("selected", "active");
-      
+
       // Then add them if this is the selected alignment
       if (config.align === selectedAlign) {
         btn.classList.add("selected", "active");

@@ -542,20 +542,6 @@ width: 500px;
   /* Add some padding */
 }
 
-/* Sort Button Styles */
-.flex.items-center.space-x-4 button {
-  color: var(--light-gray);
-  transition: color 0.3s ease;
-}
-
-.flex.items-center.space-x-4 button.text-white {
-  color: var(--white);
-}
-
-.flex.items-center.space-x-4 button.text-gray-400 {
-  color: var(--light-gray);
-}
-
 /* Alignment Button Styling */
 .alignment-button {
   color: var(--light-gray);
