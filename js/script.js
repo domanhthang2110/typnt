@@ -10,6 +10,11 @@ const sliderValue = document.getElementById("sliderValue");
 const loadingIndicator = document.getElementById("loading-indicator");
 let isUpdating = false;
 
+// Debug settings - set to 0 to disable the delay
+const DEBUG_LOADING_DELAY = 2000; // 2 seconds delay for first load
+// Track if first load is complete
+let firstLoadComplete = false;
+
 let currentState = {
   category: "all",
   personality: "all", // Add personality filter to state
@@ -324,9 +329,19 @@ async function loadAndDisplayFonts(reset = false) {
     currentState.page = 0;
     fontContainer.innerHTML = "";
     showLoading(true);
+    
+    // Add loading placeholders immediately
+    addLoadingPlaceholders();
   }
 
   try {
+    // Debug delay ONLY for the first load
+    if (DEBUG_LOADING_DELAY > 0 && !firstLoadComplete) {
+      await new Promise(resolve => setTimeout(resolve, DEBUG_LOADING_DELAY));
+      // Set flag to prevent further delays
+      firstLoadComplete = true;
+    }
+    
     // Get fonts based on current filters
     const pageSize = 20; // Number of fonts to load per batch
     const skip = currentState.page * pageSize;
@@ -418,6 +433,7 @@ async function loadAndDisplayFonts(reset = false) {
       currentState.hasMore = result.hasMore;
       currentState.page++;
     } else if (reset) {
+      // Clear loading placeholders if no fonts found
       fontContainer.innerHTML =
         '<div class="text-center text-gray-400">No fonts found</div>';
       currentState.hasMore = false;
@@ -433,6 +449,60 @@ async function loadAndDisplayFonts(reset = false) {
     isUpdating = false;
     showLoading(false);
   }
+}
+
+/**
+ * Adds loading placeholders to the font container
+ */
+function addLoadingPlaceholders() {
+  const fragment = document.createDocumentFragment();
+  const pageSize = 20; // Match the number of fonts loaded per page
+  
+  for (let i = 0; i < pageSize; i++) {
+    const placeholder = createLoadingPlaceholder();
+    fragment.appendChild(placeholder);
+  }
+  
+  fontContainer.appendChild(fragment);
+}
+
+/**
+ * Creates a single loading placeholder card
+ * @returns {HTMLElement} Loading placeholder card
+ */
+function createLoadingPlaceholder() {
+  const card = document.createElement("div");
+  card.classList.add("card", "card-loading");
+  
+  card.innerHTML = `
+    <div class="card-header">
+      <div class="card-title">
+        <div class="skeleton skeleton-title"></div>
+      </div>
+      
+      <div class="card-controls">
+        <div class="skeleton-controls">
+          <div class="skeleton skeleton-slider"></div>
+          <div class="skeleton skeleton-dropdown"></div>
+        </div>
+      </div>
+      
+      <div class="card-info">
+        <div class="skeleton skeleton-info" style="width: 60px; height: 10px;"></div>
+      </div>
+    </div>
+    
+    <div class="card-sample-container">
+      <div class="skeleton skeleton-sample"></div>
+    </div>
+    
+    <div class="skeleton-footer">
+      <div class="skeleton skeleton-designer"></div>
+      <div class="skeleton skeleton-view-btn"></div>
+    </div>
+  `;
+  
+  return card;
 }
 
 function createFontCard(fontData) {
@@ -554,14 +624,6 @@ function createVariantDropdownHTML(fontData) {
                 <span class="ml-1 text-xl dd-triangle">▾</span>
             </button>
             <div class="absolute pl-2 transition-all duration-200 ease-in-out 
-                        opacity-0 invisible w-full z-20 overflow-hidden dropdown-content">
-                <div class="dropdown-content-wrapper overflow-y-auto" 
-                     style="margin-top: 40px; max-height: 150px;">
-                    <div class="pr-2">
-                        ${options}
-                    </div>
-                </div>
-            </div>
         </div>
     `;
 }
@@ -1286,6 +1348,13 @@ function displayFonts(fonts, append = false) {
   const fragment = document.createDocumentFragment();
   const successfulCards = [];
 
+  // Clear loading placeholders if in append mode but no cards exist yet
+  if (!append || fontContainer.querySelector('.card-loading')) {
+    // Remove all loading placeholders
+    const loadingPlaceholders = fontContainer.querySelectorAll('.card-loading');
+    loadingPlaceholders.forEach(placeholder => placeholder.remove());
+  }
+
   fonts.forEach((font) => {
     try {
       const card = createFontCard(font);
@@ -1318,7 +1387,17 @@ function displayFonts(fonts, append = false) {
 function setupIntersectionObserver() {
   const observer = new IntersectionObserver(
     (entries) => {
-      if (entries[0].isIntersecting && currentState.hasMore) {
+      if (entries[0].isIntersecting && currentState.hasMore && !isUpdating) {
+        // Add loading placeholders for next page before loading actual fonts
+        const currentCardCount = fontContainer.querySelectorAll('.card').length;
+        const loadingStartPosition = currentCardCount;
+        
+        // Add loading placeholders for next batch
+        if (!fontContainer.querySelector('.card-loading')) {
+          addLoadingPlaceholders();
+        }
+        
+        // Load the next batch of fonts without delay
         loadAndDisplayFonts(false);
       }
     },
