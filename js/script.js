@@ -10,11 +10,6 @@ const sliderValue = document.getElementById("sliderValue");
 const loadingIndicator = document.getElementById("loading-indicator");
 let isUpdating = false;
 
-// Debug settings - set to 0 to disable the delay
-const DEBUG_LOADING_DELAY = 2000; // 2 seconds delay for first load
-// Track if first load is complete
-let firstLoadComplete = false;
-
 let currentState = {
   category: "all",
   personality: "all", // Add personality filter to state
@@ -335,13 +330,6 @@ async function loadAndDisplayFonts(reset = false) {
   }
 
   try {
-    // Debug delay ONLY for the first load
-    if (DEBUG_LOADING_DELAY > 0 && !firstLoadComplete) {
-      await new Promise(resolve => setTimeout(resolve, DEBUG_LOADING_DELAY));
-      // Set flag to prevent further delays
-      firstLoadComplete = true;
-    }
-    
     // Get fonts based on current filters
     const pageSize = 20; // Number of fonts to load per batch
     const skip = currentState.page * pageSize;
@@ -624,6 +612,14 @@ function createVariantDropdownHTML(fontData) {
                 <span class="ml-1 text-xl dd-triangle">▾</span>
             </button>
             <div class="absolute pl-2 transition-all duration-200 ease-in-out 
+                        opacity-0 invisible w-full z-20 overflow-hidden dropdown-content">
+                <div class="dropdown-content-wrapper overflow-y-auto" 
+                     style="margin-top: 40px; max-height: 150px;">
+                    <div class="pr-2">
+                        ${options}
+                    </div>
+                </div>
+            </div>
         </div>
     `;
 }
@@ -1397,7 +1393,7 @@ function setupIntersectionObserver() {
           addLoadingPlaceholders();
         }
         
-        // Load the next batch of fonts without delay
+        // Then start loading the actual fonts
         loadAndDisplayFonts(false);
       }
     },
