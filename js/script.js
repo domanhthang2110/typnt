@@ -1510,14 +1510,10 @@ function showLoading(show) {
     console.log("Hiding loader");
     if (loadingIndicator) loadingIndicator.classList.add("hidden");
     if (textLoader) {
-      // Start fade out
-      textLoader.style.opacity = "0";
+      // Immediately hide the loader without transition or timeout
       textLoader.classList.add("hidden");
-      
-      // Set a timeout to fully remove it after transition
-      textLoader._hideTimeout = setTimeout(() => {
-        textLoader.style.display = "none";
-      }, 500);
+      textLoader.style.opacity = "0";
+      textLoader.style.display = "none";
     }
   }
 }

@@ -15,7 +15,6 @@
   top: 50%;
   transform: translate(-50%, -50%);
   padding: 20px 30px;
-  transition: opacity 0.3s ease-out;
 }
 
 /* Base letter styling shared between title and loader */
@@ -151,6 +150,7 @@
 .loki-loader.hidden {
   opacity: 0;
   pointer-events: none;
+  /* Transition removed as requested */
 }
 
 /* Effect style for the active loki effect */
@@ -158,7 +158,6 @@
   transform-style: preserve-3d;
   transform: perspective(1000px) rotateX(5deg);
 }
-
 
 /* Loki effect styles for the title animation */
 .loki-title {

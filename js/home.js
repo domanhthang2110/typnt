@@ -880,7 +880,7 @@ function playLokiAudio() {
         // Fade in over 1.5 seconds
         let volume = 0;
         const fadeInInterval = setInterval(() => {
-          if (volume < 0.1) { // Target volume 0.7 (not too loud)
+          if (volume < 0.15) { // Target volume 0.7 (not too loud)
             volume += 0.05;
             lokiAudio.volume = volume;
           } else {
