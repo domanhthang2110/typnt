@@ -610,7 +610,7 @@ function createVariantDropdownHTML(fontData) {
 
   return `
         <div class="relative variantDropdown">
-            <button type="button" class="dropdown-button relative z-40 text-white 
+            <button type="button" class="dropdown-button relative text-white 
                     transition-all duration-200 flex items-center gap-2 opacity-0">
                 <span>${googleFontsLoader.translateWeightToName(
                   "regular"
