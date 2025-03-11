@@ -1,0 +1,7080 @@
+{
+  "Calm": [
+    {
+      "font": "Funnel Display",
+      "score": 100.0
+    },
+    {
+      "font": "Funnel Sans",
+      "score": 100.0
+    },
+    {
+      "font": "Zain",
+      "score": 100.0
+    },
+    {
+      "font": "Alumni Sans Pinstripe",
+      "score": 99.9
+    },
+    {
+      "font": "Gowun Dodum",
+      "score": 99.3
+    },
+    {
+      "font": "Red Hat Display",
+      "score": 99.1
+    },
+    {
+      "font": "Red Hat Text",
+      "score": 99.1
+    },
+    {
+      "font": "M PLUS 1p",
+      "score": 99.0
+    },
+    {
+      "font": "M PLUS 2",
+      "score": 99.0
+    },
+    {
+      "font": "Onest",
+      "score": 98.8
+    },
+    {
+      "font": "Mulish",
+      "score": 98.5
+    },
+    {
+      "font": "Archivo",
+      "score": 98.0
+    },
+    {
+      "font": "Assistant",
+      "score": 97.9
+    },
+    {
+      "font": "Nanum Gothic",
+      "score": 97.9
+    },
+    {
+      "font": "M PLUS 1",
+      "score": 97.8
+    },
+    {
+      "font": "Heebo",
+      "score": 97.7
+    },
+    {
+      "font": "Anuphan",
+      "score": 97.5
+    },
+    {
+      "font": "Meera Inimai",
+      "score": 97.0
+    },
+    {
+      "font": "Albert Sans",
+      "score": 96.6
+    },
+    {
+      "font": "Average Sans",
+      "score": 96.1
+    },
+    {
+      "font": "Numans",
+      "score": 96.0
+    },
+    {
+      "font": "Jaldi",
+      "score": 95.4
+    },
+    {
+      "font": "Akatab",
+      "score": 95.3
+    },
+    {
+      "font": "Actor",
+      "score": 94.1
+    },
+    {
+      "font": "Athiti",
+      "score": 93.8
+    },
+    {
+      "font": "Alef",
+      "score": 93.7
+    },
+    {
+      "font": "Prompt",
+      "score": 93.6
+    },
+    {
+      "font": "Bellota Text",
+      "score": 93.5
+    },
+    {
+      "font": "Agdasima",
+      "score": 93.4
+    },
+    {
+      "font": "B612",
+      "score": 93.2
+    },
+    {
+      "font": "Istok Web",
+      "score": 93.1
+    },
+    {
+      "font": "Harmattan",
+      "score": 92.8
+    },
+    {
+      "font": "Armata",
+      "score": 92.7
+    },
+    {
+      "font": "Alexandria",
+      "score": 92.3
+    },
+    {
+      "font": "Basic",
+      "score": 92.1
+    },
+    {
+      "font": "ABeeZee",
+      "score": 91.6
+    },
+    {
+      "font": "Carlito",
+      "score": 91.5
+    },
+    {
+      "font": "Darker Grotesque",
+      "score": 91.4
+    },
+    {
+      "font": "Catamaran",
+      "score": 91.0
+    },
+    {
+      "font": "AR One Sans",
+      "score": 90.6
+    },
+    {
+      "font": "Pragati Narrow",
+      "score": 90.4
+    },
+    {
+      "font": "Asap",
+      "score": 90.2
+    },
+    {
+      "font": "Alata",
+      "score": 90.1
+    },
+    {
+      "font": "Moulpali",
+      "score": 89.8
+    },
+    {
+      "font": "Mohave",
+      "score": 88.8
+    },
+    {
+      "font": "Allerta",
+      "score": 88.4
+    },
+    {
+      "font": "Raleway",
+      "score": 88.1
+    },
+    {
+      "font": "Kanit",
+      "score": 88.0
+    },
+    {
+      "font": "Gothic A1",
+      "score": 86.2
+    },
+    {
+      "font": "BIZ UDPGothic",
+      "score": 85.3
+    },
+    {
+      "font": "Atkinson Hyperlegible",
+      "score": 84.2
+    },
+    {
+      "font": "Pompiere",
+      "score": 84.0
+    },
+    {
+      "font": "Abel",
+      "score": 83.4
+    },
+    {
+      "font": "Sunflower",
+      "score": 82.9
+    },
+    {
+      "font": "K2D",
+      "score": 81.7
+    },
+    {
+      "font": "Glory",
+      "score": 81.0
+    },
+    {
+      "font": "Wix Madefor Display",
+      "score": 80.0
+    },
+    {
+      "font": "Work Sans",
+      "score": 80.0
+    },
+    {
+      "font": "Dhurjati",
+      "score": 79.0
+    },
+    {
+      "font": "Biryani",
+      "score": 78.0
+    },
+    {
+      "font": "KoHo",
+      "score": 78.0
+    },
+    {
+      "font": "Kulim Park",
+      "score": 78.0
+    },
+    {
+      "font": "Phudu",
+      "score": 74.0
+    },
+    {
+      "font": "Trispace",
+      "score": 74.0
+    },
+    {
+      "font": "ZCOOL XiaoWei",
+      "score": 74.0
+    },
+    {
+      "font": "BIZ UDGothic",
+      "score": 72.0
+    },
+    {
+      "font": "Hubballi",
+      "score": 68.8
+    },
+    {
+      "font": "Convergence",
+      "score": 68.0
+    },
+    {
+      "font": "Bubbler One",
+      "score": 64.0
+    },
+    {
+      "font": "M PLUS Code Latin",
+      "score": 56.0
+    },
+    {
+      "font": "Advent Pro",
+      "score": 54.0
+    },
+    {
+      "font": "Snippet",
+      "score": 41.4
+    },
+    {
+      "font": "Nova Round",
+      "score": 38.0
+    }
+  ],
+  "Humanist": [
+    {
+      "font": "Alegreya Sans SC",
+      "score": 100.0
+    },
+    {
+      "font": "Alegreya Sans",
+      "score": 100.0
+    },
+    {
+      "font": "Aleo",
+      "score": 100.0
+    },
+    {
+      "font": "Amaranth",
+      "score": 100.0
+    },
+    {
+      "font": "Amiko",
+      "score": 100.0
+    },
+    {
+      "font": "Anaheim",
+      "score": 100.0
+    },
+    {
+      "font": "Andada Pro",
+      "score": 100.0
+    },
+    {
+      "font": "Andika",
+      "score": 100.0
+    },
+    {
+      "font": "Anek Bangla",
+      "score": 100.0
+    },
+    {
+      "font": "Anek Devanagari",
+      "score": 100.0
+    },
+    {
+      "font": "Anek Gujarati",
+      "score": 100.0
+    },
+    {
+      "font": "Anek Gurmukhi",
+      "score": 100.0
+    },
+    {
+      "font": "Anek Kannada",
+      "score": 100.0
+    },
+    {
+      "font": "Anek Latin",
+      "score": 100.0
+    },
+    {
+      "font": "Anek Malayalam",
+      "score": 100.0
+    },
+    {
+      "font": "Anek Odia",
+      "score": 100.0
+    },
+    {
+      "font": "Anek Tamil",
+      "score": 100.0
+    },
+    {
+      "font": "Anek Telugu",
+      "score": 100.0
+    },
+    {
+      "font": "Antic",
+      "score": 100.0
+    },
+    {
+      "font": "BhuTuka Expanded One",
+      "score": 100.0
+    },
+    {
+      "font": "Bree Serif",
+      "score": 100.0
+    },
+    {
+      "font": "Cabin Condensed",
+      "score": 100.0
+    },
+    {
+      "font": "Cabin",
+      "score": 100.0
+    },
+    {
+      "font": "Cagliostro",
+      "score": 100.0
+    },
+    {
+      "font": "Cambay",
+      "score": 100.0
+    },
+    {
+      "font": "Candal",
+      "score": 100.0
+    },
+    {
+      "font": "Cantarell",
+      "score": 100.0
+    },
+    {
+      "font": "Cantora One",
+      "score": 100.0
+    },
+    {
+      "font": "Cherry Swash",
+      "score": 100.0
+    },
+    {
+      "font": "Chocolate Classical Sans",
+      "score": 100.0
+    },
+    {
+      "font": "Comme",
+      "score": 100.0
+    },
+    {
+      "font": "Commissioner",
+      "score": 100.0
+    },
+    {
+      "font": "Contrail One",
+      "score": 100.0
+    },
+    {
+      "font": "Copse",
+      "score": 100.0
+    },
+    {
+      "font": "Doppio One",
+      "score": 100.0
+    },
+    {
+      "font": "Duru Sans",
+      "score": 100.0
+    },
+    {
+      "font": "Encode Sans Condensed",
+      "score": 100.0
+    },
+    {
+      "font": "Encode Sans Expanded",
+      "score": 100.0
+    },
+    {
+      "font": "Encode Sans SC",
+      "score": 100.0
+    },
+    {
+      "font": "Encode Sans Semi Condensed",
+      "score": 100.0
+    },
+    {
+      "font": "Encode Sans Semi Expanded",
+      "score": 100.0
+    },
+    {
+      "font": "Encode Sans",
+      "score": 100.0
+    },
+    {
+      "font": "Fauna One",
+      "score": 100.0
+    },
+    {
+      "font": "Finlandica",
+      "score": 100.0
+    },
+    {
+      "font": "Fustat",
+      "score": 100.0
+    },
+    {
+      "font": "GFS Neohellenic",
+      "score": 100.0
+    },
+    {
+      "font": "Gafata",
+      "score": 100.0
+    },
+    {
+      "font": "Georama",
+      "score": 100.0
+    },
+    {
+      "font": "Gotu",
+      "score": 100.0
+    },
+    {
+      "font": "Gudea",
+      "score": 100.0
+    },
+    {
+      "font": "Gurajada",
+      "score": 100.0
+    },
+    {
+      "font": "Hammersmith One",
+      "score": 100.0
+    },
+    {
+      "font": "Hanuman",
+      "score": 100.0
+    },
+    {
+      "font": "Hind Guntur",
+      "score": 100.0
+    },
+    {
+      "font": "Hind Madurai",
+      "score": 100.0
+    },
+    {
+      "font": "Hind Mysuru",
+      "score": 100.0
+    },
+    {
+      "font": "Hind Siliguri",
+      "score": 100.0
+    },
+    {
+      "font": "Hind Vadodara",
+      "score": 100.0
+    },
+    {
+      "font": "Hind",
+      "score": 100.0
+    },
+    {
+      "font": "Imprima",
+      "score": 100.0
+    },
+    {
+      "font": "Inder",
+      "score": 100.0
+    },
+    {
+      "font": "Khula",
+      "score": 100.0
+    },
+    {
+      "font": "Kite One",
+      "score": 100.0
+    },
+    {
+      "font": "Krub",
+      "score": 100.0
+    },
+    {
+      "font": "Lalezar",
+      "score": 100.0
+    },
+    {
+      "font": "Lato",
+      "score": 100.0
+    },
+    {
+      "font": "Lilita One",
+      "score": 100.0
+    },
+    {
+      "font": "Livvic",
+      "score": 100.0
+    },
+    {
+      "font": "Lunasima",
+      "score": 100.0
+    },
+    {
+      "font": "Magra",
+      "score": 100.0
+    },
+    {
+      "font": "Martel Sans",
+      "score": 100.0
+    },
+    {
+      "font": "Merriweather Sans",
+      "score": 100.0
+    },
+    {
+      "font": "Mitr",
+      "score": 100.0
+    },
+    {
+      "font": "Moderustic",
+      "score": 100.0
+    },
+    {
+      "font": "Molengo",
+      "score": 100.0
+    },
+    {
+      "font": "Mooli",
+      "score": 100.0
+    },
+    {
+      "font": "Mukta Mahee",
+      "score": 100.0
+    },
+    {
+      "font": "Mukta Malar",
+      "score": 100.0
+    },
+    {
+      "font": "Mukta Vaani",
+      "score": 100.0
+    },
+    {
+      "font": "Mukta",
+      "score": 100.0
+    },
+    {
+      "font": "Murecho",
+      "score": 100.0
+    },
+    {
+      "font": "Narnoor",
+      "score": 100.0
+    },
+    {
+      "font": "Nixie One",
+      "score": 100.0
+    },
+    {
+      "font": "Nobile",
+      "score": 100.0
+    },
+    {
+      "font": "Noticia Text",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Kufi Arabic",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Adlam Unjoined",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Adlam",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Anatolian Hieroglyphs",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Arabic",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Armenian",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Avestan",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Balinese",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Bamum",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Bassa Vah",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Batak",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Bengali",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Bhaiksuki",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Brahmi",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Buginese",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Buhid",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Canadian Aboriginal",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Carian",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Caucasian Albanian",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Chakma",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Cham",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Cherokee",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Chorasmian",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Coptic",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Cuneiform",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Cypriot",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Cypro Minoan",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Deseret",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Devanagari",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Display",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Duployan",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Egyptian Hieroglyphs",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Elbasan",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Elymaic",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Ethiopic",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Georgian",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Glagolitic",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Gothic",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Grantha",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Gujarati",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Gunjala Gondi",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Gurmukhi",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans HK",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Hanifi Rohingya",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Hanunoo",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Hatran",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Hebrew",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Imperial Aramaic",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Indic Siyaq Numbers",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Inscriptional Pahlavi",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Inscriptional Parthian",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans JP",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Javanese",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans KR",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Kaithi",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Kannada",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Kawi",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Kayah Li",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Kharoshthi",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Khmer",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Khojki",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Khudawadi",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Lao Looped",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Lao",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Lepcha",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Limbu",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Linear A",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Linear B",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Lisu",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Lycian",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Lydian",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Mahajani",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Malayalam",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Mandaic",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Manichaean",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Marchen",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Masaram Gondi",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Math",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Mayan Numerals",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Medefaidrin",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Meetei Mayek",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Mende Kikakui",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Meroitic",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Miao",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Modi",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Mongolian",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Mono",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Mro",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Multani",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Myanmar",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans NKo Unjoined",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans NKo",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Nabataean",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Nag Mundari",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Nandinagari",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans New Tai Lue",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Newa",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Nushu",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Ogham",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Ol Chiki",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Old Hungarian",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Old Italic",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Old North Arabian",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Old Permic",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Old Persian",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Old Sogdian",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Old South Arabian",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Old Turkic",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Oriya",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Osage",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Osmanya",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Pahawh Hmong",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Palmyrene",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Pau Cin Hau",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans PhagsPa",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Phoenician",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Psalter Pahlavi",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Rejang",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Runic",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans SC",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Samaritan",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Saurashtra",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Sharada",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Shavian",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Siddham",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans SignWriting",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Sinhala",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Sogdian",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Sora Sompeng",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Soyombo",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Sundanese",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Syloti Nagri",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Syriac Eastern",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Syriac",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans TC",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Tagalog",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Tagbanwa",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Tai Le",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Tai Tham",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Tai Viet",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Takri",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Tamil Supplement",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Tamil",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Tangsa",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Telugu",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Thaana",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Thai Looped",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Thai",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Tifinagh",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Tirhuta",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Ugaritic",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Vai",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Vithkuqi",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Wancho",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Warang Citi",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Yi",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Zanabazar Square",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Traditional Nushu",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Znamenny Musical Notation",
+      "score": 100.0
+    },
+    {
+      "font": "Oldenburg",
+      "score": 100.0
+    },
+    {
+      "font": "Orienta",
+      "score": 100.0
+    },
+    {
+      "font": "Overlock SC",
+      "score": 100.0
+    },
+    {
+      "font": "Overlock",
+      "score": 100.0
+    },
+    {
+      "font": "PT Sans Caption",
+      "score": 100.0
+    },
+    {
+      "font": "PT Sans Narrow",
+      "score": 100.0
+    },
+    {
+      "font": "PT Sans",
+      "score": 100.0
+    },
+    {
+      "font": "Palanquin Dark",
+      "score": 100.0
+    },
+    {
+      "font": "Palanquin",
+      "score": 100.0
+    },
+    {
+      "font": "Passion One",
+      "score": 100.0
+    },
+    {
+      "font": "Poller One",
+      "score": 100.0
+    },
+    {
+      "font": "Proza Libre",
+      "score": 100.0
+    },
+    {
+      "font": "Quattrocento Sans",
+      "score": 100.0
+    },
+    {
+      "font": "Racing Sans One",
+      "score": 100.0
+    },
+    {
+      "font": "Radio Canada",
+      "score": 100.0
+    },
+    {
+      "font": "Rambla",
+      "score": 100.0
+    },
+    {
+      "font": "Rammetto One",
+      "score": 100.0
+    },
+    {
+      "font": "Recursive",
+      "score": 100.0
+    },
+    {
+      "font": "Reddit Sans Condensed",
+      "score": 100.0
+    },
+    {
+      "font": "Reddit Sans",
+      "score": 100.0
+    },
+    {
+      "font": "Rosario",
+      "score": 100.0
+    },
+    {
+      "font": "Ruda",
+      "score": 100.0
+    },
+    {
+      "font": "Ruluko",
+      "score": 100.0
+    },
+    {
+      "font": "Sarabun",
+      "score": 100.0
+    },
+    {
+      "font": "Sarala",
+      "score": 100.0
+    },
+    {
+      "font": "Scope One",
+      "score": 100.0
+    },
+    {
+      "font": "Secular One",
+      "score": 100.0
+    },
+    {
+      "font": "Sen",
+      "score": 100.0
+    },
+    {
+      "font": "Shanti",
+      "score": 100.0
+    },
+    {
+      "font": "Signika Negative",
+      "score": 100.0
+    },
+    {
+      "font": "Signika",
+      "score": 100.0
+    },
+    {
+      "font": "Slabo 13px",
+      "score": 100.0
+    },
+    {
+      "font": "Slabo 27px",
+      "score": 100.0
+    },
+    {
+      "font": "Solway",
+      "score": 100.0
+    },
+    {
+      "font": "Source Sans 3",
+      "score": 100.0
+    },
+    {
+      "font": "Spinnaker",
+      "score": 100.0
+    },
+    {
+      "font": "Sura",
+      "score": 100.0
+    },
+    {
+      "font": "Tajawal",
+      "score": 100.0
+    },
+    {
+      "font": "Telex",
+      "score": 100.0
+    },
+    {
+      "font": "Thasadith",
+      "score": 100.0
+    },
+    {
+      "font": "Timmana",
+      "score": 100.0
+    },
+    {
+      "font": "Varta",
+      "score": 100.0
+    },
+    {
+      "font": "Voces",
+      "score": 100.0
+    },
+    {
+      "font": "Wellfleet",
+      "score": 100.0
+    },
+    {
+      "font": "Wendy One",
+      "score": 100.0
+    },
+    {
+      "font": "Yanone Kaffeesatz",
+      "score": 100.0
+    },
+    {
+      "font": "Ysabeau Infant",
+      "score": 100.0
+    },
+    {
+      "font": "Ysabeau Office",
+      "score": 100.0
+    },
+    {
+      "font": "Ysabeau SC",
+      "score": 100.0
+    },
+    {
+      "font": "Ysabeau",
+      "score": 100.0
+    },
+    {
+      "font": "Acme",
+      "score": 90.0
+    },
+    {
+      "font": "Belleza",
+      "score": 90.0
+    },
+    {
+      "font": "Geologica",
+      "score": 90.0
+    },
+    {
+      "font": "Sanchez",
+      "score": 90.0
+    },
+    {
+      "font": "Bellota",
+      "score": 80.0
+    },
+    {
+      "font": "BioRhyme Expanded",
+      "score": 80.0
+    },
+    {
+      "font": "Fresca",
+      "score": 80.0
+    },
+    {
+      "font": "Sansita",
+      "score": 80.0
+    },
+    {
+      "font": "Scada",
+      "score": 80.0
+    },
+    {
+      "font": "Tauri",
+      "score": 80.0
+    },
+    {
+      "font": "ADLaM Display",
+      "score": 70.0
+    },
+    {
+      "font": "Flamenco",
+      "score": 50.0
+    },
+    {
+      "font": "Mochiy Pop P One",
+      "score": 50.0
+    },
+    {
+      "font": "Port Lligat Sans",
+      "score": 50.0
+    },
+    {
+      "font": "Podkova",
+      "score": 30.0
+    }
+  ],
+  "Modern": [
+    {
+      "font": "Bentham",
+      "score": 100.0
+    },
+    {
+      "font": "Bodoni Moda SC",
+      "score": 100.0
+    },
+    {
+      "font": "Bodoni Moda",
+      "score": 100.0
+    },
+    {
+      "font": "Cactus Classical Serif",
+      "score": 100.0
+    },
+    {
+      "font": "Cantata One",
+      "score": 100.0
+    },
+    {
+      "font": "Chonburi",
+      "score": 100.0
+    },
+    {
+      "font": "Domine",
+      "score": 100.0
+    },
+    {
+      "font": "Forum",
+      "score": 100.0
+    },
+    {
+      "font": "Instrument Serif",
+      "score": 100.0
+    },
+    {
+      "font": "Italiana",
+      "score": 100.0
+    },
+    {
+      "font": "Koh Santepheap",
+      "score": 100.0
+    },
+    {
+      "font": "Kumar One",
+      "score": 100.0
+    },
+    {
+      "font": "Ledger",
+      "score": 100.0
+    },
+    {
+      "font": "Niconne",
+      "score": 100.0
+    },
+    {
+      "font": "Old Standard TT",
+      "score": 100.0
+    },
+    {
+      "font": "Oranienbaum",
+      "score": 100.0
+    },
+    {
+      "font": "Sree Krushnadevaraya",
+      "score": 100.0
+    },
+    {
+      "font": "Uchen",
+      "score": 100.0
+    },
+    {
+      "font": "Inria Serif",
+      "score": 80.0
+    },
+    {
+      "font": "Abhaya Libre",
+      "score": 70.0
+    },
+    {
+      "font": "Antic Didone",
+      "score": 70.0
+    }
+  ],
+  "Vintage": [
+    {
+      "font": "Jacquard 12",
+      "score": 100.0
+    },
+    {
+      "font": "Jacquard 24",
+      "score": 100.0
+    },
+    {
+      "font": "UnifrakturCook",
+      "score": 100.0
+    },
+    {
+      "font": "Almendra SC",
+      "score": 99.0
+    },
+    {
+      "font": "Bokor",
+      "score": 99.0
+    },
+    {
+      "font": "Macondo Swash Caps",
+      "score": 99.0
+    },
+    {
+      "font": "Macondo",
+      "score": 99.0
+    },
+    {
+      "font": "Quintessential",
+      "score": 99.0
+    },
+    {
+      "font": "Kings",
+      "score": 98.5
+    },
+    {
+      "font": "Eagle Lake",
+      "score": 98.0
+    },
+    {
+      "font": "Texturina",
+      "score": 98.0
+    },
+    {
+      "font": "Uncial Antiqua",
+      "score": 98.0
+    },
+    {
+      "font": "Jim Nightshade",
+      "score": 96.0
+    },
+    {
+      "font": "Aoboshi One",
+      "score": 92.0
+    },
+    {
+      "font": "Modern Antiqua",
+      "score": 91.5
+    },
+    {
+      "font": "Warnes",
+      "score": 90.0
+    },
+    {
+      "font": "Aboreto",
+      "score": 89.5
+    },
+    {
+      "font": "Della Respira",
+      "score": 88.5
+    },
+    {
+      "font": "Luxurious Roman",
+      "score": 87.5
+    },
+    {
+      "font": "Croissant One",
+      "score": 87.0
+    },
+    {
+      "font": "Chenla",
+      "score": 84.5
+    },
+    {
+      "font": "Gideon Roman",
+      "score": 84.5
+    },
+    {
+      "font": "New Tegomin",
+      "score": 84.5
+    },
+    {
+      "font": "Ravi Prakash",
+      "score": 84.5
+    },
+    {
+      "font": "Tilt Warp",
+      "score": 84.5
+    },
+    {
+      "font": "Tenor Sans",
+      "score": 83.0
+    },
+    {
+      "font": "Abyssinica SIL",
+      "score": 82.5
+    },
+    {
+      "font": "Shojumaru",
+      "score": 82.5
+    },
+    {
+      "font": "Yeseva One",
+      "score": 82.0
+    },
+    {
+      "font": "Katibeh",
+      "score": 81.5
+    },
+    {
+      "font": "Stint Ultra Condensed",
+      "score": 81.5
+    },
+    {
+      "font": "Caudex",
+      "score": 81.0
+    },
+    {
+      "font": "Eczar",
+      "score": 81.0
+    },
+    {
+      "font": "Odor Mean Chey",
+      "score": 81.0
+    },
+    {
+      "font": "Kotta One",
+      "score": 79.8
+    },
+    {
+      "font": "Alkalami",
+      "score": 79.3
+    },
+    {
+      "font": "Belanosima",
+      "score": 79.2
+    },
+    {
+      "font": "Tenali Ramakrishna",
+      "score": 78.9
+    },
+    {
+      "font": "Sail",
+      "score": 78.8
+    },
+    {
+      "font": "Suwannaphum",
+      "score": 78.7
+    },
+    {
+      "font": "Averia Serif Libre",
+      "score": 78.0
+    },
+    {
+      "font": "Poltawski Nowy",
+      "score": 77.8
+    },
+    {
+      "font": "Lumanosimo",
+      "score": 77.6
+    },
+    {
+      "font": "BIZ UDPMincho",
+      "score": 77.4
+    },
+    {
+      "font": "Arbutus Slab",
+      "score": 77.2
+    },
+    {
+      "font": "Alice",
+      "score": 76.7
+    },
+    {
+      "font": "Sumana",
+      "score": 76.3
+    },
+    {
+      "font": "Battambang",
+      "score": 75.4
+    },
+    {
+      "font": "Smythe",
+      "score": 74.3
+    },
+    {
+      "font": "Amita",
+      "score": 73.4
+    },
+    {
+      "font": "Federant",
+      "score": 71.2
+    },
+    {
+      "font": "Fenix",
+      "score": 69.3
+    },
+    {
+      "font": "Artifika",
+      "score": 69.2
+    },
+    {
+      "font": "BioRhyme",
+      "score": 67.0
+    },
+    {
+      "font": "Labrada",
+      "score": 63.4
+    },
+    {
+      "font": "Spirax",
+      "score": 60.2
+    },
+    {
+      "font": "Glass Antiqua",
+      "score": 58.9
+    },
+    {
+      "font": "Averia Gruesa Libre",
+      "score": 58.3
+    },
+    {
+      "font": "Average",
+      "score": 58.0
+    },
+    {
+      "font": "Dawning of a New Day",
+      "score": 56.5
+    },
+    {
+      "font": "Seaweed Script",
+      "score": 53.3
+    },
+    {
+      "font": "Sawarabi Mincho",
+      "score": 52.0
+    }
+  ],
+  "Competent": [
+    {
+      "font": "Fira Code",
+      "score": 100.0
+    },
+    {
+      "font": "Fira Mono",
+      "score": 100.0
+    },
+    {
+      "font": "Fira Sans Condensed",
+      "score": 100.0
+    },
+    {
+      "font": "Fira Sans Extra Condensed",
+      "score": 100.0
+    },
+    {
+      "font": "Fira Sans",
+      "score": 100.0
+    },
+    {
+      "font": "Liter",
+      "score": 100.0
+    },
+    {
+      "font": "Anton SC",
+      "score": 99.7
+    },
+    {
+      "font": "Anton",
+      "score": 99.7
+    },
+    {
+      "font": "Antonio",
+      "score": 99.7
+    },
+    {
+      "font": "Francois One",
+      "score": 99.7
+    },
+    {
+      "font": "Saira Condensed",
+      "score": 99.5
+    },
+    {
+      "font": "Saira Extra Condensed",
+      "score": 99.5
+    },
+    {
+      "font": "Saira Semi Condensed",
+      "score": 99.5
+    },
+    {
+      "font": "Saira",
+      "score": 99.5
+    },
+    {
+      "font": "Roboto Serif",
+      "score": 99.1
+    },
+    {
+      "font": "Bitter",
+      "score": 98.8
+    },
+    {
+      "font": "Fahkwang",
+      "score": 98.7
+    },
+    {
+      "font": "Bellefair",
+      "score": 98.4
+    },
+    {
+      "font": "Abril Fatface",
+      "score": 97.9
+    },
+    {
+      "font": "Arsenal SC",
+      "score": 97.4
+    },
+    {
+      "font": "Arsenal",
+      "score": 97.4
+    },
+    {
+      "font": "Dorsa",
+      "score": 96.7
+    },
+    {
+      "font": "Balthazar",
+      "score": 96.6
+    },
+    {
+      "font": "BenchNine",
+      "score": 96.3
+    },
+    {
+      "font": "Asap Condensed",
+      "score": 96.2
+    },
+    {
+      "font": "Voltaire",
+      "score": 96.0
+    },
+    {
+      "font": "Ropa Sans",
+      "score": 95.9
+    },
+    {
+      "font": "Alumni Sans",
+      "score": 95.7
+    },
+    {
+      "font": "Arya",
+      "score": 95.6
+    },
+    {
+      "font": "Barlow Condensed",
+      "score": 95.3
+    },
+    {
+      "font": "Barlow Semi Condensed",
+      "score": 95.3
+    },
+    {
+      "font": "Barlow",
+      "score": 95.3
+    },
+    {
+      "font": "Archivo Black",
+      "score": 94.5
+    },
+    {
+      "font": "Archivo Narrow",
+      "score": 94.5
+    },
+    {
+      "font": "Marvel",
+      "score": 89.7
+    },
+    {
+      "font": "Strait",
+      "score": 89.5
+    },
+    {
+      "font": "News Cycle",
+      "score": 89.2
+    },
+    {
+      "font": "Yaldevi",
+      "score": 89.1
+    },
+    {
+      "font": "Titillium Web",
+      "score": 88.9
+    },
+    {
+      "font": "Akshar",
+      "score": 88.8
+    },
+    {
+      "font": "Share",
+      "score": 88.3
+    },
+    {
+      "font": "Anybody",
+      "score": 79.2
+    },
+    {
+      "font": "Nova Slim",
+      "score": 32.0
+    }
+  ],
+  "Sincere": [
+    {
+      "font": "Caveat",
+      "score": 100.0
+    },
+    {
+      "font": "EB Garamond",
+      "score": 100.0
+    },
+    {
+      "font": "Edu NSW ACT Foundation",
+      "score": 100.0
+    },
+    {
+      "font": "Edu QLD Beginner",
+      "score": 100.0
+    },
+    {
+      "font": "Edu SA Beginner",
+      "score": 100.0
+    },
+    {
+      "font": "Edu TAS Beginner",
+      "score": 100.0
+    },
+    {
+      "font": "Edu VIC WA NT Beginner",
+      "score": 100.0
+    },
+    {
+      "font": "Hedvig Letters Serif",
+      "score": 100.0
+    },
+    {
+      "font": "Cormorant Infant",
+      "score": 99.0
+    },
+    {
+      "font": "Cormorant Upright",
+      "score": 99.0
+    },
+    {
+      "font": "Delicious Handrawn",
+      "score": 99.0
+    },
+    {
+      "font": "Sedan",
+      "score": 99.0
+    },
+    {
+      "font": "Castoro Titling",
+      "score": 98.0
+    },
+    {
+      "font": "Comic Neue",
+      "score": 98.0
+    },
+    {
+      "font": "IM Fell DW Pica SC",
+      "score": 98.0
+    },
+    {
+      "font": "IM Fell DW Pica",
+      "score": 98.0
+    },
+    {
+      "font": "IM Fell Double Pica SC",
+      "score": 98.0
+    },
+    {
+      "font": "IM Fell Double Pica",
+      "score": 98.0
+    },
+    {
+      "font": "IM Fell English SC",
+      "score": 98.0
+    },
+    {
+      "font": "IM Fell English",
+      "score": 98.0
+    },
+    {
+      "font": "Montaga",
+      "score": 98.0
+    },
+    {
+      "font": "Unna",
+      "score": 98.0
+    },
+    {
+      "font": "Alike Angular",
+      "score": 97.0
+    },
+    {
+      "font": "Architects Daughter",
+      "score": 97.0
+    },
+    {
+      "font": "Buenard",
+      "score": 97.0
+    },
+    {
+      "font": "Rufina",
+      "score": 97.0
+    },
+    {
+      "font": "Syne Tactile",
+      "score": 97.0
+    },
+    {
+      "font": "Zeyada",
+      "score": 97.0
+    },
+    {
+      "font": "Arapey",
+      "score": 96.0
+    },
+    {
+      "font": "Brawler",
+      "score": 96.0
+    },
+    {
+      "font": "Sedan SC",
+      "score": 96.0
+    },
+    {
+      "font": "Alike",
+      "score": 95.0
+    },
+    {
+      "font": "Glegoo",
+      "score": 95.0
+    },
+    {
+      "font": "Damion",
+      "score": 94.0
+    },
+    {
+      "font": "Euphoria Script",
+      "score": 94.0
+    },
+    {
+      "font": "Fjord One",
+      "score": 94.0
+    },
+    {
+      "font": "Gwendolyn",
+      "score": 94.0
+    },
+    {
+      "font": "Kristi",
+      "score": 94.0
+    },
+    {
+      "font": "Vollkorn SC",
+      "score": 94.0
+    },
+    {
+      "font": "Adamina",
+      "score": 93.0
+    },
+    {
+      "font": "Caladea",
+      "score": 93.0
+    },
+    {
+      "font": "Clicker Script",
+      "score": 93.0
+    },
+    {
+      "font": "Corben",
+      "score": 93.0
+    },
+    {
+      "font": "Gentium Book Plus",
+      "score": 93.0
+    },
+    {
+      "font": "Gentium Plus",
+      "score": 93.0
+    },
+    {
+      "font": "Molle",
+      "score": 93.0
+    },
+    {
+      "font": "Sarina",
+      "score": 93.0
+    },
+    {
+      "font": "Sevillana",
+      "score": 93.0
+    },
+    {
+      "font": "Cambo",
+      "score": 92.0
+    },
+    {
+      "font": "Mate SC",
+      "score": 92.0
+    },
+    {
+      "font": "Mate",
+      "score": 92.0
+    },
+    {
+      "font": "Norican",
+      "score": 92.0
+    },
+    {
+      "font": "Oleo Script Swash Caps",
+      "score": 92.0
+    },
+    {
+      "font": "Oleo Script",
+      "score": 92.0
+    },
+    {
+      "font": "Sansita Swashed",
+      "score": 92.0
+    },
+    {
+      "font": "Antic Slab",
+      "score": 91.0
+    },
+    {
+      "font": "Donegal One",
+      "score": 91.0
+    },
+    {
+      "font": "Lobster Two",
+      "score": 91.0
+    },
+    {
+      "font": "Vampiro One",
+      "score": 91.0
+    },
+    {
+      "font": "Kameron",
+      "score": 89.0
+    },
+    {
+      "font": "Kaisei Decol",
+      "score": 87.0
+    },
+    {
+      "font": "Kaisei HarunoUmi",
+      "score": 87.0
+    },
+    {
+      "font": "Kaisei Opti",
+      "score": 87.0
+    },
+    {
+      "font": "Kaisei Tokumin",
+      "score": 87.0
+    },
+    {
+      "font": "Maitree",
+      "score": 86.0
+    },
+    {
+      "font": "Lustria",
+      "score": 85.0
+    },
+    {
+      "font": "Quando",
+      "score": 82.0
+    },
+    {
+      "font": "Poly",
+      "score": 81.0
+    },
+    {
+      "font": "Prociono",
+      "score": 81.0
+    },
+    {
+      "font": "Petrona",
+      "score": 80.0
+    },
+    {
+      "font": "Dai Banna SIL",
+      "score": 78.0
+    },
+    {
+      "font": "Tienne",
+      "score": 78.0
+    },
+    {
+      "font": "Rhodium Libre",
+      "score": 77.0
+    },
+    {
+      "font": "Taviraj",
+      "score": 77.0
+    },
+    {
+      "font": "Headland One",
+      "score": 75.0
+    },
+    {
+      "font": "Junge",
+      "score": 74.0
+    },
+    {
+      "font": "Piazzolla",
+      "score": 72.5
+    },
+    {
+      "font": "Kreon",
+      "score": 71.0
+    },
+    {
+      "font": "BIZ UDMincho",
+      "score": 70.1
+    },
+    {
+      "font": "Karma",
+      "score": 70.0
+    },
+    {
+      "font": "Inika",
+      "score": 58.0
+    },
+    {
+      "font": "Coustard",
+      "score": 57.0
+    }
+  ],
+  "Geometric": [
+    {
+      "font": "Afacad Flux",
+      "score": 100.0
+    },
+    {
+      "font": "Afacad",
+      "score": 100.0
+    },
+    {
+      "font": "Arvo",
+      "score": 100.0
+    },
+    {
+      "font": "Comfortaa",
+      "score": 100.0
+    },
+    {
+      "font": "DM Sans",
+      "score": 100.0
+    },
+    {
+      "font": "Didact Gothic",
+      "score": 100.0
+    },
+    {
+      "font": "Dongle",
+      "score": 100.0
+    },
+    {
+      "font": "Figtree",
+      "score": 100.0
+    },
+    {
+      "font": "Fredoka",
+      "score": 100.0
+    },
+    {
+      "font": "Gabarito",
+      "score": 100.0
+    },
+    {
+      "font": "Grandiflora One",
+      "score": 100.0
+    },
+    {
+      "font": "Instrument Sans",
+      "score": 100.0
+    },
+    {
+      "font": "Josefin Sans",
+      "score": 100.0
+    },
+    {
+      "font": "Josefin Slab",
+      "score": 100.0
+    },
+    {
+      "font": "Jost",
+      "score": 100.0
+    },
+    {
+      "font": "Kodchasan",
+      "score": 100.0
+    },
+    {
+      "font": "Krona One",
+      "score": 100.0
+    },
+    {
+      "font": "Kumbh Sans",
+      "score": 100.0
+    },
+    {
+      "font": "League Spartan",
+      "score": 100.0
+    },
+    {
+      "font": "Lexend Deca",
+      "score": 100.0
+    },
+    {
+      "font": "Lexend Exa",
+      "score": 100.0
+    },
+    {
+      "font": "Lexend Giga",
+      "score": 100.0
+    },
+    {
+      "font": "Lexend Mega",
+      "score": 100.0
+    },
+    {
+      "font": "Lexend Peta",
+      "score": 100.0
+    },
+    {
+      "font": "Lexend Tera",
+      "score": 100.0
+    },
+    {
+      "font": "Lexend Zetta",
+      "score": 100.0
+    },
+    {
+      "font": "Lexend",
+      "score": 100.0
+    },
+    {
+      "font": "Manjari",
+      "score": 100.0
+    },
+    {
+      "font": "Monoton",
+      "score": 100.0
+    },
+    {
+      "font": "Montserrat Alternates",
+      "score": 100.0
+    },
+    {
+      "font": "Montserrat Subrayada",
+      "score": 100.0
+    },
+    {
+      "font": "Montserrat Underline",
+      "score": 100.0
+    },
+    {
+      "font": "Montserrat",
+      "score": 100.0
+    },
+    {
+      "font": "MuseoModerno",
+      "score": 100.0
+    },
+    {
+      "font": "Orbit",
+      "score": 100.0
+    },
+    {
+      "font": "Outfit",
+      "score": 100.0
+    },
+    {
+      "font": "Parkinsans",
+      "score": 100.0
+    },
+    {
+      "font": "Plus Jakarta Sans",
+      "score": 100.0
+    },
+    {
+      "font": "Poiret One",
+      "score": 100.0
+    },
+    {
+      "font": "Poppins",
+      "score": 100.0
+    },
+    {
+      "font": "Questrial",
+      "score": 100.0
+    },
+    {
+      "font": "Quicksand",
+      "score": 100.0
+    },
+    {
+      "font": "Readex Pro",
+      "score": 100.0
+    },
+    {
+      "font": "Reem Kufi Fun",
+      "score": 100.0
+    },
+    {
+      "font": "Reem Kufi Ink",
+      "score": 100.0
+    },
+    {
+      "font": "Reem Kufi",
+      "score": 100.0
+    },
+    {
+      "font": "Righteous",
+      "score": 100.0
+    },
+    {
+      "font": "Rokkitt",
+      "score": 100.0
+    },
+    {
+      "font": "SUSE",
+      "score": 100.0
+    },
+    {
+      "font": "Sulphur Point",
+      "score": 100.0
+    },
+    {
+      "font": "Teachers",
+      "score": 100.0
+    },
+    {
+      "font": "Tilt Neon",
+      "score": 100.0
+    },
+    {
+      "font": "Urbanist",
+      "score": 100.0
+    },
+    {
+      "font": "Vina Sans",
+      "score": 100.0
+    },
+    {
+      "font": "Hepta Slab",
+      "score": 90.0
+    },
+    {
+      "font": "Niramit",
+      "score": 90.0
+    },
+    {
+      "font": "Epilogue",
+      "score": 80.0
+    },
+    {
+      "font": "Kay Pho Du",
+      "score": 80.0
+    },
+    {
+      "font": "Paytone One",
+      "score": 80.0
+    },
+    {
+      "font": "Alatsi",
+      "score": 70.0
+    }
+  ],
+  "Kwanzaa": [
+    {
+      "font": "Ojuju",
+      "score": 100.0
+    },
+    {
+      "font": "Agbalumo",
+      "score": 92.0
+    }
+  ],
+  "Innovative": [
+    {
+      "font": "Blaka Ink",
+      "score": 100.0
+    },
+    {
+      "font": "Bungee Spice",
+      "score": 100.0
+    },
+    {
+      "font": "Bungee Tint",
+      "score": 100.0
+    },
+    {
+      "font": "Foldit",
+      "score": 100.0
+    },
+    {
+      "font": "Honk",
+      "score": 100.0
+    },
+    {
+      "font": "Kalnia Glaze",
+      "score": 100.0
+    },
+    {
+      "font": "Nabla",
+      "score": 100.0
+    },
+    {
+      "font": "Sixtyfour Convergence",
+      "score": 100.0
+    },
+    {
+      "font": "Tilt Prism",
+      "score": 100.0
+    },
+    {
+      "font": "Workbench",
+      "score": 100.0
+    },
+    {
+      "font": "Agu Display",
+      "score": 99.0
+    },
+    {
+      "font": "Bungee Shade",
+      "score": 99.0
+    },
+    {
+      "font": "Rubik Broken Fax",
+      "score": 99.0
+    },
+    {
+      "font": "Rubik Maps",
+      "score": 99.0
+    },
+    {
+      "font": "Rubik Maze",
+      "score": 99.0
+    },
+    {
+      "font": "Akronim",
+      "score": 97.0
+    },
+    {
+      "font": "Faster One",
+      "score": 94.0
+    },
+    {
+      "font": "Zen Tokyo Zoo",
+      "score": 93.0
+    },
+    {
+      "font": "Piedra",
+      "score": 92.0
+    },
+    {
+      "font": "Sankofa Display",
+      "score": 91.0
+    },
+    {
+      "font": "Tapestry",
+      "score": 61.0
+    }
+  ],
+  "Artistic": [
+    {
+      "font": "Ballet",
+      "score": 100.0
+    },
+    {
+      "font": "Fascinate Inline",
+      "score": 100.0
+    },
+    {
+      "font": "Fascinate",
+      "score": 100.0
+    },
+    {
+      "font": "Festive",
+      "score": 100.0
+    },
+    {
+      "font": "Fleur De Leah",
+      "score": 100.0
+    },
+    {
+      "font": "Imperial Script",
+      "score": 100.0
+    },
+    {
+      "font": "Lavishly Yours",
+      "score": 100.0
+    },
+    {
+      "font": "Limelight",
+      "score": 100.0
+    },
+    {
+      "font": "Lovers Quarrel",
+      "score": 100.0
+    },
+    {
+      "font": "Mea Culpa",
+      "score": 100.0
+    },
+    {
+      "font": "Monsieur La Doulaise",
+      "score": 100.0
+    },
+    {
+      "font": "Passions Conflict",
+      "score": 100.0
+    },
+    {
+      "font": "Pinyon Script",
+      "score": 100.0
+    },
+    {
+      "font": "UnifrakturMaguntia",
+      "score": 100.0
+    },
+    {
+      "font": "Updock",
+      "score": 100.0
+    },
+    {
+      "font": "Alex Brush",
+      "score": 99.0
+    },
+    {
+      "font": "Allison",
+      "score": 99.0
+    },
+    {
+      "font": "Allura",
+      "score": 99.0
+    },
+    {
+      "font": "Arizonia",
+      "score": 99.0
+    },
+    {
+      "font": "Carattere",
+      "score": 99.0
+    },
+    {
+      "font": "Comforter Brush",
+      "score": 99.0
+    },
+    {
+      "font": "Comforter",
+      "score": 99.0
+    },
+    {
+      "font": "Great Vibes",
+      "score": 99.0
+    },
+    {
+      "font": "Love Light",
+      "score": 99.0
+    },
+    {
+      "font": "Petemoss",
+      "score": 99.0
+    },
+    {
+      "font": "Hurricane",
+      "score": 98.0
+    },
+    {
+      "font": "Caramel",
+      "score": 97.0
+    },
+    {
+      "font": "Kaushan Script",
+      "score": 97.0
+    },
+    {
+      "font": "League Script",
+      "score": 97.0
+    },
+    {
+      "font": "Praise",
+      "score": 97.0
+    },
+    {
+      "font": "Baumans",
+      "score": 92.0
+    },
+    {
+      "font": "The Nautigal",
+      "score": 89.0
+    },
+    {
+      "font": "Whisper",
+      "score": 89.0
+    },
+    {
+      "font": "Smooch",
+      "score": 88.0
+    },
+    {
+      "font": "Cherish",
+      "score": 80.0
+    },
+    {
+      "font": "Miss Fajardose",
+      "score": 80.0
+    },
+    {
+      "font": "WindSong",
+      "score": 80.0
+    },
+    {
+      "font": "Aguafina Script",
+      "score": 79.0
+    }
+  ],
+  "Holi": [
+    {
+      "font": "Akaya Kanadaka",
+      "score": 100.0
+    },
+    {
+      "font": "Atma",
+      "score": 100.0
+    },
+    {
+      "font": "Langar",
+      "score": 100.0
+    },
+    {
+      "font": "Mogra",
+      "score": 100.0
+    },
+    {
+      "font": "Akaya Telivigala",
+      "score": 99.0
+    },
+    {
+      "font": "Alkatra",
+      "score": 99.0
+    },
+    {
+      "font": "Braah One",
+      "score": 99.0
+    },
+    {
+      "font": "Coiny",
+      "score": 99.0
+    },
+    {
+      "font": "Dekko",
+      "score": 98.0
+    },
+    {
+      "font": "Suravaram",
+      "score": 97.0
+    },
+    {
+      "font": "Tillana",
+      "score": 97.0
+    },
+    {
+      "font": "Licorice",
+      "score": 91.0
+    },
+    {
+      "font": "Birthstone Bounce",
+      "score": 85.0
+    },
+    {
+      "font": "Water Brush",
+      "score": 83.0
+    }
+  ],
+  "Playful": [
+    {
+      "font": "Barriecito",
+      "score": 100.0
+    },
+    {
+      "font": "Barrio",
+      "score": 100.0
+    },
+    {
+      "font": "Rock 3D",
+      "score": 99.9
+    },
+    {
+      "font": "Shizuru",
+      "score": 99.9
+    },
+    {
+      "font": "Hanalei",
+      "score": 99.8
+    },
+    {
+      "font": "Rubik Moonrocks",
+      "score": 99.7
+    },
+    {
+      "font": "Rubik Bubbles",
+      "score": 99.6
+    },
+    {
+      "font": "Rubik Spray Paint",
+      "score": 99.6
+    },
+    {
+      "font": "Bangers",
+      "score": 99.5
+    },
+    {
+      "font": "Hanalei Fill",
+      "score": 99.4
+    },
+    {
+      "font": "Rubik Puddles",
+      "score": 99.3
+    },
+    {
+      "font": "Moirai One",
+      "score": 99.1
+    },
+    {
+      "font": "Bahiana",
+      "score": 97.8
+    },
+    {
+      "font": "Bahianita",
+      "score": 97.8
+    },
+    {
+      "font": "Chicle",
+      "score": 97.7
+    },
+    {
+      "font": "Galindo",
+      "score": 97.5
+    },
+    {
+      "font": "Love Ya Like A Sister",
+      "score": 96.4
+    },
+    {
+      "font": "Risque",
+      "score": 94.8
+    },
+    {
+      "font": "Peralta",
+      "score": 94.4
+    },
+    {
+      "font": "Darumadrop One",
+      "score": 94.0
+    },
+    {
+      "font": "Aladin",
+      "score": 91.7
+    },
+    {
+      "font": "Englebert",
+      "score": 90.9
+    },
+    {
+      "font": "Rum Raisin",
+      "score": 90.5
+    },
+    {
+      "font": "ZCOOL KuaiLe",
+      "score": 69.0
+    }
+  ],
+  "Stiff": [
+    {
+      "font": "Aldrich",
+      "score": 100.0
+    },
+    {
+      "font": "Black Ops One",
+      "score": 100.0
+    },
+    {
+      "font": "Bruno Ace SC",
+      "score": 100.0
+    },
+    {
+      "font": "Bruno Ace",
+      "score": 100.0
+    },
+    {
+      "font": "Goldman",
+      "score": 100.0
+    },
+    {
+      "font": "Homenaje",
+      "score": 100.0
+    },
+    {
+      "font": "Rationale",
+      "score": 100.0
+    },
+    {
+      "font": "Teko",
+      "score": 100.0
+    },
+    {
+      "font": "Tomorrow",
+      "score": 100.0
+    },
+    {
+      "font": "Tourney",
+      "score": 100.0
+    },
+    {
+      "font": "Tulpen One",
+      "score": 100.0
+    },
+    {
+      "font": "Wallpoet",
+      "score": 100.0
+    },
+    {
+      "font": "Russo One",
+      "score": 99.0
+    },
+    {
+      "font": "Atomic Age",
+      "score": 97.0
+    },
+    {
+      "font": "Bungee Hairline",
+      "score": 97.0
+    },
+    {
+      "font": "Bungee",
+      "score": 97.0
+    },
+    {
+      "font": "Geostar Fill",
+      "score": 97.0
+    },
+    {
+      "font": "Kdam Thmor Pro",
+      "score": 97.0
+    },
+    {
+      "font": "Odibee Sans",
+      "score": 97.0
+    },
+    {
+      "font": "Bungee Outline",
+      "score": 96.0
+    },
+    {
+      "font": "Khand",
+      "score": 96.0
+    },
+    {
+      "font": "Nova Cut",
+      "score": 96.0
+    },
+    {
+      "font": "Nova Flat",
+      "score": 96.0
+    },
+    {
+      "font": "Unica One",
+      "score": 96.0
+    },
+    {
+      "font": "Gajraj One",
+      "score": 95.0
+    },
+    {
+      "font": "Bai Jamjuree",
+      "score": 94.0
+    },
+    {
+      "font": "Kufam",
+      "score": 92.0
+    },
+    {
+      "font": "Denk One",
+      "score": 91.0
+    },
+    {
+      "font": "Graduate",
+      "score": 91.0
+    },
+    {
+      "font": "Maven Pro",
+      "score": 91.0
+    },
+    {
+      "font": "Khmer",
+      "score": 90.0
+    },
+    {
+      "font": "Share Tech",
+      "score": 90.0
+    },
+    {
+      "font": "Siemreap",
+      "score": 90.0
+    },
+    {
+      "font": "Viga",
+      "score": 83.0
+    },
+    {
+      "font": "Cute Font",
+      "score": 77.0
+    },
+    {
+      "font": "Pathway Extreme",
+      "score": 77.0
+    },
+    {
+      "font": "Stint Ultra Expanded",
+      "score": 74.0
+    },
+    {
+      "font": "Unbounded",
+      "score": 74.0
+    },
+    {
+      "font": "Days One",
+      "score": 73.0
+    },
+    {
+      "font": "Zilla Slab Highlight",
+      "score": 72.0
+    },
+    {
+      "font": "Konkhmer Sleokchher",
+      "score": 71.0
+    },
+    {
+      "font": "Trochut",
+      "score": 70.0
+    },
+    {
+      "font": "Changa One",
+      "score": 57.0
+    },
+    {
+      "font": "Medula One",
+      "score": 54.0
+    },
+    {
+      "font": "Suez One",
+      "score": 52.0
+    },
+    {
+      "font": "Marcellus SC",
+      "score": 20.0
+    }
+  ],
+  "Humanist Venetian": [
+    {
+      "font": "Alegreya SC",
+      "score": 100.0
+    },
+    {
+      "font": "Alegreya",
+      "score": 100.0
+    },
+    {
+      "font": "Almendra",
+      "score": 100.0
+    },
+    {
+      "font": "Bona Nova SC",
+      "score": 100.0
+    },
+    {
+      "font": "Bona Nova",
+      "score": 100.0
+    },
+    {
+      "font": "Joan",
+      "score": 100.0
+    },
+    {
+      "font": "Namdhinggo",
+      "score": 100.0
+    },
+    {
+      "font": "Neuton",
+      "score": 100.0
+    },
+    {
+      "font": "Ovo",
+      "score": 100.0
+    },
+    {
+      "font": "Rakkas",
+      "score": 100.0
+    },
+    {
+      "font": "Rosarivo",
+      "score": 100.0
+    },
+    {
+      "font": "Sahitya",
+      "score": 100.0
+    },
+    {
+      "font": "Simonetta",
+      "score": 100.0
+    },
+    {
+      "font": "Inknut Antiqua",
+      "score": 90.0
+    },
+    {
+      "font": "Paprika",
+      "score": 90.0
+    },
+    {
+      "font": "Aref Ruqaa Ink",
+      "score": 60.0
+    },
+    {
+      "font": "Aref Ruqaa",
+      "score": 60.0
+    },
+    {
+      "font": "Port Lligat Slab",
+      "score": 50.0
+    },
+    {
+      "font": "Laila",
+      "score": 40.0
+    }
+  ],
+  "Loud": [
+    {
+      "font": "Alfa Slab One",
+      "score": 100.0
+    },
+    {
+      "font": "Alumni Sans Collegiate One",
+      "score": 100.0
+    },
+    {
+      "font": "Asset",
+      "score": 100.0
+    },
+    {
+      "font": "Badeen Display",
+      "score": 100.0
+    },
+    {
+      "font": "Climate Crisis",
+      "score": 100.0
+    },
+    {
+      "font": "Erica One",
+      "score": 100.0
+    },
+    {
+      "font": "Gasoek One",
+      "score": 100.0
+    },
+    {
+      "font": "Modak",
+      "score": 100.0
+    },
+    {
+      "font": "Oi",
+      "score": 100.0
+    },
+    {
+      "font": "Protest Guerrilla",
+      "score": 100.0
+    },
+    {
+      "font": "Sigmar One",
+      "score": 100.0
+    },
+    {
+      "font": "Sigmar",
+      "score": 100.0
+    },
+    {
+      "font": "Tac One",
+      "score": 100.0
+    },
+    {
+      "font": "Titan One",
+      "score": 100.0
+    },
+    {
+      "font": "Alumni Sans Inline One",
+      "score": 99.0
+    },
+    {
+      "font": "Angkor",
+      "score": 99.0
+    },
+    {
+      "font": "Bevan",
+      "score": 99.0
+    },
+    {
+      "font": "Ponnala",
+      "score": 99.0
+    },
+    {
+      "font": "Ranchers",
+      "score": 99.0
+    },
+    {
+      "font": "Shrikhand",
+      "score": 99.0
+    },
+    {
+      "font": "Blaka Hollow",
+      "score": 98.0
+    },
+    {
+      "font": "Carter One",
+      "score": 98.0
+    },
+    {
+      "font": "Chango",
+      "score": 97.0
+    },
+    {
+      "font": "Goblin One",
+      "score": 97.0
+    },
+    {
+      "font": "Holtwood One SC",
+      "score": 97.0
+    },
+    {
+      "font": "New Amsterdam",
+      "score": 97.0
+    },
+    {
+      "font": "Karantina",
+      "score": 96.0
+    },
+    {
+      "font": "Sonsie One",
+      "score": 95.0
+    },
+    {
+      "font": "Spicy Rice",
+      "score": 94.0
+    },
+    {
+      "font": "Ceviche One",
+      "score": 89.0
+    },
+    {
+      "font": "Skranji",
+      "score": 89.0
+    },
+    {
+      "font": "Protest Strike",
+      "score": 88.0
+    },
+    {
+      "font": "Rowdies",
+      "score": 88.0
+    },
+    {
+      "font": "Unlock",
+      "score": 88.0
+    },
+    {
+      "font": "Jaro",
+      "score": 82.0
+    },
+    {
+      "font": "Viaoda Libre",
+      "score": 73.0
+    },
+    {
+      "font": "Marko One",
+      "score": 71.0
+    },
+    {
+      "font": "Salsa",
+      "score": 46.0
+    },
+    {
+      "font": "Yusei Magic",
+      "score": 46.0
+    }
+  ],
+  "Active": [
+    {
+      "font": "Condiment",
+      "score": 100.0
+    },
+    {
+      "font": "Allan",
+      "score": 99.0
+    },
+    {
+      "font": "Fugaz One",
+      "score": 98.0
+    },
+    {
+      "font": "Vujahday Script",
+      "score": 94.0
+    },
+    {
+      "font": "Trade Winds",
+      "score": 93.0
+    },
+    {
+      "font": "Nova Script",
+      "score": 37.0
+    }
+  ],
+  "Stencil": [
+    {
+      "font": "Allerta Stencil",
+      "score": 100.0
+    },
+    {
+      "font": "Emblema One",
+      "score": 100.0
+    },
+    {
+      "font": "Expletus Sans",
+      "score": 100.0
+    },
+    {
+      "font": "Keania One",
+      "score": 100.0
+    },
+    {
+      "font": "Kenia",
+      "score": 100.0
+    },
+    {
+      "font": "Plaster",
+      "score": 100.0
+    },
+    {
+      "font": "Saira Stencil One",
+      "score": 100.0
+    },
+    {
+      "font": "Sirin Stencil",
+      "score": 100.0
+    },
+    {
+      "font": "Stardos Stencil",
+      "score": 100.0
+    },
+    {
+      "font": "Stick No Bills",
+      "score": 100.0
+    }
+  ],
+  "Neo Grotesque": [
+    {
+      "font": "Almarai",
+      "score": 100.0
+    },
+    {
+      "font": "Be Vietnam Pro",
+      "score": 100.0
+    },
+    {
+      "font": "Bebas Neue",
+      "score": 100.0
+    },
+    {
+      "font": "Bricolage Grotesque",
+      "score": 100.0
+    },
+    {
+      "font": "Carrois Gothic SC",
+      "score": 100.0
+    },
+    {
+      "font": "Carrois Gothic",
+      "score": 100.0
+    },
+    {
+      "font": "Cuprum",
+      "score": 100.0
+    },
+    {
+      "font": "Familjen Grotesk",
+      "score": 100.0
+    },
+    {
+      "font": "Gantari",
+      "score": 100.0
+    },
+    {
+      "font": "Geist",
+      "score": 100.0
+    },
+    {
+      "font": "Golos Text",
+      "score": 100.0
+    },
+    {
+      "font": "Hanken Grotesk",
+      "score": 100.0
+    },
+    {
+      "font": "Hedvig Letters Sans",
+      "score": 100.0
+    },
+    {
+      "font": "IBM Plex Sans Arabic",
+      "score": 100.0
+    },
+    {
+      "font": "IBM Plex Sans Condensed",
+      "score": 100.0
+    },
+    {
+      "font": "IBM Plex Sans Devanagari",
+      "score": 100.0
+    },
+    {
+      "font": "IBM Plex Sans Hebrew",
+      "score": 100.0
+    },
+    {
+      "font": "IBM Plex Sans JP",
+      "score": 100.0
+    },
+    {
+      "font": "IBM Plex Sans KR",
+      "score": 100.0
+    },
+    {
+      "font": "IBM Plex Sans Thai Looped",
+      "score": 100.0
+    },
+    {
+      "font": "IBM Plex Sans Thai",
+      "score": 100.0
+    },
+    {
+      "font": "IBM Plex Sans",
+      "score": 100.0
+    },
+    {
+      "font": "Inter Tight",
+      "score": 100.0
+    },
+    {
+      "font": "Inter",
+      "score": 100.0
+    },
+    {
+      "font": "Manrope",
+      "score": 100.0
+    },
+    {
+      "font": "Nokora",
+      "score": 100.0
+    },
+    {
+      "font": "Pontano Sans",
+      "score": 100.0
+    },
+    {
+      "font": "Radio Canada Big",
+      "score": 100.0
+    },
+    {
+      "font": "Roboto Condensed",
+      "score": 100.0
+    },
+    {
+      "font": "Roboto Flex",
+      "score": 100.0
+    },
+    {
+      "font": "Roboto",
+      "score": 100.0
+    },
+    {
+      "font": "Rubik Mono One",
+      "score": 100.0
+    },
+    {
+      "font": "Rubik",
+      "score": 100.0
+    },
+    {
+      "font": "Sintony",
+      "score": 100.0
+    },
+    {
+      "font": "Sora",
+      "score": 100.0
+    },
+    {
+      "font": "Space Grotesk",
+      "score": 100.0
+    },
+    {
+      "font": "Spline Sans",
+      "score": 100.0
+    },
+    {
+      "font": "Syne",
+      "score": 100.0
+    },
+    {
+      "font": "Vazirmatn",
+      "score": 100.0
+    },
+    {
+      "font": "Yantramanav",
+      "score": 100.0
+    },
+    {
+      "font": "Carme",
+      "score": 80.0
+    },
+    {
+      "font": "Mingzat",
+      "score": 80.0
+    },
+    {
+      "font": "Pavanam",
+      "score": 80.0
+    },
+    {
+      "font": "Sofia Sans Condensed",
+      "score": 80.0
+    },
+    {
+      "font": "Sofia Sans Extra Condensed",
+      "score": 80.0
+    },
+    {
+      "font": "Sofia Sans Semi Condensed",
+      "score": 80.0
+    },
+    {
+      "font": "Sofia Sans",
+      "score": 80.0
+    },
+    {
+      "font": "Zen Kaku Gothic Antique",
+      "score": 80.0
+    },
+    {
+      "font": "Zen Kaku Gothic New",
+      "score": 80.0
+    },
+    {
+      "font": "Zen Maru Gothic",
+      "score": 80.0
+    }
+  ],
+  "Blackletter": [
+    {
+      "font": "Almendra Display",
+      "score": 100.0
+    },
+    {
+      "font": "Astloch",
+      "score": 100.0
+    },
+    {
+      "font": "Blaka",
+      "score": 100.0
+    },
+    {
+      "font": "Germania One",
+      "score": 100.0
+    },
+    {
+      "font": "Grenze Gotisch",
+      "score": 100.0
+    },
+    {
+      "font": "Grenze",
+      "score": 100.0
+    },
+    {
+      "font": "New Rocker",
+      "score": 100.0
+    },
+    {
+      "font": "Pirata One",
+      "score": 100.0
+    },
+    {
+      "font": "Content",
+      "score": 50.0
+    }
+  ],
+  "Art Nouveau": [
+    {
+      "font": "Amarante",
+      "score": 100.0
+    },
+    {
+      "font": "Aubrey",
+      "score": 100.0
+    }
+  ],
+  "Handwritten": [
+    {
+      "font": "Amatic SC",
+      "score": 100.0
+    },
+    {
+      "font": "Annie Use Your Telescope",
+      "score": 100.0
+    },
+    {
+      "font": "Autour One",
+      "score": 100.0
+    },
+    {
+      "font": "Bad Script",
+      "score": 100.0
+    },
+    {
+      "font": "Beth Ellen",
+      "score": 100.0
+    },
+    {
+      "font": "Bilbo",
+      "score": 100.0
+    },
+    {
+      "font": "Bonbon",
+      "score": 100.0
+    },
+    {
+      "font": "Bubblegum Sans",
+      "score": 100.0
+    },
+    {
+      "font": "Butterfly Kids",
+      "score": 100.0
+    },
+    {
+      "font": "Cedarville Cursive",
+      "score": 100.0
+    },
+    {
+      "font": "Chilanka",
+      "score": 100.0
+    },
+    {
+      "font": "Covered By Your Grace",
+      "score": 100.0
+    },
+    {
+      "font": "Devonshire",
+      "score": 100.0
+    },
+    {
+      "font": "East Sea Dokdo",
+      "score": 100.0
+    },
+    {
+      "font": "Edu AU VIC WA NT Arrows",
+      "score": 100.0
+    },
+    {
+      "font": "Edu AU VIC WA NT Dots",
+      "score": 100.0
+    },
+    {
+      "font": "Edu AU VIC WA NT Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Edu AU VIC WA NT Hand",
+      "score": 100.0
+    },
+    {
+      "font": "Edu AU VIC WA NT Pre",
+      "score": 100.0
+    },
+    {
+      "font": "Farsan",
+      "score": 100.0
+    },
+    {
+      "font": "Fasthand",
+      "score": 100.0
+    },
+    {
+      "font": "Fondamento",
+      "score": 100.0
+    },
+    {
+      "font": "Freehand",
+      "score": 100.0
+    },
+    {
+      "font": "Fuzzy Bubbles",
+      "score": 100.0
+    },
+    {
+      "font": "Ga Maamli",
+      "score": 100.0
+    },
+    {
+      "font": "Give You Glory",
+      "score": 100.0
+    },
+    {
+      "font": "Gloria Hallelujah",
+      "score": 100.0
+    },
+    {
+      "font": "Gluten",
+      "score": 100.0
+    },
+    {
+      "font": "Gochi Hand",
+      "score": 100.0
+    },
+    {
+      "font": "Grape Nuts",
+      "score": 100.0
+    },
+    {
+      "font": "Handlee",
+      "score": 100.0
+    },
+    {
+      "font": "Indie Flower",
+      "score": 100.0
+    },
+    {
+      "font": "Ingrid Darling",
+      "score": 100.0
+    },
+    {
+      "font": "Inspiration",
+      "score": 100.0
+    },
+    {
+      "font": "Julee",
+      "score": 100.0
+    },
+    {
+      "font": "Just Me Again Down Here",
+      "score": 100.0
+    },
+    {
+      "font": "Kalam",
+      "score": 100.0
+    },
+    {
+      "font": "Kavivanar",
+      "score": 100.0
+    },
+    {
+      "font": "Knewave",
+      "score": 100.0
+    },
+    {
+      "font": "Lacquer",
+      "score": 100.0
+    },
+    {
+      "font": "Leckerli One",
+      "score": 100.0
+    },
+    {
+      "font": "Liu Jian Mao Cao",
+      "score": 100.0
+    },
+    {
+      "font": "Long Cang",
+      "score": 100.0
+    },
+    {
+      "font": "Loved by the King",
+      "score": 100.0
+    },
+    {
+      "font": "Ma Shan Zheng",
+      "score": 100.0
+    },
+    {
+      "font": "Mali",
+      "score": 100.0
+    },
+    {
+      "font": "Mansalva",
+      "score": 100.0
+    },
+    {
+      "font": "Meddon",
+      "score": 100.0
+    },
+    {
+      "font": "Merienda",
+      "score": 100.0
+    },
+    {
+      "font": "Mr Bedfort",
+      "score": 100.0
+    },
+    {
+      "font": "Mr Dafoe",
+      "score": 100.0
+    },
+    {
+      "font": "Mr De Haviland",
+      "score": 100.0
+    },
+    {
+      "font": "Mrs Saint Delafield",
+      "score": 100.0
+    },
+    {
+      "font": "Mrs Sheppards",
+      "score": 100.0
+    },
+    {
+      "font": "Ms Madi",
+      "score": 100.0
+    },
+    {
+      "font": "My Soul",
+      "score": 100.0
+    },
+    {
+      "font": "Mynerve",
+      "score": 100.0
+    },
+    {
+      "font": "Nanum Brush Script",
+      "score": 100.0
+    },
+    {
+      "font": "Nanum Pen Script",
+      "score": 100.0
+    },
+    {
+      "font": "Nothing You Could Do",
+      "score": 100.0
+    },
+    {
+      "font": "Oooh Baby",
+      "score": 100.0
+    },
+    {
+      "font": "Oregano",
+      "score": 100.0
+    },
+    {
+      "font": "Over the Rainbow",
+      "score": 100.0
+    },
+    {
+      "font": "Pangolin",
+      "score": 100.0
+    },
+    {
+      "font": "Patrick Hand SC",
+      "score": 100.0
+    },
+    {
+      "font": "Patrick Hand",
+      "score": 100.0
+    },
+    {
+      "font": "Playpen Sans",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite AR Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite AR",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite AT Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite AT",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite AU NSW Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite AU NSW",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite AU QLD Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite AU QLD",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite AU SA Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite AU SA",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite AU TAS Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite AU TAS",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite AU VIC Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite AU VIC",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite BE VLG Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite BE VLG",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite BE WAL Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite BE WAL",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite BR Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite BR",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite CA Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite CA",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite CL Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite CL",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite CO Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite CO",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite CU Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite CU",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite CZ Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite CZ",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite DE Grund Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite DE Grund",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite DE LA Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite DE LA",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite DE SAS Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite DE SAS",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite DE VA Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite DE VA",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite DK Loopet Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite DK Loopet",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite DK Uloopet Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite DK Uloopet",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite ES Deco Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite ES Deco",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite ES Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite ES",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite FR Moderne Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite FR Moderne",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite FR Trad Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite FR Trad",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite GB J Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite GB J",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite GB S Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite GB S",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite HR Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite HR Lijeva Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite HR Lijeva",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite HR",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite HU Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite HU",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite ID Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite ID",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite IE Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite IE",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite IN Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite IN",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite IS Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite IS",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite IT Moderna Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite IT Moderna",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite IT Trad Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite IT Trad",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite MX Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite MX",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite NG Modern Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite NG Modern",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite NL Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite NL",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite NO Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite NO",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite NZ Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite NZ",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite PE Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite PE",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite PL Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite PL",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite PT Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite PT",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite RO Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite RO",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite SK Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite SK",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite TZ Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite TZ",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite US Modern Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite US Modern",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite US Trad Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite US Trad",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite VN Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite VN",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite ZA Guides",
+      "score": 100.0
+    },
+    {
+      "font": "Playwrite ZA",
+      "score": 100.0
+    },
+    {
+      "font": "Qwigley",
+      "score": 100.0
+    },
+    {
+      "font": "Qwitcher Grypen",
+      "score": 100.0
+    },
+    {
+      "font": "Reenie Beanie",
+      "score": 100.0
+    },
+    {
+      "font": "Sedgwick Ave Display",
+      "score": 100.0
+    },
+    {
+      "font": "Sedgwick Ave",
+      "score": 100.0
+    },
+    {
+      "font": "Shantell Sans",
+      "score": 100.0
+    },
+    {
+      "font": "Short Stack",
+      "score": 100.0
+    },
+    {
+      "font": "Slackside One",
+      "score": 100.0
+    },
+    {
+      "font": "Solitreo",
+      "score": 100.0
+    },
+    {
+      "font": "Sriracha",
+      "score": 100.0
+    },
+    {
+      "font": "Srisakdi",
+      "score": 100.0
+    },
+    {
+      "font": "Sue Ellen Francisco",
+      "score": 100.0
+    },
+    {
+      "font": "Swanky and Moo Moo",
+      "score": 100.0
+    },
+    {
+      "font": "The Girl Next Door",
+      "score": 100.0
+    },
+    {
+      "font": "Vibur",
+      "score": 100.0
+    },
+    {
+      "font": "Yeon Sung",
+      "score": 100.0
+    },
+    {
+      "font": "Yomogi",
+      "score": 100.0
+    },
+    {
+      "font": "Yuji Boku",
+      "score": 100.0
+    },
+    {
+      "font": "Zhi Mang Xing",
+      "score": 100.0
+    },
+    {
+      "font": "Bilbo Swash Caps",
+      "score": 90.0
+    },
+    {
+      "font": "Hi Melody",
+      "score": 80.0
+    },
+    {
+      "font": "LXGW WenKai TC",
+      "score": 30.0
+    }
+  ],
+  "Business": [
+    {
+      "font": "DM Serif Text",
+      "score": 100.0
+    },
+    {
+      "font": "Markazi Text",
+      "score": 99.7
+    },
+    {
+      "font": "Merriweather",
+      "score": 99.3
+    },
+    {
+      "font": "Rasa",
+      "score": 99.0
+    },
+    {
+      "font": "Nanum Myeongjo",
+      "score": 98.7
+    },
+    {
+      "font": "Open Sans",
+      "score": 98.5
+    },
+    {
+      "font": "Martel",
+      "score": 98.4
+    },
+    {
+      "font": "Nuosu SIL",
+      "score": 98.0
+    },
+    {
+      "font": "PT Serif Caption",
+      "score": 98.0
+    },
+    {
+      "font": "Zen Antique Soft",
+      "score": 97.9
+    },
+    {
+      "font": "Zen Antique",
+      "score": 97.9
+    },
+    {
+      "font": "Zen Old Mincho",
+      "score": 97.9
+    },
+    {
+      "font": "Enriqueta",
+      "score": 97.7
+    },
+    {
+      "font": "Mako",
+      "score": 96.6
+    },
+    {
+      "font": "Oxygen",
+      "score": 96.0
+    },
+    {
+      "font": "Volkhov",
+      "score": 95.9
+    },
+    {
+      "font": "Vollkorn",
+      "score": 95.9
+    },
+    {
+      "font": "Mada",
+      "score": 95.6
+    },
+    {
+      "font": "Hubot Sans",
+      "score": 95.0
+    },
+    {
+      "font": "Inclusive Sans",
+      "score": 94.4
+    },
+    {
+      "font": "Wix Madefor Text",
+      "score": 92.8
+    },
+    {
+      "font": "Inria Sans",
+      "score": 92.0
+    },
+    {
+      "font": "Varela",
+      "score": 91.2
+    },
+    {
+      "font": "REM",
+      "score": 90.9
+    },
+    {
+      "font": "Amethysta",
+      "score": 88.9
+    },
+    {
+      "font": "Zilla Slab",
+      "score": 88.5
+    },
+    {
+      "font": "Trirong",
+      "score": 87.7
+    },
+    {
+      "font": "Platypi",
+      "score": 85.0
+    },
+    {
+      "font": "Vesper Libre",
+      "score": 79.1
+    },
+    {
+      "font": "Manuale",
+      "score": 74.2
+    },
+    {
+      "font": "Kadwa",
+      "score": 70.0
+    },
+    {
+      "font": "Asar",
+      "score": 60.9
+    },
+    {
+      "font": "Quattrocento",
+      "score": 54.6
+    },
+    {
+      "font": "Marcellus",
+      "score": 33.0
+    },
+    {
+      "font": "Philosopher",
+      "score": 31.0
+    },
+    {
+      "font": "Belgrano",
+      "score": 22.0
+    }
+  ],
+  "Old Style Garalde": [
+    {
+      "font": "Amiri Quran",
+      "score": 100.0
+    },
+    {
+      "font": "Amiri",
+      "score": 100.0
+    },
+    {
+      "font": "Benne",
+      "score": 100.0
+    },
+    {
+      "font": "Cardo",
+      "score": 100.0
+    },
+    {
+      "font": "Cinzel Decorative",
+      "score": 100.0
+    },
+    {
+      "font": "Cinzel",
+      "score": 100.0
+    },
+    {
+      "font": "Cormorant Garamond",
+      "score": 100.0
+    },
+    {
+      "font": "Cormorant SC",
+      "score": 100.0
+    },
+    {
+      "font": "Cormorant",
+      "score": 100.0
+    },
+    {
+      "font": "Crimson Pro",
+      "score": 100.0
+    },
+    {
+      "font": "Crimson Text",
+      "score": 100.0
+    },
+    {
+      "font": "David Libre",
+      "score": 100.0
+    },
+    {
+      "font": "Fraunces",
+      "score": 100.0
+    },
+    {
+      "font": "Girassol",
+      "score": 100.0
+    },
+    {
+      "font": "Goudy Bookletter 1911",
+      "score": 100.0
+    },
+    {
+      "font": "Habibi",
+      "score": 100.0
+    },
+    {
+      "font": "Lancelot",
+      "score": 100.0
+    },
+    {
+      "font": "Libre Caslon Display",
+      "score": 100.0
+    },
+    {
+      "font": "Libre Caslon Text",
+      "score": 100.0
+    },
+    {
+      "font": "Linden Hill",
+      "score": 100.0
+    },
+    {
+      "font": "Metal",
+      "score": 100.0
+    },
+    {
+      "font": "Radley",
+      "score": 100.0
+    },
+    {
+      "font": "Ramaraja",
+      "score": 100.0
+    },
+    {
+      "font": "Sorts Mill Goudy",
+      "score": 100.0
+    },
+    {
+      "font": "Stoke",
+      "score": 100.0
+    },
+    {
+      "font": "Young Serif",
+      "score": 100.0
+    },
+    {
+      "font": "Cormorant Unicase",
+      "score": 80.0
+    },
+    {
+      "font": "Ruwudu",
+      "score": 80.0
+    },
+    {
+      "font": "Maname",
+      "score": 30.0
+    }
+  ],
+  "Transitional": [
+    {
+      "font": "Annapurna SIL",
+      "score": 100.0
+    },
+    {
+      "font": "Bacasime Antique",
+      "score": 100.0
+    },
+    {
+      "font": "Baskervville SC",
+      "score": 100.0
+    },
+    {
+      "font": "Baskervville",
+      "score": 100.0
+    },
+    {
+      "font": "Brygada 1918",
+      "score": 100.0
+    },
+    {
+      "font": "Caprasimo",
+      "score": 100.0
+    },
+    {
+      "font": "Castoro",
+      "score": 100.0
+    },
+    {
+      "font": "Charis SIL",
+      "score": 100.0
+    },
+    {
+      "font": "DM Serif Display",
+      "score": 100.0
+    },
+    {
+      "font": "Esteban",
+      "score": 100.0
+    },
+    {
+      "font": "Fanwood Text",
+      "score": 100.0
+    },
+    {
+      "font": "Gelasio",
+      "score": 100.0
+    },
+    {
+      "font": "Gilda Display",
+      "score": 100.0
+    },
+    {
+      "font": "Gloock",
+      "score": 100.0
+    },
+    {
+      "font": "Gowun Batang",
+      "score": 100.0
+    },
+    {
+      "font": "Gulzar",
+      "score": 100.0
+    },
+    {
+      "font": "Gupter",
+      "score": 100.0
+    },
+    {
+      "font": "Hahmlet",
+      "score": 100.0
+    },
+    {
+      "font": "Halant",
+      "score": 100.0
+    },
+    {
+      "font": "Ibarra Real Nova",
+      "score": 100.0
+    },
+    {
+      "font": "Jacques Francois Shadow",
+      "score": 100.0
+    },
+    {
+      "font": "Jacques Francois",
+      "score": 100.0
+    },
+    {
+      "font": "Jomolhari",
+      "score": 100.0
+    },
+    {
+      "font": "Judson",
+      "score": 100.0
+    },
+    {
+      "font": "Libre Baskerville",
+      "score": 100.0
+    },
+    {
+      "font": "Lisu Bosa",
+      "score": 100.0
+    },
+    {
+      "font": "Literata",
+      "score": 100.0
+    },
+    {
+      "font": "Lusitana",
+      "score": 100.0
+    },
+    {
+      "font": "Milonga",
+      "score": 100.0
+    },
+    {
+      "font": "Newsreader",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Naskh Arabic",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Nastaliq Urdu",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Rashi Hebrew",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Serif Ahom",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Serif Armenian",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Serif Balinese",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Serif Bengali",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Serif Devanagari",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Serif Display",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Serif Dogra",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Serif Ethiopic",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Serif Georgian",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Serif Grantha",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Serif Gujarati",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Serif Gurmukhi",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Serif HK",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Serif Hebrew",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Serif JP",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Serif KR",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Serif Kannada",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Serif Khitan Small Script",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Serif Khmer",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Serif Khojki",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Serif Lao",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Serif Makasar",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Serif Malayalam",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Serif Myanmar",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Serif NP Hmong",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Serif Old Uyghur",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Serif Oriya",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Serif Ottoman Siyaq",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Serif SC",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Serif Sinhala",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Serif TC",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Serif Tamil",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Serif Tangut",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Serif Telugu",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Serif Thai",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Serif Tibetan",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Serif Toto",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Serif Vithkuqi",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Serif Yezidi",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Serif",
+      "score": 100.0
+    },
+    {
+      "font": "PT Serif",
+      "score": 100.0
+    },
+    {
+      "font": "Patua One",
+      "score": 100.0
+    },
+    {
+      "font": "Peddana",
+      "score": 100.0
+    },
+    {
+      "font": "STIX Two Text",
+      "score": 100.0
+    },
+    {
+      "font": "Scheherazade New",
+      "score": 100.0
+    },
+    {
+      "font": "Shippori Mincho B1",
+      "score": 100.0
+    },
+    {
+      "font": "Shippori Mincho",
+      "score": 100.0
+    },
+    {
+      "font": "Song Myung",
+      "score": 100.0
+    },
+    {
+      "font": "Source Serif 4",
+      "score": 100.0
+    },
+    {
+      "font": "Spectral SC",
+      "score": 100.0
+    },
+    {
+      "font": "Spectral",
+      "score": 100.0
+    },
+    {
+      "font": "Tai Heritage Pro",
+      "score": 100.0
+    },
+    {
+      "font": "Tiro Bangla",
+      "score": 100.0
+    },
+    {
+      "font": "Tiro Devanagari Hindi",
+      "score": 100.0
+    },
+    {
+      "font": "Tiro Devanagari Marathi",
+      "score": 100.0
+    },
+    {
+      "font": "Tiro Devanagari Sanskrit",
+      "score": 100.0
+    },
+    {
+      "font": "Tiro Gurmukhi",
+      "score": 100.0
+    },
+    {
+      "font": "Tiro Kannada",
+      "score": 100.0
+    },
+    {
+      "font": "Tiro Tamil",
+      "score": 100.0
+    },
+    {
+      "font": "Tiro Telugu",
+      "score": 100.0
+    },
+    {
+      "font": "Trykker",
+      "score": 100.0
+    },
+    {
+      "font": "Wittgenstein",
+      "score": 100.0
+    },
+    {
+      "font": "Yrsa",
+      "score": 100.0
+    },
+    {
+      "font": "Calistoga",
+      "score": 80.0
+    },
+    {
+      "font": "Yuji Syuku",
+      "score": 80.0
+    },
+    {
+      "font": "Lateef",
+      "score": 70.0
+    },
+    {
+      "font": "Lora",
+      "score": 60.0
+    }
+  ],
+  "Monospace": [
+    {
+      "font": "Anonymous Pro",
+      "score": 100.0
+    },
+    {
+      "font": "Azeret Mono",
+      "score": 100.0
+    },
+    {
+      "font": "B612 Mono",
+      "score": 100.0
+    },
+    {
+      "font": "Chivo Mono",
+      "score": 100.0
+    },
+    {
+      "font": "Courier Prime",
+      "score": 100.0
+    },
+    {
+      "font": "Cutive Mono",
+      "score": 100.0
+    },
+    {
+      "font": "DM Mono",
+      "score": 100.0
+    },
+    {
+      "font": "Doto",
+      "score": 100.0
+    },
+    {
+      "font": "Fragment Mono",
+      "score": 100.0
+    },
+    {
+      "font": "Geist Mono",
+      "score": 100.0
+    },
+    {
+      "font": "IBM Plex Mono",
+      "score": 100.0
+    },
+    {
+      "font": "Inconsolata",
+      "score": 100.0
+    },
+    {
+      "font": "JetBrains Mono",
+      "score": 100.0
+    },
+    {
+      "font": "Kode Mono",
+      "score": 100.0
+    },
+    {
+      "font": "LXGW WenKai Mono TC",
+      "score": 100.0
+    },
+    {
+      "font": "Lekton",
+      "score": 100.0
+    },
+    {
+      "font": "M PLUS 1 Code",
+      "score": 100.0
+    },
+    {
+      "font": "Major Mono Display",
+      "score": 100.0
+    },
+    {
+      "font": "Martian Mono",
+      "score": 100.0
+    },
+    {
+      "font": "Monofett",
+      "score": 100.0
+    },
+    {
+      "font": "Nanum Gothic Coding",
+      "score": 100.0
+    },
+    {
+      "font": "Nova Mono",
+      "score": 100.0
+    },
+    {
+      "font": "Overpass Mono",
+      "score": 100.0
+    },
+    {
+      "font": "Oxygen Mono",
+      "score": 100.0
+    },
+    {
+      "font": "PT Mono",
+      "score": 100.0
+    },
+    {
+      "font": "Red Hat Mono",
+      "score": 100.0
+    },
+    {
+      "font": "Reddit Mono",
+      "score": 100.0
+    },
+    {
+      "font": "Share Tech Mono",
+      "score": 100.0
+    },
+    {
+      "font": "Sixtyfour",
+      "score": 100.0
+    },
+    {
+      "font": "Sometype Mono",
+      "score": 100.0
+    },
+    {
+      "font": "Sono",
+      "score": 100.0
+    },
+    {
+      "font": "Source Code Pro",
+      "score": 100.0
+    },
+    {
+      "font": "Space Mono",
+      "score": 100.0
+    },
+    {
+      "font": "Spline Sans Mono",
+      "score": 100.0
+    },
+    {
+      "font": "Syne Mono",
+      "score": 100.0
+    },
+    {
+      "font": "VT323",
+      "score": 100.0
+    },
+    {
+      "font": "Victor Mono",
+      "score": 100.0
+    },
+    {
+      "font": "Xanh Mono",
+      "score": 100.0
+    }
+  ],
+  "Futuristic": [
+    {
+      "font": "Anta",
+      "score": 100.0
+    },
+    {
+      "font": "Audiowide",
+      "score": 100.0
+    },
+    {
+      "font": "Electrolize",
+      "score": 100.0
+    },
+    {
+      "font": "Geo",
+      "score": 100.0
+    },
+    {
+      "font": "Iceberg",
+      "score": 100.0
+    },
+    {
+      "font": "Iceland",
+      "score": 100.0
+    },
+    {
+      "font": "Michroma",
+      "score": 100.0
+    },
+    {
+      "font": "Orbitron",
+      "score": 100.0
+    },
+    {
+      "font": "Quantico",
+      "score": 100.0
+    },
+    {
+      "font": "Tektur",
+      "score": 100.0
+    },
+    {
+      "font": "Zen Dots",
+      "score": 100.0
+    },
+    {
+      "font": "Gemunu Libre",
+      "score": 99.0
+    },
+    {
+      "font": "Jockey One",
+      "score": 99.0
+    },
+    {
+      "font": "Sarpanch",
+      "score": 99.0
+    },
+    {
+      "font": "Stalinist One",
+      "score": 99.0
+    },
+    {
+      "font": "Cairo Play",
+      "score": 98.0
+    },
+    {
+      "font": "Cairo",
+      "score": 98.0
+    },
+    {
+      "font": "Play",
+      "score": 98.0
+    },
+    {
+      "font": "Smooch Sans",
+      "score": 98.0
+    },
+    {
+      "font": "ZCOOL QingKe HuangYou",
+      "score": 98.0
+    },
+    {
+      "font": "Megrim",
+      "score": 97.0
+    },
+    {
+      "font": "Revalia",
+      "score": 95.0
+    },
+    {
+      "font": "Text Me One",
+      "score": 92.0
+    },
+    {
+      "font": "Kelly Slab",
+      "score": 89.0
+    },
+    {
+      "font": "Chathura",
+      "score": 80.0
+    },
+    {
+      "font": "Changa",
+      "score": 78.0
+    },
+    {
+      "font": "Bakbak One",
+      "score": 77.0
+    }
+  ],
+  "Woodtype": [
+    {
+      "font": "Arbutus",
+      "score": 100.0
+    }
+  ],
+  "Halloween": [
+    {
+      "font": "Are You Serious",
+      "score": 100.0
+    },
+    {
+      "font": "Butcherman",
+      "score": 100.0
+    },
+    {
+      "font": "Creepster",
+      "score": 100.0
+    },
+    {
+      "font": "Emilys Candy",
+      "score": 100.0
+    },
+    {
+      "font": "Flavors",
+      "score": 100.0
+    },
+    {
+      "font": "Jolly Lodger",
+      "score": 100.0
+    },
+    {
+      "font": "Mystery Quest",
+      "score": 100.0
+    },
+    {
+      "font": "Nosifer",
+      "score": 100.0
+    },
+    {
+      "font": "Rubik Wet Paint",
+      "score": 100.0
+    },
+    {
+      "font": "Underdog",
+      "score": 90.0
+    },
+    {
+      "font": "Purple Purse",
+      "score": 75.0
+    }
+  ],
+  "Upright Script": [
+    {
+      "font": "Dr Sugiyama",
+      "score": 100.0
+    },
+    {
+      "font": "Fruktur",
+      "score": 100.0
+    },
+    {
+      "font": "Grand Hotel",
+      "score": 100.0
+    },
+    {
+      "font": "Kavoon",
+      "score": 100.0
+    },
+    {
+      "font": "Sofia",
+      "score": 100.0
+    },
+    {
+      "font": "Stalemate",
+      "score": 100.0
+    },
+    {
+      "font": "Style Script",
+      "score": 100.0
+    },
+    {
+      "font": "Gabriela",
+      "score": 80.0
+    },
+    {
+      "font": "Kurale",
+      "score": 80.0
+    },
+    {
+      "font": "Arima",
+      "score": 30.0
+    }
+  ],
+  "Glyphic": [
+    {
+      "font": "Asul",
+      "score": 100.0
+    },
+    {
+      "font": "DynaPuff",
+      "score": 100.0
+    },
+    {
+      "font": "Faculty Glyphic",
+      "score": 100.0
+    },
+    {
+      "font": "Farro",
+      "score": 100.0
+    },
+    {
+      "font": "Galdeano",
+      "score": 100.0
+    },
+    {
+      "font": "Julius Sans One",
+      "score": 100.0
+    },
+    {
+      "font": "Mouse Memoirs",
+      "score": 100.0
+    },
+    {
+      "font": "Red Rose",
+      "score": 100.0
+    },
+    {
+      "font": "El Messiri",
+      "score": 80.0
+    }
+  ],
+  "Rounded": [
+    {
+      "font": "Averia Libre",
+      "score": 100.0
+    },
+    {
+      "font": "Averia Sans Libre",
+      "score": 100.0
+    },
+    {
+      "font": "Bagel Fat One",
+      "score": 100.0
+    },
+    {
+      "font": "Baloo 2",
+      "score": 100.0
+    },
+    {
+      "font": "Baloo Bhai 2",
+      "score": 100.0
+    },
+    {
+      "font": "Baloo Bhaijaan 2",
+      "score": 100.0
+    },
+    {
+      "font": "Baloo Bhaina 2",
+      "score": 100.0
+    },
+    {
+      "font": "Baloo Chettan 2",
+      "score": 100.0
+    },
+    {
+      "font": "Baloo Da 2",
+      "score": 100.0
+    },
+    {
+      "font": "Baloo Paaji 2",
+      "score": 100.0
+    },
+    {
+      "font": "Baloo Tamma 2",
+      "score": 100.0
+    },
+    {
+      "font": "Baloo Tammudu 2",
+      "score": 100.0
+    },
+    {
+      "font": "Baloo Thambi 2",
+      "score": 100.0
+    },
+    {
+      "font": "Balsamiq Sans",
+      "score": 100.0
+    },
+    {
+      "font": "Codystar",
+      "score": 100.0
+    },
+    {
+      "font": "Dosis",
+      "score": 100.0
+    },
+    {
+      "font": "Gaegu",
+      "score": 100.0
+    },
+    {
+      "font": "Gruppo",
+      "score": 100.0
+    },
+    {
+      "font": "Gugi",
+      "score": 100.0
+    },
+    {
+      "font": "Jua",
+      "score": 100.0
+    },
+    {
+      "font": "Jura",
+      "score": 100.0
+    },
+    {
+      "font": "Madimi One",
+      "score": 100.0
+    },
+    {
+      "font": "Mallanna",
+      "score": 100.0
+    },
+    {
+      "font": "Mandali",
+      "score": 100.0
+    },
+    {
+      "font": "Monomaniac One",
+      "score": 100.0
+    },
+    {
+      "font": "NTR",
+      "score": 100.0
+    },
+    {
+      "font": "Nunito Sans",
+      "score": 100.0
+    },
+    {
+      "font": "Nunito",
+      "score": 100.0
+    },
+    {
+      "font": "Poetsen One",
+      "score": 100.0
+    },
+    {
+      "font": "Sniglet",
+      "score": 100.0
+    },
+    {
+      "font": "Sofadi One",
+      "score": 100.0
+    },
+    {
+      "font": "Supermercado One",
+      "score": 100.0
+    },
+    {
+      "font": "Tsukimi Rounded",
+      "score": 100.0
+    },
+    {
+      "font": "Wire One",
+      "score": 100.0
+    },
+    {
+      "font": "Zen Kurenaido",
+      "score": 100.0
+    },
+    {
+      "font": "Zen Loop",
+      "score": 100.0
+    },
+    {
+      "font": "Dangrek",
+      "score": 80.0
+    },
+    {
+      "font": "Marmelad",
+      "score": 80.0
+    },
+    {
+      "font": "Phetsarath",
+      "score": 75.0
+    }
+  ],
+  "Distressed": [
+    {
+      "font": "Babylonica",
+      "score": 100.0
+    },
+    {
+      "font": "Cabin Sketch",
+      "score": 100.0
+    },
+    {
+      "font": "Chelsea Market",
+      "score": 100.0
+    },
+    {
+      "font": "Estonia",
+      "score": 100.0
+    },
+    {
+      "font": "Freckle Face",
+      "score": 100.0
+    },
+    {
+      "font": "Metal Mania",
+      "score": 100.0
+    },
+    {
+      "font": "Palette Mosaic",
+      "score": 100.0
+    },
+    {
+      "font": "Road Rage",
+      "score": 100.0
+    },
+    {
+      "font": "Rubik Dirt",
+      "score": 100.0
+    },
+    {
+      "font": "Rubik Distressed",
+      "score": 100.0
+    },
+    {
+      "font": "Rubik Gemstones",
+      "score": 100.0
+    },
+    {
+      "font": "Rubik Glitch Pop",
+      "score": 100.0
+    },
+    {
+      "font": "Rubik Iso",
+      "score": 100.0
+    },
+    {
+      "font": "Rubik Lines",
+      "score": 100.0
+    },
+    {
+      "font": "Rubik Scribble",
+      "score": 90.0
+    },
+    {
+      "font": "Rubik Vinyl",
+      "score": 90.0
+    }
+  ],
+  "Grotesque": [
+    {
+      "font": "Bowlby One SC",
+      "score": 100.0
+    },
+    {
+      "font": "Bowlby One",
+      "score": 100.0
+    },
+    {
+      "font": "Chivo",
+      "score": 100.0
+    },
+    {
+      "font": "Fjalla One",
+      "score": 100.0
+    },
+    {
+      "font": "Gidugu",
+      "score": 100.0
+    },
+    {
+      "font": "Host Grotesk",
+      "score": 100.0
+    },
+    {
+      "font": "Kantumruy Pro",
+      "score": 100.0
+    },
+    {
+      "font": "Karla Tamil Inclined",
+      "score": 100.0
+    },
+    {
+      "font": "Karla Tamil Upright",
+      "score": 100.0
+    },
+    {
+      "font": "Karla",
+      "score": 100.0
+    },
+    {
+      "font": "League Gothic",
+      "score": 100.0
+    },
+    {
+      "font": "Libre Franklin",
+      "score": 100.0
+    },
+    {
+      "font": "Londrina Outline",
+      "score": 100.0
+    },
+    {
+      "font": "Londrina Shadow",
+      "score": 100.0
+    },
+    {
+      "font": "Londrina Sketch",
+      "score": 100.0
+    },
+    {
+      "font": "Londrina Solid",
+      "score": 100.0
+    },
+    {
+      "font": "Oswald",
+      "score": 100.0
+    },
+    {
+      "font": "Pathway Gothic One",
+      "score": 100.0
+    },
+    {
+      "font": "Public Sans",
+      "score": 100.0
+    },
+    {
+      "font": "Puritan",
+      "score": 100.0
+    },
+    {
+      "font": "Ramabhadra",
+      "score": 100.0
+    },
+    {
+      "font": "Rethink Sans",
+      "score": 100.0
+    },
+    {
+      "font": "Schibsted Grotesk",
+      "score": 100.0
+    },
+    {
+      "font": "Shippori Antique B1",
+      "score": 100.0
+    },
+    {
+      "font": "Shippori Antique",
+      "score": 100.0
+    },
+    {
+      "font": "Six Caps",
+      "score": 100.0
+    },
+    {
+      "font": "Squada One",
+      "score": 100.0
+    },
+    {
+      "font": "Staatliches",
+      "score": 100.0
+    },
+    {
+      "font": "Mona Sans",
+      "score": 95.0
+    },
+    {
+      "font": "Overpass",
+      "score": 90.0
+    },
+    {
+      "font": "Padauk",
+      "score": 90.0
+    },
+    {
+      "font": "Concert One",
+      "score": 80.0
+    },
+    {
+      "font": "Dela Gothic One",
+      "score": 80.0
+    },
+    {
+      "font": "Freeman",
+      "score": 70.0
+    },
+    {
+      "font": "RocknRoll One",
+      "score": 50.0
+    },
+    {
+      "font": "Seymour One",
+      "score": 50.0
+    },
+    {
+      "font": "Bayon",
+      "score": 40.0
+    }
+  ],
+  "Formal": [
+    {
+      "font": "Beau Rivage",
+      "score": 100.0
+    },
+    {
+      "font": "Bonheur Royale",
+      "score": 100.0
+    },
+    {
+      "font": "Charm",
+      "score": 100.0
+    },
+    {
+      "font": "Cookie",
+      "score": 100.0
+    },
+    {
+      "font": "Corinthia",
+      "score": 100.0
+    },
+    {
+      "font": "Dynalight",
+      "score": 100.0
+    },
+    {
+      "font": "Engagement",
+      "score": 100.0
+    },
+    {
+      "font": "Ephesis",
+      "score": 100.0
+    },
+    {
+      "font": "Explora",
+      "score": 100.0
+    },
+    {
+      "font": "Felipa",
+      "score": 100.0
+    },
+    {
+      "font": "Herr Von Muellerhoff",
+      "score": 100.0
+    },
+    {
+      "font": "Island Moments",
+      "score": 100.0
+    },
+    {
+      "font": "Italianno",
+      "score": 100.0
+    },
+    {
+      "font": "Lugrasimo",
+      "score": 100.0
+    },
+    {
+      "font": "Luxurious Script",
+      "score": 100.0
+    },
+    {
+      "font": "Meie Script",
+      "score": 100.0
+    },
+    {
+      "font": "MonteCarlo",
+      "score": 100.0
+    },
+    {
+      "font": "Moon Dance",
+      "score": 100.0
+    },
+    {
+      "font": "Parisienne",
+      "score": 100.0
+    },
+    {
+      "font": "Tangerine",
+      "score": 100.0
+    },
+    {
+      "font": "Petit Formal Script",
+      "score": 90.0
+    },
+    {
+      "font": "Playball",
+      "score": 80.0
+    },
+    {
+      "font": "Romanesco",
+      "score": 80.0
+    },
+    {
+      "font": "Charmonman",
+      "score": 70.0
+    },
+    {
+      "font": "Shalimar",
+      "score": 70.0
+    }
+  ],
+  "Superellipse": [
+    {
+      "font": "Do Hyeon",
+      "score": 100.0
+    },
+    {
+      "font": "Economica",
+      "score": 100.0
+    },
+    {
+      "font": "Exo 2",
+      "score": 100.0
+    },
+    {
+      "font": "Exo",
+      "score": 100.0
+    },
+    {
+      "font": "Genos",
+      "score": 100.0
+    },
+    {
+      "font": "Jomhuria",
+      "score": 100.0
+    },
+    {
+      "font": "Koulen",
+      "score": 100.0
+    },
+    {
+      "font": "Metrophobic",
+      "score": 100.0
+    },
+    {
+      "font": "Mina",
+      "score": 100.0
+    },
+    {
+      "font": "Monda",
+      "score": 100.0
+    },
+    {
+      "font": "Offside",
+      "score": 100.0
+    },
+    {
+      "font": "Oxanium",
+      "score": 100.0
+    },
+    {
+      "font": "Rajdhani",
+      "score": 100.0
+    },
+    {
+      "font": "Blinker",
+      "score": 90.0
+    },
+    {
+      "font": "Coda",
+      "score": 90.0
+    },
+    {
+      "font": "Beiruti",
+      "score": 80.0
+    },
+    {
+      "font": "Miriam Libre",
+      "score": 70.0
+    },
+    {
+      "font": "Chau Philomene One",
+      "score": 50.0
+    }
+  ],
+  "Christmas": [
+    {
+      "font": "Berkshire Swash",
+      "score": 99.0
+    }
+  ],
+  "Clarendon": [
+    {
+      "font": "Besley",
+      "score": 100.0
+    },
+    {
+      "font": "Crete Round",
+      "score": 100.0
+    },
+    {
+      "font": "Montagu Slab",
+      "score": 100.0
+    },
+    {
+      "font": "Moul",
+      "score": 100.0
+    },
+    {
+      "font": "Orelega One",
+      "score": 100.0
+    },
+    {
+      "font": "Pridi",
+      "score": 100.0
+    },
+    {
+      "font": "Cutive",
+      "score": 80.0
+    }
+  ],
+  "Wacky": [
+    {
+      "font": "Caesar Dressing",
+      "score": 100.0
+    },
+    {
+      "font": "Gorditas",
+      "score": 100.0
+    },
+    {
+      "font": "Griffy",
+      "score": 100.0
+    },
+    {
+      "font": "Joti One",
+      "score": 100.0
+    },
+    {
+      "font": "Kirang Haerang",
+      "score": 100.0
+    },
+    {
+      "font": "Moo Lah Lah",
+      "score": 100.0
+    },
+    {
+      "font": "Ole",
+      "score": 100.0
+    },
+    {
+      "font": "Original Surfer",
+      "score": 100.0
+    },
+    {
+      "font": "Raleway Dots",
+      "score": 100.0
+    },
+    {
+      "font": "Vibes",
+      "score": 90.0
+    },
+    {
+      "font": "Bigelow Rules",
+      "score": 60.0
+    }
+  ],
+  "Scotch": [
+    {
+      "font": "Faustina",
+      "score": 100.0
+    },
+    {
+      "font": "IBM Plex Serif",
+      "score": 100.0
+    },
+    {
+      "font": "Trocchi",
+      "score": 100.0
+    },
+    {
+      "font": "Bigshot One",
+      "score": 80.0
+    },
+    {
+      "font": "Hina Mincho",
+      "score": 60.0
+    }
+  ],
+  "Fancy": [
+    {
+      "font": "Rouge Script",
+      "score": 99.0
+    },
+    {
+      "font": "Birthstone",
+      "score": 95.0
+    },
+    {
+      "font": "Lobster",
+      "score": 92.0
+    },
+    {
+      "font": "Pattaya",
+      "score": 92.0
+    },
+    {
+      "font": "Yesteryear",
+      "score": 91.0
+    },
+    {
+      "font": "Ruthie",
+      "score": 75.0
+    }
+  ],
+  "Awkward": [
+    {
+      "font": "Chokokutai",
+      "score": 100.0
+    },
+    {
+      "font": "Rubik Burned",
+      "score": 100.0
+    },
+    {
+      "font": "Rubik Glitch",
+      "score": 100.0
+    },
+    {
+      "font": "Rubik Microbe",
+      "score": 100.0
+    },
+    {
+      "font": "Rubik Pixels",
+      "score": 100.0
+    },
+    {
+      "font": "Combo",
+      "score": 98.0
+    },
+    {
+      "font": "Lakki Reddy",
+      "score": 98.0
+    },
+    {
+      "font": "Qahiri",
+      "score": 98.0
+    },
+    {
+      "font": "Black And White Picture",
+      "score": 97.0
+    },
+    {
+      "font": "Passero One",
+      "score": 97.0
+    },
+    {
+      "font": "Ruslan Display",
+      "score": 97.0
+    },
+    {
+      "font": "Poor Story",
+      "score": 95.0
+    },
+    {
+      "font": "Potta One",
+      "score": 95.0
+    },
+    {
+      "font": "Frijole",
+      "score": 93.0
+    },
+    {
+      "font": "Ribeye Marrow",
+      "score": 92.0
+    },
+    {
+      "font": "Ribeye",
+      "score": 92.0
+    },
+    {
+      "font": "Miltonian Tattoo",
+      "score": 85.0
+    },
+    {
+      "font": "Stick",
+      "score": 80.0
+    },
+    {
+      "font": "Neucha",
+      "score": 76.0
+    },
+    {
+      "font": "Reggae One",
+      "score": 72.0
+    },
+    {
+      "font": "Yuji Mai",
+      "score": 72.0
+    },
+    {
+      "font": "Jaini Purva",
+      "score": 33.0
+    },
+    {
+      "font": "Mirza",
+      "score": 21.0
+    }
+  ],
+  "Lunar New Year": [
+    {
+      "font": "Diphylleia",
+      "score": 85.0
+    },
+    {
+      "font": "Black Han Sans",
+      "score": 71.0
+    }
+  ],
+  "Informal": [
+    {
+      "font": "Boogaloo",
+      "score": 100.0
+    },
+    {
+      "font": "Fuggles",
+      "score": 100.0
+    },
+    {
+      "font": "Galada",
+      "score": 100.0
+    },
+    {
+      "font": "Grechen Fuemen",
+      "score": 100.0
+    },
+    {
+      "font": "Kolker Brush",
+      "score": 100.0
+    },
+    {
+      "font": "La Belle Aurore",
+      "score": 100.0
+    },
+    {
+      "font": "Lily Script One",
+      "score": 100.0
+    },
+    {
+      "font": "Marck Script",
+      "score": 100.0
+    },
+    {
+      "font": "Miniver",
+      "score": 100.0
+    },
+    {
+      "font": "Princess Sofia",
+      "score": 100.0
+    },
+    {
+      "font": "Puppies Play",
+      "score": 100.0
+    },
+    {
+      "font": "Ranga",
+      "score": 100.0
+    },
+    {
+      "font": "Ruge Boogie",
+      "score": 100.0
+    },
+    {
+      "font": "Sassy Frass",
+      "score": 100.0
+    },
+    {
+      "font": "Send Flowers",
+      "score": 100.0
+    },
+    {
+      "font": "Splash",
+      "score": 100.0
+    },
+    {
+      "font": "Square Peg",
+      "score": 100.0
+    },
+    {
+      "font": "Sacramento",
+      "score": 90.0
+    }
+  ],
+  "Cute": [
+    {
+      "font": "Borel",
+      "score": 100.0
+    },
+    {
+      "font": "Delius Swash Caps",
+      "score": 100.0
+    },
+    {
+      "font": "Delius",
+      "score": 100.0
+    },
+    {
+      "font": "Meow Script",
+      "score": 100.0
+    },
+    {
+      "font": "Pacifico",
+      "score": 100.0
+    },
+    {
+      "font": "Sour Gummy",
+      "score": 100.0
+    },
+    {
+      "font": "Delius Unicase",
+      "score": 99.0
+    }
+  ],
+  "Excited": [
+    {
+      "font": "Eater",
+      "score": 100.0
+    },
+    {
+      "font": "Henny Penny",
+      "score": 100.0
+    },
+    {
+      "font": "Kablammo",
+      "score": 100.0
+    },
+    {
+      "font": "Buda",
+      "score": 51.0
+    }
+  ],
+  "Inline": [
+    {
+      "font": "Bungee Inline",
+      "score": 100.0
+    },
+    {
+      "font": "Geostar",
+      "score": 100.0
+    },
+    {
+      "font": "Miltonian",
+      "score": 100.0
+    },
+    {
+      "font": "Train One",
+      "score": 100.0
+    }
+  ],
+  "Childlike": [
+    {
+      "font": "Caveat Brush",
+      "score": 100.0
+    },
+    {
+      "font": "Gamja Flower",
+      "score": 100.0
+    },
+    {
+      "font": "Margarine",
+      "score": 100.0
+    },
+    {
+      "font": "Shadows Into Light Two",
+      "score": 100.0
+    },
+    {
+      "font": "Shadows Into Light",
+      "score": 100.0
+    },
+    {
+      "font": "Finger Paint",
+      "score": 99.0
+    },
+    {
+      "font": "Twinkle Star",
+      "score": 96.0
+    },
+    {
+      "font": "Klee One",
+      "score": 88.0
+    },
+    {
+      "font": "Waiting for the Sunrise",
+      "score": 80.0
+    },
+    {
+      "font": "Yuji Hentaigana Akari",
+      "score": 75.0
+    },
+    {
+      "font": "Yuji Hentaigana Akebono",
+      "score": 75.0
+    },
+    {
+      "font": "Capriola",
+      "score": 70.0
+    }
+  ],
+  "Techno": [
+    {
+      "font": "Chakra Petch",
+      "score": 100.0
+    },
+    {
+      "font": "DotGothic16",
+      "score": 100.0
+    },
+    {
+      "font": "Handjet",
+      "score": 100.0
+    },
+    {
+      "font": "Nova Square",
+      "score": 100.0
+    },
+    {
+      "font": "Pixelify Sans",
+      "score": 100.0
+    },
+    {
+      "font": "Press Start 2P",
+      "score": 100.0
+    },
+    {
+      "font": "Prosto One",
+      "score": 100.0
+    },
+    {
+      "font": "Rubik 80s Fade",
+      "score": 100.0
+    },
+    {
+      "font": "Rubik Doodle Triangles",
+      "score": 100.0
+    },
+    {
+      "font": "Rubik Storm",
+      "score": 100.0
+    },
+    {
+      "font": "Silkscreen",
+      "score": 100.0
+    },
+    {
+      "font": "Turret Road",
+      "score": 100.0
+    }
+  ],
+  "Brush": [
+    {
+      "font": "Chela One",
+      "score": 100.0
+    },
+    {
+      "font": "Dokdo",
+      "score": 100.0
+    },
+    {
+      "font": "Happy Monkey",
+      "score": 100.0
+    },
+    {
+      "font": "Itim",
+      "score": 100.0
+    },
+    {
+      "font": "Lemon",
+      "score": 100.0
+    },
+    {
+      "font": "Lemonada",
+      "score": 100.0
+    },
+    {
+      "font": "Nerko One",
+      "score": 100.0
+    },
+    {
+      "font": "Protest Revolution",
+      "score": 100.0
+    },
+    {
+      "font": "Protest Riot",
+      "score": 100.0
+    },
+    {
+      "font": "Yatra One",
+      "score": 100.0
+    },
+    {
+      "font": "Single Day",
+      "score": 80.0
+    }
+  ],
+  "Blobby": [
+    {
+      "font": "Cherry Bomb One",
+      "score": 100.0
+    },
+    {
+      "font": "Stylish",
+      "score": 90.0
+    }
+  ],
+  "Hanukkah": [
+    {
+      "font": "Varela Round",
+      "score": 100.0
+    },
+    {
+      "font": "Frank Ruhl Libre",
+      "score": 99.0
+    },
+    {
+      "font": "Courgette",
+      "score": 98.0
+    },
+    {
+      "font": "Snowburst One",
+      "score": 93.0
+    }
+  ],
+  "Valentine's Day": [
+    {
+      "font": "Dancing Script",
+      "score": 96.0
+    },
+    {
+      "font": "Grey Qo",
+      "score": 90.0
+    },
+    {
+      "font": "Life Savers",
+      "score": 80.0
+    },
+    {
+      "font": "Waterfall",
+      "score": 73.0
+    },
+    {
+      "font": "Padyakke Expanded One",
+      "score": 67.0
+    },
+    {
+      "font": "Matemasie",
+      "score": 65.0
+    },
+    {
+      "font": "Mochiy Pop One",
+      "score": 55.0
+    }
+  ],
+  "Tuscan": [
+    {
+      "font": "Danfo",
+      "score": 100.0
+    },
+    {
+      "font": "Rye",
+      "score": 100.0
+    },
+    {
+      "font": "Sancreek",
+      "score": 100.0
+    }
+  ],
+  "Didone": [
+    {
+      "font": "Diplomata SC",
+      "score": 100.0
+    },
+    {
+      "font": "Diplomata",
+      "score": 100.0
+    },
+    {
+      "font": "Elsie Swash Caps",
+      "score": 100.0
+    },
+    {
+      "font": "Fredericka the Great",
+      "score": 100.0
+    },
+    {
+      "font": "GFS Didot",
+      "score": 100.0
+    },
+    {
+      "font": "Imbue",
+      "score": 100.0
+    },
+    {
+      "font": "Libre Bodoni",
+      "score": 100.0
+    },
+    {
+      "font": "Playfair Display SC",
+      "score": 100.0
+    },
+    {
+      "font": "Playfair Display",
+      "score": 100.0
+    },
+    {
+      "font": "Playfair",
+      "score": 100.0
+    },
+    {
+      "font": "Prata",
+      "score": 100.0
+    },
+    {
+      "font": "Rozha One",
+      "score": 100.0
+    },
+    {
+      "font": "Suranna",
+      "score": 100.0
+    },
+    {
+      "font": "Vidaloka",
+      "score": 100.0
+    },
+    {
+      "font": "Elsie",
+      "score": 90.0
+    },
+    {
+      "font": "Kalnia",
+      "score": 55.0
+    }
+  ],
+  "Shaded": [
+    {
+      "font": "Ewert",
+      "score": 100.0
+    },
+    {
+      "font": "Rampart One",
+      "score": 100.0
+    },
+    {
+      "font": "Rubik Doodle Shadow",
+      "score": 100.0
+    },
+    {
+      "font": "Vast Shadow",
+      "score": 100.0
+    }
+  ],
+  "Art Deco": [
+    {
+      "font": "Notable",
+      "score": 100.0
+    },
+    {
+      "font": "Federo",
+      "score": 60.0
+    }
+  ],
+  "Symbols": [
+    {
+      "font": "Flow Block",
+      "score": 100.0
+    },
+    {
+      "font": "Flow Circular",
+      "score": 100.0
+    },
+    {
+      "font": "Flow Rounded",
+      "score": 100.0
+    },
+    {
+      "font": "Libre Barcode 128 Text",
+      "score": 100.0
+    },
+    {
+      "font": "Libre Barcode 128",
+      "score": 100.0
+    },
+    {
+      "font": "Libre Barcode 39 Extended Text",
+      "score": 100.0
+    },
+    {
+      "font": "Libre Barcode 39 Extended",
+      "score": 100.0
+    },
+    {
+      "font": "Libre Barcode 39 Text",
+      "score": 100.0
+    },
+    {
+      "font": "Libre Barcode 39",
+      "score": 100.0
+    },
+    {
+      "font": "Libre Barcode EAN13 Text",
+      "score": 100.0
+    },
+    {
+      "font": "Linefont",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Color Emoji",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Emoji",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Music",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Symbols 2",
+      "score": 100.0
+    },
+    {
+      "font": "Noto Sans Symbols",
+      "score": 100.0
+    },
+    {
+      "font": "Redacted Script",
+      "score": 100.0
+    },
+    {
+      "font": "Redacted",
+      "score": 100.0
+    },
+    {
+      "font": "Wavefont",
+      "score": 100.0
+    },
+    {
+      "font": "Yarndings 12 Charted",
+      "score": 100.0
+    },
+    {
+      "font": "Yarndings 12",
+      "score": 100.0
+    },
+    {
+      "font": "Yarndings 20 Charted",
+      "score": 100.0
+    },
+    {
+      "font": "Yarndings 20",
+      "score": 100.0
+    }
+  ],
+  "Diwali": [
+    {
+      "font": "Gayathri",
+      "score": 92.0
+    },
+    {
+      "font": "Jaini",
+      "score": 91.0
+    },
+    {
+      "font": "Neonderthaw",
+      "score": 75.0
+    }
+  ],
+  "Happy": [
+    {
+      "font": "Hachi Maru Pop",
+      "score": 100.0
+    },
+    {
+      "font": "Marhey",
+      "score": 90.0
+    },
+    {
+      "font": "Truculenta",
+      "score": 87.0
+    },
+    {
+      "font": "Preahvihear",
+      "score": 85.0
+    },
+    {
+      "font": "Kiwi Maru",
+      "score": 72.0
+    },
+    {
+      "font": "Grandstander",
+      "score": 56.0
+    },
+    {
+      "font": "McLaren",
+      "score": 42.0
+    }
+  ],
+  "Fat Face": [
+    {
+      "font": "Gravitas One",
+      "score": 100.0
+    }
+  ],
+  "Rugged": [
+    {
+      "font": "Rubik Beastly",
+      "score": 100.0
+    },
+    {
+      "font": "Rubik Marker Hatch",
+      "score": 99.7
+    },
+    {
+      "font": "IM Fell French Canon SC",
+      "score": 98.6
+    },
+    {
+      "font": "IM Fell French Canon",
+      "score": 98.6
+    },
+    {
+      "font": "IM Fell Great Primer SC",
+      "score": 98.5
+    },
+    {
+      "font": "IM Fell Great Primer",
+      "score": 98.5
+    },
+    {
+      "font": "Taprom",
+      "score": 88.0
+    }
+  ],
+  "Pixel": [
+    {
+      "font": "Jacquard 12 Charted",
+      "score": 100.0
+    },
+    {
+      "font": "Jacquard 24 Charted",
+      "score": 100.0
+    },
+    {
+      "font": "Jacquarda Bastarda 9 Charted",
+      "score": 100.0
+    },
+    {
+      "font": "Jacquarda Bastarda 9",
+      "score": 100.0
+    },
+    {
+      "font": "Jersey 10 Charted",
+      "score": 100.0
+    },
+    {
+      "font": "Jersey 10",
+      "score": 100.0
+    },
+    {
+      "font": "Jersey 15 Charted",
+      "score": 100.0
+    },
+    {
+      "font": "Jersey 15",
+      "score": 100.0
+    },
+    {
+      "font": "Jersey 20 Charted",
+      "score": 100.0
+    },
+    {
+      "font": "Jersey 20",
+      "score": 100.0
+    },
+    {
+      "font": "Jersey 25 Charted",
+      "score": 100.0
+    },
+    {
+      "font": "Jersey 25",
+      "score": 100.0
+    },
+    {
+      "font": "Micro 5 Charted",
+      "score": 100.0
+    },
+    {
+      "font": "Micro 5",
+      "score": 100.0
+    },
+    {
+      "font": "Tiny5",
+      "score": 100.0
+    }
+  ],
+  "Medieval": [
+    {
+      "font": "MedievalSharp",
+      "score": 100.0
+    },
+    {
+      "font": "Metamorphous",
+      "score": 100.0
+    },
+    {
+      "font": "Nova Oval",
+      "score": 20.0
+    }
+  ]
+}

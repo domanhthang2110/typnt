@@ -56,7 +56,7 @@
             <div class="relative h-full" id="categoriesDropdown">
               <button
                 type="button"
-                class="second-bar-button relative z-40 py-2 pt-4 px-4 hover:text-white transition-all duration-200 flex items-center gap-2"
+                class="second-bar-button relative  py-2 pt-4 px-4 hover:text-white transition-all duration-200 flex items-center gap-2"
                 id="categoriesButton"
               >
                 <span>Categories</span
@@ -84,7 +84,7 @@
                     <input
                       type="radio"
                       name="category-filter"
-                      value="sans_serif"
+                      value="sans-serif"
                     />
                     Sans Serif
                   </label>
@@ -116,44 +116,31 @@
               </div>
             </div>
 
-            <div class="relative h-full" id="propertiesDropdown">
+            <div class="relative h-full" id="personalityDropdown">
               <button
                 type="button"
-                class="second-bar-button py-2 pt-4 text-left hover:text-white transition-all duration-200 ease-in-out z-30 relative flex items-center gap-2"
-                id="propertiesButton"
-              >
-                <span>Properties</span
-                ><span class="ml-1 text-xl dd-triangle" id="propertiesTriangle"
-                  >▾</span
-                >
-              </button>
-              <div
-                class="py-1 absolute left-0 right-0 transition-all duration-200 ease-in-out opacity-0 invisible bg-[#040A10] z-10"
-                id="propertiesContent"
-              >
-                <div class="mt-10 px-4 py-2">
-                  <p class="text-sm">Property filters will appear here</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="relative h-full" id="personalityContainer">
-              <button
-                type="button"
-                class="second-bar-button py-2 pt-4 text-left hover:text-white transition-all duration-200 ease-in-out z-30 relative flex items-center gap-2"
+                class="second-bar-button relative  py-2 pt-4 px-4 hover:text-white transition-all duration-200 flex items-center gap-2"
                 id="personalityButton"
               >
                 <span>Personality</span
-                ><span class="ml-1 text-xl dd-triangle" id="personalityTriangle"
-                  >▾</span
-                >
+                ><span class="ml-1 text-xl dd-triangle" id="personalityTriangle">▾</span>
               </button>
               <div
-                class="py-1 absolute left-0 right-0 transition-all duration-200 ease-in-out opacity-0 invisible bg-[#040A10] z-10"
                 id="personalityContent"
+                class="py-1 absolute left-0 right-0 mt-2 transition-all duration-200 ease-in-out opacity-0 invisible dropdown-content z-50"
               >
-                <div class="mt-10 px-4 py-2">
-                  <p class="text-sm">Personality filters will appear here</p>
+                <div class="second-bar-dropdown-wrapper" id="personalityDropdownContent">
+                  <!-- The subcategory options will be inserted dynamically -->
+                  <label class="block px-4 py-2 text-sm">
+                    <input
+                      type="radio"
+                      name="personality-filter"
+                      value="all"
+                      checked
+                    />
+                    All
+                  </label>
+                  <!-- Other options will be dynamically added here -->
                 </div>
               </div>
             </div>

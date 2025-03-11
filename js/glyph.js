@@ -1388,7 +1388,7 @@ function formatCategory(category) {
   // Convert from UPPERCASE_WITH_UNDERSCORE to Title Case
   return category
     .toLowerCase()
-    .split('_')
+    .split('-')
     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
 }

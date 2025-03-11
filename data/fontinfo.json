@@ -2,7 +2,7 @@
   {
     "name": "42dot Sans",
     "designer": "42dot",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2024-12-23",
     "license": "OFL",
     "styles": [
@@ -29,7 +29,7 @@
   {
     "name": "ABeeZee",
     "designer": "Anja Meiners",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-09-30",
     "license": "OFL",
     "styles": [
@@ -47,7 +47,7 @@
   {
     "name": "Abel",
     "designer": "MADType",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-08-03",
     "license": "OFL",
     "styles": [
@@ -135,7 +135,7 @@
   {
     "name": "Acme",
     "designer": "Juan Pablo del Peral, Huerta Tipográfica",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-12-19",
     "license": "OFL",
     "styles": [
@@ -151,7 +151,7 @@
   {
     "name": "Actor",
     "designer": "Thomas Junold",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-08-03",
     "license": "OFL",
     "styles": [
@@ -199,7 +199,7 @@
   {
     "name": "Advent Pro",
     "designer": "VivaRado",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-02-29",
     "license": "OFL",
     "styles": [
@@ -243,7 +243,7 @@
   {
     "name": "Afacad",
     "designer": "Kristian Möller, Dicotype",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2023-10-20",
     "license": "OFL",
     "styles": [
@@ -273,7 +273,7 @@
   {
     "name": "Afacad Flux",
     "designer": "Kristian Möller, Dicotype",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2024-06-12",
     "license": "OFL",
     "styles": [
@@ -323,7 +323,7 @@
   {
     "name": "Agdasima",
     "designer": "The DocRepair Project, Patric King",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2023-04-03",
     "license": "OFL",
     "styles": [
@@ -379,7 +379,7 @@
   {
     "name": "Akatab",
     "designer": "SIL International",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2023-02-15",
     "license": "OFL",
     "styles": [
@@ -453,7 +453,7 @@
   {
     "name": "Akshar",
     "designer": "Tall Chai",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-03-22",
     "license": "OFL",
     "styles": [
@@ -495,7 +495,7 @@
   {
     "name": "Alata",
     "designer": "Spyros Zevelakis, Eben Sorkin",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2019-11-08",
     "license": "OFL",
     "styles": [
@@ -511,7 +511,7 @@
   {
     "name": "Alatsi",
     "designer": "Spyros Zevelakis, Eben Sorkin",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2019-11-07",
     "license": "OFL",
     "styles": [
@@ -527,7 +527,7 @@
   {
     "name": "Albert Sans",
     "designer": "Andreas Rasmussen",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-06-09",
     "license": "OFL",
     "styles": [
@@ -567,7 +567,7 @@
   {
     "name": "Aldrich",
     "designer": "MADType",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-08-17",
     "license": "OFL",
     "styles": [
@@ -583,7 +583,7 @@
   {
     "name": "Alef",
     "designer": "Hagilda, Mushon Zer-Aviv",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2013-05-21",
     "license": "OFL",
     "styles": [
@@ -635,7 +635,7 @@
   {
     "name": "Alegreya Sans",
     "designer": "Juan Pablo del Peral, Huerta Tipográfica",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2013-12-04",
     "license": "OFL",
     "styles": [
@@ -671,7 +671,7 @@
   {
     "name": "Alegreya Sans SC",
     "designer": "Juan Pablo del Peral, Huerta Tipográfica",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2013-12-04",
     "license": "OFL",
     "styles": [
@@ -777,7 +777,7 @@
   {
     "name": "Alexandria",
     "designer": "Mohamed Gaber, Julieta Ulanovsky",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-11-04",
     "license": "OFL",
     "styles": [
@@ -946,7 +946,7 @@
   {
     "name": "Allerta",
     "designer": "Matt McInerney",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2010-11-30",
     "license": "OFL",
     "styles": [
@@ -962,7 +962,7 @@
   {
     "name": "Allerta Stencil",
     "designer": "Matt McInerney",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2010-11-30",
     "license": "OFL",
     "styles": [
@@ -1010,7 +1010,7 @@
   {
     "name": "Almarai",
     "designer": "Boutros Fonts, Mourad Boutros",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2019-06-04",
     "license": "OFL",
     "styles": [
@@ -1085,7 +1085,7 @@
   {
     "name": "Alumni Sans",
     "designer": "Robert Leuschke",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2021-06-19",
     "license": "OFL",
     "styles": [
@@ -1143,7 +1143,7 @@
   {
     "name": "Alumni Sans Inline One",
     "designer": "Robert Leuschke",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-02-24",
     "license": "OFL",
     "styles": [
@@ -1195,7 +1195,7 @@
   {
     "name": "Amaranth",
     "designer": "Gesine Todt",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-05-04",
     "license": "OFL",
     "styles": [
@@ -1250,7 +1250,7 @@
   {
     "name": "Amiko",
     "designer": "Impallari Type",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2016-06-20",
     "license": "OFL",
     "styles": [
@@ -1325,7 +1325,7 @@
   {
     "name": "Anaheim",
     "designer": "Vernon Adams",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-10-31",
     "license": "OFL",
     "styles": [
@@ -1383,7 +1383,7 @@
   {
     "name": "Andika",
     "designer": "SIL International",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-08-10",
     "license": "OFL",
     "styles": [
@@ -1404,7 +1404,7 @@
   {
     "name": "Anek Bangla",
     "designer": "Ek Type",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-02-09",
     "license": "OFL",
     "styles": [
@@ -1437,7 +1437,7 @@
   {
     "name": "Anek Devanagari",
     "designer": "Ek Type",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-02-09",
     "license": "OFL",
     "styles": [
@@ -1470,7 +1470,7 @@
   {
     "name": "Anek Gujarati",
     "designer": "Ek Type",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-02-09",
     "license": "OFL",
     "styles": [
@@ -1503,7 +1503,7 @@
   {
     "name": "Anek Gurmukhi",
     "designer": "Ek Type",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-02-16",
     "license": "OFL",
     "styles": [
@@ -1536,7 +1536,7 @@
   {
     "name": "Anek Kannada",
     "designer": "Ek Type",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-02-16",
     "license": "OFL",
     "styles": [
@@ -1569,7 +1569,7 @@
   {
     "name": "Anek Latin",
     "designer": "Ek Type",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-02-16",
     "license": "OFL",
     "styles": [
@@ -1602,7 +1602,7 @@
   {
     "name": "Anek Malayalam",
     "designer": "Ek Type",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-02-16",
     "license": "OFL",
     "styles": [
@@ -1635,7 +1635,7 @@
   {
     "name": "Anek Odia",
     "designer": "Ek Type",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-02-09",
     "license": "OFL",
     "styles": [
@@ -1668,7 +1668,7 @@
   {
     "name": "Anek Tamil",
     "designer": "Ek Type",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-02-09",
     "license": "OFL",
     "styles": [
@@ -1701,7 +1701,7 @@
   {
     "name": "Anek Telugu",
     "designer": "Ek Type",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-02-16",
     "license": "OFL",
     "styles": [
@@ -1805,7 +1805,7 @@
   {
     "name": "Anta",
     "designer": "Sergej Lebedev",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2024-01-25",
     "license": "OFL",
     "styles": [
@@ -1821,7 +1821,7 @@
   {
     "name": "Antic",
     "designer": "Santiago Orozco",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-08-31",
     "license": "OFL",
     "styles": [
@@ -1869,7 +1869,7 @@
   {
     "name": "Anton",
     "designer": "Vernon Adams",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-02-23",
     "license": "OFL",
     "styles": [
@@ -1885,7 +1885,7 @@
   {
     "name": "Antonio",
     "designer": "Vernon Adams",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2013-03-06",
     "license": "OFL",
     "styles": [
@@ -1913,7 +1913,7 @@
   {
     "name": "Anton SC",
     "designer": "Vernon Adams",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2024-05-27",
     "license": "OFL",
     "styles": [
@@ -1929,7 +1929,7 @@
   {
     "name": "Anuphan",
     "designer": "Cadson Demak",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2023-02-23",
     "license": "OFL",
     "styles": [
@@ -1957,7 +1957,7 @@
   {
     "name": "Anybody",
     "designer": "Tyler Finck",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-03-02",
     "license": "OFL",
     "styles": [
@@ -2083,7 +2083,7 @@
   {
     "name": "Archivo",
     "designer": "Omnibus-Type",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2016-12-03",
     "license": "OFL",
     "styles": [
@@ -2127,7 +2127,7 @@
   {
     "name": "Archivo Black",
     "designer": "Omnibus-Type",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-09-18",
     "license": "OFL",
     "styles": [
@@ -2143,7 +2143,7 @@
   {
     "name": "Archivo Narrow",
     "designer": "Omnibus-Type",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-09-18",
     "license": "OFL",
     "styles": [
@@ -2269,7 +2269,7 @@
   {
     "name": "Armata",
     "designer": "Viktoriya Grabowska",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-12-19",
     "license": "OFL",
     "styles": [
@@ -2285,7 +2285,7 @@
   {
     "name": "AR One Sans",
     "designer": "Niteesh Yadav",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2023-09-06",
     "license": "OFL",
     "styles": [
@@ -2314,7 +2314,7 @@
   {
     "name": "Arsenal",
     "designer": "Andrij Shevchenko",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2016-12-06",
     "license": "OFL",
     "styles": [
@@ -2335,7 +2335,7 @@
   {
     "name": "Arsenal SC",
     "designer": "Andrij Shevchenko",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2024-05-27",
     "license": "OFL",
     "styles": [
@@ -2393,7 +2393,7 @@
   {
     "name": "Arya",
     "designer": "Eduardo Tunni",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2015-05-20",
     "license": "OFL",
     "styles": [
@@ -2411,7 +2411,7 @@
   {
     "name": "Asap",
     "designer": "Omnibus-Type",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-01-25",
     "license": "OFL",
     "styles": [
@@ -2455,7 +2455,7 @@
   {
     "name": "Asap Condensed",
     "designer": "Omnibus-Type",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2016-12-07",
     "license": "OFL",
     "styles": [
@@ -2526,7 +2526,7 @@
   {
     "name": "Assistant",
     "designer": "Adobe Systems Inc., Ben Nathan",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2016-06-20",
     "license": "OFL",
     "styles": [
@@ -2572,7 +2572,7 @@
   {
     "name": "Asul",
     "designer": "Mariela Monsalve",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-12-19",
     "license": "OFL",
     "styles": [
@@ -2590,7 +2590,7 @@
   {
     "name": "Athiti",
     "designer": "Cadson Demak",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2016-06-20",
     "license": "OFL",
     "styles": [
@@ -2616,7 +2616,7 @@
   {
     "name": "Atkinson Hyperlegible",
     "designer": "Braille Institute, Applied Design Works, Elliott Scott, Megan Eiswerth, Linus Boman, Theodore Petrosky",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2021-04-30",
     "license": "OFL",
     "styles": [
@@ -2741,7 +2741,7 @@
   {
     "name": "Average Sans",
     "designer": "Eduardo Tunni",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-10-26",
     "license": "OFL",
     "styles": [
@@ -2885,7 +2885,7 @@
   {
     "name": "B612",
     "designer": "Nicolas Chauveau, Thomas Paillot, Jonathan Favre-Lamarine, Jean-Luc Vinot",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2018-11-21",
     "license": "OFL",
     "styles": [
@@ -3039,7 +3039,7 @@
   {
     "name": "Bai Jamjuree",
     "designer": "Cadson Demak",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2018-08-24",
     "license": "OFL",
     "styles": [
@@ -3423,7 +3423,7 @@
   {
     "name": "Barlow",
     "designer": "Jeremy Tribby",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2017-10-26",
     "license": "OFL",
     "styles": [
@@ -3465,7 +3465,7 @@
   {
     "name": "Barlow Condensed",
     "designer": "Jeremy Tribby",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2017-10-26",
     "license": "OFL",
     "styles": [
@@ -3507,7 +3507,7 @@
   {
     "name": "Barlow Semi Condensed",
     "designer": "Jeremy Tribby",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2017-10-26",
     "license": "OFL",
     "styles": [
@@ -3581,7 +3581,7 @@
   {
     "name": "Basic",
     "designer": "Magnus Gaarde",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-12-15",
     "license": "OFL",
     "styles": [
@@ -3671,7 +3671,7 @@
   {
     "name": "Bayon",
     "designer": "Danh Hong",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-03-02",
     "license": "OFL",
     "styles": [
@@ -3719,7 +3719,7 @@
   {
     "name": "Beiruti",
     "designer": "Boutros Fonts, Arlette Boutros, Volker Schnebel",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2024-06-07",
     "license": "OFL",
     "styles": [
@@ -3800,7 +3800,7 @@
   {
     "name": "Belleza",
     "designer": "Eduardo Tunni",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-03-29",
     "license": "OFL",
     "styles": [
@@ -3864,7 +3864,7 @@
   {
     "name": "BenchNine",
     "designer": "Vernon Adams",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-09-24",
     "license": "OFL",
     "styles": [
@@ -4000,7 +4000,7 @@
   {
     "name": "Be Vietnam Pro",
     "designer": "Lâm Bảo, Tony Le, ViệtAnh Nguyễn",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2021-06-13",
     "license": "OFL",
     "styles": [
@@ -4281,7 +4281,7 @@
   {
     "name": "Biryani",
     "designer": "Dan Reynolds, Mathieu Réguer",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2015-04-22",
     "license": "OFL",
     "styles": [
@@ -4349,7 +4349,7 @@
   {
     "name": "BIZ UDGothic",
     "designer": "Type Bank Co., Morisawa Inc.",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-03-16",
     "license": "OFL",
     "styles": [
@@ -4385,7 +4385,7 @@
   {
     "name": "BIZ UDPGothic",
     "designer": "Type Bank Co., Morisawa Inc.",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-03-16",
     "license": "OFL",
     "styles": [
@@ -4437,7 +4437,7 @@
   {
     "name": "Black Han Sans",
     "designer": "Zess Type",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2018-02-23",
     "license": "OFL",
     "styles": [
@@ -4517,7 +4517,7 @@
   {
     "name": "Blinker",
     "designer": "Juergen Huber",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2019-06-24",
     "license": "OFL",
     "styles": [
@@ -4775,7 +4775,7 @@
   {
     "name": "Braah One",
     "designer": "Ashish Kumar",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2023-03-24",
     "license": "OFL",
     "styles": [
@@ -4825,7 +4825,7 @@
   {
     "name": "Bricolage Grotesque",
     "designer": "Mathieu Triay",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2023-06-15",
     "license": "OFL",
     "styles": [
@@ -4939,7 +4939,7 @@
   {
     "name": "Bubbler One",
     "designer": "Brenda Gallo",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-05-09",
     "license": "OFL",
     "styles": [
@@ -5138,7 +5138,7 @@
   {
     "name": "Cabin",
     "designer": "Impallari Type, Rodrigo Fuenzalida",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-07-22",
     "license": "OFL",
     "styles": [
@@ -5172,7 +5172,7 @@
   {
     "name": "Cabin Condensed",
     "designer": "Impallari Type",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-11-30",
     "license": "OFL",
     "styles": [
@@ -5244,7 +5244,7 @@
   {
     "name": "Cagliostro",
     "designer": "MADType",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-11-30",
     "license": "OFL",
     "styles": [
@@ -5363,7 +5363,7 @@
   {
     "name": "Cambay",
     "designer": "Pooja Saxena",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2015-01-28",
     "license": "OFL",
     "styles": [
@@ -5400,7 +5400,7 @@
   {
     "name": "Candal",
     "designer": "Vernon Adams",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-03-09",
     "license": "OFL",
     "styles": [
@@ -5416,7 +5416,7 @@
   {
     "name": "Cantarell",
     "designer": "Dave Crossland",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2010-05-10",
     "license": "OFL",
     "styles": [
@@ -5453,7 +5453,7 @@
   {
     "name": "Cantora One",
     "designer": "Impallari Type",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-07-30",
     "license": "OFL",
     "styles": [
@@ -5485,7 +5485,7 @@
   {
     "name": "Capriola",
     "designer": "Viktoriya Grabowska",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-07-10",
     "license": "OFL",
     "styles": [
@@ -5553,7 +5553,7 @@
   {
     "name": "Carlito",
     "designer": "Łukasz Dziedzic",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2023-03-10",
     "license": "OFL",
     "styles": [
@@ -5574,7 +5574,7 @@
   {
     "name": "Carme",
     "designer": "Rubén Prol",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-07-27",
     "license": "OFL",
     "styles": [
@@ -5590,7 +5590,7 @@
   {
     "name": "Carrois Gothic",
     "designer": "Carrois Apostrophe",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-09-30",
     "license": "OFL",
     "styles": [
@@ -5606,7 +5606,7 @@
   {
     "name": "Carrois Gothic SC",
     "designer": "Carrois Apostrophe",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-09-30",
     "license": "OFL",
     "styles": [
@@ -5672,7 +5672,7 @@
   {
     "name": "Catamaran",
     "designer": "Pria Ravichandran",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2015-07-08",
     "license": "OFL",
     "styles": [
@@ -5796,7 +5796,7 @@
   {
     "name": "Chakra Petch",
     "designer": "Cadson Demak",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2018-08-22",
     "license": "OFL",
     "styles": [
@@ -5826,7 +5826,7 @@
   {
     "name": "Changa",
     "designer": "Eduardo Tunni",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-10-31",
     "license": "OFL",
     "styles": [
@@ -5945,7 +5945,7 @@
   {
     "name": "Chathura",
     "designer": "Appaji Ambarisha Darbha",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2017-05-09",
     "license": "OFL",
     "styles": [
@@ -5969,7 +5969,7 @@
   {
     "name": "Chau Philomene One",
     "designer": "Vicente Lamónaca",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-04-04",
     "license": "OFL",
     "styles": [
@@ -6117,7 +6117,7 @@
   {
     "name": "Chivo",
     "designer": "Omnibus-Type",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-12-07",
     "license": "OFL",
     "styles": [
@@ -6157,7 +6157,7 @@
   {
     "name": "Chivo Mono",
     "designer": "Omnibus-Type",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-11-03",
     "license": "OFL",
     "styles": [
@@ -6197,7 +6197,7 @@
   {
     "name": "Chocolate Classical Sans",
     "designer": "Moonlit Owen",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2024-05-14",
     "license": "OFL",
     "styles": [
@@ -6480,7 +6480,7 @@
   {
     "name": "Comme",
     "designer": "Vernon Adams",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2023-03-29",
     "license": "OFL",
     "styles": [
@@ -6510,7 +6510,7 @@
   {
     "name": "Commissioner",
     "designer": "Kostas Bartsokas",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-07-20",
     "license": "OFL",
     "styles": [
@@ -6618,7 +6618,7 @@
   {
     "name": "Convergence",
     "designer": "Nicolás Silva, John Vargas Beltrán",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-11-09",
     "license": "OFL",
     "styles": [
@@ -7053,7 +7053,7 @@
   {
     "name": "Cuprum",
     "designer": "Jovanny Lemonad",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-04-04",
     "license": "OFL",
     "styles": [
@@ -7240,7 +7240,7 @@
   {
     "name": "Darker Grotesque",
     "designer": "Gabriel Lam, ViệtAnh Nguyễn",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2019-06-19",
     "license": "OFL",
     "styles": [
@@ -7320,7 +7320,7 @@
   {
     "name": "Days One",
     "designer": "Jovanny Lemonad",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-08-17",
     "license": "OFL",
     "styles": [
@@ -7450,7 +7450,7 @@
   {
     "name": "Denk One",
     "designer": "Sorkin Type",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-11-26",
     "license": "OFL",
     "styles": [
@@ -7482,7 +7482,7 @@
   {
     "name": "Dhurjati",
     "designer": "Purushoth Kumar Guttula",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2014-12-10",
     "license": "OFL",
     "styles": [
@@ -7498,7 +7498,7 @@
   {
     "name": "Didact Gothic",
     "designer": "Daniel Johnson, Cyreal",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-05-04",
     "license": "OFL",
     "styles": [
@@ -7586,7 +7586,7 @@
   {
     "name": "DM Sans",
     "designer": "Colophon Foundry",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2019-06-12",
     "license": "OFL",
     "styles": [
@@ -7666,7 +7666,7 @@
   {
     "name": "Do Hyeon",
     "designer": "Woowahan Brothers",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2018-02-24",
     "license": "OFL",
     "styles": [
@@ -7739,7 +7739,7 @@
   {
     "name": "Dongle",
     "designer": "Yanghee Ryu",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2021-06-14",
     "license": "OFL",
     "styles": [
@@ -7759,7 +7759,7 @@
   {
     "name": "Doppio One",
     "designer": "Szymon Celej",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-02-22",
     "license": "OFL",
     "styles": [
@@ -7775,7 +7775,7 @@
   {
     "name": "Dorsa",
     "designer": "Santiago Orozco",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-08-31",
     "license": "OFL",
     "styles": [
@@ -7791,7 +7791,7 @@
   {
     "name": "Dosis",
     "designer": "Impallari Type",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2019-01-23",
     "license": "OFL",
     "styles": [
@@ -7819,7 +7819,7 @@
   {
     "name": "DotGothic16",
     "designer": "Fontworks Inc.",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-12-15",
     "license": "OFL",
     "styles": [
@@ -7835,7 +7835,7 @@
   {
     "name": "Doto",
     "designer": "Óliver Lalan",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2024-09-27",
     "license": "OFL",
     "styles": [
@@ -7885,7 +7885,7 @@
   {
     "name": "Duru Sans",
     "designer": "Onur Yazıcıgil",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-12-19",
     "license": "OFL",
     "styles": [
@@ -8026,7 +8026,7 @@
   {
     "name": "Economica",
     "designer": "Vicente Lamónaca",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-02-29",
     "license": "OFL",
     "styles": [
@@ -8323,7 +8323,7 @@
   {
     "name": "Electrolize",
     "designer": "Gaslight",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-12-07",
     "license": "OFL",
     "styles": [
@@ -8339,7 +8339,7 @@
   {
     "name": "El Messiri",
     "designer": "Mohamed Gaber, Jovanny Lemonad",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2016-06-20",
     "license": "OFL",
     "styles": [
@@ -8432,7 +8432,7 @@
   {
     "name": "Encode Sans",
     "designer": "Impallari Type, Andres Torresi, Jacques Le Bailly",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-06-24",
     "license": "OFL",
     "styles": [
@@ -8466,7 +8466,7 @@
   {
     "name": "Encode Sans Condensed",
     "designer": "Impallari Type, Andres Torresi, Jacques Le Bailly",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2017-02-08",
     "license": "OFL",
     "styles": [
@@ -8498,7 +8498,7 @@
   {
     "name": "Encode Sans Expanded",
     "designer": "Impallari Type, Andres Torresi, Jacques Le Bailly",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2017-02-08",
     "license": "OFL",
     "styles": [
@@ -8530,7 +8530,7 @@
   {
     "name": "Encode Sans SC",
     "designer": "Impallari Type, Andres Torresi, Jacques Le Bailly",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-06-24",
     "license": "OFL",
     "styles": [
@@ -8564,7 +8564,7 @@
   {
     "name": "Encode Sans Semi Condensed",
     "designer": "Impallari Type, Andres Torresi, Jacques Le Bailly",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2017-02-08",
     "license": "OFL",
     "styles": [
@@ -8596,7 +8596,7 @@
   {
     "name": "Encode Sans Semi Expanded",
     "designer": "Impallari Type, Andres Torresi, Jacques Le Bailly",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2017-02-08",
     "license": "OFL",
     "styles": [
@@ -8644,7 +8644,7 @@
   {
     "name": "Englebert",
     "designer": "Astigmatic",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-11-02",
     "license": "OFL",
     "styles": [
@@ -8698,7 +8698,7 @@
   {
     "name": "Epilogue",
     "designer": "Tyler Finck, ETC",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-06-26",
     "license": "OFL",
     "styles": [
@@ -8818,7 +8818,7 @@
   {
     "name": "Exo",
     "designer": "Natanael Gama, Robin Mientjes",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-02-08",
     "license": "OFL",
     "styles": [
@@ -8858,7 +8858,7 @@
   {
     "name": "Exo 2",
     "designer": "Natanael Gama",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2013-12-04",
     "license": "OFL",
     "styles": [
@@ -8944,7 +8944,7 @@
   {
     "name": "Faculty Glyphic",
     "designer": "Koto Studio",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2024-10-17",
     "license": "OFL",
     "styles": [
@@ -8960,7 +8960,7 @@
   {
     "name": "Fahkwang",
     "designer": "Cadson Demak",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2018-08-22",
     "license": "OFL",
     "styles": [
@@ -8993,7 +8993,7 @@
   {
     "name": "Familjen Grotesk",
     "designer": "Familjen STHLM AB",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-03-02",
     "license": "OFL",
     "styles": [
@@ -9041,7 +9041,7 @@
   {
     "name": "Farro",
     "designer": "Grayscale",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2019-07-17",
     "license": "OFL",
     "styles": [
@@ -9209,7 +9209,7 @@
   {
     "name": "Federo",
     "designer": "Cyreal",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-07-27",
     "license": "OFL",
     "styles": [
@@ -9273,7 +9273,7 @@
   {
     "name": "Figtree",
     "designer": "Erik Kennedy",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-07-21",
     "license": "OFL",
     "styles": [
@@ -9325,7 +9325,7 @@
   {
     "name": "Finlandica",
     "designer": "Helsinki Type Studio, Niklas Ekholm, Juho Hiilivirta, Jaakko Suomalainen",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-05-13",
     "license": "OFL",
     "styles": [
@@ -9401,7 +9401,7 @@
   {
     "name": "Fira Sans",
     "designer": "Carrois Apostrophe",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2014-06-18",
     "license": "OFL",
     "styles": [
@@ -9443,7 +9443,7 @@
   {
     "name": "Fira Sans Condensed",
     "designer": "Carrois Apostrophe",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2016-12-02",
     "license": "OFL",
     "styles": [
@@ -9485,7 +9485,7 @@
   {
     "name": "Fira Sans Extra Condensed",
     "designer": "Carrois Apostrophe",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2016-12-06",
     "license": "OFL",
     "styles": [
@@ -9527,7 +9527,7 @@
   {
     "name": "Fjalla One",
     "designer": "Sorkin Type, Irina Smirnova",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-10-27",
     "license": "OFL",
     "styles": [
@@ -9721,7 +9721,7 @@
   {
     "name": "Fragment Mono",
     "designer": "Wei Huang, URW Design Studio",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-10-24",
     "license": "OFL",
     "styles": [
@@ -9739,7 +9739,7 @@
   {
     "name": "Francois One",
     "designer": "Vernon Adams",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-05-04",
     "license": "OFL",
     "styles": [
@@ -9867,7 +9867,7 @@
   {
     "name": "Fredoka",
     "designer": "Milena Brandão, Hafontia",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2021-12-15",
     "license": "OFL",
     "styles": [
@@ -9929,7 +9929,7 @@
   {
     "name": "Fresca",
     "designer": "Fontstage",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-12-07",
     "license": "OFL",
     "styles": [
@@ -10038,7 +10038,7 @@
   {
     "name": "Funnel Sans",
     "designer": "NORD ID, Kristian Möller",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2024-09-27",
     "license": "OFL",
     "styles": [
@@ -10072,7 +10072,7 @@
   {
     "name": "Fustat",
     "designer": "Mohamed Gaber, Laura Garcia Mut, Khaled Hosny",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2024-06-05",
     "license": "OFL",
     "styles": [
@@ -10181,7 +10181,7 @@
   {
     "name": "Gafata",
     "designer": "Lautaro Hourcade",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-10-31",
     "license": "OFL",
     "styles": [
@@ -10229,7 +10229,7 @@
   {
     "name": "Galdeano",
     "designer": "Dario Manuel Muhafara",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-12-07",
     "license": "OFL",
     "styles": [
@@ -10293,7 +10293,7 @@
   {
     "name": "Gantari",
     "designer": "Lafontype",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-05-26",
     "license": "OFL",
     "styles": [
@@ -10333,7 +10333,7 @@
   {
     "name": "Gasoek One",
     "designer": "Jiashuo Zhang, JAMO",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2023-05-18",
     "license": "OFL",
     "styles": [
@@ -10349,7 +10349,7 @@
   {
     "name": "Gayathri",
     "designer": "SMC, Binoy Dominic",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2019-06-10",
     "license": "OFL",
     "styles": [
@@ -10369,7 +10369,7 @@
   {
     "name": "Geist",
     "designer": "Andrés Briganti, Mateo Zaragoza, Guillermo Rauch, Evil Rabbit, José Rago, Facundo Santana",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2024-10-02",
     "license": "OFL",
     "styles": [
@@ -10459,7 +10459,7 @@
   {
     "name": "Gemunu Libre",
     "designer": "Mooniak",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2017-05-29",
     "license": "OFL",
     "styles": [
@@ -10487,7 +10487,7 @@
   {
     "name": "Genos",
     "designer": "Robert Leuschke",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2021-10-08",
     "license": "OFL",
     "styles": [
@@ -10569,7 +10569,7 @@
   {
     "name": "Geo",
     "designer": "Ben Weiner",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2010-11-30",
     "license": "OFL",
     "styles": [
@@ -10587,7 +10587,7 @@
   {
     "name": "Geologica",
     "designer": "Monokrom, Sindre Bremnes, Frode Helland",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2023-04-12",
     "license": "OFL",
     "styles": [
@@ -10629,7 +10629,7 @@
   {
     "name": "Georama",
     "designer": "Production Type",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-07-01",
     "license": "OFL",
     "styles": [
@@ -10737,7 +10737,7 @@
   {
     "name": "GFS Neohellenic",
     "designer": "Greek Font Society",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2010-09-21",
     "license": "OFL",
     "styles": [
@@ -10774,7 +10774,7 @@
   {
     "name": "Gidugu",
     "designer": "Purushoth Kumar Guttula",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2014-12-10",
     "license": "OFL",
     "styles": [
@@ -10904,7 +10904,7 @@
   {
     "name": "Glory",
     "designer": "Robert Leuschke",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2021-06-17",
     "license": "OFL",
     "styles": [
@@ -11026,7 +11026,7 @@
   {
     "name": "Golos Text",
     "designer": "Alexandra Korolkova, Vitaly Kuzmin",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2023-01-06",
     "license": "OFL",
     "styles": [
@@ -11071,7 +11071,7 @@
   {
     "name": "Gothic A1",
     "designer": "HanYang I&C Co",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2018-02-24",
     "license": "OFL",
     "styles": [
@@ -11103,7 +11103,7 @@
   {
     "name": "Gotu",
     "designer": "Ek Type",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-01-10",
     "license": "OFL",
     "styles": [
@@ -11153,7 +11153,7 @@
   {
     "name": "Gowun Dodum",
     "designer": "Yanghee Ryu",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2021-06-10",
     "license": "OFL",
     "styles": [
@@ -11441,7 +11441,7 @@
   {
     "name": "Gudea",
     "designer": "Agustina Mingote",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-01-18",
     "license": "OFL",
     "styles": [
@@ -11633,7 +11633,7 @@
   {
     "name": "Hammersmith One",
     "designer": "Nicole Fally",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-06-29",
     "license": "OFL",
     "styles": [
@@ -11735,7 +11735,7 @@
   {
     "name": "Hanken Grotesk",
     "designer": "Alfredo Marco Pradil, Hanken Design Co.",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-11-16",
     "license": "OFL",
     "styles": [
@@ -11815,7 +11815,7 @@
   {
     "name": "Harmattan",
     "designer": "SIL International",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-07-03",
     "license": "OFL",
     "styles": [
@@ -11853,7 +11853,7 @@
   {
     "name": "Hedvig Letters Sans",
     "designer": "Kanon Foundry, Alexander Örn, Tor Weibull, Hedvig",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2023-10-24",
     "license": "OFL",
     "styles": [
@@ -11891,7 +11891,7 @@
   {
     "name": "Heebo",
     "designer": "Oded Ezer",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2016-06-20",
     "license": "OFL",
     "styles": [
@@ -12015,7 +12015,7 @@
   {
     "name": "Hind",
     "designer": "Indian Type Foundry",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2014-06-25",
     "license": "OFL",
     "styles": [
@@ -12039,7 +12039,7 @@
   {
     "name": "Hind Guntur",
     "designer": "Indian Type Foundry",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2016-01-20",
     "license": "OFL",
     "styles": [
@@ -12063,7 +12063,7 @@
   {
     "name": "Hind Madurai",
     "designer": "Indian Type Foundry",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2016-01-20",
     "license": "OFL",
     "styles": [
@@ -12087,7 +12087,7 @@
   {
     "name": "Hind Mysuru",
     "designer": "Indian Type Foundry",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2016-01-20",
     "license": "OFL",
     "styles": [
@@ -12111,7 +12111,7 @@
   {
     "name": "Hind Siliguri",
     "designer": "Indian Type Foundry",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2015-09-09",
     "license": "OFL",
     "styles": [
@@ -12135,7 +12135,7 @@
   {
     "name": "Hind Vadodara",
     "designer": "Indian Type Foundry",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2015-09-09",
     "license": "OFL",
     "styles": [
@@ -12175,7 +12175,7 @@
   {
     "name": "Homenaje",
     "designer": "Constanza Artigas Preller, Agustina Mingote",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-01-18",
     "license": "OFL",
     "styles": [
@@ -12217,7 +12217,7 @@
   {
     "name": "Host Grotesk",
     "designer": "Element Type, Doğukan Karapınar, İbrahim Kaçtıoğlu",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2024-10-03",
     "license": "OFL",
     "styles": [
@@ -12251,7 +12251,7 @@
   {
     "name": "Hubballi",
     "designer": "Erin McLaughlin",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2021-12-16",
     "license": "OFL",
     "styles": [
@@ -12267,7 +12267,7 @@
   {
     "name": "Hubot Sans",
     "designer": "Tobias Bjerrome Ahlin, GitHub, Degarism Studio, Sebastian Carewe",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2024-10-04",
     "license": "OFL",
     "styles": [
@@ -12404,7 +12404,7 @@
   {
     "name": "IBM Plex Sans",
     "designer": "Mike Abbink, Bold Monday",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2018-03-12",
     "license": "OFL",
     "styles": [
@@ -12444,7 +12444,7 @@
   {
     "name": "IBM Plex Sans Arabic",
     "designer": "Mike Abbink, Bold Monday",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2021-06-17",
     "license": "OFL",
     "styles": [
@@ -12472,7 +12472,7 @@
   {
     "name": "IBM Plex Sans Condensed",
     "designer": "Mike Abbink, Bold Monday",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2018-03-12",
     "license": "OFL",
     "styles": [
@@ -12508,7 +12508,7 @@
   {
     "name": "IBM Plex Sans Devanagari",
     "designer": "Mike Abbink, Bold Monday",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2021-06-18",
     "license": "OFL",
     "styles": [
@@ -12536,7 +12536,7 @@
   {
     "name": "IBM Plex Sans Hebrew",
     "designer": "Mike Abbink, Bold Monday",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2021-06-18",
     "license": "OFL",
     "styles": [
@@ -12564,7 +12564,7 @@
   {
     "name": "IBM Plex Sans JP",
     "designer": "Mike Abbink, Bold Monday",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-09-12",
     "license": "OFL",
     "styles": [
@@ -12592,7 +12592,7 @@
   {
     "name": "IBM Plex Sans KR",
     "designer": "Mike Abbink, Bold Monday",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2021-06-18",
     "license": "OFL",
     "styles": [
@@ -12620,7 +12620,7 @@
   {
     "name": "IBM Plex Sans Thai",
     "designer": "Mike Abbink, Bold Monday",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2021-06-18",
     "license": "OFL",
     "styles": [
@@ -12648,7 +12648,7 @@
   {
     "name": "IBM Plex Sans Thai Looped",
     "designer": "Mike Abbink, Bold Monday",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2021-06-18",
     "license": "OFL",
     "styles": [
@@ -12964,7 +12964,7 @@
   {
     "name": "Imprima",
     "designer": "Eduardo Tunni",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-03-14",
     "license": "OFL",
     "styles": [
@@ -12980,7 +12980,7 @@
   {
     "name": "Inclusive Sans",
     "designer": "Olivia King",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2023-08-04",
     "license": "OFL",
     "styles": [
@@ -13012,7 +13012,7 @@
   {
     "name": "Inconsolata",
     "designer": "Raph Levien",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2010-02-19",
     "license": "OFL",
     "styles": [
@@ -13045,7 +13045,7 @@
   {
     "name": "Inder",
     "designer": "Sorkin Type",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-12-19",
     "license": "OFL",
     "styles": [
@@ -13139,7 +13139,7 @@
   {
     "name": "Inria Sans",
     "designer": "Grégori Vincens, Jérémie Hornus",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2019-12-05",
     "license": "OFL",
     "styles": [
@@ -13203,7 +13203,7 @@
   {
     "name": "Instrument Sans",
     "designer": "Rodrigo Fuenzalida, Jordan Egstad",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2023-04-13",
     "license": "OFL",
     "styles": [
@@ -13255,7 +13255,7 @@
   {
     "name": "Inter",
     "designer": "Rasmus Andersson",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-01-24",
     "license": "OFL",
     "styles": [
@@ -13299,7 +13299,7 @@
   {
     "name": "Inter Tight",
     "designer": "Rasmus Andersson",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-07-22",
     "license": "OFL",
     "styles": [
@@ -13355,7 +13355,7 @@
   {
     "name": "Istok Web",
     "designer": "Andrey V. Panov",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-07-13",
     "license": "OFL",
     "styles": [
@@ -13584,7 +13584,7 @@
   {
     "name": "Jaldi",
     "designer": "Omnibus-Type",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2015-04-22",
     "license": "OFL",
     "styles": [
@@ -13602,7 +13602,7 @@
   {
     "name": "Jaro",
     "designer": "Agyei Archer, Céline Hurka, Mirko Velimirović",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2024-03-15",
     "license": "OFL",
     "styles": [
@@ -13822,7 +13822,7 @@
   {
     "name": "Jockey One",
     "designer": "TypeTogether",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-10-26",
     "license": "OFL",
     "styles": [
@@ -13886,7 +13886,7 @@
   {
     "name": "Josefin Sans",
     "designer": "Santiago Orozco",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2010-11-17",
     "license": "OFL",
     "styles": [
@@ -13958,7 +13958,7 @@
   {
     "name": "Jost",
     "designer": "Owen Earl",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-02-11",
     "license": "OFL",
     "styles": [
@@ -14014,7 +14014,7 @@
   {
     "name": "Jua",
     "designer": "Woowahan Brothers",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2018-02-24",
     "license": "OFL",
     "styles": [
@@ -14066,7 +14066,7 @@
   {
     "name": "Julius Sans One",
     "designer": "Luciano Vergara",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-10-05",
     "license": "OFL",
     "styles": [
@@ -14098,7 +14098,7 @@
   {
     "name": "Jura",
     "designer": "Daniel Johnson, Cyreal",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-05-18",
     "license": "OFL",
     "styles": [
@@ -14140,7 +14140,7 @@
   {
     "name": "K2D",
     "designer": "Cadson Demak",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2018-08-22",
     "license": "OFL",
     "styles": [
@@ -14410,7 +14410,7 @@
   {
     "name": "Kanit",
     "designer": "Cadson Demak",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2015-12-07",
     "license": "OFL",
     "styles": [
@@ -14452,7 +14452,7 @@
   {
     "name": "Kantumruy Pro",
     "designer": "Tep Sovichet, Wei Huang",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-05-12",
     "license": "OFL",
     "styles": [
@@ -14508,7 +14508,7 @@
   {
     "name": "Karla",
     "designer": "Jonny Pinhorn",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-03-14",
     "license": "OFL",
     "styles": [
@@ -14544,7 +14544,7 @@
   {
     "name": "Karla Tamil Inclined",
     "designer": "Jonathan Pinhorn",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-09-29",
     "license": "OFL",
     "styles": [
@@ -14562,7 +14562,7 @@
   {
     "name": "Karla Tamil Upright",
     "designer": "Jonathan Pinhorn",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-09-29",
     "license": "OFL",
     "styles": [
@@ -14690,7 +14690,7 @@
   {
     "name": "Kdam Thmor Pro",
     "designer": "Tep Sovichet, Hak Longdey",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-05-11",
     "license": "OFL",
     "styles": [
@@ -14754,7 +14754,7 @@
   {
     "name": "Khand",
     "designer": "Indian Type Foundry",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2014-07-14",
     "license": "OFL",
     "styles": [
@@ -14778,7 +14778,7 @@
   {
     "name": "Khmer",
     "designer": "Danh Hong",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-03-02",
     "license": "OFL",
     "styles": [
@@ -14794,7 +14794,7 @@
   {
     "name": "Khula",
     "designer": "Erin McLaughlin",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2015-01-28",
     "license": "OFL",
     "styles": [
@@ -14850,7 +14850,7 @@
   {
     "name": "Kite One",
     "designer": "Eduardo Tunni",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-10-26",
     "license": "OFL",
     "styles": [
@@ -14920,7 +14920,7 @@
   {
     "name": "Kodchasan",
     "designer": "Cadson Demak",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2018-08-22",
     "license": "OFL",
     "styles": [
@@ -14953,7 +14953,7 @@
   {
     "name": "Kode Mono",
     "designer": "Isa Ozler",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2023-05-19",
     "license": "OFL",
     "styles": [
@@ -14978,7 +14978,7 @@
   {
     "name": "KoHo",
     "designer": "Cadson Demak",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2018-08-22",
     "license": "OFL",
     "styles": [
@@ -15141,7 +15141,7 @@
   {
     "name": "Krona One",
     "designer": "Yvonne Schüttler",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-02-22",
     "license": "OFL",
     "styles": [
@@ -15157,7 +15157,7 @@
   {
     "name": "Krub",
     "designer": "Cadson Demak",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2018-08-24",
     "license": "OFL",
     "styles": [
@@ -15190,7 +15190,7 @@
   {
     "name": "Kufam",
     "designer": "Original Type, Wael Morcos, Artur Schmal",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-07-14",
     "license": "OFL",
     "styles": [
@@ -15224,7 +15224,7 @@
   {
     "name": "Kulim Park",
     "designer": "Dale Sattler",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2019-09-25",
     "license": "OFL",
     "styles": [
@@ -15270,7 +15270,7 @@
   {
     "name": "Kumbh Sans",
     "designer": "Saurabh Sharma",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-07-23",
     "license": "OFL",
     "styles": [
@@ -15392,7 +15392,7 @@
   {
     "name": "Laila",
     "designer": "Indian Type Foundry",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2014-08-27",
     "license": "OFL",
     "styles": [
@@ -15432,7 +15432,7 @@
   {
     "name": "Lalezar",
     "designer": "Borna Izadpanah",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2017-02-28",
     "license": "OFL",
     "styles": [
@@ -15508,7 +15508,7 @@
   {
     "name": "Lato",
     "designer": "Łukasz Dziedzic",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2010-12-15",
     "license": "OFL",
     "styles": [
@@ -15558,7 +15558,7 @@
   {
     "name": "League Gothic",
     "designer": "Tyler Finck, Caroline Hadilaksono, Micah Rich",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2021-12-09",
     "license": "OFL",
     "styles": [
@@ -15596,7 +15596,7 @@
   {
     "name": "League Spartan",
     "designer": "Matt Bailey, Tyler Finck",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2021-12-17",
     "license": "OFL",
     "styles": [
@@ -15720,7 +15720,7 @@
   {
     "name": "Lexend",
     "designer": "Bonnie Shaver-Troup, Thomas Jockin, Santiago Orozco, Héctor Gómez, Superunion",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2021-03-09",
     "license": "OFL",
     "styles": [
@@ -15750,7 +15750,7 @@
   {
     "name": "Lexend Deca",
     "designer": "Bonnie Shaver-Troup, Thomas Jockin, Santiago Orozco, Héctor Gómez, Superunion",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2019-08-01",
     "license": "OFL",
     "styles": [
@@ -15780,7 +15780,7 @@
   {
     "name": "Lexend Exa",
     "designer": "Bonnie Shaver-Troup, Thomas Jockin, Santiago Orozco, Héctor Gómez, Superunion",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2019-08-01",
     "license": "OFL",
     "styles": [
@@ -15810,7 +15810,7 @@
   {
     "name": "Lexend Giga",
     "designer": "Bonnie Shaver-Troup, Thomas Jockin, Santiago Orozco, Héctor Gómez, Superunion",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2019-08-01",
     "license": "OFL",
     "styles": [
@@ -15840,7 +15840,7 @@
   {
     "name": "Lexend Mega",
     "designer": "Bonnie Shaver-Troup, Thomas Jockin, Santiago Orozco, Héctor Gómez, Superunion",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2019-08-01",
     "license": "OFL",
     "styles": [
@@ -15870,7 +15870,7 @@
   {
     "name": "Lexend Peta",
     "designer": "Bonnie Shaver-Troup, Thomas Jockin, Santiago Orozco, Héctor Gómez, Superunion",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2019-08-01",
     "license": "OFL",
     "styles": [
@@ -15900,7 +15900,7 @@
   {
     "name": "Lexend Tera",
     "designer": "Bonnie Shaver-Troup, Thomas Jockin, Santiago Orozco, Héctor Gómez, Superunion",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2019-08-01",
     "license": "OFL",
     "styles": [
@@ -15930,7 +15930,7 @@
   {
     "name": "Lexend Zetta",
     "designer": "Bonnie Shaver-Troup, Thomas Jockin, Santiago Orozco, Héctor Gómez, Superunion",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2019-08-01",
     "license": "OFL",
     "styles": [
@@ -16163,7 +16163,7 @@
   {
     "name": "Libre Franklin",
     "designer": "Impallari Type",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2016-06-20",
     "license": "OFL",
     "styles": [
@@ -16378,7 +16378,7 @@
   {
     "name": "Liter",
     "designer": "Anton Skugarov, Aleksandr Ivanin",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2025-01-09",
     "license": "OFL",
     "styles": [
@@ -16452,7 +16452,7 @@
   {
     "name": "Livvic",
     "designer": "LV=, Jacques Le Bailly",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2019-06-21",
     "license": "OFL",
     "styles": [
@@ -16740,7 +16740,7 @@
   {
     "name": "Lunasima",
     "designer": "The DocRepair Project, Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2023-06-15",
     "license": "OFL",
     "styles": [
@@ -16896,7 +16896,7 @@
   {
     "name": "Mada",
     "designer": "Khaled Hosny, Paul D. Hunt",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2017-05-08",
     "license": "OFL",
     "styles": [
@@ -16925,7 +16925,7 @@
   {
     "name": "Madimi One",
     "designer": "Taurai Valerie Mtake, Mirko Velimirović",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2024-02-14",
     "license": "OFL",
     "styles": [
@@ -16941,7 +16941,7 @@
   {
     "name": "Magra",
     "designer": "FontFuror",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-01-11",
     "license": "OFL",
     "styles": [
@@ -17001,7 +17001,7 @@
   {
     "name": "Mako",
     "designer": "Vernon Adams",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-05-11",
     "license": "OFL",
     "styles": [
@@ -17050,7 +17050,7 @@
   {
     "name": "Mallanna",
     "designer": "Purushoth Kumar Guttula",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2014-12-10",
     "license": "OFL",
     "styles": [
@@ -17082,7 +17082,7 @@
   {
     "name": "Mandali",
     "designer": "Purushoth Kumar Guttula",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2014-12-10",
     "license": "OFL",
     "styles": [
@@ -17098,7 +17098,7 @@
   {
     "name": "Manjari",
     "designer": "Santhosh Thottingal",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2018-11-21",
     "license": "OFL",
     "styles": [
@@ -17118,7 +17118,7 @@
   {
     "name": "Manrope",
     "designer": "Mikhail Sharanda",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2019-10-03",
     "license": "OFL",
     "styles": [
@@ -17327,7 +17327,7 @@
   {
     "name": "Marmelad",
     "designer": "Cyreal, Manvel Shmavonyan",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-12-07",
     "license": "OFL",
     "styles": [
@@ -17371,7 +17371,7 @@
   {
     "name": "Martel Sans",
     "designer": "Dan Reynolds, Mathieu Réguer",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2015-03-04",
     "license": "OFL",
     "styles": [
@@ -17399,7 +17399,7 @@
   {
     "name": "Martian Mono",
     "designer": "Roman Shamin, Evil Martians",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-11-25",
     "license": "OFL",
     "styles": [
@@ -17432,7 +17432,7 @@
   {
     "name": "Marvel",
     "designer": "Carolina Trebol",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-08-03",
     "license": "OFL",
     "styles": [
@@ -17487,7 +17487,7 @@
   {
     "name": "Matemasie",
     "designer": "Adam Yeo",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2024-06-20",
     "license": "OFL",
     "styles": [
@@ -17519,7 +17519,7 @@
   {
     "name": "Maven Pro",
     "designer": "Joe Prince",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-05-25",
     "license": "OFL",
     "styles": [
@@ -17626,7 +17626,7 @@
   {
     "name": "Meera Inimai",
     "designer": "SMC",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2016-06-20",
     "license": "OFL",
     "styles": [
@@ -17756,7 +17756,7 @@
   {
     "name": "Merriweather Sans",
     "designer": "Sorkin Type",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2013-03-06",
     "license": "OFL",
     "styles": [
@@ -17838,7 +17838,7 @@
   {
     "name": "Metrophobic",
     "designer": "Vernon Adams",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-05-11",
     "license": "OFL",
     "styles": [
@@ -17854,7 +17854,7 @@
   {
     "name": "Michroma",
     "designer": "Vernon Adams",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-03-30",
     "license": "OFL",
     "styles": [
@@ -17950,7 +17950,7 @@
   {
     "name": "Mina",
     "designer": "Suman Bhandary, Natanael Gama, Mooniak",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2017-02-20",
     "license": "OFL",
     "styles": [
@@ -17968,7 +17968,7 @@
   {
     "name": "Mingzat",
     "designer": "SIL International",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-05-26",
     "license": "OFL",
     "styles": [
@@ -18000,7 +18000,7 @@
   {
     "name": "Miriam Libre",
     "designer": "Michal Sahar",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2016-06-20",
     "license": "OFL",
     "styles": [
@@ -18063,7 +18063,7 @@
   {
     "name": "Mitr",
     "designer": "Cadson Demak",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2016-06-20",
     "license": "OFL",
     "styles": [
@@ -18089,7 +18089,7 @@
   {
     "name": "Mochiy Pop One",
     "designer": "FONTDASU",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2021-04-14",
     "license": "OFL",
     "styles": [
@@ -18105,7 +18105,7 @@
   {
     "name": "Mochiy Pop P One",
     "designer": "FONTDASU",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2021-04-14",
     "license": "OFL",
     "styles": [
@@ -18153,7 +18153,7 @@
   {
     "name": "Moderustic",
     "designer": "Tural Alisoy",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2024-07-10",
     "license": "OFL",
     "styles": [
@@ -18196,7 +18196,7 @@
   {
     "name": "Mohave",
     "designer": "Gumpita Rahayu",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-01-23",
     "license": "OFL",
     "styles": [
@@ -18244,7 +18244,7 @@
   {
     "name": "Molengo",
     "designer": "Denis Jacquerye",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2010-04-19",
     "license": "OFL",
     "styles": [
@@ -18276,7 +18276,7 @@
   {
     "name": "Mona Sans",
     "designer": "Tobias Bjerrome Ahlin, GitHub, Degarism Studio, Sebastian Carewe",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2024-06-28",
     "license": "OFL",
     "styles": [
@@ -18318,7 +18318,7 @@
   {
     "name": "Monda",
     "designer": "Vernon Adams",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-11-30",
     "license": "OFL",
     "styles": [
@@ -18372,7 +18372,7 @@
   {
     "name": "Monomaniac One",
     "designer": "Maniackers Design",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-12-08",
     "license": "OFL",
     "styles": [
@@ -18484,7 +18484,7 @@
   {
     "name": "Montserrat",
     "designer": "Julieta Ulanovsky, Sol Matas, Juan Pablo del Peral, Jacques Le Bailly",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-12-13",
     "license": "OFL",
     "styles": [
@@ -18524,7 +18524,7 @@
   {
     "name": "Montserrat Alternates",
     "designer": "Julieta Ulanovsky, Sol Matas, Juan Pablo del Peral, Jacques Le Bailly",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-10-01",
     "license": "OFL",
     "styles": [
@@ -18566,7 +18566,7 @@
   {
     "name": "Montserrat Subrayada",
     "designer": "Julieta Ulanovsky",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-10-01",
     "license": "OFL",
     "styles": [
@@ -18584,7 +18584,7 @@
   {
     "name": "Montserrat Underline",
     "designer": "Julieta Ulanovsky, Sol Matas, Juan Pablo del Peral, Jacques Le Bailly",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2024-11-07",
     "license": "OFL",
     "styles": [
@@ -18640,7 +18640,7 @@
   {
     "name": "Mooli",
     "designer": "Vernon Adams",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2023-08-30",
     "license": "OFL",
     "styles": [
@@ -18688,7 +18688,7 @@
   {
     "name": "Moulpali",
     "designer": "Danh Hong",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-03-02",
     "license": "OFL",
     "styles": [
@@ -18704,7 +18704,7 @@
   {
     "name": "Mouse Memoirs",
     "designer": "Astigmatic",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-11-02",
     "license": "OFL",
     "styles": [
@@ -18720,7 +18720,7 @@
   {
     "name": "M PLUS 1",
     "designer": "Coji Morishita",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2021-08-26",
     "license": "OFL",
     "styles": [
@@ -18778,7 +18778,7 @@
   {
     "name": "M PLUS 1p",
     "designer": "Coji Morishita, M+ Fonts Project",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2017-06-12",
     "license": "OFL",
     "styles": [
@@ -18806,7 +18806,7 @@
   {
     "name": "M PLUS 2",
     "designer": "Coji Morishita",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2021-08-26",
     "license": "OFL",
     "styles": [
@@ -18836,7 +18836,7 @@
   {
     "name": "M PLUS Code Latin",
     "designer": "Coji Morishita",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2021-09-22",
     "license": "OFL",
     "styles": [
@@ -18964,7 +18964,7 @@
   {
     "name": "Mukta",
     "designer": "Ek Type",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2017-01-26",
     "license": "OFL",
     "styles": [
@@ -18992,7 +18992,7 @@
   {
     "name": "Mukta Mahee",
     "designer": "Ek Type",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2017-05-19",
     "license": "OFL",
     "styles": [
@@ -19020,7 +19020,7 @@
   {
     "name": "Mukta Malar",
     "designer": "Ek Type",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2017-02-13",
     "license": "OFL",
     "styles": [
@@ -19048,7 +19048,7 @@
   {
     "name": "Mukta Vaani",
     "designer": "Ek Type",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2016-06-15",
     "license": "OFL",
     "styles": [
@@ -19076,7 +19076,7 @@
   {
     "name": "Mulish",
     "designer": "Vernon Adams, Cyreal, Jacques Le Bailly",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-05-25",
     "license": "OFL",
     "styles": [
@@ -19114,7 +19114,7 @@
   {
     "name": "Murecho",
     "designer": "Neil Summerour",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2021-10-27",
     "license": "OFL",
     "styles": [
@@ -19298,7 +19298,7 @@
   {
     "name": "Nanum Gothic",
     "designer": "Sandoll Communication",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-05-09",
     "license": "OFL",
     "styles": [
@@ -19470,7 +19470,7 @@
   {
     "name": "New Amsterdam",
     "designer": "Vladimir Nikolic",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2024-07-26",
     "license": "OFL",
     "styles": [
@@ -19502,7 +19502,7 @@
   {
     "name": "News Cycle",
     "designer": "Nathan Willis",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-04-27",
     "license": "OFL",
     "styles": [
@@ -19592,7 +19592,7 @@
   {
     "name": "Niramit",
     "designer": "Cadson Demak",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2018-08-22",
     "license": "OFL",
     "styles": [
@@ -19641,7 +19641,7 @@
   {
     "name": "Nobile",
     "designer": "Vernon Adams",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2010-05-10",
     "license": "OFL",
     "styles": [
@@ -19665,7 +19665,7 @@
   {
     "name": "Nokora",
     "designer": "Danh Hong",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-11-09",
     "license": "OFL",
     "styles": [
@@ -19721,7 +19721,7 @@
   {
     "name": "Notable",
     "designer": "Eli Block, Hana Tanimura, Noemie Le Coz",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2018-08-03",
     "license": "OFL",
     "styles": [
@@ -19774,7 +19774,7 @@
   {
     "name": "Noto Color Emoji",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-07-27",
     "license": "OFL",
     "styles": [
@@ -19790,7 +19790,7 @@
   {
     "name": "Noto Emoji",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-04-29",
     "license": "OFL",
     "styles": [
@@ -19816,7 +19816,7 @@
   {
     "name": "Noto Kufi Arabic",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -19846,7 +19846,7 @@
   {
     "name": "Noto Music",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -19942,7 +19942,7 @@
   {
     "name": "Noto Sans",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2013-02-27",
     "license": "OFL",
     "styles": [
@@ -19986,7 +19986,7 @@
   {
     "name": "Noto Sans Adlam",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -20011,7 +20011,7 @@
   {
     "name": "Noto Sans Adlam Unjoined",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -20036,7 +20036,7 @@
   {
     "name": "Noto Sans Anatolian Hieroglyphs",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -20052,7 +20052,7 @@
   {
     "name": "Noto Sans Arabic",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -20086,7 +20086,7 @@
   {
     "name": "Noto Sans Armenian",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -20120,7 +20120,7 @@
   {
     "name": "Noto Sans Avestan",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -20136,7 +20136,7 @@
   {
     "name": "Noto Sans Balinese",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -20161,7 +20161,7 @@
   {
     "name": "Noto Sans Bamum",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -20186,7 +20186,7 @@
   {
     "name": "Noto Sans Bassa Vah",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -20211,7 +20211,7 @@
   {
     "name": "Noto Sans Batak",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -20227,7 +20227,7 @@
   {
     "name": "Noto Sans Bengali",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -20261,7 +20261,7 @@
   {
     "name": "Noto Sans Bhaiksuki",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -20277,7 +20277,7 @@
   {
     "name": "Noto Sans Brahmi",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -20293,7 +20293,7 @@
   {
     "name": "Noto Sans Buginese",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -20309,7 +20309,7 @@
   {
     "name": "Noto Sans Buhid",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -20325,7 +20325,7 @@
   {
     "name": "Noto Sans Canadian Aboriginal",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -20355,7 +20355,7 @@
   {
     "name": "Noto Sans Carian",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -20371,7 +20371,7 @@
   {
     "name": "Noto Sans Caucasian Albanian",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -20387,7 +20387,7 @@
   {
     "name": "Noto Sans Chakma",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -20403,7 +20403,7 @@
   {
     "name": "Noto Sans Cham",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -20433,7 +20433,7 @@
   {
     "name": "Noto Sans Cherokee",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -20463,7 +20463,7 @@
   {
     "name": "Noto Sans Chorasmian",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-10-11",
     "license": "OFL",
     "styles": [
@@ -20479,7 +20479,7 @@
   {
     "name": "Noto Sans Coptic",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -20495,7 +20495,7 @@
   {
     "name": "Noto Sans Cuneiform",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -20511,7 +20511,7 @@
   {
     "name": "Noto Sans Cypriot",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -20527,7 +20527,7 @@
   {
     "name": "Noto Sans Cypro Minoan",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-12-12",
     "license": "OFL",
     "styles": [
@@ -20543,7 +20543,7 @@
   {
     "name": "Noto Sans Deseret",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -20559,7 +20559,7 @@
   {
     "name": "Noto Sans Devanagari",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -20637,7 +20637,7 @@
   {
     "name": "Noto Sans Duployan",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -20655,7 +20655,7 @@
   {
     "name": "Noto Sans Egyptian Hieroglyphs",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -20671,7 +20671,7 @@
   {
     "name": "Noto Sans Elbasan",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -20687,7 +20687,7 @@
   {
     "name": "Noto Sans Elymaic",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -20703,7 +20703,7 @@
   {
     "name": "Noto Sans Ethiopic",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -20737,7 +20737,7 @@
   {
     "name": "Noto Sans Georgian",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -20771,7 +20771,7 @@
   {
     "name": "Noto Sans Glagolitic",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -20787,7 +20787,7 @@
   {
     "name": "Noto Sans Gothic",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -20803,7 +20803,7 @@
   {
     "name": "Noto Sans Grantha",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -20819,7 +20819,7 @@
   {
     "name": "Noto Sans Gujarati",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -20853,7 +20853,7 @@
   {
     "name": "Noto Sans Gunjala Gondi",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -20878,7 +20878,7 @@
   {
     "name": "Noto Sans Gurmukhi",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -20912,7 +20912,7 @@
   {
     "name": "Noto Sans Hanifi Rohingya",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -20937,7 +20937,7 @@
   {
     "name": "Noto Sans Hanunoo",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -20953,7 +20953,7 @@
   {
     "name": "Noto Sans Hatran",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -20969,7 +20969,7 @@
   {
     "name": "Noto Sans Hebrew",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -21003,7 +21003,7 @@
   {
     "name": "Noto Sans HK",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2019-03-12",
     "license": "OFL",
     "styles": [
@@ -21033,7 +21033,7 @@
   {
     "name": "Noto Sans Imperial Aramaic",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -21049,7 +21049,7 @@
   {
     "name": "Noto Sans Indic Siyaq Numbers",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -21065,7 +21065,7 @@
   {
     "name": "Noto Sans Inscriptional Pahlavi",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -21081,7 +21081,7 @@
   {
     "name": "Noto Sans Inscriptional Parthian",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -21097,7 +21097,7 @@
   {
     "name": "Noto Sans Javanese",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -21122,7 +21122,7 @@
   {
     "name": "Noto Sans JP",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2015-01-29",
     "license": "OFL",
     "styles": [
@@ -21152,7 +21152,7 @@
   {
     "name": "Noto Sans Kaithi",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -21168,7 +21168,7 @@
   {
     "name": "Noto Sans Kannada",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -21202,7 +21202,7 @@
   {
     "name": "Noto Sans Kawi",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2023-06-28",
     "license": "OFL",
     "styles": [
@@ -21227,7 +21227,7 @@
   {
     "name": "Noto Sans Kayah Li",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -21252,7 +21252,7 @@
   {
     "name": "Noto Sans Kharoshthi",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -21268,7 +21268,7 @@
   {
     "name": "Noto Sans Khmer",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -21302,7 +21302,7 @@
   {
     "name": "Noto Sans Khojki",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -21318,7 +21318,7 @@
   {
     "name": "Noto Sans Khudawadi",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -21334,7 +21334,7 @@
   {
     "name": "Noto Sans KR",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2018-02-05",
     "license": "OFL",
     "styles": [
@@ -21364,7 +21364,7 @@
   {
     "name": "Noto Sans Lao",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -21398,7 +21398,7 @@
   {
     "name": "Noto Sans Lao Looped",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-09-06",
     "license": "OFL",
     "styles": [
@@ -21432,7 +21432,7 @@
   {
     "name": "Noto Sans Lepcha",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -21448,7 +21448,7 @@
   {
     "name": "Noto Sans Limbu",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -21464,7 +21464,7 @@
   {
     "name": "Noto Sans Linear A",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -21480,7 +21480,7 @@
   {
     "name": "Noto Sans Linear B",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -21496,7 +21496,7 @@
   {
     "name": "Noto Sans Lisu",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -21521,7 +21521,7 @@
   {
     "name": "Noto Sans Lycian",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -21537,7 +21537,7 @@
   {
     "name": "Noto Sans Lydian",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -21553,7 +21553,7 @@
   {
     "name": "Noto Sans Mahajani",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -21569,7 +21569,7 @@
   {
     "name": "Noto Sans Malayalam",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -21603,7 +21603,7 @@
   {
     "name": "Noto Sans Mandaic",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -21619,7 +21619,7 @@
   {
     "name": "Noto Sans Manichaean",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -21635,7 +21635,7 @@
   {
     "name": "Noto Sans Marchen",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -21651,7 +21651,7 @@
   {
     "name": "Noto Sans Masaram Gondi",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -21667,7 +21667,7 @@
   {
     "name": "Noto Sans Math",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -21683,7 +21683,7 @@
   {
     "name": "Noto Sans Mayan Numerals",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -21699,7 +21699,7 @@
   {
     "name": "Noto Sans Medefaidrin",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -21724,7 +21724,7 @@
   {
     "name": "Noto Sans Meetei Mayek",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -21754,7 +21754,7 @@
   {
     "name": "Noto Sans Mende Kikakui",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -21770,7 +21770,7 @@
   {
     "name": "Noto Sans Meroitic",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -21786,7 +21786,7 @@
   {
     "name": "Noto Sans Miao",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -21802,7 +21802,7 @@
   {
     "name": "Noto Sans Modi",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -21818,7 +21818,7 @@
   {
     "name": "Noto Sans Mongolian",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -21834,7 +21834,7 @@
   {
     "name": "Noto Sans Mono",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -21868,7 +21868,7 @@
   {
     "name": "Noto Sans Mro",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -21884,7 +21884,7 @@
   {
     "name": "Noto Sans Multani",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -21900,7 +21900,7 @@
   {
     "name": "Noto Sans Myanmar",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -21934,7 +21934,7 @@
   {
     "name": "Noto Sans Nabataean",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -21950,7 +21950,7 @@
   {
     "name": "Noto Sans Nag Mundari",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2023-03-16",
     "license": "OFL",
     "styles": [
@@ -21975,7 +21975,7 @@
   {
     "name": "Noto Sans Nandinagari",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-12-12",
     "license": "OFL",
     "styles": [
@@ -21991,7 +21991,7 @@
   {
     "name": "Noto Sans Newa",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -22007,7 +22007,7 @@
   {
     "name": "Noto Sans New Tai Lue",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -22032,7 +22032,7 @@
   {
     "name": "Noto Sans NKo",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -22048,7 +22048,7 @@
   {
     "name": "Noto Sans NKo Unjoined",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2023-06-23",
     "license": "OFL",
     "styles": [
@@ -22073,7 +22073,7 @@
   {
     "name": "Noto Sans Nushu",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -22089,7 +22089,7 @@
   {
     "name": "Noto Sans Ogham",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -22105,7 +22105,7 @@
   {
     "name": "Noto Sans Ol Chiki",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -22130,7 +22130,7 @@
   {
     "name": "Noto Sans Old Hungarian",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -22146,7 +22146,7 @@
   {
     "name": "Noto Sans Old Italic",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -22162,7 +22162,7 @@
   {
     "name": "Noto Sans Old North Arabian",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -22178,7 +22178,7 @@
   {
     "name": "Noto Sans Old Permic",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -22194,7 +22194,7 @@
   {
     "name": "Noto Sans Old Persian",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -22210,7 +22210,7 @@
   {
     "name": "Noto Sans Old Sogdian",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -22226,7 +22226,7 @@
   {
     "name": "Noto Sans Old South Arabian",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -22242,7 +22242,7 @@
   {
     "name": "Noto Sans Old Turkic",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -22258,7 +22258,7 @@
   {
     "name": "Noto Sans Oriya",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -22292,7 +22292,7 @@
   {
     "name": "Noto Sans Osage",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -22308,7 +22308,7 @@
   {
     "name": "Noto Sans Osmanya",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -22324,7 +22324,7 @@
   {
     "name": "Noto Sans Pahawh Hmong",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -22340,7 +22340,7 @@
   {
     "name": "Noto Sans Palmyrene",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -22356,7 +22356,7 @@
   {
     "name": "Noto Sans Pau Cin Hau",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -22372,7 +22372,7 @@
   {
     "name": "Noto Sans PhagsPa",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -22388,7 +22388,7 @@
   {
     "name": "Noto Sans Phoenician",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -22404,7 +22404,7 @@
   {
     "name": "Noto Sans Psalter Pahlavi",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -22420,7 +22420,7 @@
   {
     "name": "Noto Sans Rejang",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -22436,7 +22436,7 @@
   {
     "name": "Noto Sans Runic",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -22452,7 +22452,7 @@
   {
     "name": "Noto Sans Samaritan",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -22468,7 +22468,7 @@
   {
     "name": "Noto Sans Saurashtra",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -22484,7 +22484,7 @@
   {
     "name": "Noto Sans SC",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2018-10-22",
     "license": "OFL",
     "styles": [
@@ -22514,7 +22514,7 @@
   {
     "name": "Noto Sans Sharada",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -22530,7 +22530,7 @@
   {
     "name": "Noto Sans Shavian",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -22546,7 +22546,7 @@
   {
     "name": "Noto Sans Siddham",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -22562,7 +22562,7 @@
   {
     "name": "Noto Sans SignWriting",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-10-31",
     "license": "OFL",
     "styles": [
@@ -22578,7 +22578,7 @@
   {
     "name": "Noto Sans Sinhala",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -22612,7 +22612,7 @@
   {
     "name": "Noto Sans Sogdian",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -22628,7 +22628,7 @@
   {
     "name": "Noto Sans Sora Sompeng",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -22653,7 +22653,7 @@
   {
     "name": "Noto Sans Soyombo",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -22669,7 +22669,7 @@
   {
     "name": "Noto Sans Sundanese",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -22694,7 +22694,7 @@
   {
     "name": "Noto Sans Syloti Nagri",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -22710,7 +22710,7 @@
   {
     "name": "Noto Sans Symbols",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -22740,7 +22740,7 @@
   {
     "name": "Noto Sans Symbols 2",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -22756,7 +22756,7 @@
   {
     "name": "Noto Sans Syriac",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -22786,7 +22786,7 @@
   {
     "name": "Noto Sans Syriac Eastern",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2023-01-06",
     "license": "OFL",
     "styles": [
@@ -22816,7 +22816,7 @@
   {
     "name": "Noto Sans Tagalog",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -22832,7 +22832,7 @@
   {
     "name": "Noto Sans Tagbanwa",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -22848,7 +22848,7 @@
   {
     "name": "Noto Sans Tai Le",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -22864,7 +22864,7 @@
   {
     "name": "Noto Sans Tai Tham",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -22889,7 +22889,7 @@
   {
     "name": "Noto Sans Tai Viet",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -22905,7 +22905,7 @@
   {
     "name": "Noto Sans Takri",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -22921,7 +22921,7 @@
   {
     "name": "Noto Sans Tamil",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -22955,7 +22955,7 @@
   {
     "name": "Noto Sans Tamil Supplement",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -22971,7 +22971,7 @@
   {
     "name": "Noto Sans Tangsa",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-09-12",
     "license": "OFL",
     "styles": [
@@ -22996,7 +22996,7 @@
   {
     "name": "Noto Sans TC",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2018-10-22",
     "license": "OFL",
     "styles": [
@@ -23026,7 +23026,7 @@
   {
     "name": "Noto Sans Telugu",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -23060,7 +23060,7 @@
   {
     "name": "Noto Sans Thaana",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -23090,7 +23090,7 @@
   {
     "name": "Noto Sans Thai",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -23124,7 +23124,7 @@
   {
     "name": "Noto Sans Thai Looped",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -23158,7 +23158,7 @@
   {
     "name": "Noto Sans Tifinagh",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -23174,7 +23174,7 @@
   {
     "name": "Noto Sans Tirhuta",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -23190,7 +23190,7 @@
   {
     "name": "Noto Sans Ugaritic",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -23206,7 +23206,7 @@
   {
     "name": "Noto Sans Vai",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -23222,7 +23222,7 @@
   {
     "name": "Noto Sans Vithkuqi",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-10-11",
     "license": "OFL",
     "styles": [
@@ -23247,7 +23247,7 @@
   {
     "name": "Noto Sans Wancho",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -23263,7 +23263,7 @@
   {
     "name": "Noto Sans Warang Citi",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -23279,7 +23279,7 @@
   {
     "name": "Noto Sans Yi",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -23295,7 +23295,7 @@
   {
     "name": "Noto Sans Zanabazar Square",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -24479,7 +24479,7 @@
   {
     "name": "Noto Traditional Nushu",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-11-19",
     "license": "OFL",
     "styles": [
@@ -24505,7 +24505,7 @@
   {
     "name": "Noto Znamenny Musical Notation",
     "designer": "Google",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2023-12-11",
     "license": "OFL",
     "styles": [
@@ -24649,7 +24649,7 @@
   {
     "name": "NTR",
     "designer": "Purushoth Kumar Guttula",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2014-12-10",
     "license": "OFL",
     "styles": [
@@ -24665,7 +24665,7 @@
   {
     "name": "Numans",
     "designer": "Jovanny Lemonad",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-08-17",
     "license": "OFL",
     "styles": [
@@ -24681,7 +24681,7 @@
   {
     "name": "Nunito",
     "designer": "Vernon Adams, Cyreal, Jacques Le Bailly",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-08-12",
     "license": "OFL",
     "styles": [
@@ -24719,7 +24719,7 @@
   {
     "name": "Nunito Sans",
     "designer": "Vernon Adams, Jacques Le Bailly, Manvel Shmavonyan, Alexei Vanyashin",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2016-10-06",
     "license": "OFL",
     "styles": [
@@ -24769,7 +24769,7 @@
   {
     "name": "Nuosu SIL",
     "designer": "SIL International",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-04-28",
     "license": "OFL",
     "styles": [
@@ -24849,7 +24849,7 @@
   {
     "name": "Ojuju",
     "designer": "Ụdị Foundry, Chisaokwu Joboson, Mirko Velimirović",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2024-02-14",
     "license": "OFL",
     "styles": [
@@ -24965,7 +24965,7 @@
   {
     "name": "Onest",
     "designer": "Dmitri Voloshin, Andrey Kudryavtsev",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2023-09-06",
     "license": "OFL",
     "styles": [
@@ -25011,7 +25011,7 @@
   {
     "name": "Open Sans",
     "designer": "Steve Matteson",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-02-02",
     "license": "OFL",
     "styles": [
@@ -25065,7 +25065,7 @@
   {
     "name": "Orbit",
     "designer": "Sooun Cho, JAMO",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2023-05-18",
     "license": "OFL",
     "styles": [
@@ -25081,7 +25081,7 @@
   {
     "name": "Orbitron",
     "designer": "Matt McInerney",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2010-12-15",
     "license": "OFL",
     "styles": [
@@ -25142,7 +25142,7 @@
   {
     "name": "Orienta",
     "designer": "Eduardo Tunni",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-09-07",
     "license": "OFL",
     "styles": [
@@ -25174,7 +25174,7 @@
   {
     "name": "Oswald",
     "designer": "Vernon Adams, Kalapi Gajjar, Cyreal",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-02-29",
     "license": "OFL",
     "styles": [
@@ -25201,7 +25201,7 @@
   {
     "name": "Outfit",
     "designer": "Smartsheet Inc, Rodrigo Fuenzalida",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2021-09-28",
     "license": "OFL",
     "styles": [
@@ -25271,7 +25271,7 @@
   {
     "name": "Overpass",
     "designer": "Delve Withrington, Dave Bailey, Thomas Jockin",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2016-12-02",
     "license": "OFL",
     "styles": [
@@ -25397,7 +25397,7 @@
   {
     "name": "Oxygen",
     "designer": "Vernon Adams",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-03-29",
     "license": "OFL",
     "styles": [
@@ -25449,7 +25449,7 @@
   {
     "name": "Padauk",
     "designer": "SIL International",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2016-11-08",
     "license": "OFL",
     "styles": [
@@ -25483,7 +25483,7 @@
   {
     "name": "Palanquin",
     "designer": "Pria Ravichandran",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2015-01-28",
     "license": "OFL",
     "styles": [
@@ -25511,7 +25511,7 @@
   {
     "name": "Palanquin Dark",
     "designer": "Pria Ravichandran",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2015-01-28",
     "license": "OFL",
     "styles": [
@@ -25597,7 +25597,7 @@
   {
     "name": "Parkinsans",
     "designer": "Red Stone",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2024-11-07",
     "license": "OFL",
     "styles": [
@@ -25724,7 +25724,7 @@
   {
     "name": "Pathway Gothic One",
     "designer": "Eduardo Tunni",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2013-06-05",
     "license": "OFL",
     "styles": [
@@ -25772,7 +25772,7 @@
   {
     "name": "Pattaya",
     "designer": "Cadson Demak",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2016-06-20",
     "license": "OFL",
     "styles": [
@@ -25804,7 +25804,7 @@
   {
     "name": "Pavanam",
     "designer": "Tharique Azeez",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2016-06-20",
     "license": "OFL",
     "styles": [
@@ -25820,7 +25820,7 @@
   {
     "name": "Paytone One",
     "designer": "Vernon Adams",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-05-04",
     "license": "OFL",
     "styles": [
@@ -25958,7 +25958,7 @@
   {
     "name": "Philosopher",
     "designer": "Jovanny Lemonad",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-08-31",
     "license": "OFL",
     "styles": [
@@ -26174,7 +26174,7 @@
   {
     "name": "Play",
     "designer": "Jonas Hecksher",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-05-04",
     "license": "OFL",
     "styles": [
@@ -28451,7 +28451,7 @@
   {
     "name": "Plus Jakarta Sans",
     "designer": "Tokotype",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-03-24",
     "license": "OFL",
     "styles": [
@@ -28670,7 +28670,7 @@
   {
     "name": "Pontano Sans",
     "designer": "Vernon Adams",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-03-14",
     "license": "OFL",
     "styles": [
@@ -28712,7 +28712,7 @@
   {
     "name": "Poppins",
     "designer": "Indian Type Foundry, Jonny Pinhorn, Ninad Kale",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2015-06-03",
     "license": "OFL",
     "styles": [
@@ -28754,7 +28754,7 @@
   {
     "name": "Port Lligat Sans",
     "designer": "Tipo",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-01-18",
     "license": "OFL",
     "styles": [
@@ -28802,7 +28802,7 @@
   {
     "name": "Pragati Narrow",
     "designer": "Omnibus-Type",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2015-04-22",
     "license": "OFL",
     "styles": [
@@ -28852,7 +28852,7 @@
   {
     "name": "Preahvihear",
     "designer": "Danh Hong",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-03-02",
     "license": "OFL",
     "styles": [
@@ -28942,7 +28942,7 @@
   {
     "name": "Prompt",
     "designer": "Cadson Demak",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2016-06-20",
     "license": "OFL",
     "styles": [
@@ -29064,7 +29064,7 @@
   {
     "name": "Proza Libre",
     "designer": "Jasper de Waard",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2016-06-20",
     "license": "OFL",
     "styles": [
@@ -29110,7 +29110,7 @@
   {
     "name": "PT Sans",
     "designer": "ParaType",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2010-09-21",
     "license": "OFL",
     "styles": [
@@ -29131,7 +29131,7 @@
   {
     "name": "PT Sans Caption",
     "designer": "ParaType",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2010-09-21",
     "license": "OFL",
     "styles": [
@@ -29149,7 +29149,7 @@
   {
     "name": "PT Sans Narrow",
     "designer": "ParaType",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2010-09-21",
     "license": "OFL",
     "styles": [
@@ -29206,7 +29206,7 @@
   {
     "name": "Public Sans",
     "designer": "USWDS, Dan Williams, Pablo Impallari, Rodrigo Fuenzalida",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2019-06-07",
     "license": "OFL",
     "styles": [
@@ -29262,7 +29262,7 @@
   {
     "name": "Puritan",
     "designer": "Ben Weiner",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2010-11-30",
     "license": "OFL",
     "styles": [
@@ -29299,7 +29299,7 @@
   {
     "name": "Qahiri",
     "designer": "Khaled Hosny",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2021-04-03",
     "license": "OFL",
     "styles": [
@@ -29331,7 +29331,7 @@
   {
     "name": "Quantico",
     "designer": "MADType",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-12-19",
     "license": "OFL",
     "styles": [
@@ -29370,7 +29370,7 @@
   {
     "name": "Quattrocento Sans",
     "designer": "Impallari Type",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-02-15",
     "license": "OFL",
     "styles": [
@@ -29391,7 +29391,7 @@
   {
     "name": "Questrial",
     "designer": "Joe Prince, Laura Meseguer",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-08-10",
     "license": "OFL",
     "styles": [
@@ -29407,7 +29407,7 @@
   {
     "name": "Quicksand",
     "designer": "Andrew Paglinawan",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-10-19",
     "license": "OFL",
     "styles": [
@@ -29499,7 +29499,7 @@
   {
     "name": "Radio Canada",
     "designer": "Charles Daoud, Coppers and Brasses, Alexandre Saumier Demers, Jacques Le Bailly",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-03-18",
     "license": "OFL",
     "styles": [
@@ -29535,7 +29535,7 @@
   {
     "name": "Radio Canada Big",
     "designer": "Étienne Aubert Bonn",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2024-04-17",
     "license": "OFL",
     "styles": [
@@ -29583,7 +29583,7 @@
   {
     "name": "Rajdhani",
     "designer": "Indian Type Foundry",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2014-07-09",
     "license": "OFL",
     "styles": [
@@ -29623,7 +29623,7 @@
   {
     "name": "Raleway",
     "designer": "Matt McInerney, Pablo Impallari, Rodrigo Fuenzalida",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-09-07",
     "license": "OFL",
     "styles": [
@@ -29679,7 +29679,7 @@
   {
     "name": "Ramabhadra",
     "designer": "Purushoth Kumar Guttula",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2014-12-10",
     "license": "OFL",
     "styles": [
@@ -29711,7 +29711,7 @@
   {
     "name": "Rambla",
     "designer": "Martin Sommaruga",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-10-31",
     "license": "OFL",
     "styles": [
@@ -29830,7 +29830,7 @@
   {
     "name": "Rationale",
     "designer": "Cyreal",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-08-03",
     "license": "OFL",
     "styles": [
@@ -29862,7 +29862,7 @@
   {
     "name": "Readex Pro",
     "designer": "Thomas Jockin, Nadine Chahine, Bonnie Shaver-Troup, Santiago Orozco, Héctor Gómez",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2021-09-16",
     "license": "OFL",
     "styles": [
@@ -29893,7 +29893,7 @@
   {
     "name": "Recursive",
     "designer": "Arrow Type, Stephen Nixon",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-05-01",
     "license": "OFL",
     "styles": [
@@ -30002,7 +30002,7 @@
   {
     "name": "Reddit Sans",
     "designer": "Stephen Hutchings, OrangeRed",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2023-10-11",
     "license": "OFL",
     "styles": [
@@ -30040,7 +30040,7 @@
   {
     "name": "Reddit Sans Condensed",
     "designer": "Stephen Hutchings, OrangeRed",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2024-02-22",
     "license": "OFL",
     "styles": [
@@ -30069,7 +30069,7 @@
   {
     "name": "Red Hat Display",
     "designer": "MCKL",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2019-04-10",
     "license": "OFL",
     "styles": [
@@ -30105,7 +30105,7 @@
   {
     "name": "Red Hat Mono",
     "designer": "MCKL",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2021-06-10",
     "license": "OFL",
     "styles": [
@@ -30137,7 +30137,7 @@
   {
     "name": "Red Hat Text",
     "designer": "MCKL",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2019-04-10",
     "license": "OFL",
     "styles": [
@@ -30195,7 +30195,7 @@
   {
     "name": "Reem Kufi",
     "designer": "Khaled Hosny, Santiago Orozco",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2016-05-31",
     "license": "OFL",
     "styles": [
@@ -30220,7 +30220,7 @@
   {
     "name": "Reem Kufi Fun",
     "designer": "Khaled Hosny, Santiago Orozco",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2021-11-02",
     "license": "OFL",
     "styles": [
@@ -30245,7 +30245,7 @@
   {
     "name": "Reem Kufi Ink",
     "designer": "Khaled Hosny, Santiago Orozco",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2021-11-02",
     "license": "OFL",
     "styles": [
@@ -30293,7 +30293,7 @@
   {
     "name": "REM",
     "designer": "Octavio Pardo",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2023-06-30",
     "license": "OFL",
     "styles": [
@@ -30333,7 +30333,7 @@
   {
     "name": "Rethink Sans",
     "designer": "Hans Thiessen",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2023-09-06",
     "license": "OFL",
     "styles": [
@@ -30477,7 +30477,7 @@
   {
     "name": "Roboto",
     "designer": "Christian Robertson, Paratype, Font Bureau",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2013-01-09",
     "license": "OFL",
     "styles": [
@@ -30521,7 +30521,7 @@
   {
     "name": "Roboto Condensed",
     "designer": "Christian Robertson",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2023-07-28",
     "license": "OFL",
     "styles": [
@@ -30561,7 +30561,7 @@
   {
     "name": "Roboto Flex",
     "designer": "Font Bureau, David Berlow, Santiago Orozco, Irene Vlachou, Ilya Ruderman, Yury Ostromentsky, Mikhail Strukov",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-05-01",
     "license": "OFL",
     "styles": [
@@ -30699,7 +30699,7 @@
   {
     "name": "RocknRoll One",
     "designer": "Fontworks Inc.",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-12-15",
     "license": "OFL",
     "styles": [
@@ -30771,7 +30771,7 @@
   {
     "name": "Ropa Sans",
     "designer": "Botjo Nikoltchev",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-01-25",
     "license": "OFL",
     "styles": [
@@ -30789,7 +30789,7 @@
   {
     "name": "Rosario",
     "designer": "Omnibus-Type",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-09-07",
     "license": "OFL",
     "styles": [
@@ -30891,7 +30891,7 @@
   {
     "name": "Rubik",
     "designer": "Hubert and Fischer, Meir Sadan, Cyreal, Daniel Grumer, Omaima Dajani",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2015-07-22",
     "license": "OFL",
     "styles": [
@@ -31215,7 +31215,7 @@
   {
     "name": "Rubik Mono One",
     "designer": "Hubert and Fischer",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2014-05-05",
     "license": "OFL",
     "styles": [
@@ -31359,7 +31359,7 @@
   {
     "name": "Ruda",
     "designer": "Mariela Monsalve, Angelina Sanchez",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-01-11",
     "license": "OFL",
     "styles": [
@@ -31420,7 +31420,7 @@
   {
     "name": "Ruluko",
     "designer": "Ana Sanfelippo, Angélica Díaz, Meme Hernández",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-01-11",
     "license": "OFL",
     "styles": [
@@ -31436,7 +31436,7 @@
   {
     "name": "Rum Raisin",
     "designer": "Astigmatic",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-11-02",
     "license": "OFL",
     "styles": [
@@ -31468,7 +31468,7 @@
   {
     "name": "Russo One",
     "designer": "Jovanny Lemonad",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-04-04",
     "license": "OFL",
     "styles": [
@@ -31588,7 +31588,7 @@
   {
     "name": "Saira",
     "designer": "Omnibus-Type",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2016-12-03",
     "license": "OFL",
     "styles": [
@@ -31632,7 +31632,7 @@
   {
     "name": "Saira Condensed",
     "designer": "Omnibus-Type",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2016-12-03",
     "license": "OFL",
     "styles": [
@@ -31664,7 +31664,7 @@
   {
     "name": "Saira Extra Condensed",
     "designer": "Omnibus-Type",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2016-12-03",
     "license": "OFL",
     "styles": [
@@ -31696,7 +31696,7 @@
   {
     "name": "Saira Semi Condensed",
     "designer": "Omnibus-Type",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2016-12-03",
     "license": "OFL",
     "styles": [
@@ -31794,7 +31794,7 @@
   {
     "name": "Sankofa Display",
     "designer": "Batsirai Madzonga",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2024-04-18",
     "license": "OFL",
     "styles": [
@@ -31810,7 +31810,7 @@
   {
     "name": "Sansita",
     "designer": "Omnibus-Type",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2016-12-04",
     "license": "OFL",
     "styles": [
@@ -31865,7 +31865,7 @@
   {
     "name": "Sarabun",
     "designer": "Suppakit Chalermlarp",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2013-10-28",
     "license": "OFL",
     "styles": [
@@ -31904,7 +31904,7 @@
   {
     "name": "Sarala",
     "designer": "Andres Torresi",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2015-06-17",
     "license": "OFL",
     "styles": [
@@ -31938,7 +31938,7 @@
   {
     "name": "Sarpanch",
     "designer": "Indian Type Foundry",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2014-09-03",
     "license": "OFL",
     "styles": [
@@ -31996,7 +31996,7 @@
   {
     "name": "Scada",
     "designer": "Jovanny Lemonad",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-07-30",
     "license": "OFL",
     "styles": [
@@ -32039,7 +32039,7 @@
   {
     "name": "Schibsted Grotesk",
     "designer": "Bakken & Bæck, Henrik Kongsvoll",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2023-03-03",
     "license": "OFL",
     "styles": [
@@ -32105,7 +32105,7 @@
   {
     "name": "Secular One",
     "designer": "Michal Sahar",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2016-06-20",
     "license": "OFL",
     "styles": [
@@ -32187,7 +32187,7 @@
   {
     "name": "Sen",
     "designer": "Kosal Sen",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-01-17",
     "license": "OFL",
     "styles": [
@@ -32245,7 +32245,7 @@
   {
     "name": "Seymour One",
     "designer": "Vernon Adams",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-10-10",
     "license": "OFL",
     "styles": [
@@ -32368,7 +32368,7 @@
   {
     "name": "Shanti",
     "designer": "Vernon Adams",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-05-11",
     "license": "OFL",
     "styles": [
@@ -32384,7 +32384,7 @@
   {
     "name": "Share",
     "designer": "Carrois Apostrophe",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-02-08",
     "license": "OFL",
     "styles": [
@@ -32405,7 +32405,7 @@
   {
     "name": "Share Tech",
     "designer": "Carrois Apostrophe",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-10-31",
     "license": "OFL",
     "styles": [
@@ -32437,7 +32437,7 @@
   {
     "name": "Shippori Antique",
     "designer": "FONTDASU",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2021-04-14",
     "license": "OFL",
     "styles": [
@@ -32453,7 +32453,7 @@
   {
     "name": "Shippori Antique B1",
     "designer": "FONTDASU",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2021-04-14",
     "license": "OFL",
     "styles": [
@@ -32581,7 +32581,7 @@
   {
     "name": "Siemreap",
     "designer": "Danh Hong",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-04-20",
     "license": "OFL",
     "styles": [
@@ -32629,7 +32629,7 @@
   {
     "name": "Signika",
     "designer": "Anna Giedryś",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-11-23",
     "license": "OFL",
     "styles": [
@@ -32659,7 +32659,7 @@
   {
     "name": "Signika Negative",
     "designer": "Anna Giedryś",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-11-23",
     "license": "OFL",
     "styles": [
@@ -32740,7 +32740,7 @@
   {
     "name": "Sintony",
     "designer": "Eduardo Rodriguez Tunni",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2013-02-27",
     "license": "OFL",
     "styles": [
@@ -32774,7 +32774,7 @@
   {
     "name": "Six Caps",
     "designer": "Vernon Adams",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-02-16",
     "license": "OFL",
     "styles": [
@@ -32932,7 +32932,7 @@
   {
     "name": "Smooch Sans",
     "designer": "Robert Leuschke",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2021-12-17",
     "license": "OFL",
     "styles": [
@@ -32996,7 +32996,7 @@
   {
     "name": "Snippet",
     "designer": "Gesine Todt",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-07-20",
     "license": "OFL",
     "styles": [
@@ -33060,7 +33060,7 @@
   {
     "name": "Sofia Sans",
     "designer": "Lettersoup, Botio Nikoltchev, Ani Petrova",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-11-17",
     "license": "OFL",
     "styles": [
@@ -33100,7 +33100,7 @@
   {
     "name": "Sofia Sans Condensed",
     "designer": "Lettersoup, Botio Nikoltchev, Ani Petrova",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-11-17",
     "license": "OFL",
     "styles": [
@@ -33140,7 +33140,7 @@
   {
     "name": "Sofia Sans Extra Condensed",
     "designer": "Lettersoup, Botio Nikoltchev, Ani Petrova",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-11-17",
     "license": "OFL",
     "styles": [
@@ -33180,7 +33180,7 @@
   {
     "name": "Sofia Sans Semi Condensed",
     "designer": "Lettersoup, Botio Nikoltchev, Ani Petrova",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-11-17",
     "license": "OFL",
     "styles": [
@@ -33354,7 +33354,7 @@
   {
     "name": "Sora",
     "designer": "Jonathan Barnbrook, Julián Moncada",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-06-10",
     "license": "OFL",
     "styles": [
@@ -33439,7 +33439,7 @@
   {
     "name": "Source Sans 3",
     "designer": "Paul D. Hunt",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2021-09-17",
     "license": "OFL",
     "styles": [
@@ -33519,7 +33519,7 @@
   {
     "name": "Sour Gummy",
     "designer": "Stefie Justprince",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2024-09-11",
     "license": "OFL",
     "styles": [
@@ -33563,7 +33563,7 @@
   {
     "name": "Space Grotesk",
     "designer": "Florian Karsten",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-10-07",
     "license": "OFL",
     "styles": [
@@ -33698,7 +33698,7 @@
   {
     "name": "Spinnaker",
     "designer": "Elena Albertoni",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-09-28",
     "license": "OFL",
     "styles": [
@@ -33746,7 +33746,7 @@
   {
     "name": "Spline Sans",
     "designer": "Eben Sorkin, Mirko Velimirović",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2021-11-22",
     "license": "OFL",
     "styles": [
@@ -33772,7 +33772,7 @@
   {
     "name": "Spline Sans Mono",
     "designer": "Eben Sorkin, Mirko Velimirović",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-03-28",
     "license": "OFL",
     "styles": [
@@ -33952,7 +33952,7 @@
   {
     "name": "Stick",
     "designer": "Fontworks Inc.",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-12-15",
     "license": "OFL",
     "styles": [
@@ -33968,7 +33968,7 @@
   {
     "name": "Stick No Bills",
     "designer": "Mooniak",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2021-06-29",
     "license": "OFL",
     "styles": [
@@ -34076,7 +34076,7 @@
   {
     "name": "Strait",
     "designer": "Eduardo Tunni",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-10-26",
     "license": "OFL",
     "styles": [
@@ -34108,7 +34108,7 @@
   {
     "name": "Stylish",
     "designer": "AsiaSoft Inc",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2018-02-27",
     "license": "OFL",
     "styles": [
@@ -34156,7 +34156,7 @@
   {
     "name": "Sulphur Point",
     "designer": "Dale Sattler",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2019-09-25",
     "license": "OFL",
     "styles": [
@@ -34194,7 +34194,7 @@
   {
     "name": "Sunflower",
     "designer": "JIKJISOFT",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2018-02-27",
     "license": "OFL",
     "styles": [
@@ -34280,7 +34280,7 @@
   {
     "name": "SUSE",
     "designer": "René Bieder",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2024-08-14",
     "license": "OFL",
     "styles": [
@@ -34407,7 +34407,7 @@
   {
     "name": "Tac One",
     "designer": "Afrotype, Seyi Olusanya, Eyiyemi Adegbite, David Udoh, Mirko Velimirović",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2024-02-14",
     "license": "OFL",
     "styles": [
@@ -34441,7 +34441,7 @@
   {
     "name": "Tajawal",
     "designer": "Boutros Fonts, Mourad Boutros, Soulaf Khalifeh",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2018-04-04",
     "license": "OFL",
     "styles": [
@@ -34519,7 +34519,7 @@
   {
     "name": "Tauri",
     "designer": "Yvonne Schüttler",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2013-02-27",
     "license": "OFL",
     "styles": [
@@ -34577,7 +34577,7 @@
   {
     "name": "Teachers",
     "designer": "Alfredo Marco Pradil, Chank Diesel",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2024-03-15",
     "license": "OFL",
     "styles": [
@@ -34609,7 +34609,7 @@
   {
     "name": "Teko",
     "designer": "Indian Type Foundry",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2014-06-25",
     "license": "OFL",
     "styles": [
@@ -34635,7 +34635,7 @@
   {
     "name": "Tektur",
     "designer": "Adam Jagosz",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2023-06-16",
     "license": "OFL",
     "styles": [
@@ -34666,7 +34666,7 @@
   {
     "name": "Telex",
     "designer": "Huerta Tipográfica",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-01-18",
     "license": "OFL",
     "styles": [
@@ -34682,7 +34682,7 @@
   {
     "name": "Tenali Ramakrishna",
     "designer": "Appaji Ambarisha Darbha",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2014-12-10",
     "license": "OFL",
     "styles": [
@@ -34698,7 +34698,7 @@
   {
     "name": "Tenor Sans",
     "designer": "Denis Masharov",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-05-25",
     "license": "OFL",
     "styles": [
@@ -34714,7 +34714,7 @@
   {
     "name": "Text Me One",
     "designer": "Julia Petretta",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-10-31",
     "license": "OFL",
     "styles": [
@@ -34774,7 +34774,7 @@
   {
     "name": "Thasadith",
     "designer": "Cadson Demak",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2018-08-22",
     "license": "OFL",
     "styles": [
@@ -34951,7 +34951,7 @@
   {
     "name": "Timmana",
     "designer": "Appaji Ambarisha Darbha",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2015-01-12",
     "license": "OFL",
     "styles": [
@@ -34967,7 +34967,7 @@
   {
     "name": "Tiny5",
     "designer": "Stefan Schmidt",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2024-04-19",
     "license": "OFL",
     "styles": [
@@ -35143,7 +35143,7 @@
   {
     "name": "Titillium Web",
     "designer": "Accademia di Belle Arti di Urbino",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-10-01",
     "license": "OFL",
     "styles": [
@@ -35175,7 +35175,7 @@
   {
     "name": "Tomorrow",
     "designer": "Tony de Marco, Monica Rizzolli",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2019-10-02",
     "license": "OFL",
     "styles": [
@@ -35351,7 +35351,7 @@
   {
     "name": "Trispace",
     "designer": "Tyler Finck, ETC",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-09-25",
     "license": "OFL",
     "styles": [
@@ -35420,7 +35420,7 @@
   {
     "name": "Truculenta",
     "designer": "Omnibus-Type",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-12-16",
     "license": "OFL",
     "styles": [
@@ -35474,7 +35474,7 @@
   {
     "name": "Tsukimi Rounded",
     "designer": "Takashi Funayama",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-12-14",
     "license": "OFL",
     "styles": [
@@ -35572,7 +35572,7 @@
   {
     "name": "Unbounded",
     "designer": "NaN",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-11-07",
     "license": "OFL",
     "styles": [
@@ -35734,7 +35734,7 @@
   {
     "name": "Urbanist",
     "designer": "Corey Hu",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2021-06-02",
     "license": "OFL",
     "styles": [
@@ -35790,7 +35790,7 @@
   {
     "name": "Varela",
     "designer": "Joe Prince",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-06-29",
     "license": "OFL",
     "styles": [
@@ -35806,7 +35806,7 @@
   {
     "name": "Varela Round",
     "designer": "Joe Prince",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-07-13",
     "license": "OFL",
     "styles": [
@@ -35822,7 +35822,7 @@
   {
     "name": "Varta",
     "designer": "Joana Correia, Viktoriya Grabowska, Eben Sorkin",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-06-11",
     "license": "OFL",
     "styles": [
@@ -35864,7 +35864,7 @@
   {
     "name": "Vazirmatn",
     "designer": "Saber Rastikerdar",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2022-03-16",
     "license": "OFL",
     "styles": [
@@ -35964,7 +35964,7 @@
   {
     "name": "Victor Mono",
     "designer": "Rune Bjørnerås",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2023-06-21",
     "license": "OFL",
     "styles": [
@@ -36016,7 +36016,7 @@
   {
     "name": "Viga",
     "designer": "Fontstage",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-12-07",
     "license": "OFL",
     "styles": [
@@ -36048,7 +36048,7 @@
   {
     "name": "Voces",
     "designer": "Ana Paula Megda, Pablo Ugerman",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-02-22",
     "license": "OFL",
     "styles": [
@@ -36141,7 +36141,7 @@
   {
     "name": "Voltaire",
     "designer": "Yvonne Schüttler",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-08-17",
     "license": "OFL",
     "styles": [
@@ -36323,7 +36323,7 @@
   {
     "name": "Wendy One",
     "designer": "Alejandro Inler",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2012-12-05",
     "license": "OFL",
     "styles": [
@@ -36373,7 +36373,7 @@
   {
     "name": "Wire One",
     "designer": "Cyreal",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2011-05-18",
     "license": "OFL",
     "styles": [
@@ -36423,7 +36423,7 @@
   {
     "name": "Wix Madefor Display",
     "designer": "Dalton Maag",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2023-02-06",
     "license": "OFL",
     "styles": [
@@ -36449,7 +36449,7 @@
   {
     "name": "Wix Madefor Text",
     "designer": "Dalton Maag",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2023-01-11",
     "license": "OFL",
     "styles": [
@@ -36511,7 +36511,7 @@
   {
     "name": "Work Sans",
     "designer": "Wei Huang",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2015-07-08",
     "license": "OFL",
     "styles": [
@@ -36569,7 +36569,7 @@
   {
     "name": "Yaldevi",
     "designer": "Mooniak",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2021-06-28",
     "license": "OFL",
     "styles": [
@@ -36596,7 +36596,7 @@
   {
     "name": "Yanone Kaffeesatz",
     "designer": "Yanone, Cyreal",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2010-05-11",
     "license": "OFL",
     "styles": [
@@ -36623,7 +36623,7 @@
   {
     "name": "Yantramanav",
     "designer": "Erin McLaughlin",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2015-06-03",
     "license": "OFL",
     "styles": [
@@ -36841,7 +36841,7 @@
   {
     "name": "Ysabeau",
     "designer": "Christian Thalmann",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2023-03-16",
     "license": "OFL",
     "styles": [
@@ -36881,7 +36881,7 @@
   {
     "name": "Ysabeau Infant",
     "designer": "Christian Thalmann",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2023-06-14",
     "license": "OFL",
     "styles": [
@@ -36921,7 +36921,7 @@
   {
     "name": "Ysabeau Office",
     "designer": "Christian Thalmann",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2023-06-14",
     "license": "OFL",
     "styles": [
@@ -36961,7 +36961,7 @@
   {
     "name": "Ysabeau SC",
     "designer": "Christian Thalmann",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2023-06-14",
     "license": "OFL",
     "styles": [
@@ -37071,7 +37071,7 @@
   {
     "name": "Yusei Magic",
     "designer": "Tanukizamurai",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2020-12-14",
     "license": "OFL",
     "styles": [
@@ -37087,7 +37087,7 @@
   {
     "name": "Zain",
     "designer": "Boutros Fonts",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2024-05-31",
     "license": "OFL",
     "styles": [
@@ -37116,7 +37116,7 @@
   {
     "name": "ZCOOL KuaiLe",
     "designer": "Liu Bingke, Yang Kang, Wu Shaojie",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2018-12-05",
     "license": "OFL",
     "styles": [
@@ -37132,7 +37132,7 @@
   {
     "name": "ZCOOL QingKe HuangYou",
     "designer": "Zheng Qingke",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2018-12-05",
     "license": "OFL",
     "styles": [
@@ -37148,7 +37148,7 @@
   {
     "name": "ZCOOL XiaoWei",
     "designer": "Li Dawei",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2018-12-05",
     "license": "OFL",
     "styles": [
@@ -37212,7 +37212,7 @@
   {
     "name": "Zen Kaku Gothic Antique",
     "designer": "Yoshimichi Ohira",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2021-10-22",
     "license": "OFL",
     "styles": [
@@ -37236,7 +37236,7 @@
   {
     "name": "Zen Kaku Gothic New",
     "designer": "Yoshimichi Ohira",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2021-10-22",
     "license": "OFL",
     "styles": [
@@ -37260,7 +37260,7 @@
   {
     "name": "Zen Kurenaido",
     "designer": "Yoshimichi Ohira",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2021-10-22",
     "license": "OFL",
     "styles": [
@@ -37294,7 +37294,7 @@
   {
     "name": "Zen Maru Gothic",
     "designer": "Yoshimichi Ohira",
-    "category": "SANS_SERIF",
+    "category": "SANS-SERIF",
     "date_added": "2021-10-22",
     "license": "OFL",
     "styles": [

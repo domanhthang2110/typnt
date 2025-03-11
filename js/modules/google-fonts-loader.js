@@ -24,6 +24,9 @@ export class GoogleFontsLoader {
     ];
   }
 
+  // Cache for personality data
+  static #personalityData = null;
+
   /**
    * Loads font data from the provided JSON path
    * @param {string} jsonPath - Path to the fontinfo.json file
@@ -531,6 +534,102 @@ export class GoogleFontsLoader {
           (a.name || a.family || "").localeCompare(b.name || b.family || "")
         );
     }
+  }
+
+  /**
+   * Loads fonts by personality from the personality.json file
+   * @param {string} personalityName - The name of the personality (e.g., "Calm", "Geometric")
+   * @param {number} page - The page number (0-based)
+   * @param {number} fontsPerPage - Number of fonts to load per page
+   * @returns {Promise<{fonts: Array, totalFonts: number, hasMore: boolean}>} - Font information and pagination details
+   */
+  async loadFontsByPersonality(personalityName, page = 0, fontsPerPage = 20) {
+    try {
+      // Load personality data if not already loaded
+      if (!GoogleFontsLoader.#personalityData) {
+        const response = await fetch('/data/personality.json');
+        if (!response.ok) throw new Error('Failed to load personality data');
+        GoogleFontsLoader.#personalityData = await response.json();
+      }
+      
+      // Get the personality array (already sorted by score in the JSON)
+      const personalityEntries = GoogleFontsLoader.#personalityData[personalityName];
+      if (!personalityEntries || !Array.isArray(personalityEntries)) {
+        throw new Error(`Personality "${personalityName}" not found or invalid`);
+      }
+      
+      // Calculate pagination
+      const totalEntries = personalityEntries.length;
+      const startIndex = page * fontsPerPage;
+      const endIndex = Math.min(startIndex + fontsPerPage, totalEntries);
+      const hasMore = endIndex < totalEntries;
+      
+      // Get the subset of personality entries for this page
+      const pageEntries = personalityEntries.slice(startIndex, endIndex);
+      
+      // Extract font names from the personality entries
+      const fontNames = pageEntries.map(entry => entry.font);
+      
+      // Find the actual font objects in our main fonts array
+      const fonts = fontNames
+        .map(fontName => this.fonts.find(
+          font => (font.family || font.name) === fontName
+        ))
+        .filter(font => font !== undefined); // Remove any fonts not found
+      
+      // Load the fonts
+      await this.loadFonts(fontNames);
+      
+      // Return in the format expected by existing display code
+      return {
+        fonts: fonts,
+        totalFonts: totalEntries,
+        hasMore: hasMore
+      };
+    } catch (error) {
+      console.error('Error loading personality fonts:', error);
+      return { fonts: [], totalFonts: 0, hasMore: false };
+    }
+  }
+
+  /**
+   * Gets all available personalities from the personality.json file
+   * @returns {Promise<Array<string>>} - Array of personality names
+   */
+  async getPersonalities() {
+    try {
+      // Load personality data if not already loaded
+      if (!GoogleFontsLoader.#personalityData) {
+        const response = await fetch('/data/personality.json');
+        if (!response.ok) throw new Error('Failed to load personality data');
+        GoogleFontsLoader.#personalityData = await response.json();
+      }
+      
+      // Return keys of the personality data object as personality names
+      // Filter out empty personalities (those with no fonts)
+      const personalities = Object.keys(GoogleFontsLoader.#personalityData)
+        .filter(personality => {
+          const entries = GoogleFontsLoader.#personalityData[personality];
+          return Array.isArray(entries) && entries.length > 0;
+        });
+      
+      return personalities;
+    } catch (error) {
+      console.error('Error getting personalities:', error);
+      return [];
+    }
+  }
+
+  // Deprecated: Keep for backward compatibility but redirect to new function
+  async getSubcategories() {
+    console.warn('getSubcategories() is deprecated, please use getPersonalities() instead');
+    return this.getPersonalities();
+  }
+
+  // Deprecated: Keep for backward compatibility but redirect to new function
+  async loadFontsBySubcategory(subcategoryName, page = 0, fontsPerPage = 20) {
+    console.warn('loadFontsBySubcategory() is deprecated, please use loadFontsByPersonality() instead');
+    return this.loadFontsByPersonality(subcategoryName, page, fontsPerPage);
   }
 }
 

@@ -10,19 +10,9 @@ const sliderValue = document.getElementById("sliderValue");
 const loadingIndicator = document.getElementById("loading-indicator");
 let isUpdating = false;
 
-// Keep essential categories
-const categories = [
-  "all",
-  "serif",
-  "sans-serif",
-  "display",
-  "handwriting",
-  "monospace",
-];
-let currentCategory = "all";
-
 let currentState = {
   category: "all",
+  personality: "all", // Add personality filter to state
   page: 0,
   hasMore: true,
   totalFonts: 0,
@@ -36,6 +26,201 @@ let currentState = {
 // Create a global instance of the GoogleFontsLoader
 let googleFontsLoader;
 
+// Create a filter manager to coordinate category and personality filters
+const filterManager = {
+  // Store available data
+  availablePersonalitiesByCategory: {}, // Will be populated dynamically
+  allPersonalities: [],
+  // New property to store personality data
+  personalityData: null,
+  
+  // Initialize the filter manager
+  async init() {
+    try {
+      // Load all available personalities
+      this.allPersonalities = await googleFontsLoader.getPersonalities();
+      
+      // Load personality data once
+      const response = await fetch('/data/personality.json');
+      this.personalityData = await response.json();
+      
+      // Store available personalities for each category
+      const categories = ['all', 'serif', 'sans-serif', 'display', 'handwriting', 'monospace'];
+      
+      for (const category of categories) {
+        // For 'all' category, all personalities are available
+        if (category === 'all') {
+          this.availablePersonalitiesByCategory[category] = [...this.allPersonalities];
+          continue;
+        }
+        
+        // For specific categories, we need to determine which personalities contain fonts of this category
+        // This requires analyzing the personality.json and checking each font's category
+        const personalitiesForCategory = [];
+        
+        for (const personality of this.allPersonalities) {
+          // Check if this personality contains any fonts of the specified category
+          const hasMatchingFonts = await this.personalityHasFontsInCategory(personality, category);
+          if (hasMatchingFonts) {
+            personalitiesForCategory.push(personality);
+          }
+        }
+        
+        this.availablePersonalitiesByCategory[category] = personalitiesForCategory;
+      }
+    } catch (error) {
+      console.error("Error initializing filter manager:", error);
+    }
+  },
+  
+  // Check if a personality contains any fonts of a specific category
+  async personalityHasFontsInCategory(personality, category) {
+    try {
+      // First, check our cache to avoid repeated lookups
+      if (!this._fontsInPersonalityCache) {
+        this._fontsInPersonalityCache = {};
+      }
+      
+      // Create cache key
+      const cacheKey = `${personality}_${category}`;
+      
+      // Return from cache if available
+      if (this._fontsInPersonalityCache[cacheKey] !== undefined) {
+        return this._fontsInPersonalityCache[cacheKey];
+      }
+      
+      // FIX: Properly normalize category name - replace all underscores, not just the first one
+      // sans_serif becomes sans-serif
+      const normalizedCategory = category.replace(/_/g, '-').toLowerCase();
+      
+      // Use cached personality data instead of fetching again
+      const personalityEntries = this.personalityData[personality] || [];
+      const fontNames = personalityEntries.map(entry => entry.font).filter(Boolean);
+      
+      // Check if any of these fonts belong to the specified category
+      const matchingFonts = [];
+      const result = fontNames.some(fontName => {
+        const font = googleFontsLoader.fonts.find(f => 
+          (f.family || f.name) === fontName
+        );
+        const isMatch = font && font.category && 
+                       font.category.toLowerCase() === normalizedCategory;
+        if (isMatch) {
+          matchingFonts.push(fontName);
+        }
+        return isMatch;
+      });
+      
+      // Cache the result
+      this._fontsInPersonalityCache[cacheKey] = result;
+      
+      return result;
+    } catch (error) {
+      console.error(`Error checking if personality ${personality} has fonts in category ${category}:`, error);
+      return false;
+    }
+  },
+  
+  // Update the personality dropdown based on category
+  updatePersonalityDropdown(selectedCategory) {
+    const dropdownContent = document.getElementById('personalityDropdownContent');
+    if (!dropdownContent) return;
+    
+    // Save current selection if possible
+    const currentPersonality = currentState.personality;
+    
+    // Get available personalities for this category
+    const availablePersonalities = this.availablePersonalitiesByCategory[selectedCategory] || [];
+    
+    // Keep the "All" option and clear any other options
+    const allOption = dropdownContent.querySelector('label:first-child');
+    if (!allOption) return;
+    
+    dropdownContent.innerHTML = '';
+    dropdownContent.appendChild(allOption);
+    
+    // Create a wrapper for the grid layout
+    const gridWrapper = document.createElement('div');
+    gridWrapper.className = 'personality-grid';
+    dropdownContent.appendChild(gridWrapper);
+    
+    // Add each available personality as a radio option
+    availablePersonalities.forEach(personality => {
+      if (!personality) return;
+      
+      const label = document.createElement('label');
+      label.className = 'block px-4 py-2 text-sm personality-item';
+      
+      const input = document.createElement('input');
+      input.type = 'radio';
+      input.name = 'personality-filter';
+      input.value = personality;
+      
+      // Check if this was previously selected (only for 'all' category)
+      if (selectedCategory === 'all' && personality === currentPersonality) {
+        input.checked = true;
+      }
+      
+      // IMPORTANT: First add label click handler to stop propagation
+      label.addEventListener('click', (e) => {
+        e.stopPropagation();
+      });
+      
+      label.appendChild(input);
+      label.appendChild(document.createTextNode(' ' + personality));
+      
+      // Then add input change handler
+      input.addEventListener("change", async (e) => {
+        e.stopPropagation();
+        
+        const personality = e.target.value;
+        if (currentState.personality === personality) return;
+
+        // Update state
+        currentState.personality = personality;
+        currentState.page = 0; // Reset pagination
+
+        // Update button text with selected personality name
+        const personalityButton = document.getElementById("personalityButton");
+        const personalityName = e.target.parentElement.textContent.trim();
+        personalityButton.querySelector("span:first-child").textContent =
+          personality === "all" ? "Personality" : personalityName;
+
+        // Apply filters without closing dropdown
+        await this.applyFilters();
+      });
+      
+      // Add to grid wrapper instead of directly to dropdownContent
+      gridWrapper.appendChild(label);
+    });
+    
+    // Reset personality to "All" unless we're keeping the current selection
+    if (selectedCategory !== 'all' || !availablePersonalities.includes(currentPersonality)) {
+      const allRadio = dropdownContent.querySelector('input[value="all"]');
+      if (allRadio) allRadio.checked = true;
+      currentState.personality = 'all';
+      
+      // Update the button text
+      const personalityButton = document.getElementById("personalityButton");
+      if (personalityButton) {
+        personalityButton.querySelector("span:first-child").textContent = "Personality";
+      }
+    }
+  },
+  
+  // Apply both filters and update font display
+  async applyFilters() {
+    // Reset to first page
+    currentState.page = 0;
+    
+    // Load and display fonts with current filters
+    await loadAndDisplayFonts(true);
+  }
+};
+
+// Track visible cards for performance optimization
+const visibleCards = new Set();
+
 // Event Listeners
 document.addEventListener("DOMContentLoaded", initApp);
 
@@ -46,6 +231,9 @@ async function initApp() {
     // Initialize the Google Fonts loader with the fonts.json file
     googleFontsLoader = await GoogleFontsLoader.fromJson("/data/fontinfo.json");
 
+    // Initialize the filter manager
+    await filterManager.init();
+
     // Set initial view mode class
     fontContainer.classList.add(`${currentState.viewMode}-view`);
     updateViewButtonStates();
@@ -53,6 +241,9 @@ async function initApp() {
     // Make sure left alignment is the default
     currentState.textAlign = "left";
     updateAlignButtonStates(currentState.textAlign);
+    
+    // Populate the personality dropdown menu initially with all personalities
+    await populatePersonalityDropdown();
 
     // Load and display the first batch of fonts
     await loadAndDisplayFonts(true);
@@ -66,6 +257,62 @@ async function initApp() {
     fontContainer.innerHTML =
       '<div class="text-center text-red-400">Failed to load fonts</div>';
     showLoading(false);
+  }
+}
+
+/**
+ * Dynamically populates the personality dropdown with personalities from the JSON file
+ */
+async function populatePersonalityDropdown() {
+  try {
+    // Get the dropdown content container
+    const dropdownContent = document.getElementById('personalityDropdownContent');
+    if (!dropdownContent) return;
+    
+    // Keep the "All" option and clear any other hardcoded options
+    const allOption = dropdownContent.querySelector('label');
+    dropdownContent.innerHTML = '';
+    dropdownContent.appendChild(allOption);
+    
+    // Create a wrapper for the grid layout
+    const gridWrapper = document.createElement('div');
+    gridWrapper.className = 'personality-grid';
+    dropdownContent.appendChild(gridWrapper);
+    
+    // Get personalities for current category from filter manager
+    const personalities = filterManager.availablePersonalitiesByCategory[currentState.category] || 
+                        filterManager.allPersonalities;
+    
+    // Add each personality as a radio option
+    personalities.forEach(personality => {
+      // Skip empty personalities
+      if (!personality) return;
+      
+      const label = document.createElement('label');
+      label.className = 'block px-4 py-2 text-sm personality-item';
+      
+      const input = document.createElement('input');
+      input.type = 'radio';
+      input.name = 'personality-filter';
+      input.value = personality;
+      
+      // Stop propagation on both click and change events
+      label.addEventListener('click', (e) => {
+        e.stopPropagation();
+      });
+      
+      input.addEventListener('click', (e) => {
+        e.stopPropagation();
+      });
+      
+      label.appendChild(input);
+      label.appendChild(document.createTextNode(' ' + personality));
+      
+      // Add to grid wrapper instead of directly to dropdownContent
+      gridWrapper.appendChild(label);
+    });
+  } catch (error) {
+    console.error('Error populating personality dropdown:', error);
   }
 }
 
@@ -83,27 +330,71 @@ async function loadAndDisplayFonts(reset = false) {
     // Get fonts based on current filters
     const pageSize = 20; // Number of fonts to load per batch
     const skip = currentState.page * pageSize;
+    let result;
 
-    // Determine which fonts to fetch based on filters and sorting
-    let fonts = [];
-    let totalFonts = 0;
+    // Check if we're filtering by personality
+    if (currentState.personality !== "all") {
+      // MODIFIED: When combining personality + category filter, load ALL fonts for pagination
+      const loadAllFonts = currentState.category !== "all";
+      const pageToUse = loadAllFonts ? 0 : currentState.page;
+      const pageSizeToUse = loadAllFonts ? 1000 : pageSize; // Large number to get all fonts
+      
+      // Load fonts from personality data based on personality
+      result = await googleFontsLoader.loadFontsByPersonality(
+        currentState.personality,
+        pageToUse,
+        pageSizeToUse
+      );
+      
+      // Fix: Enrich fonts with missing category data by looking up in googleFontsLoader.fonts
+      result.fonts = result.fonts.map(font => {
+        const fontName = font.family || font.name;
+        if (!font.category) {
+          const fullFontData = googleFontsLoader.getFont(fontName);
+          if (fullFontData) {
+            return { ...font, category: fullFontData.category };
+          }
+        }
+        return font;
+      });
+      
+      // Apply category filter if needed
+      if (currentState.category !== "all") {
+        // FIX: Convert underscores to hyphens consistently
+        const categoryFilter = currentState.category.replace(/_/g, '-').toLowerCase();
+        const beforeFilter = result.fonts.length;
 
-    // Use the new sorting method from GoogleFontsLoader
-    const sortedFonts = googleFontsLoader.getSortedFonts(
-      currentState.sortBy,
-      currentState.category,
-      currentState.searchTerm
-    );
+        result.fonts = result.fonts.filter(font => {
+          const fontCategory = (font.category || "").toLowerCase();
+          return fontCategory === categoryFilter;
+        });
+        
+        // NEW: Apply pagination manually after filtering
+        const totalFilteredFonts = result.fonts.length;
+        if (loadAllFonts) {
+          result.fonts = result.fonts.slice(skip, skip + pageSize);
+        }
+        
+        result.totalFonts = totalFilteredFonts;
+        result.hasMore = skip + pageSize < totalFilteredFonts;
+      }
+    } else {
+      // Use regular sorting with category filter from GoogleFontsLoader
+      const sortedFonts = googleFontsLoader.getSortedFonts(
+        currentState.sortBy,
+        currentState.category,
+        currentState.searchTerm
+      );
 
-    totalFonts = sortedFonts.length;
-    fonts = sortedFonts.slice(skip, skip + pageSize);
+      const totalFonts = sortedFonts.length;
+      const fonts = sortedFonts.slice(skip, skip + pageSize);
 
-    // Create a result object to match the expected format
-    const result = {
-      fonts: fonts,
-      totalFonts: totalFonts,
-      hasMore: skip + pageSize < totalFonts,
-    };
+      result = {
+        fonts: fonts,
+        totalFonts: totalFonts,
+        hasMore: skip + pageSize < totalFonts,
+      };
+    }
 
     // Update total count regardless of whether fonts were found
     currentState.totalFonts = result.totalFonts;
@@ -112,6 +403,7 @@ async function loadAndDisplayFonts(reset = false) {
       totalEntry.textContent = `${result.totalFonts} Total`;
     }
 
+    // Continue with the rest of the function as before
     if (result.fonts.length > 0) {
       // Pre-load the fonts we're about to display
       const fontNames = result.fonts.map((font) => font.name);
@@ -202,18 +494,16 @@ function createFontCard(fontData) {
         <div class="card-sample-container">
             <p class="card-sample align-${currentState.textAlign}" 
                contenteditable="true" 
-               style="font-family: '${fontName}', sans-serif; font-size: ${
-    currentState.masterFontSize
-  }px; line-height: ${currentState.masterFontSize * 1.4}px; font-weight: 400;">
+               style="font-family: '${fontName}', sans-serif; font-weight: 400;">
                 ${fontName}
             </p>
-            <div class="font-size-indicator">${
-              currentState.masterFontSize
-            }px</div>
         </div>
         
         <div class="card-footer">
-            <p>Designed by ${designer}</p>
+            <div>
+                <p>Designed by ${designer}</p>
+            </div>
+            <a href="glyph.html?font=${encodeURIComponent(fontName)}" class="view-family-btn">View family</a>
         </div>
     `;
 
@@ -280,7 +570,6 @@ function setupCardInteractions(card, fontData) {
   const sample = card.querySelector(".card-sample");
   const sizeSlider = card.querySelector('.slider[data-slider-type="size"]');
   const weightSlider = card.querySelector('.slider[data-slider-type="weight"]');
-  const indicator = card.querySelector(".font-size-indicator");
   const variantDropdown = card.querySelector(".variantDropdown");
   const sizeTitleElement = sizeSlider.parentNode.querySelector(".slider-title");
 
@@ -366,7 +655,6 @@ function setupCardInteractions(card, fontData) {
     const size = parseInt(e.target.value);
     updateSampleSize(sample, size);
     updateSliderVisual(sizeSlider, size, 12, 210);
-    showSizeIndicator(indicator, size);
     // Update title to show value
     sizeTitleElement.textContent = `${size}px`;
     sizeTitleElement.classList.add("showing-value");
@@ -570,28 +858,41 @@ function setupEventListeners() {
     }
   });
 
-  // Category radio buttons - THIS IS THE FIX
+  // Category radio buttons - UPDATED to use filter manager
   const categoryRadios = document.querySelectorAll(
     'input[name="category-filter"]'
   );
+  
+  // Add click event handlers to all category labels
+  document.querySelectorAll('#dropdownContent label').forEach(label => {
+    label.addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
+  });
+  
   categoryRadios.forEach((radio) => {
     radio.addEventListener("change", async (e) => {
+      // Stop propagation to prevent dropdown from closing
+      e.stopPropagation();
+      
       const category = e.target.value;
       if (currentState.category === category) return;
 
-      // Update state and UI
+      // Update state
       currentState.category = category;
       currentState.searchTerm = "";
 
-      // Close dropdown and update UI
-      closeDropdown(dropdownContent, triangle, categoriesButton);
-
       // Update button text with selected category name
+      const categoriesButton = document.getElementById("categoriesButton");
       const categoryName = e.target.parentElement.textContent.trim();
       categoriesButton.querySelector("span:first-child").textContent =
         category === "all" ? "Categories" : categoryName;
 
-      await loadAndDisplayFonts(true);
+      // Update personality dropdown based on selected category
+      filterManager.updatePersonalityDropdown(category);
+      
+      // Apply both filters
+      await filterManager.applyFilters();
     });
   });
 
@@ -626,7 +927,7 @@ function setupEventListeners() {
     }, 300);
   });
 
-  // Add master slider handler
+  // Add back the simple master slider handler
   masterSlider.addEventListener("input", (e) => {
     const size = parseInt(e.target.value);
     currentState.masterFontSize = size;
@@ -637,20 +938,42 @@ function setupEventListeners() {
     // Update master slider visual
     updateSliderVisual(masterSlider, size);
 
-    // Update all card sliders and samples
-    document.querySelectorAll(".card").forEach((card) => {
-      const sample = card.querySelector(".card-sample");
-      const slider = card.querySelector(".slider");
-      const indicator = card.querySelector(".font-size-indicator");
+    // Only update visible cards while dragging for better performance
+    visibleCards.forEach(cardElement => {
+      const sample = cardElement.querySelector(".card-sample");
+      const slider = cardElement.querySelector(".slider");
 
       if (sample && slider) {
         slider.value = size;
-        updateSampleSize(sample, size); // This will now check for grid view
+        updateSampleSize(sample, size);
         updateSliderVisual(slider, size);
-        showSizeIndicator(indicator, size);
       }
     });
   });
+
+  // When slider is released, update all remaining cards
+  masterSlider.addEventListener("change", (e) => {
+    const size = parseInt(e.target.value);
+    
+    // Get all cards that weren't updated during dragging
+    const allCards = Array.from(document.querySelectorAll(".card"));
+    const invisibleCards = allCards.filter(card => !visibleCards.has(card));
+    
+    // Update the invisible cards
+    invisibleCards.forEach(card => {
+      const sample = card.querySelector(".card-sample");
+      const slider = card.querySelector(".slider");
+      
+      if (sample && slider) {
+        slider.value = size;
+        updateSampleSize(sample, size);
+        updateSliderVisual(slider, size);
+      }
+    });
+  });
+
+  // Set up visibility tracking for cards
+  setupCardVisibilityTracking();
 
   // View mode toggle
   const listViewBtn = document.getElementById("listViewBtn");
@@ -662,11 +985,18 @@ function setupEventListeners() {
     fontContainer.classList.remove("grid-view");
     fontContainer.classList.add("list-view");
     updateViewButtonStates();
-
-    // Update font sizes for list view
+    // Update font sizes for grid view
     document.querySelectorAll(".card-sample").forEach((sample) => {
-      updateSampleSize(sample, currentState.masterFontSize);
+      updateSampleSize(sample, 96);
     });
+
+    // Update master slider visual AND the label
+    updateSliderVisual(masterSlider, 96);
+    sliderValue.textContent = "96 px";
+    currentState.masterFontSize = 96;
+
+    // Reset visibility tracking after view mode change
+    setTimeout(setupCardVisibilityTracking, 100);
   });
 
   gridViewBtn.addEventListener("click", () => {
@@ -678,16 +1008,24 @@ function setupEventListeners() {
 
     // Update font sizes for grid view
     document.querySelectorAll(".card-sample").forEach((sample) => {
-      updateSampleSize(sample, currentState.masterFontSize);
+      updateSampleSize(sample, 60);
     });
+    
+    // Update master slider visual AND the label
+    updateSliderVisual(masterSlider, 60);
+    sliderValue.textContent = "60 px";
+    currentState.masterFontSize = 60;
+
+    // Reset visibility tracking after view mode change
+    setTimeout(setupCardVisibilityTracking, 100);
   });
 
   // Text alignment buttons
-  const alignmentButtons = [
-    { id: "alignLeftBtn", align: "left" },
-    { id: "alignCenterBtn", align: "center" },
-    { id: "alignRightBtn", align: "right" },
-  ];
+const alignmentButtons = [
+  { id: "alignLeftBtn", align: "left" },
+  { id: "alignCenterBtn", align: "center" },
+  { id: "alignRightBtn", align: "right" },
+];
 
   alignmentButtons.forEach((config) => {
     const btn = document.getElementById(config.id);
@@ -765,6 +1103,90 @@ function setupEventListeners() {
       console.warn(`Sort button for ${sortMethod} not found`);
     }
   });
+
+  // Personality dropdown
+  const personalityButton = document.getElementById("personalityButton");
+  const personalityContent = document.getElementById("personalityContent");
+  const personalityTriangle = document.getElementById("personalityTriangle");
+
+  // Toggle personality dropdown
+  personalityButton.addEventListener("click", (e) => {
+    e.stopPropagation(); // Prevent immediate closing
+    const isExpanded = personalityContent.classList.contains("visible");
+
+    if (isExpanded) {
+      closeDropdown(personalityContent, personalityTriangle, personalityButton);
+    } else {
+      openDropdown(personalityContent, personalityTriangle, personalityButton);
+    }
+  });
+
+  // Close personality dropdown when clicking outside
+  document.addEventListener("click", (e) => {
+    if (
+      !personalityButton.contains(e.target) &&
+      !personalityContent.contains(e.target)
+    ) {
+      closeDropdown(personalityContent, personalityTriangle, personalityButton);
+    }
+  });
+
+  // Personality radio buttons - UPDATED to use filter manager
+  const personalityRadios = document.querySelectorAll(
+    'input[name="personality-filter"]'
+  );
+  
+  // Add click event handlers to all personality labels
+  document.querySelectorAll('#personalityContent label').forEach(label => {
+    label.addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
+  });
+  
+  personalityRadios.forEach((radio) => {
+    radio.addEventListener("change", async (e) => {
+      // Stop propagation to prevent dropdown from closing
+      e.stopPropagation();
+      
+      const personality = e.target.value;
+      if (currentState.personality === personality) return;
+
+      // Update state
+      currentState.personality = personality;
+      currentState.page = 0; // Reset pagination
+
+      // Update button text with selected personality name
+      const personalityButton = document.getElementById("personalityButton");
+      const personalityName = e.target.parentElement.textContent.trim();
+      personalityButton.querySelector("span:first-child").textContent =
+        personality === "all" ? "Personality" : personalityName;
+
+      // Apply both filters without closing dropdown
+      await filterManager.applyFilters();
+    });
+  });
+
+  // When searching, reset both category and personality filters
+  searchInput.addEventListener("input", (e) => {
+    const searchTerm = e.target.value.toLowerCase();
+    if (searchTimeout) clearTimeout(searchTimeout);
+
+    searchTimeout = setTimeout(async () => {
+      // Reset filters when searching
+      currentState.category = "all";
+      currentState.personality = "all";
+      currentState.searchTerm = searchTerm;
+      
+      // Update UI
+      updateCategoryButtonStates("all");
+      updatePersonalityButtonStates("all");
+      
+      // Update personality dropdown for 'all' category
+      filterManager.updatePersonalityDropdown('all');
+
+      await loadAndDisplayFonts(true);
+    }, 300);
+  });
 }
 
 /**
@@ -800,9 +1222,46 @@ function openDropdown(content, triangle, button) {
   content.classList.remove("invisible", "opacity-0");
   triangle.classList.add("rotate-triangle");
   button.style.backgroundColor = "transparent";
+  
+  // Special handling for personality dropdown
+  if (content.id === "personalityContent") {
+    // First add the right positioning class
+    content.classList.add("wide-dropdown");
+    
+    // Remove animation class first to reset animation
+    content.classList.remove("personality-dropdown-animate");
+    
+    // Force browser reflow to ensure animation restart
+    void content.offsetWidth;
+    
+    // Now add the animation class (this will control width through the animation)
+    content.classList.add("personality-dropdown-animate");
+    
+    // Clear any inline styles that might interfere
+    content.style.width = "";
+  }
+  // Special handling for category dropdown
+  else if (content.id === "dropdownContent") {
+    // Remove animation class first to reset animation
+    content.classList.remove("category-dropdown-animate");
+    
+    // Force browser reflow to ensure animation restart
+    void content.offsetWidth;
+    
+    // Add animation class
+    content.classList.add("category-dropdown-animate");
+  }
 }
 
 function closeDropdown(content, triangle, button) {
+  // Handle animation cleanup
+  if (content.id === "personalityContent") {
+    content.classList.remove("personality-dropdown-animate");
+  }
+  else if (content.id === "dropdownContent") {
+    content.classList.remove("category-dropdown-animate");
+  }
+  
   content.classList.remove(
     "visible",
     "opacity-100",
@@ -812,6 +1271,13 @@ function closeDropdown(content, triangle, button) {
   content.classList.add("invisible", "opacity-0");
   triangle.classList.remove("rotate-triangle");
   button.style.backgroundColor = "";
+  
+  // Reset width class with delay for personality dropdown
+  if (content.id === "personalityContent") {
+    setTimeout(() => {
+      content.classList.remove("wide-dropdown");
+    }, 300);
+  }
 }
 
 function displayFonts(fonts, append = false) {
@@ -843,6 +1309,10 @@ function displayFonts(fonts, append = false) {
     fontContainer.innerHTML = "";
   }
   fontContainer.appendChild(fragment);
+
+  // Update visibility tracking when new fonts are added
+  // Short delay to ensure DOM is updated
+  setTimeout(setupCardVisibilityTracking, 100);
 }
 
 function setupIntersectionObserver() {
@@ -872,6 +1342,29 @@ function updateCategoryButtonStates(selectedCategory) {
       if (categoriesButton) {
         categoriesButton.querySelector("span:first-child").textContent =
           selectedCategory === "all" ? "Categories" : categoryName;
+      }
+    }
+  });
+}
+
+/**
+ * Updates the visual state of the personality dropdown button and radios
+ * @param {string} selectedPersonality - The currently selected personality
+ */
+function updatePersonalityButtonStates(selectedPersonality) {
+  const radioButtons = document.querySelectorAll(
+    'input[name="personality-filter"]'
+  );
+  radioButtons.forEach((radio) => {
+    if (radio.value === selectedPersonality) {
+      radio.checked = true;
+      
+      // Update the dropdown button text
+      const personalityName = radio.parentElement.textContent.trim();
+      const personalityButton = document.getElementById("personalityButton");
+      if (personalityButton) {
+        personalityButton.querySelector("span:first-child").textContent =
+          selectedPersonality === "all" ? "Personality" : personalityName;
       }
     }
   });
@@ -924,7 +1417,7 @@ function updateSampleSize(sampleElement, size) {
 
   // Check if we're in grid view and adjust size accordingly
   const isGridView = fontContainer.classList.contains("grid-view");
-  const adjustedSize = isGridView ? Math.min(60, clampedSize) : clampedSize;
+  const adjustedSize = isGridView ? Math.min(210, clampedSize) : clampedSize;
 
   // Update font size and adjust line height proportionally
   sampleElement.style.fontSize = `${adjustedSize}px`;
@@ -944,22 +1437,6 @@ function updateSliderVisual(sliderElement, value, min = 12, max = 210) {
   sliderElement.style.setProperty("--split-percent", `${percent}%`);
 }
 
-function showSizeIndicator(indicatorElement, size) {
-  if (!indicatorElement) return;
-
-  // Update the text content with the current size
-  indicatorElement.textContent = `${size}px`;
-
-  // Make the indicator visible
-  indicatorElement.style.opacity = "1";
-
-  // Hide the indicator after a delay
-  clearTimeout(indicatorElement.timeout);
-  indicatorElement.timeout = setTimeout(() => {
-    indicatorElement.style.opacity = "0";
-  }, 1500);
-}
-
 function showLoading(show) {
   if (!loadingIndicator) return;
 
@@ -968,4 +1445,34 @@ function showLoading(show) {
   } else {
     loadingIndicator.classList.add("hidden");
   }
+}
+
+/**
+ * Sets up intersection observer to track which cards are visible
+ */
+function setupCardVisibilityTracking() {
+  // Clear the set
+  visibleCards.clear();
+
+  // Create intersection observer
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Card is visible
+        visibleCards.add(entry.target);
+      } else {
+        // Card is no longer visible
+        visibleCards.delete(entry.target);
+      }
+    });
+  }, {
+    // Consider partially visible elements as "visible"
+    rootMargin: '100px',
+    threshold: 0.1
+  });
+
+  // Observe all cards
+  document.querySelectorAll('.card').forEach(card => {
+    observer.observe(card);
+  });
 }
