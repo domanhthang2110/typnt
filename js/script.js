@@ -10,6 +10,9 @@ const sliderValue = document.getElementById("sliderValue");
 const loadingIndicator = document.getElementById("loading-indicator");
 let isUpdating = false;
 
+// Add a flag to track whether initial load has completed
+let initialLoadComplete = false;
+
 let currentState = {
   category: "all",
   personality: "all", // Add personality filter to state
@@ -226,6 +229,7 @@ document.addEventListener("DOMContentLoaded", initApp);
 
 async function initApp() {
   try {
+    // Show loading only on initial load
     showLoading(true);
 
     // Initialize the Google Fonts loader with the fonts.json file
@@ -251,12 +255,18 @@ async function initApp() {
     setupEventListeners();
     setupIntersectionObserver();
 
+    // Mark initial load as complete
+    initialLoadComplete = true;
+    
     showLoading(false);
   } catch (error) {
     console.error("Failed to initialize app:", error);
     fontContainer.innerHTML =
       '<div class="text-center text-red-400">Failed to load fonts</div>';
     showLoading(false);
+    
+    // Even in case of error, mark initial load as complete
+    initialLoadComplete = true;
   }
 }
 
@@ -325,8 +335,16 @@ async function loadAndDisplayFonts(reset = false) {
     fontContainer.innerHTML = "";
   }
   
-  // Always show loading before any operations
-  showLoading(true);
+  // Only show loading animation on first load
+  const shouldShowLoadingAnimation = !initialLoadComplete;
+  
+  if (shouldShowLoadingAnimation) {
+    showLoading(true);
+  } else if (reset) {
+    // For resets (like filtering), show a minimal loading indicator
+    // but not the full animation
+    fontContainer.innerHTML = '<div class="text-center py-4">Loading...</div>';
+  }
 
   try {
     // Get fonts based on current filters
@@ -419,7 +437,11 @@ async function loadAndDisplayFonts(reset = false) {
         // Give the DOM time to render and the browser to paint before hiding loading indicator
         setTimeout(() => {
           isUpdating = false;
-          showLoading(false);
+          
+          // Only hide the loading animation if we showed it
+          if (shouldShowLoadingAnimation) {
+            showLoading(false);
+          }
         }, 300);
         
         currentState.hasMore = result.hasMore;
@@ -427,14 +449,18 @@ async function loadAndDisplayFonts(reset = false) {
       } catch (displayError) {
         console.warn("Error displaying some fonts:", displayError);
         isUpdating = false;
-        showLoading(false);
+        if (shouldShowLoadingAnimation) {
+          showLoading(false);
+        }
       }
     } else if (reset) {
       fontContainer.innerHTML =
         '<div class="text-center text-gray-400">No fonts found</div>';
       currentState.hasMore = false;
       isUpdating = false;
-      showLoading(false);
+      if (shouldShowLoadingAnimation) {
+        showLoading(false);
+      }
     }
   } catch (error) {
     console.error("Error loading fonts:", error);
@@ -444,7 +470,9 @@ async function loadAndDisplayFonts(reset = false) {
         '<div class="text-center text-red-400">Could not load fonts. Please try again later.</div>';
     }
     isUpdating = false;
-    showLoading(false);
+    if (shouldShowLoadingAnimation) {
+      showLoading(false);
+    }
   }
   
   // Remove the finally block since we're handling showLoading(false) in each case
@@ -1500,66 +1528,72 @@ function updateSliderVisual(sliderElement, value, min = 12, max = 210) {
 function showLoading(show) {
   console.log("showLoading called with:", show);
   
-  // Load exotic fonts for the loading animation
-  if (!window.lokiLoadingFontsLoaded) {
-    // Pre-load exotic fonts for the animation
-    const fontLink = document.createElement('link');
-    fontLink.rel = 'stylesheet';
-    fontLink.href = 'https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Creepster&family=Pirata+One&family=Cinzel+Decorative&family=Almendra+Display&family=Bungee+Outline&family=Faster+One&family=Ewert&family=Henny+Penny&family=MedievalSharp&family=Metal+Mania&family=Monoton&family=Rubik+Glitch&family=Nosifer&display=swap';
-    document.head.appendChild(fontLink);
-    window.lokiLoadingFontsLoaded = true;
-  }
-  
-  // Get or create the Loki-inspired font-cycling animation
-  let textLoader = document.querySelector('.loki-loader');
-  
-  if (!textLoader && show) {
-    console.log("Creating new Loki-inspired font cycling loader");
+  // Only proceed with animation if it's the initial load or we're hiding it
+  if (!initialLoadComplete || !show) {
+    // Load exotic fonts for the loading animation
+    if (!window.lokiLoadingFontsLoaded) {
+      // Pre-load exotic fonts for the animation
+      const fontLink = document.createElement('link');
+      fontLink.rel = 'stylesheet';
+      fontLink.href = 'https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Creepster&family=Pirata+One&family=Cinzel+Decorative&family=Almendra+Display&family=Bungee+Outline&family=Faster+One&family=Ewert&family=Henny+Penny&family=MedievalSharp&family=Metal+Mania&family=Monoton&family=Rubik+Glitch&family=Nosifer&display=swap';
+      document.head.appendChild(fontLink);
+      window.lokiLoadingFontsLoaded = true;
+    }
     
-    // Create the loader container
-    textLoader = document.createElement('div');
-    textLoader.className = 'loki-container loki-loader';
+    // Get or create the Loki-inspired font-cycling animation
+    let textLoader = document.querySelector('.loki-loader');
     
-    // Create the LOADING text with each letter in its own element
-    const loadingText = "LOADING";
-    for (let i = 0; i < loadingText.length; i++) {
-      const letter = document.createElement('div');
-      letter.className = 'loki-letter';
-      letter.textContent = loadingText[i];
+    if (!textLoader && show) {
+      console.log("Creating new Loki-inspired font cycling loader");
       
-      // Add each letter to the loader
-      textLoader.appendChild(letter);
-    }
-    
-    // Add to the document body
-    document.body.appendChild(textLoader);
-    console.log("Loki-inspired font cycling loader added to DOM:", textLoader);
-  } else {
-    console.log("Existing loader found:", textLoader);
-  }
-
-  if (show) {
-    console.log("Showing loader");
-    if (loadingIndicator) loadingIndicator.classList.remove("hidden");
-    if (textLoader) {
-      // Remove any pending hide timeouts
-      if (textLoader._hideTimeout) {
-        clearTimeout(textLoader._hideTimeout);
-        textLoader._hideTimeout = null;
+      // Create the loader container
+      textLoader = document.createElement('div');
+      textLoader.className = 'loki-container loki-loader';
+      
+      // Create the LOADING text with each letter in its own element
+      const loadingText = "LOADING";
+      for (let i = 0; i < loadingText.length; i++) {
+        const letter = document.createElement('div');
+        letter.className = 'loki-letter';
+        letter.textContent = loadingText[i];
+        
+        // Add each letter to the loader
+        textLoader.appendChild(letter);
       }
-      textLoader.classList.remove("hidden");
-      textLoader.style.opacity = "1";
-      textLoader.style.display = "flex";
+      
+      // Add to the document body
+      document.body.appendChild(textLoader);
+      console.log("Loki-inspired font cycling loader added to DOM:", textLoader);
+    } else {
+      console.log("Existing loader found:", textLoader);
+    }
+
+    if (show) {
+      console.log("Showing loader");
+      if (loadingIndicator) loadingIndicator.classList.remove("hidden");
+      if (textLoader) {
+        // Remove any pending hide timeouts
+        if (textLoader._hideTimeout) {
+          clearTimeout(textLoader._hideTimeout);
+          textLoader._hideTimeout = null;
+        }
+        textLoader.classList.remove("hidden");
+        textLoader.style.opacity = "1";
+        textLoader.style.display = "flex";
+      }
+    } else {
+      console.log("Hiding loader");
+      if (loadingIndicator) loadingIndicator.classList.add("hidden");
+      if (textLoader) {
+        // Immediately hide the loader without transition or timeout
+        textLoader.classList.add("hidden");
+        textLoader.style.opacity = "0";
+        textLoader.style.display = "none";
+      }
     }
   } else {
-    console.log("Hiding loader");
-    if (loadingIndicator) loadingIndicator.classList.add("hidden");
-    if (textLoader) {
-      // Immediately hide the loader without transition or timeout
-      textLoader.classList.add("hidden");
-      textLoader.style.opacity = "0";
-      textLoader.style.display = "none";
-    }
+    // For non-initial loads that are showing, we'll skip the full animation
+    console.log("Skipping loader animation after initial load");
   }
 }
 
