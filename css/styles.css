@@ -82,8 +82,12 @@ input[type=radio] {
     transition: all .2s ease-in-out
 }
 
-#dropdownContent,#personalityContent,.dropdown-content,.variantDropdown {
+.dropdown-content,.variantDropdown {
     z-index: 80
+}
+
+#dropdownContent,#personalityContent {
+    z-index: 130;
 }
 
 .dropdown-button,.second-bar-button {
