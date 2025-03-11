@@ -561,6 +561,24 @@ input[type=radio]:checked {
     color: var(--white)
 }
 
+/* New styles for slider hover effects */
+.card:hover .slider-title,
+.slider:hover + .slider-title,
+.slider:hover ~ .slider-title,
+.slider-container:hover .slider-title {
+    opacity: 1;
+}
+
+.showing-value {
+    opacity: 1 !important;
+    font-weight: 500;
+}
+
+/* Ensure slider titles are visible on hover */
+.slider:hover {
+    opacity: 1;
+}
+
 .align-btn {
     background-color: transparent;
     border: 0;

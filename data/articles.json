@@ -1,0 +1,122 @@
+[
+    {
+        "thumbnail": "images/articles/thumbnail/honor_king.png",
+        "title": "Tré Seals",
+        "description": "on the role of type in social justice",
+        "category": "articles"
+    },
+    {
+        "thumbnail": "images/articles/thumbnail/roman.png",
+        "title": "Kyiv Type Foundry",
+        "description": "is conserving the architectural heritage of Ukraine by pulling typefaces out from underground",
+        "category": "articles"
+    },
+    {
+        "thumbnail": "images/articles/thumbnail/typnt.png",
+        "title": "Typelab",
+        "description": "a simple beginning",
+        "category": "articles"
+    },
+    {
+        "thumbnail": "images/articles/thumbnail/montserrat.png",
+        "title": "Montserrat",
+        "description": "a typeface born from the streets",
+        "category": "articles"
+    },
+    {
+        "thumbnail": "images/articles/thumbnail/mumbai.png",
+        "title": "The View from Mumbai:",
+        "description": "three projects honouring and innovating with Indian street typography",
+        "category": "articles"
+    },
+    {
+        "thumbnail": "images/articles/thumbnail/amor.png",
+        "title": "Type of Feeling’s",
+        "description": "elegant new serif is an ode to passion",
+        "category": "articles"
+    },
+    {
+        "thumbnail": "images/articles/thumbnail/ufficio.png",
+        "title": "Meet Ufficio",
+        "description": "the studio building bold, unique brands out of Buenos Aires",
+        "category": "articles"
+    },
+    {
+        "thumbnail": "images/articles/thumbnail/luttes.png",
+        "title": "Meet the French",
+        "description": "design collective Retour Chariot",
+        "category": "articles"
+    },
+    {
+        "thumbnail": "images/articles/thumbnail/typbeginner.png",
+        "title": "Typography 101 for beginners",
+        "description": "",
+        "category": "lectures"
+    },
+    {
+        "thumbnail": "images/articles/thumbnail/typstyle.png",
+        "title": "Typeface styles<br>What are they?",
+        "description": "",
+        "category": "lectures"
+    },
+    {
+        "thumbnail": "images/articles/thumbnail/typalign.png",
+        "title": "Alignments<br>Layout fundamental",
+        "description": "",
+        "category": "lectures"
+    },
+    {
+        "thumbnail": "images/articles/thumbnail/typclass.png",
+        "title": "Typeface classification<br>A side of history",
+        "description": "",
+        "category": "lectures"
+    },
+    {
+        "thumbnail": "images/articles/thumbnail/typanatomy.png",
+        "title": "Type anatomy<br>Dig deeper",
+        "description": "",
+        "category": "lectures"
+    },
+    {
+        "thumbnail": "images/articles/thumbnail/typmeasure.png",
+        "title": "Measurement<br>“What’s the POINT?”",
+        "description": "",
+        "category": "lectures"
+    },
+    {
+        "thumbnail": "images/articles/thumbnail/typmark.png",
+        "title": "Punctuation Marks!!!!",
+        "description": "",
+        "category": "lectures"
+    },
+    {
+        "thumbnail": "images/articles/thumbnail/typsetting.png",
+        "title": "Typesetting<br>terminologies",
+        "description": "",
+        "category": "lectures"
+    },
+    {
+        "thumbnail": "images/articles/thumbnail/thinktype.png",
+        "title": "thinking with type",
+        "description": "Ellen Lupton<br>2004",
+        "category": "books"
+    },
+    {
+        "thumbnail": "images/articles/thumbnail/historytype.png",
+        "title": "The visual history of Type",
+        "description": "Paul McNeil<br>2017",
+        "category": "books"
+    },
+    {
+        "thumbnail": "images/articles/thumbnail/20thtype.png",
+        "title": "TWENTIETH CENTURY TYPE and beyond",
+        "description": "Lewis Blackwell<br>2004",
+        "category": "books"
+    },
+    {
+        "thumbnail": "images/articles/thumbnail/typeonscreen.png",
+        "title": "type on screen",
+        "description": "Ellen Lupton<br>2004",
+        "category": "books"
+    }
+]

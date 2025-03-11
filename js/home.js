@@ -11,9 +11,9 @@ let googleFontsLoader;
 
 // Add near the top with other global variables
 let currentFontData = null;
-let currentWeight = 400; // Add this line to make currentWeight global
+let currentWeight = 200; // Add this line to make currentWeight global
 let wasDragging = false; // Add this variable at the top with other globals
-let dragStartWeight = 400; // Add this to keep track of starting weight
+let dragStartWeight = 200; // Add this to keep track of starting weight
 const quoteContainer = document.querySelector(".quote-container");
 const quoteText = document.querySelector(".quote-text");
 const quoteAuthor = document.querySelector(".quote-author");
@@ -336,27 +336,6 @@ function cleanupUnusedFonts() {
   });
 }
 
-// Helper function to find the closest available weight
-function findClosestWeight(variants, targetWeight) {
-    if (!variants || variants.length === 0) {
-        return 400; // Default to normal
-    }
-    
-    // Extract numeric weights
-    const weights = variants
-        .map(v => parseInt(v.replace('italic', '').replace('regular', '400')))
-        .filter(w => !isNaN(w));
-    
-    if (weights.length === 0) {
-        return 'normal'; // If no numeric weights, use normal
-    }
-    
-    // Find the closest weight
-    return weights.reduce((prev, curr) => {
-        return (Math.abs(curr - targetWeight) < Math.abs(prev - targetWeight)) ? curr : prev;
-    });
-}
-
 // Initialize the default Epilogue font data
 function initDefaultFont() {
     // Create a default font data structure for Epilogue
@@ -364,7 +343,7 @@ function initDefaultFont() {
         name: "Epilogue",
         category: "sans-serif",
         axes: {
-            wght: { min: 100, max: 900, default: 400 }
+            wght: { min: 100, max: 900, default: 200 }
         }
     };
     

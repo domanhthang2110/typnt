@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Explore, read, and practice typography with Typ.nt's vast collection of fonts and resources."
+    />
+    <title>Typelab - Typography Exploration</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/read.css" />
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts Link Placeholder -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body>
+    <header class="flex justify-between items-center z-10">
+      <div class="text-4xl font-semibold logo pl-12 flex-1">
+        <a href="index.html">Typelab</a>
+        <span style="position: relative; left: -13px; top: -8px">™</span>
+      </div>
+      <nav class="flex items-center justify-center">
+        <a href="index.html" class="top-bar-button">home</a>
+        <a href="read.html" class="top-bar-button active">reads</a>
+        <a href="videos.html" class="top-bar-button">videos</a>
+        <a href="practice.html" class="top-bar-button">practice</a>
+        <a href="lab.html" class="top-bar-button">lab</a>
+        <a href="archive.html" class="top-bar-button-end">archive</a>
+      </nav>
+      <div class="flex-1 pr-12"></div>
+    </header>
+
+    <div class="second-top-bar pr-10 pl-10">
+      <div class="second-bar">
+        <div class="search-bar">
+          <div class="text-3xl">⌕</div>
+          <input
+            type="text"
+            class="flex-1 outline-none search"
+            placeholder="Search"
+          />
+        </div>
+      </div>
+    </div>
+
+    <main>
+      <section class="articles-container">
+        <div id="articles-grid" class="articles-grid">
+          <!-- Articles will be dynamically inserted here by JavaScript -->
+        </div>
+      </section>
+    </main>
+
+    <script src="js/read.js"></script>
+  </body>
+</html>

@@ -665,12 +665,20 @@ function setupCardInteractions(card, fontData) {
       weightTitleElement.classList.add("showing-value");
     });
 
-    weightSlider.addEventListener("mouseout", () => {
-      // Reset title when not interacting
-      setTimeout(() => {
-        weightTitleElement.textContent = "Weight";
-        weightTitleElement.classList.remove("showing-value");
-      }, 1000);
+    // Show weight value on hover
+    weightSlider.addEventListener("mouseenter", () => {
+      weightTitleElement.textContent = weightSlider.value;
+      weightTitleElement.classList.add("showing-value");
+    });
+
+    weightSlider.addEventListener("mouseleave", () => {
+      // Reset title when not interacting (unless actively dragging)
+      if (!weightSlider.matches(":active")) {
+        setTimeout(() => {
+          weightTitleElement.textContent = "Weight";
+          weightTitleElement.classList.remove("showing-value");
+        }, 300);
+      }
     });
   }
   // Add card hover handlers
@@ -696,12 +704,20 @@ function setupCardInteractions(card, fontData) {
     sizeTitleElement.classList.add("showing-value");
   });
 
-  sizeSlider.addEventListener("mouseout", () => {
-    // Reset title when not interacting
-    setTimeout(() => {
-      sizeTitleElement.textContent = "Size";
-      sizeTitleElement.classList.remove("showing-value");
-    }, 1000);
+  // Show size value on hover
+  sizeSlider.addEventListener("mouseenter", () => {
+    sizeTitleElement.textContent = `${sizeSlider.value}px`;
+    sizeTitleElement.classList.add("showing-value");
+  });
+
+  sizeSlider.addEventListener("mouseleave", () => {
+    // Reset title when not interacting (unless actively dragging)
+    if (!sizeSlider.matches(":active")) {
+      setTimeout(() => {
+        sizeTitleElement.textContent = "Size";
+        sizeTitleElement.classList.remove("showing-value");
+      }, 300);
+    }
   });
 
   setupVariantDropdown(variantDropdown, sample, fontData);
@@ -986,7 +1002,7 @@ function setupEventListeners() {
       }
     });
   });
-
+  
   // When slider is released, update all remaining cards
   masterSlider.addEventListener("change", (e) => {
     const size = parseInt(e.target.value);
@@ -1006,6 +1022,14 @@ function setupEventListeners() {
         updateSliderVisual(slider, size);
       }
     });
+    
+    // Make sure the highlight stays briefly after releasing
+    sliderValue.classList.add("highlighted");
+    setTimeout(() => {
+      if (!masterSlider.matches(":hover")) {
+        sliderValue.classList.remove("highlighted");
+      }
+    }, 500);
   });
 
   // Set up visibility tracking for cards
