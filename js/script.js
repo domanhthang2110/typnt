@@ -323,11 +323,10 @@ async function loadAndDisplayFonts(reset = false) {
   if (reset) {
     currentState.page = 0;
     fontContainer.innerHTML = "";
-    showLoading(true);
-    
-    // Add loading placeholders immediately
-    addLoadingPlaceholders();
   }
+  
+  // Always show loading before any operations
+  showLoading(true);
 
   try {
     // Get fonts based on current filters
@@ -414,17 +413,28 @@ async function loadAndDisplayFonts(reset = false) {
 
       // Use a try-catch here to handle errors in individual font cards
       try {
+        // Display fonts but don't hide loading yet
         displayFonts(result.fonts, !reset);
+        
+        // Give the DOM time to render and the browser to paint before hiding loading indicator
+        setTimeout(() => {
+          isUpdating = false;
+          showLoading(false);
+        }, 300);
+        
+        currentState.hasMore = result.hasMore;
+        currentState.page++;
       } catch (displayError) {
         console.warn("Error displaying some fonts:", displayError);
+        isUpdating = false;
+        showLoading(false);
       }
-      currentState.hasMore = result.hasMore;
-      currentState.page++;
     } else if (reset) {
-      // Clear loading placeholders if no fonts found
       fontContainer.innerHTML =
         '<div class="text-center text-gray-400">No fonts found</div>';
       currentState.hasMore = false;
+      isUpdating = false;
+      showLoading(false);
     }
   } catch (error) {
     console.error("Error loading fonts:", error);
@@ -433,64 +443,11 @@ async function loadAndDisplayFonts(reset = false) {
       fontContainer.innerHTML =
         '<div class="text-center text-red-400">Could not load fonts. Please try again later.</div>';
     }
-  } finally {
     isUpdating = false;
     showLoading(false);
   }
-}
-
-/**
- * Adds loading placeholders to the font container
- */
-function addLoadingPlaceholders() {
-  const fragment = document.createDocumentFragment();
-  const pageSize = 20; // Match the number of fonts loaded per page
   
-  for (let i = 0; i < pageSize; i++) {
-    const placeholder = createLoadingPlaceholder();
-    fragment.appendChild(placeholder);
-  }
-  
-  fontContainer.appendChild(fragment);
-}
-
-/**
- * Creates a single loading placeholder card
- * @returns {HTMLElement} Loading placeholder card
- */
-function createLoadingPlaceholder() {
-  const card = document.createElement("div");
-  card.classList.add("card", "card-loading");
-  
-  card.innerHTML = `
-    <div class="card-header">
-      <div class="card-title">
-        <div class="skeleton skeleton-title"></div>
-      </div>
-      
-      <div class="card-controls">
-        <div class="skeleton-controls">
-          <div class="skeleton skeleton-slider"></div>
-          <div class="skeleton skeleton-dropdown"></div>
-        </div>
-      </div>
-      
-      <div class="card-info">
-        <div class="skeleton skeleton-info" style="width: 60px; height: 10px;"></div>
-      </div>
-    </div>
-    
-    <div class="card-sample-container">
-      <div class="skeleton skeleton-sample"></div>
-    </div>
-    
-    <div class="skeleton-footer">
-      <div class="skeleton skeleton-designer"></div>
-      <div class="skeleton skeleton-view-btn"></div>
-    </div>
-  `;
-  
-  return card;
+  // Remove the finally block since we're handling showLoading(false) in each case
 }
 
 function createFontCard(fontData) {
@@ -1344,13 +1301,6 @@ function displayFonts(fonts, append = false) {
   const fragment = document.createDocumentFragment();
   const successfulCards = [];
 
-  // Clear loading placeholders if in append mode but no cards exist yet
-  if (!append || fontContainer.querySelector('.card-loading')) {
-    // Remove all loading placeholders
-    const loadingPlaceholders = fontContainer.querySelectorAll('.card-loading');
-    loadingPlaceholders.forEach(placeholder => placeholder.remove());
-  }
-
   fonts.forEach((font) => {
     try {
       const card = createFontCard(font);
@@ -1384,16 +1334,6 @@ function setupIntersectionObserver() {
   const observer = new IntersectionObserver(
     (entries) => {
       if (entries[0].isIntersecting && currentState.hasMore && !isUpdating) {
-        // Add loading placeholders for next page before loading actual fonts
-        const currentCardCount = fontContainer.querySelectorAll('.card').length;
-        const loadingStartPosition = currentCardCount;
-        
-        // Add loading placeholders for next batch
-        if (!fontContainer.querySelector('.card-loading')) {
-          addLoadingPlaceholders();
-        }
-        
-        // Then start loading the actual fonts
         loadAndDisplayFonts(false);
       }
     },
@@ -1513,12 +1453,72 @@ function updateSliderVisual(sliderElement, value, min = 12, max = 210) {
 }
 
 function showLoading(show) {
-  if (!loadingIndicator) return;
+  console.log("showLoading called with:", show);
+  
+  // Load exotic fonts for the loading animation
+  if (!window.lokiLoadingFontsLoaded) {
+    // Pre-load exotic fonts for the animation
+    const fontLink = document.createElement('link');
+    fontLink.rel = 'stylesheet';
+    fontLink.href = 'https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Creepster&family=Pirata+One&family=Cinzel+Decorative&family=Almendra+Display&family=Bungee+Outline&family=Faster+One&family=Ewert&family=Henny+Penny&family=MedievalSharp&family=Metal+Mania&family=Monoton&family=Rubik+Glitch&family=Nosifer&display=swap';
+    document.head.appendChild(fontLink);
+    window.lokiLoadingFontsLoaded = true;
+  }
+  
+  // Get or create the Loki-inspired font-cycling animation
+  let textLoader = document.querySelector('.loki-loader');
+  
+  if (!textLoader && show) {
+    console.log("Creating new Loki-inspired font cycling loader");
+    
+    // Create the loader container
+    textLoader = document.createElement('div');
+    textLoader.className = 'loki-container loki-loader';
+    
+    // Create the LOADING text with each letter in its own element
+    const loadingText = "LOADING";
+    for (let i = 0; i < loadingText.length; i++) {
+      const letter = document.createElement('div');
+      letter.className = 'loki-letter';
+      letter.textContent = loadingText[i];
+      
+      // Add each letter to the loader
+      textLoader.appendChild(letter);
+    }
+    
+    // Add to the document body
+    document.body.appendChild(textLoader);
+    console.log("Loki-inspired font cycling loader added to DOM:", textLoader);
+  } else {
+    console.log("Existing loader found:", textLoader);
+  }
 
   if (show) {
-    loadingIndicator.classList.remove("hidden");
+    console.log("Showing loader");
+    if (loadingIndicator) loadingIndicator.classList.remove("hidden");
+    if (textLoader) {
+      // Remove any pending hide timeouts
+      if (textLoader._hideTimeout) {
+        clearTimeout(textLoader._hideTimeout);
+        textLoader._hideTimeout = null;
+      }
+      textLoader.classList.remove("hidden");
+      textLoader.style.opacity = "1";
+      textLoader.style.display = "flex";
+    }
   } else {
-    loadingIndicator.classList.add("hidden");
+    console.log("Hiding loader");
+    if (loadingIndicator) loadingIndicator.classList.add("hidden");
+    if (textLoader) {
+      // Start fade out
+      textLoader.style.opacity = "0";
+      textLoader.classList.add("hidden");
+      
+      // Set a timeout to fully remove it after transition
+      textLoader._hideTimeout = setTimeout(() => {
+        textLoader.style.display = "none";
+      }, 500);
+    }
   }
 }
 

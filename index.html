@@ -10,6 +10,7 @@
     <title>Typelab - Typography Exploration</title>
     <link rel="stylesheet" href="css/main.css" />
     <link rel="stylesheet" href="css/slider.css" />
+    <link rel="stylesheet" href="css/loki-effect.css" />
     <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts Link Placeholder -->
@@ -21,6 +22,12 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
+    
+    <!-- Preload calligraphy and exotic fonts for Loki effect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Creepster&family=Pirata+One&family=Cinzel+Decorative&family=Almendra+Display&family=Bungee+Outline&family=Faster+One&family=Ewert&family=Henny+Penny&family=MedievalSharp&family=Metal+Mania&family=Monoton&family=Rubik+Glitch&family=Nosifer&family=Tangerine&family=Great+Vibes&family=Philosopher&family=Mr+De+Haviland&family=Sacramento&family=Berkshire+Swash&family=Fredericka+the+Great&family=Rye&family=Uncial+Antiqua&family=Butcherman&family=Eater&family=Sancreek&family=Ruslan+Display&family=Lacquer&family=Diplomata+SC&family=Smokum&family=Merienda&family=Expletus+Sans&family=Fondamento&family=Germania+One&family=Jacques+Francois+Shadow&family=Macondo+Swash+Caps&family=Milonga&family=New+Rocker&family=Jolly+Lodger&family=Grenze+Gotisch&family=Frijole&family=Bigelow+Rules&family=Audiowide&family=Irish+Grover&family=Kranky&family=Ribeye+Marrow&display=swap" rel="stylesheet">
+    
     <style>
       /* Disable text selection for the entire page */
       * {
@@ -350,6 +357,17 @@
         opacity: 0;
         position: absolute;
       }
+
+      /* Add a hint about the T key functionality */
+      .key-hint {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        color: rgba(255, 255, 255, 0.3);
+        font-size: 0.8rem;
+        text-align: right;
+        line-height: 1.2;
+      }
     </style>
   </head>
   <body>
@@ -425,6 +443,13 @@
         </div>
       </div>
     </div>
+    
+    <!-- Add a small hint about the T key at the bottom of the page -->
+    <div class="key-hint">
+      Click to change font. Drag to change weight<br>
+      Press 'T' for a surprise!
+    </div>
+    
     <script src="js/home.js" type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/fontfaceobserver@2.1.0/fontfaceobserver.js"></script>
   </body>

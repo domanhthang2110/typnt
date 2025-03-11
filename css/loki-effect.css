@@ -1,0 +1,169 @@
+/* Shared Loki animation system for loading and title effects */
+
+/* Base container styles for Loki animation */
+.loki-container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 9999;
+}
+
+/* Fixed positioning for loader */
+.loki-loader {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px 30px;
+  transition: opacity 0.3s ease-out;
+}
+
+/* Base letter styling shared between title and loader */
+.loki-letter {
+  display: inline-block;
+  line-height: 1;
+  font-weight: bold;
+  margin: 0 4px;
+  min-width: 30px;
+  text-align: center;
+}
+
+/* Size variations for different contexts */
+.loki-loader .loki-letter {
+  font-size: 42px;
+}
+
+.loki-title .loki-letter {
+  font-size: 5rem;
+}
+
+/* Create separate animations for each letter */
+.loki-letter:nth-child(1) { animation: loki-font-cycle-1 5.7s infinite; }
+.loki-letter:nth-child(2) { animation: loki-font-cycle-2 5.7s infinite; }
+.loki-letter:nth-child(3) { animation: loki-font-cycle-3 5.7s infinite; }
+.loki-letter:nth-child(4) { animation: loki-font-cycle-4 5.7s infinite; }
+.loki-letter:nth-child(5) { animation: loki-font-cycle-5 5.7s infinite; }
+.loki-letter:nth-child(6) { animation: loki-font-cycle-6 5.7s infinite; }
+.loki-letter:nth-child(7) { animation: loki-font-cycle-7 5.7s infinite; }
+
+/* Define different font cycling animations */
+@keyframes loki-font-cycle-1 {
+  0%, 100% { font-family: 'UnifrakturMaguntia', cursive; }
+  10% { font-family: 'MedievalSharp', fantasy; }
+  20% { font-family: 'Cinzel Decorative', cursive; }
+  30% { font-family: 'Almendra Display', fantasy; }
+  40% { font-family: 'Great Vibes', cursive; }
+  50% { font-family: 'Pirata One', cursive; }
+  60% { font-family: 'Berkshire Swash', cursive; }
+  70% { font-family: 'Fredericka the Great', cursive; }
+  80% { font-family: 'Rye', fantasy; }
+  90% { font-family: 'Uncial Antiqua', fantasy; }
+}
+
+@keyframes loki-font-cycle-2 {
+  0%, 100% { font-family: 'Creepster', cursive; }
+  10% { font-family: 'Monoton', cursive; }
+  20% { font-family: 'Ewert', cursive; }
+  30% { font-family: 'Sacramento', cursive; }
+  40% { font-family: 'Tangerine', cursive; }
+  50% { font-family: 'Nosifer', cursive; }
+  60% { font-family: 'Butcherman', cursive; }
+  70% { font-family: 'Eater', fantasy; }
+  80% { font-family: 'Henny Penny', cursive; }
+  90% { font-family: 'Sancreek', fantasy; }
+}
+
+@keyframes loki-font-cycle-3 {
+  0%, 100% { font-family: 'Rubik Glitch', cursive; }
+  10% { font-family: 'Bungee Outline', cursive; }
+  20% { font-family: 'Pirata One', cursive; }
+  30% { font-family: 'Faster One', fantasy; }
+  40% { font-family: 'Metal Mania', fantasy; }
+  50% { font-family: 'Cinzel Decorative', cursive; }
+  60% { font-family: 'Ruslan Display', fantasy; }
+  70% { font-family: 'Lacquer', fantasy; }
+  80% { font-family: 'Diplomata SC', fantasy; }
+  90% { font-family: 'Smokum', cursive; }
+}
+
+@keyframes loki-font-cycle-4 {
+  0%, 100% { font-family: 'Cinzel Decorative', fantasy; }
+  10% { font-family: 'MedievalSharp', fantasy; }
+  20% { font-family: 'Mr De Haviland', cursive; }
+  30% { font-family: 'Almendra Display', cursive; }
+  40% { font-family: 'Philosopher', cursive; }
+  50% { font-family: 'Great Vibes', cursive; }
+  60% { font-family: 'Merienda', cursive; }
+  70% { font-family: 'Expletus Sans', serif; }
+  80% { font-family: 'Fondamento', cursive; }
+  90% { font-family: 'Germania One', cursive; }
+}
+
+@keyframes loki-font-cycle-5 {
+  0%, 100% { font-family: 'Almendra Display', fantasy; }
+  10% { font-family: 'Ewert', fantasy; }
+  20% { font-family: 'Nosifer', fantasy; }
+  30% { font-family: 'Monoton', monospace; }
+  40% { font-family: 'Rubik Glitch', cursive; }
+  50% { font-family: 'Henny Penny', fantasy; }
+  60% { font-family: 'Jacques Francois Shadow', serif; }
+  70% { font-family: 'Macondo Swash Caps', cursive; }
+  80% { font-family: 'Milonga', cursive; }
+  90% { font-family: 'New Rocker', fantasy; }
+}
+
+@keyframes loki-font-cycle-6 {
+  0%, 100% { font-family: 'Bungee Outline', sans-serif; }
+  10% { font-family: 'Metal Mania', fantasy; }
+  20% { font-family: 'Creepster', cursive; }
+  30% { font-family: 'UnifrakturMaguntia', fantasy; }
+  40% { font-family: 'Great Vibes', cursive; }
+  50% { font-family: 'Nosifer', fantasy; }
+  60% { font-family: 'Jolly Lodger', fantasy; }
+  70% { font-family: 'Grenze Gotisch', serif; }
+  80% { font-family: 'Frijole', fantasy; }
+  90% { font-family: 'Bigelow Rules', cursive; }
+}
+
+@keyframes loki-font-cycle-7 {
+  0%, 100% { font-family: 'Faster One', cursive; }
+  10% { font-family: 'Creepster', cursive; }
+  20% { font-family: 'Pirata One', fantasy; }
+  30% { font-family: 'Monoton', fantasy; }
+  40% { font-family: 'Ewert', cursive; }
+  50% { font-family: 'Henny Penny', cursive; }
+  60% { font-family: 'Audiowide', cursive; }
+  70% { font-family: 'Irish Grover', fantasy; }
+  80% { font-family: 'Kranky', cursive; }
+  90% { font-family: 'Ribeye Marrow', fantasy; }
+}
+
+/* Add color variations */
+.loki-letter:nth-child(1) { color: #fff; }
+.loki-letter:nth-child(2) { color: #f0f0f0; }
+.loki-letter:nth-child(3) { color: #e0e0e0; }
+.loki-letter:nth-child(4) { color: #fff; }
+.loki-letter:nth-child(5) { color: #f0f0f0; }
+.loki-letter:nth-child(6) { color: #e0e0e0; }
+.loki-letter:nth-child(7) { color: #fff; }
+
+/* Hide loader when not needed */
+.loki-loader.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Effect style for the active loki effect */
+.loki-effect-active {
+  transform-style: preserve-3d;
+  transform: perspective(1000px) rotateX(5deg);
+}
+
+
+/* Loki effect styles for the title animation */
+.loki-title {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  margin: 0 auto;
+}

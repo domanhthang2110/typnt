@@ -31,6 +31,12 @@ const fontUsage = new Map(); // Maps font name to last usage timestamp
 const FONT_CLEANUP_INTERVAL = 60000; // Check for cleanup every 60 seconds
 const FONT_EXPIRATION_TIME = 60000; // Unload fonts after 60 seconds of non-use
 
+// Add these variables near the top with other global variables
+let isLokiMode = false;
+let originalTitleContent = null;
+let originalFontInfo = null;
+let lokiAudio = null; // For tracking the audio element
+
 // Function to update font usage time
 function updateFontUsageTime(fontName) {
   if (!fontName) return;
@@ -168,7 +174,7 @@ function getNextFont(currentFontFamily = null) {
   return getRandomVariableFont(currentFontFamily);
 }
 
-// Modified changeRandomFont function to use preloaded fonts and remove cooldown
+// Modified changeRandomFont function to disable Loki mode first
 async function changeRandomFont(retryCount = 0) {
   // Only check if we're already changing a font, remove time check
   if (isChangingFont && retryCount === 0) {
@@ -193,6 +199,13 @@ async function changeRandomFont(retryCount = 0) {
   if (!titleElement || !fontNameElement || !fontDesignerElement) {
     isChangingFont = false;
     return;
+  }
+
+  // NEW: First check and disable Loki mode if it's active
+  if (isLokiMode) {
+    console.log("Disabling Loki mode before changing font");
+    removeLokiEffect(titleElement, fontNameElement, fontDesignerElement);
+    isLokiMode = false;
   }
 
   try {
@@ -741,6 +754,174 @@ function startFontCleanupInterval() {
   console.log(`Font cleanup scheduled every ${FONT_CLEANUP_INTERVAL/1000} seconds`);
 }
 
+// Add this function to handle the Loki effect toggle
+function toggleLokiEffect() {
+  const titleElement = document.querySelector(".home-font-title");
+  const fontNameElement = document.querySelector(".home-font-name");
+  const fontDesignerElement = document.querySelector(".home-font-designer");
+  
+  if (!titleElement || !fontNameElement || !fontDesignerElement) return;
+  
+  if (!isLokiMode) {
+    // Store original content for later restoration
+    originalTitleContent = titleElement.innerHTML;
+    originalFontInfo = {
+      name: fontNameElement.innerHTML,
+      designer: fontDesignerElement.innerHTML,
+      quote: null // Will store the quote if present
+    };
+    
+    // Apply Loki effect
+    applyLokiEffect(titleElement, fontNameElement, fontDesignerElement);
+    isLokiMode = true;
+  } else {
+    // Restore original content
+    removeLokiEffect(titleElement, fontNameElement, fontDesignerElement);
+    isLokiMode = false;
+  }
+}
+
+function applyLokiEffect(titleElement, fontNameElement, fontDesignerElement) {
+  // Clear the title element
+  titleElement.innerHTML = '';
+  
+  // Create a container for the animated text
+  const lokiContainer = document.createElement('div');
+  lokiContainer.className = 'loki-container loki-title';
+  titleElement.appendChild(lokiContainer);
+  
+  // Add each letter of "TYPELAB" with animation
+  const text = "TYPELAB";
+  for (let i = 0; i < text.length; i++) {
+    const letter = document.createElement('span');
+    letter.className = 'loki-letter';
+    letter.textContent = text[i];
+    lokiContainer.appendChild(letter);
+  }
+  
+  // Update font name and designer
+  fontNameElement.innerHTML = `<a href="#">Typelab</a>`;
+  fontDesignerElement.innerHTML = 'designed by Bach and Thang';
+  
+  // Add Loki animation class to title container
+  titleElement.classList.add('loki-effect-active');
+  
+  // Add a Loki-themed quote about font variants
+  const lokiQuote = {
+    content: "Glorious purpose lies in every font. Like me, they have many variants, each shape-shifting to reveal a different version of themselves. Trust them not, for their forms are ever-changing... yet marvelous.",
+    author: "Loki, God of Typography"
+  };
+  
+  // Update the quote if it exists
+  if (quoteContainer && quoteText && quoteAuthor) {
+    // Store the current quote if not already stored
+    if (!originalFontInfo.quote && quoteText.textContent) {
+      originalFontInfo.quote = {
+        content: quoteText.textContent,
+        author: quoteAuthor.textContent
+      };
+    }
+    
+    // Update with Loki quote and apply the Philosopher font
+    quoteText.textContent = lokiQuote.content;
+    quoteText.style.fontFamily = "'Epilogue', sans-serif";
+    quoteAuthor.textContent = `— ${lokiQuote.author}`;
+    quoteAuthor.style.fontFamily = "'Epilogue', sans-serif";
+    quoteContainer.classList.remove('opacity-0');
+  }
+  
+  // Play TVA audio with fade-in effect
+  playLokiAudio();
+}
+
+function removeLokiEffect(titleElement, fontNameElement, fontDesignerElement) {
+  // Restore original contents
+  if (originalTitleContent) {
+    titleElement.innerHTML = originalTitleContent;
+  }
+  
+  if (originalFontInfo) {
+    fontNameElement.innerHTML = originalFontInfo.name;
+    fontDesignerElement.innerHTML = originalFontInfo.designer;
+    
+    // Restore original quote if it existed
+    if (originalFontInfo.quote && quoteContainer && quoteText && quoteAuthor) {
+      quoteText.textContent = originalFontInfo.quote.content;
+      quoteAuthor.textContent = originalFontInfo.quote.author;
+      
+      // Also restore the font family
+      quoteText.style.fontFamily = ''; // Let it inherit from the current font
+      quoteAuthor.style.fontFamily = ''; // Let it inherit from the current font
+    }
+  }
+  
+  // Remove Loki animation class
+  titleElement.classList.remove('loki-effect-active');
+  
+  // Fade out and stop audio
+  stopLokiAudio();
+}
+
+// New function to play audio with fade-in effect
+function playLokiAudio() {
+  try {
+    // Create new audio instance if it doesn't exist
+    if (!lokiAudio) {
+      lokiAudio = new Audio('audio/tva.mp3');
+      lokiAudio.volume = 0; // Start silent
+      lokiAudio.loop = true; // Loop the TVA theme
+    }
+    
+    // Start playing
+    const playPromise = lokiAudio.play();
+    
+    if (playPromise !== undefined) {
+      playPromise.then(() => {
+        // Fade in over 1.5 seconds
+        let volume = 0;
+        const fadeInInterval = setInterval(() => {
+          if (volume < 0.1) { // Target volume 0.7 (not too loud)
+            volume += 0.05;
+            lokiAudio.volume = volume;
+          } else {
+            clearInterval(fadeInInterval);
+          }
+        }, 100);
+      }).catch(error => {
+        console.warn('Audio playback was prevented:', error);
+      });
+    }
+  } catch (error) {
+    console.error('Failed to play Loki audio:', error);
+  }
+}
+
+// New function to stop audio with fade-out effect
+function stopLokiAudio() {
+  if (!lokiAudio) return;
+  
+  // If audio is playing, fade it out
+  if (!lokiAudio.paused) {
+    // Store current volume
+    const startVolume = lokiAudio.volume;
+    
+    // Fade out over 1.5 seconds
+    const fadeOutInterval = setInterval(() => {
+      if (lokiAudio.volume > 0.05) {
+        lokiAudio.volume -= 0.05;
+      } else {
+        clearInterval(fadeOutInterval);
+        lokiAudio.pause();
+        lokiAudio.currentTime = 0; // Reset position
+      }
+    }, 100);
+  } else {
+    // If not playing, just reset it
+    lokiAudio.pause();
+    lokiAudio.currentTime = 0;
+  }
+}
+
 // Modify the initHomePage function to initialize the GoogleFontsLoader
 async function initHomePage() {
     try {
@@ -773,6 +954,21 @@ async function initHomePage() {
         
         // Start font cleanup interval
         startFontCleanupInterval();
+      
+        // Add keyboard event listener for Loki mode toggle
+        document.addEventListener('keydown', (e) => {
+          // Only respond if not in an input field
+          if (e.target.tagName === 'INPUT' || 
+              e.target.tagName === 'TEXTAREA' || 
+              e.target.contentEditable === 'true') {
+            return;
+          }
+          
+          // Check for 'T' key press
+          if (e.key.toLowerCase() === 't') {
+            toggleLokiEffect();
+          }
+        });
       
     } catch (error) {
         console.error('Failed to initialize fonts:', error);
