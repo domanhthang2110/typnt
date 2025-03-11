@@ -463,6 +463,21 @@ function createFontCard(fontData) {
   // Get font name
   const fontName = fontData.family || fontData.name;
 
+  // Get font category (normalize it)
+  const category = (fontData.category || "unknown").toLowerCase().replace(/_/g, '-');
+  
+  // Find personality for this font (if any)
+  let personality = "none";
+  if (filterManager.personalityData) {
+    // Check each personality to see if this font is included
+    for (const [personalityName, fonts] of Object.entries(filterManager.personalityData)) {
+      if (fonts.some(entry => (entry.font === fontName))) {
+        personality = personalityName;
+        break;
+      }
+    }
+  }
+
   const isVariable = googleFontsLoader.isVariableFont(fontName);
 
   // Use the same method as layout.js to get variants count
@@ -515,8 +530,14 @@ function createFontCard(fontData) {
         </div>
         
         <div class="card-footer">
-            <div>
-                <p>Designed by ${designer}</p>
+            <div class="card-footer-info">
+                <div class="font-tags">
+                    <span class="font-tag category-tag">${category}</span>
+                    ${personality !== "none" ? `<span class="font-tag personality-tag">${personality}</span>` : ''}
+                </div>
+                <div class="designer-info">
+                    <p>Designed by ${designer}</p>
+                </div>
             </div>
             <a href="glyph.html?font=${encodeURIComponent(fontName)}" class="view-family-btn">View family</a>
         </div>

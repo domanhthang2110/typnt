@@ -1,3 +1,31 @@
+@keyframes diagonalExpand {
+    0% {
+        width: 100%;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden
+    }
+
+    to {
+        width: 200%;
+        max-height: 500px;
+        opacity: 1;
+        overflow: auto
+    }
+}
+
+@keyframes downwardExpand {
+    0% {
+        max-height: 0;
+        opacity: 0
+    }
+
+    to {
+        max-height: 500px;
+        opacity: 1
+    }
+}
+
 .card {
     position: relative;
     color: var(--light-gray);
@@ -54,27 +82,28 @@ input[type=radio] {
     transition: all .2s ease-in-out
 }
 
-#dropdownContent,#personalityContent,.dropdown-content, .variantDropdown {
-    z-index: 100;
+#dropdownContent,#personalityContent,.dropdown-content,.variantDropdown {
+    z-index: 100
 }
 
-.dropdown-button, .second-bar-button {
-    z-index: 110;
+.dropdown-button,.second-bar-button {
+    z-index: 110
 }
 
-#personalityContent,#propertiesContent {
+#propertiesContent {
     padding-top: 20px
 }
 
-#dropdownContent, #personalityContent {
+#dropdownContent,#personalityContent {
     width: 201px;
     padding-top: 80px;
     top: -9px;
-    left: -3px;
+    left: -3px
 }
+
 #personalityDropdownContent {
     max-height: 216px;
-    overflow-y: auto;
+    overflow-y: auto
 }
 
 #dropdownContent label {
@@ -82,17 +111,18 @@ input[type=radio] {
     display: flex;
     align-items: center;
     transition: background-color .2s ease;
+    color: var(--gray)
 }
 
 #dropdownContent {
-    overflow-y: hidden;
+    overflow-y: hidden
 }
 
 #dropdownContent label:hover,.card:hover {
     color: var(--white)
 }
 
-#dropdownContent input[type=radio]+label,#dropdownContent label {
+#dropdownContent input[type=radio]+label {
     color: var(--gray)
 }
 
@@ -157,21 +187,22 @@ nav {
     margin-right: 35px
 }
 
-.second-top-bar {
+.second-top-bar,.third-bar-container {
     position: sticky;
-    background-color: var(--tblack);
+    background-color: var(--tblack)
+}
+
+.second-top-bar {
     top: 0;
     display: flex;
     width: 100%;
     height: 70px;
-    z-index: 100;
+    z-index: 100
 }
 
 .third-bar-container {
-    position: sticky;
-    background-color: var(--tblack);
     top: 70px;
-    z-index: 70;
+    z-index: 70
 }
 
 .top-bar-button-end.active {
@@ -454,8 +485,7 @@ input[type=radio]:checked {
     flex: 1;
     overflow: hidden;
     min-height: 180px;
-    margin: 10px 0;
-    margin-bottom: 35px;
+    margin: 10px 0 35px
 }
 
 .card-sample {
@@ -565,108 +595,62 @@ input[type=radio]:checked {
     transition: font-size .2s ease
 }
 
-/* Personality dropdown grid and animation styles */
 .personality-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+    display: grid;
+    grid-template-columns: 1fr 1fr
 }
 
 .personality-item {
-  width: 100%;
-  box-sizing: border-box;
-}
-
-/* Remove the immediate width setting to allow animation to control it */
-#personalityContent.wide-dropdown {
-  right: 0 !important;
-}
-
-/* Animation for personality dropdown (diagonal) */
-@keyframes diagonalExpand {
-  0% {
     width: 100%;
-    max-height: 0;
-    opacity: 0;
-  }
-  100% {
-    width: 200%;
-    max-height: 500px;
-    opacity: 1;
-  }
-}
-
-/* Animation for category dropdown (downward) */
-@keyframes downwardExpand {
-  0% {
-    max-height: 0;
-    opacity: 0;
-  }
-  100% {
-    max-height: 500px;
-    opacity: 1;
-  }
-}
-
-.personality-dropdown-animate {
-  transform-origin: top right;
-  animation: diagonalExpand 0.2s ease-out forwards;
-  will-change: width, max-height, opacity;
-}
-
-.category-dropdown-animate {
-  transform-origin: top center;
-  animation: downwardExpand 0.3s ease-out forwards;
-  will-change: max-height, opacity;
-}
-
-/* ----- Dropdown Animation System ----- */
-/* Base styles for dropdown items */
-/* Animation keyframes */
-@keyframes diagonalExpand {
-  0% {
-    width: 100%;
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-  }
-  100% {
-    width: 200%;
-    max-height: 500px;
-    opacity: 1;
-    overflow: auto;
-  }
-}
-
-@keyframes downwardExpand {
-  0% {
-    max-height: 0;
-    opacity: 0;
-  }
-  100% {
-    max-height: 500px;
-    opacity: 1;
-  }
-}
-
-/* Animation classes */
-.dropdown-animate {
-  will-change: max-height, opacity;
-}
-
-.personality-dropdown-animate {
-  transform-origin: top right;
-  animation: diagonalExpand 0.3s ease-out forwards;
-  will-change: width, max-height, opacity;
-}
-
-.category-dropdown-animate {
-  transform-origin: top center;
-  animation: downwardExpand 0.3s ease-out forwards;
+    box-sizing: border-box
 }
 
 #personalityContent.wide-dropdown {
-  right: 0 !important;
+    right: 0!important
 }
 
+.category-dropdown-animate,.dropdown-animate {
+    will-change: max-height,opacity
+}
 
+.personality-dropdown-animate {
+    transform-origin: top right;
+    animation: diagonalExpand .3s ease-out forwards;
+    will-change: width,max-height,opacity
+}
 
+.category-dropdown-animate {
+    transform-origin: top center;
+    animation: downwardExpand .3s ease-out forwards
+}
+
+.font-tags {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 6px
+}
+
+.font-tag {
+    display: inline-block;
+    font-size: .8rem;
+    padding: 2px 6px;
+    text-transform: lowercase;
+    color: var(--gray);
+    background-color: var(--tblack2);
+    transition: color .3s,background-color .3s
+}
+
+.card:hover .font-tag {
+    background-color: var(--dark-gray);
+    color: var(--white)
+}
+
+.card-footer-info {
+    display: flex;
+    flex-direction: column
+}
+
+.designer-info {
+    margin-top: 2px
+}
