@@ -87,10 +87,13 @@ input[type=radio] {
 }
 
 #dropdownContent,#personalityContent {
-    z-index: 130;
+    z-index: 92;
+}
+.second-bar-button {
+    z-index: 93;
 }
 
-.dropdown-button,.second-bar-button {
+.dropdown-button {
     z-index: 90
 }
 
@@ -206,7 +209,7 @@ nav {
 
 .third-bar-container {
     top: 70px;
-    z-index: 100
+    z-index: 91
 }
 
 .top-bar-button-end.active {
