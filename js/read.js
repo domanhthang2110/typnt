@@ -71,6 +71,9 @@ async function renderArticles(category = currentCategory, searchTerm = currentSe
     articleCard.innerHTML = `
       <div class="thumbnail-container">
         <img src="${article.thumbnail}" alt="${article.title}" class="article-thumbnail">
+        <div class="article-overlay">
+          <div>read more</div>
+        </div>
       </div>
       <div class="content">
         <h3 class="article-title"><a href="${articleUrl}" class="article-link">${article.title}</a></h3>

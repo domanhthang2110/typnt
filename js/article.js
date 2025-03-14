@@ -23,6 +23,17 @@ async function loadArticle() {
     articleImage.alt = `Article: ${articleId}`; // Set alt text
     articleImage.className = 'w-full'; // Make the image responsive
     
+    // Add error handling for the image
+    articleImage.onerror = () => {
+      // Display a "not available in demo" message
+      imageContainer.innerHTML = `
+        <div class="not-available-message p-20 text-center">
+          <h2 class="text-3xl mb-6 font-light">This article is not available in the demo</h2>
+          <p class="text-lg mb-8">The requested article content is not included in this demonstration version.</p>
+        </div>
+      `;
+    };
+    
     // Add the image to the container
     imageContainer.appendChild(articleImage);
     
@@ -34,9 +45,12 @@ async function loadArticle() {
     // Display an error message
     const imageContainer = document.getElementById('article-image-container');
     imageContainer.innerHTML = `
-      <div class="error-message p-10 text-center">
-        <h2 class="text-xl mb-4">Article Not Found</h2>
-        <p>Sorry, we couldn't find the article you're looking for.</p>
+      <div class="not-available-message p-20 text-center">
+        <h2 class="text-3xl mb-6 font-light">This article is not available in the demo</h2>
+        <p class="text-lg mb-8">The requested article content is not included in this demonstration version.</p>
+        <a href="read.html" class="px-6 py-3 bg-gray-800 text-white rounded hover:bg-gray-700 transition-colors">
+          Return to Articles
+        </a>
       </div>
     `;
   }

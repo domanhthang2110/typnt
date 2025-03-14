@@ -15,6 +15,38 @@
     <!-- Google Fonts Link Placeholder -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <style>
+      .thumbnail-container {
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+      }
+      
+      .article-overlay {
+        pointer-events: none; /* Allows clicks to pass through to the container */
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      
+      .thumbnail-container:hover .article-overlay {
+        opacity: 1;
+      }
+      
+      .article-overlay div {
+        color: white;
+        font-size: 1.25rem;
+        font-weight: 600;
+      }
+    </style>
   </head>
   <body>
     <header class="flex justify-between items-center z-10">
