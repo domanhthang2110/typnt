@@ -24,6 +24,9 @@ let isSearching = false;
 // Initialize the GoogleFontsLoader
 let googleFontsLoader = null;
 
+// Add this before loadLocalFonts function
+const fontMetadataCache = {};
+
 function setupEventListeners() {
   document.addEventListener("textbox-updated", (e) => {
     const { font, state } = e.detail;
@@ -272,15 +275,39 @@ async function loadLocalFonts() {
       fontListElement.appendChild(localSection);
     }
 
-    for (const fontPath of fontFiles) {
-      const fontInfo = await loadFont(`./fonts/${fontPath}`);
-      if (fontInfo && (!searchQuery || fontInfo.name.toLowerCase().includes(searchQuery))) {
-        const card = createFontCard(fontInfo, localSection);
-        if (!selectedFontCard) {
-          card.click();
-        }
-      }
-    }
+    // Add loading indicator
+    const loadingIndicator = document.createElement("div");
+    loadingIndicator.className = "loading-indicator";
+    loadingIndicator.innerHTML = `
+      <div class="loading-spinner"></div>
+      <span>Loading local fonts...</span>
+    `;
+    localSection.appendChild(loadingIndicator);
+
+    // Load all fonts in parallel
+    const fontPromises = fontFiles.map(fontPath => {
+      return loadFont(`./fonts/${fontPath}`)
+        .then(fontInfo => {
+          if (fontInfo && (!searchQuery || fontInfo.name.toLowerCase().includes(searchQuery))) {
+            const card = createFontCard(fontInfo, localSection);
+            if (!selectedFontCard) {
+              card.click();
+            }
+          }
+          return fontInfo;
+        })
+        .catch(error => {
+          console.error(`Error loading ${fontPath}:`, error);
+          return null;
+        });
+    });
+
+    // Wait for all fonts to load (or fail)
+    await Promise.all(fontPromises);
+    
+    // Remove loading indicator
+    loadingIndicator.remove();
+      
   } catch (error) {
     console.error("Error loading local fonts:", error);
   }
@@ -466,6 +493,14 @@ function setupInfiniteScroll() {
 // Update the loadFont function to include features, axes, and instances
 async function loadFont(fontPath) {
   try {
+    // Check if we already have metadata for this font
+    const fontKey = fontPath.split('/').pop();
+    
+    if (fontMetadataCache[fontKey]) {
+      console.log(`Using cached metadata for ${fontKey}`);
+      return fontMetadataCache[fontKey];
+    }
+    
     const response = await fetch(fontPath);
     const arrayBuffer = await response.arrayBuffer();
     const font = opentype.parse(arrayBuffer);
@@ -530,20 +565,18 @@ async function loadFont(fontPath) {
       name: getFontName(font, "fontFamily") || "Unknown Font",
       source: fontPath,
       style: getFontName(font, "fontSubfamily") || "Regular",
-      font: font,
+      // Store a reference to opentype font object, not the full font
       features: features,
       axes: axes,
       instances: instances.length > 0 ? instances : [],
     };
 
-    // Add debugging information
-    console.group("Font Loaded:", fontInfo.name);
-    console.log("Features:", features);
-    console.log("Axes:", axes);
-    console.log("Instances:", instances);
-    console.groupEnd();
-
+    // Store in cache for faster retrieval
+    fontMetadataCache[fontKey] = fontInfo;
+    
+    // Add to global fonts map
     fonts.set(fontInfo.name, fontInfo);
+    
     return fontInfo;
   } catch (error) {
     console.error("Failed to load font:", fontPath, error);
@@ -779,7 +812,7 @@ function getSelectedFontData() {
   const axisValues = {};
   if (fontInfo.axes) {
     Object.entries(fontInfo.axes).forEach(([tag, axis]) => {
-      axisValues[tag] = axis.default !== undefined ? axis.default : 
+      axisValues[tag] = axis.default !== undefined ? axis.default :
         getAxisDefaultValue(tag, axis.min, axis.max);
     });
   }
