@@ -76,14 +76,34 @@ function createTextbox(type, customData = null) {
 
   // Position the textbox
   if (customData) {
-    // Use the saved position and dimensions
-    element.css({
-      position: "absolute",
-      top: customData.position.top,
-      left: customData.position.left,
-      width: customData.dimensions.width,
-      height: customData.dimensions.height
-    });
+    // Use the saved position and dimensions, but handle regular textboxes differently
+    if (type === "paragraph") {
+      // For paragraph textboxes, use all saved dimensions
+      element.css({
+        position: "absolute",
+        top: customData.position.top,
+        left: customData.position.left,
+        width: customData.dimensions.width,
+        height: customData.dimensions.height
+      });
+    } else {
+      // For regular textboxes, don't set fixed height - let it scale with content
+      element.css({
+        position: "absolute",
+        top: customData.position.top,
+        left: customData.position.left,
+        width: customData.dimensions.width,
+        height: "auto", // Allow height to adjust to content
+        whiteSpace: "nowrap" // Keep text on a single line
+      });
+      
+      // Force fit-content to ensure proper width scaling
+      setTimeout(() => {
+        element.css({
+          width: "fit-content"
+        });
+      }, 0);
+    }
   } else {
     // Default positioning for new textboxes
     const initialStyles = {
@@ -424,14 +444,34 @@ function createTextboxWithoutSelecting(type, customData) {
 
   // Position the textbox
   if (customData) {
-    // Use the saved position and dimensions
-    element.css({
-      position: "absolute",
-      top: customData.position.top,
-      left: customData.position.left,
-      width: customData.dimensions.width,
-      height: customData.dimensions.height
-    });
+    // Use the saved position and dimensions, but handle regular textboxes differently
+    if (type === "paragraph") {
+      // For paragraph textboxes, use all saved dimensions
+      element.css({
+        position: "absolute",
+        top: customData.position.top,
+        left: customData.position.left,
+        width: customData.dimensions.width,
+        height: customData.dimensions.height
+      });
+    } else {
+      // For regular textboxes, don't set fixed height - let it scale with content
+      element.css({
+        position: "absolute",
+        top: customData.position.top,
+        left: customData.position.left,
+        width: customData.dimensions.width,
+        height: "auto", // Allow height to adjust to content
+        whiteSpace: "nowrap" // Keep text on a single line
+      });
+      
+      // Force fit-content to ensure proper width scaling
+      setTimeout(() => {
+        element.css({
+          width: "fit-content"
+        });
+      }, 0);
+    }
   } else {
     // Default positioning for new textboxes
     const initialStyles = {
