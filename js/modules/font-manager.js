@@ -748,35 +748,45 @@ function createFontCard(fontInfo, parentElement) {
   return card;
 }
 
+// Update scrollToFont to handle cases where the font card isn't initially visible
 function scrollToFont(fontFamily) {
-  const fontCard = Array.from(
-    fontListElement.querySelectorAll(".font-card")
-  ).find(
-    (card) => card.querySelector(".font-card__name").textContent === fontFamily
-  );
+  // Wait a bit to ensure font list is loaded
+  setTimeout(() => {
+    const fontCard = Array.from(
+      fontListElement.querySelectorAll(".font-card")
+    ).find(
+      (card) => card.querySelector(".font-card__name").textContent === fontFamily
+    );
 
-  if (fontCard) {
-    // Update the selection state
-    updateFontCardSelection(fontCard);
+    if (fontCard) {
+      // Update the selection state
+      updateFontCardSelection(fontCard);
+      selectedFontCard = fontCard;
 
-    // Get the font list container's dimensions
-    const container = fontListElement;
-    const containerHeight = container.clientHeight;
+      // Get the font list container's dimensions
+      const container = fontListElement;
+      const containerHeight = container.clientHeight;
 
-    // Calculate the scroll position to center the card
-    const cardTop = fontCard.offsetTop;
-    const cardHeight = fontCard.offsetHeight;
-    const scrollTop = cardTop - containerHeight / 2 + cardHeight / 2;
+      // Calculate the scroll position to center the card
+      const cardTop = fontCard.offsetTop;
+      const cardHeight = fontCard.offsetHeight;
+      const scrollTop = cardTop - containerHeight / 2 + cardHeight / 2;
 
-    // Smooth scroll to the calculated position
-    container.scrollTo({
-      top: scrollTop,
-      behavior: "smooth",
-    });
-  }
+      // Smooth scroll to the calculated position
+      container.scrollTo({
+        top: scrollTop,
+        behavior: "smooth",
+      });
+    } else {
+      // Font card not found in the visible list
+      // It might be a Google font that's not loaded yet
+      console.log(`Font card for ${fontFamily} not found in visible list, might need to load more fonts`);
+      
+      // We could try loading more fonts here if needed
+    }
+  }, 300);
 }
 
-// Modify the updateFontCardSelection function
 function updateFontCardSelection(selectedCard) {
   document
     .querySelectorAll(".font-card")
@@ -1423,13 +1433,50 @@ document.addEventListener("font-manager-ready", () => {
   showUserManual();
 });
 
+// Add these functions to save and restore selected font state
+export function saveSelectedFontState(fontData) {
+  // Find the font card for this font
+  const fontName = fontData.family;
+  const fontCard = Array.from(
+    document.querySelectorAll(".font-card")
+  ).find(
+    (card) => card.querySelector(".font-card__name").textContent === fontName
+  );
+
+  if (fontCard) {
+    // Update the selection visually
+    updateFontCardSelection(fontCard);
+    selectedFontCard = fontCard;
+    
+    // If there's an active textbox, we need to update it
+    if (state.activeTextbox) {
+      // Trigger the font-selected event to update the textbox
+      const fontInfo = fonts.get(fontName);
+      if (fontInfo) {
+        const event = new CustomEvent("font-selected", {
+          detail: {
+            fontData,
+            fontInfo: {
+              ...fontInfo,
+              availableFeatures: fontInfo.features || [],
+              availableAxes: fontInfo.axes || {},
+              availableInstances: fontInfo.instances || [],
+            },
+          },
+        });
+        document.dispatchEvent(event);
+      }
+    }
+  }
+}
+
 export {
   init as initFontManager,
   updateSettingsPanel,
   scrollToFont,
   updateFontCardSelection,
   getSelectedFontData,
-  showUserManual, // Export the new function
+  showUserManual
 };
 
 export function updateFontSizeSlider(newSize) {

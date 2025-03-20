@@ -6,10 +6,12 @@ import RulerManager from './modules/rulers.js';
 import PanelManager from './modules/panels.js';
 import { init as initTextbox } from './modules/textbox.js';
 import { initFontManager, showUserManual } from './modules/font-manager.js';
+import SessionManager from './modules/session-manager.js';
 
 class LabApp {
     constructor() {
         this.outlineEnabled = false;
+        this.sessionManager = null;
         this.init();
         this.panelManager = new PanelManager();
     }
@@ -19,6 +21,10 @@ class LabApp {
         this.setupPanelToggles();
         await this.initFontManager(); // Make this await the font manager initialization
         this.setupGridToggle();
+        
+        // Initialize session manager after the UI is set up
+        this.sessionManager = new SessionManager();
+        this.sessionManager.loadAllState();
         
         // Show the user manual when the app starts
         document.addEventListener("font-manager-ready", () => {
@@ -35,6 +41,9 @@ class LabApp {
                 const panel = button.closest('.panel');
                 panel.classList.toggle('panel--collapsed');
                 button.textContent = panel.classList.contains('panel--collapsed') ? '+' : '−';
+                
+                // Dispatch event for session manager
+                document.dispatchEvent(new CustomEvent('panel-state-changed'));
             });
         });
     }
@@ -54,6 +63,9 @@ class LabApp {
             } else {
                 icon.textContent = 'grid_on';
             }
+            
+            // Dispatch event for session manager
+            document.dispatchEvent(new CustomEvent('ui-state-changed'));
         });
     }
 
